@@ -1,0 +1,10 @@
+{
+  "plan_script_hash_matches": true,
+  "train_and_fold_hashes_match": true,
+  "participants": 84,
+  "rows": 5040,
+  "all_people_in_one_fold": true,
+  "all_24_fold_macro_f1_values_recomputed_from_saved_predictions": true,
+  "selection_matches_frozen_rule": true,
+  "model_refit_or_test_evaluation_performed_by_verification": false
+}

@@ -1,0 +1,93 @@
+{
+  "verified_at_utc": "2026-11-14T16:13:14.523223+00:00",
+  "scope": "Independent recomputation from saved experiment predictions, plus source and model hashes; no refit or validation/test partition read.",
+  "hash_checks": {
+    "source_train_sha256": true,
+    "source_folds_sha256": true,
+    "task_config_sha256": true,
+    "script_sha256": true,
+    "official_bundle_sha256_before": true
+  },
+  "common_group_cv_rows": 4452,
+  "group_cv_metric_checks": [
+    {
+      "candidate": "rf_current26_control",
+      "fold": 0,
+      "recomputed_macro_f1": 0.49005258307583893
+    },
+    {
+      "candidate": "rf_current26_control",
+      "fold": 1,
+      "recomputed_macro_f1": 0.517116506621642
+    },
+    {
+      "candidate": "rf_current26_control",
+      "fold": 2,
+      "recomputed_macro_f1": 0.5228302229129572
+    },
+    {
+      "candidate": "rf_current26_plus4_history",
+      "fold": 0,
+      "recomputed_macro_f1": 0.4995865737259823
+    },
+    {
+      "candidate": "rf_current26_plus4_history",
+      "fold": 1,
+      "recomputed_macro_f1": 0.520324637022045
+    },
+    {
+      "candidate": "rf_current26_plus4_history",
+      "fold": 2,
+      "recomputed_macro_f1": 0.5283915550062922
+    },
+    {
+      "candidate": "current_fatigue_persistence",
+      "fold": 0,
+      "recomputed_macro_f1": 0.4874470894810064
+    },
+    {
+      "candidate": "current_fatigue_persistence",
+      "fold": 1,
+      "recomputed_macro_f1": 0.49460720642959694
+    },
+    {
+      "candidate": "current_fatigue_persistence",
+      "fold": 2,
+      "recomputed_macro_f1": 0.5288825022821056
+    }
+  ],
+  "temporal_metric_checks": [
+    {
+      "candidate": "rf_current26_control",
+      "fold": 0,
+      "recomputed_macro_f1": 0.5038233274030439
+    },
+    {
+      "candidate": "rf_current26_plus4_history",
+      "fold": 0,
+      "recomputed_macro_f1": 0.4960943258861337
+    },
+    {
+      "candidate": "current_fatigue_persistence",
+      "fold": 0,
+      "recomputed_macro_f1": 0.5283990868891975
+    },
+    {
+      "candidate": "rf_current26_control",
+      "fold": 1,
+      "recomputed_macro_f1": 0.5060444119844026
+    },
+    {
+      "candidate": "rf_current26_plus4_history",
+      "fold": 1,
+      "recomputed_macro_f1": 0.4951976921641142
+    },
+    {
+      "candidate": "current_fatigue_persistence",
+      "fold": 1,
+      "recomputed_macro_f1": 0.4927110305750471
+    }
+  ],
+  "all_passed": true,
+  "decision": "Keep original model. Added-history experiment did not meet its prespecified gates."
+}

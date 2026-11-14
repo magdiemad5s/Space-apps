@@ -1,0 +1,47 @@
+{
+  "detector_invariant_checks": [
+    {
+      "stage_id": "group_fold_0",
+      "mask_invariant_to_all_non_detector_columns": true,
+      "fitting_rows": 3360,
+      "tail_rows": 174
+    },
+    {
+      "stage_id": "group_fold_1",
+      "mask_invariant_to_all_non_detector_columns": true,
+      "fitting_rows": 3360,
+      "tail_rows": 162
+    },
+    {
+      "stage_id": "group_fold_2",
+      "mask_invariant_to_all_non_detector_columns": true,
+      "fitting_rows": 3360,
+      "tail_rows": 169
+    },
+    {
+      "stage_id": "temporal_fold_0",
+      "mask_invariant_to_all_non_detector_columns": true,
+      "fitting_rows": 2520,
+      "tail_rows": 132
+    },
+    {
+      "stage_id": "temporal_fold_1",
+      "mask_invariant_to_all_non_detector_columns": true,
+      "fitting_rows": 3780,
+      "tail_rows": 190
+    }
+  ],
+  "all_detector_invariants_passed": true,
+  "heldout_cohort_equality_all_candidates": true,
+  "group_separation_passed": true,
+  "temporal_label_availability_passed": true,
+  "source_train_unchanged": true,
+  "official_bundle_unchanged": true,
+  "script_sha256_matches_frozen_plan": true,
+  "validation_read": false,
+  "final_test_read": false,
+  "isolation_forest_retrained": false,
+  "source_rows_deleted_or_rewritten": 0,
+  "unchanged_control_matches_improvement_002_oof_predictions": true,
+  "unchanged_control_prediction_rows_verified": 5040
+}

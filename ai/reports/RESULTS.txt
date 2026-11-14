@@ -1,0 +1,21 @@
+ASTRA-SHIELD — FROZEN RESULTS
+
+Training/selection: 17.77 seconds on attached cloud CPU.
+Dataset: original longitudinal synthetic data, no V2/V3 records.
+Validation selected Random Forest (Macro-F1 0.5273) over XGBoost (0.4857).
+The final test cohort was not used to choose features, parameters or thresholds.
+
+TEST RESULTS: 1,080 records from 18 virtual participants
+Fatigue classification Macro-F1: 0.5285; persistence baseline: 0.5181; majority: 0.2676.
+Fatigue accuracy: 61.85%; majority accuracy: 67.04%. Macro-F1 was the selection objective.
+High fatigue: precision 41.94%, recall 45.77%. The model misses over half of simulated High cases.
+Fatigue score MAE: 1.0197 on a custom 0..10 score; persistence: 1.1681.
+Next-day reaction-time MAE: 14.0213 ms; persistence: 15.5556 ms.
+Injected physiological-event detection: precision 0.7097, recall 0.8148, F1 0.7586.
+Journal stress Macro-F1: 0.3938; High-stress recall: 0.1695. Text results are experimental.
+
+INTERPRETATION
+The primary classifier has only a small gain over repeating today's category.
+Bootstrap uncertainty (whole participants, 500 draws) is in participant_bootstrap.json.
+These are simulator results, not real astronaut/clinical evidence. No tuning followed test evaluation.
+SHAP explains the classifier; it does not establish causes or justify medical decisions.

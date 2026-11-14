@@ -1,0 +1,84 @@
+ASTRA-SHIELD — EDA-FIRST GRAPH REVIEW AND FEATURE DECISIONS
+
+Review scope
+The three existing training-only PNG charts were opened and visually reviewed,
+along with numeric_summary.csv, high_correlations.csv, target_class_counts.csv,
+EDA_REPORT.txt, the data dictionary, and the feature allowlist. No test.csv or
+validation metric report was opened to make these recommendations. This review
+precedes the revised development experiment; it does not retroactively change
+the chronology of the initial baseline run.
+
+1. Training feature distributions
+Chart: reports/eda/training_feature_distributions.png.
+The axes and units are readable and consistent with the dictionary. Sleep is
+roughly unimodal (mean 6.905 h, observed 3.433–9.8 h). Resting HR has a main mass
+around 60–85 bpm and a smaller right tail, reaching 106.717 bpm. RMSSD spans
+8.952–74.934 ms with no zero values in the numeric summary. Median reaction time
+is about 330.6 ms (range 238.732–428.2 ms). Custom stress has a right tail; custom
+fatigue is centered near 5.1 and bounded by the custom 0–10 scale.
+These are plausible simulator shapes under its definitions, not evidence that
+the simulator matches astronaut physiology. A rare value is not automatically
+invalid. Do not trim the HR tail or winsorize valid sleep/cognitive values merely
+to make histograms more Gaussian. Random Forest and XGBoost do not require normal
+input distributions, so no normality-driven scaling/transform is prescribed.
+
+2. Category distribution
+Chart: reports/eda/training_class_distribution.png.
+Moderate: 3,411 (67.68%); Low: 1,079 (21.41%); High: 550 (10.91%).
+The majority category dominates. Plain accuracy would be a poor primary selection
+criterion. Use validation Macro-F1, balanced training weights, and explicit
+per-class precision/recall. Compare with both majority and current-fatigue
+persistence baselines. Do not rebalance the combined train/validation/test table.
+The graph shows 5,040 records but only 84 independent virtual people. Keep every
+person's days together and do not remove their repeated ID as a duplicate.
+
+3. Correlation heatmap
+Chart: reports/eda/numeric_correlation_heatmap.png.
+The heatmap shows intentional baseline/current/delta/history blocks. Two absolute
+Pearson correlations exceed 0.85: sleep duration versus sleep duration delta
+(r=0.919637), and fixed HR baseline versus prior-three-day absolute HR mean
+(r=0.892748). Other visible blocks link raw HRV or reaction time to their fixed
+personal levels. Several current behavioral/sleep indicators covary, as the
+simulator was designed to do. No correlation here proves a medical mechanism,
+causal direction, or future target relevance. Tree models can retain correlated
+features, although SHAP/permutation attribution may be spread across them.
+
+4. Prespecified feature comparison
+Keep the existing full26 candidate. Compare it against a reduced17 personalized
+candidate BEFORE running any new fits. The reduced candidate keeps absolute
+sleep duration and a fixed sleep reference, sleep continuity/timing, past-only
+sleep mean, current self-reports/work context, HR/RMSSD baseline deltas, relative
+reaction-time change, lapse count and attention accuracy. It omits the raw and
+fixed-level cardiovascular/cognitive block, absolute HR/reaction-time histories,
+and the sleep delta that is highly correlated with retained absolute sleep.
+This tests a simpler personalized representation. It does not assert that omitted
+information has zero predictive value. All 26 individual keep/drop rationales and
+exact feature lists are in FEATURE_DECISIONS.json.
+
+The 17 predictors still require the historical calibration measurements used to
+compute their relative changes. Fewer predictors do not imply fewer sensors or
+that the backend can fabricate a missing baseline. Current fatigue self-report is
+kept for both feature sets: it is available today and the target concerns tomorrow.
+Its value should be assessed against a persistence baseline, not called leakage
+solely because it shares a name with the future outcome. Future labels remain
+excluded from both sets.
+
+5. Cleaning and causal engineering decisions
+The prepared training source already passed its defined missingness, nonfinite,
+range, duplicate, and sleep/time consistency checks. Retain all rows; no removal
+or replacement is justified by these graphs. Keep constant metadata and redundant
+protocol counts excluded through explicit allowlists. The defensive imputer must
+fit only on training data; it does not imply missing cells were actually present.
+Fixed seven-day calibration means, current-versus-baseline changes and t-3..t-1
+means are already engineered and source-tested. Do not recalculate baselines from
+all 60 mission days or include current/future rows in historical means.
+
+6. Next-stage protocol
+Freeze this review and FEATURE_DECISIONS.json before new training. Fit the two
+fixed algorithm recipes on each of the two feature sets using training only.
+Compare their validation Macro-F1 and per-class precision/recall. Report the four
+candidates and baselines, not only the winner. The existing test cohort has already
+been evaluated in the initial experiment. Exclude it from this development revision
+and make no claim of a new independent test result. Preserve the delivered initial
+artifact and historical report; any revised candidate is development-only until
+there is genuinely independent evaluation data.

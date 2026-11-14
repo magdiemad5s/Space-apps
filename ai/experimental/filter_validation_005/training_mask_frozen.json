@@ -1,0 +1,14 @@
+{
+  "frozen_at_utc": "2026-11-14T17:15:38.929263+00:00",
+  "training_rows": 5040,
+  "calculated_flags": 254,
+  "retained_fitting_rows": 4786,
+  "thresholds_sha256": "b94d1bda593466dbe5a60082c67d968ecfd0b310c1bafab3dcd7e77e7708a842",
+  "flagged_record_ids_sha256": "1cf98a388af80e0a957c1e3df8da5338873472418179edab788249a211192142",
+  "mask_invariant_to_target_event_and_all_other_metadata_mutation": true,
+  "mask_was_fixed_before_validation_loaded": true,
+  "comparison_with_previous_descriptive_audit": {
+    "previously_reported_flags": 254,
+    "matches_previous": true
+  }
+}

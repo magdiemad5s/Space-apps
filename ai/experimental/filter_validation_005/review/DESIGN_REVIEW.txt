@@ -1,0 +1,77 @@
+ASTRA-SHIELD — INDEPENDENT REVIEW OF FILTERED VALIDATION COMPARISON
+2026-11-14
+
+Conclusion
+The proposed comparison is appropriate for the user's request: fit the fixed
+experimental exclusion candidate on the original training partition and compare
+it with the original control on the same validation cohort that produced 0.5273.
+This is a further development comparison on reused validation, not an independent
+test or proof that the excluded records are erroneous. No promotion is implied.
+
+Reviewed evidence
+- experiments/noise_004/plan.json and RESULTS.txt
+- astra_shield_ml/noise_cleaning_experiment.py
+- experiments/eda_first_001/model_comparison.csv
+- Inherited original feature/model contract and training-only noise audit
+No validation/test observation file was opened for this review. No model was
+fitted and no source data, artifact, API or earlier report was modified.
+
+Required fixed design
+1. Preserve the original 26-feature order, target_next_day_fatigue_class and
+   participant-disjoint partitions. RF parameters remain 200 trees, depth 14,
+   minimum leaf 8, balanced class weights, seed 20261114, and n_jobs 2.
+2. Estimate medians and MAD on the full 5,040-row TRAIN partition only, using
+   precisely the four baseline-relative features in the frozen noise_004 plan.
+   Flag the union of absolute robust z > 4.5, with scale 1.4826 * MAD; skip any
+   feature with zero MAD. No target, event annotation or validation observation
+   may influence thresholds, exclusions or candidate parameters.
+3. Exclude flagged rows from this candidate's fitting view only. The earlier
+   descriptive audit suggests 254 excluded and 4,786 retained; recompute the
+   rule to verify those counts, rather than construct a mask from annotations.
+4. Preserve every retained row's original target, baseline and past-only feature
+   values. Dropping a fitting observation does not mean removing it from the
+   measurement stream. Never shift targets or recompute rolling windows over
+   the filtered row gaps, which would change the forecast horizon and semantics.
+5. Fit preprocessing on each candidate's fitting view. Balanced class weights
+   naturally recompute on the retained class distribution for the exclusion
+   candidate. Record class counts and this consequence of the fixed recipe.
+6. Score all 1,080 original validation rows from all 18 validation participants.
+   Do not filter, clip, relabel or otherwise simplify the evaluation cohort.
+   The filtered candidate remains able to predict unusual observations.
+7. Refit the unchanged full-TRAIN control or use the official saved control,
+   and verify its predictions against the official model and saved historical
+   validation predictions. Expect Macro-F1 0.5272528187101052. Compare by stable
+   record IDs and class ordering, not accidental table order alone. Probability
+   comparison may use a suitably tight floating-point tolerance.
+8. Include current-fatigue persistence. Report all per-class precision/recall/F1,
+   confusion matrices, High precision/recall and Macro-F1 differences. Report
+   event-subgroup fatigue results descriptively if included; these do not test
+   the separate anomaly detector, which remains unchanged.
+9. Freeze the new plan and script hashes before fitting or examining new candidate
+   validation performance. Do not try alternative MAD cutoffs, model seeds,
+   label cutoffs, feature subsets or weights in response to this result.
+10. Preserve the original dataset and official artifact. Any saved candidate
+    should be explicitly experimental and separate from the production bundle.
+    Do not open or rescore the final-test observation file.
+
+Interpretation safeguards
+The earlier exclusion experiment produced a small positive grouped-CV gain
+(0.00356) and positive forward-time changes, but failed its prespecified +0.01
+mean-gain criterion. Its participant-bootstrap interval included zero. A later
+validation increase does not retrospectively make that gate pass.
+
+Validation has already supported algorithm and feature comparisons. A new score
+on it is directly comparable with 0.5273 for this development exercise, but it is
+not fresh independent confirmation. Paired whole-participant bootstrap intervals
+should resample the same 18 participants for both candidates; describe them as
+descriptive uncertainty on reused synthetic validation. They do not account for
+all earlier selection, simulator mismatch or real-world deployment uncertainty.
+
+All 254 full-TRAIN descriptive flags were deliberately injected physiological
+events. Filtering may reduce their influence on the separate fatigue forecast,
+but it does not establish corruption. Keep them in the source data and in the
+anomaly-detection task. More difficult or threshold-near fatigue outcomes must
+not be deleted or relabeled simply to improve the score.
+
+No implementation-specific approval or permission barrier is introduced here.
+Proceed with the user's authorized comparison under this fixed design.

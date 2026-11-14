@@ -1,0 +1,7 @@
+candidate,feature_set,predictor_count,validation_macro_f1,validation_high_recall,fit_seconds
+majority_class,baseline,26,0.263756761798172,0.0,
+current_fatigue_persistence,baseline,26,0.49519846112355265,0.3333333333333333,
+full_26__random_forest_balanced,full_26,26,0.5272528187101052,0.37681159420289856,1.6124848389999897
+full_26__xgboost_balanced,full_26,26,0.48572368707222124,0.5217391304347826,0.5125051860004533
+personalized_reduced__random_forest_balanced,personalized_reduced,17,0.5188805729202967,0.4057971014492754,1.0029273250002007
+personalized_reduced__xgboost_balanced,personalized_reduced,17,0.48419402484693524,0.5289855072463768,0.35018695300004765

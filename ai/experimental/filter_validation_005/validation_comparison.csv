@@ -1,0 +1,4 @@
+candidate,scope,macro_f1,high_precision,high_recall,accuracy,false_high_count,false_high_per_100_non_high
+control_rf_full_training,REUSED synthetic development validation,0.5272528187101052,0.35135135135135137,0.37681159420289856,0.6212962962962963,96,10.19108280254777
+filtered_rf_fit_tail_exclusion,REUSED synthetic development validation,0.5178236567195789,0.3333333333333333,0.34057971014492755,0.6148148148148148,94,9.978768577494693
+current_fatigue_persistence,REUSED synthetic development validation,0.49519846112355265,0.3333333333333333,0.3333333333333333,0.6,92,9.766454352441613

@@ -1,0 +1,21 @@
+{
+  "completed_at_utc": "2026-11-14T17:15:41.675316+00:00",
+  "validation_csv_loaded": false,
+  "fit_seconds": {
+    "control_rf_full_training": 1.2961117399972863,
+    "filtered_rf_fit_tail_exclusion": 1.2463440059982531,
+    "current_fatigue_persistence": 0.0005788849994132761
+  },
+  "candidate_sha256": "4f0701d9722b0a0bc2ee6929cab545328e169ec3bc83903a44312c24ffc85deb",
+  "training_class_counts": {
+    "moderate": 3411,
+    "low": 1079,
+    "high": 550
+  },
+  "retained_training_class_counts": {
+    "moderate": 3224,
+    "low": 1035,
+    "high": 527
+  },
+  "source_targets_and_history_unchanged": true
+}

@@ -1,0 +1,44 @@
+ASTRA-SHIELD — FIXED-FILTER COMPARISON ON REUSED VALIDATION 005
+
+The user newly authorized this fixed filtering experiment on the same
+original development-validation partition that previously yielded 0.5273
+macro F1. These are reused synthetic development observations, not a fresh
+holdout or independent scientific confirmation.
+
+The plan and script hash were frozen before fitting. The unchanged noise_004
+rule uses only four personalized numerical deltas, fitting medians/MAD and
+a fixed robust-z threshold of 4.5. No threshold search or downweighting was
+performed. The mask was invariant to every non-detector column, including
+all future targets and the injected-event annotation.
+
+Calculated training flags: 254 of 5,040. Candidate fitting rows: 4,786.
+The control used all 5,040 rows. The filtered candidate omitted flags only
+during its fit. Original shifted labels and baseline/history features were
+kept unchanged; no rolling window or target was reconstructed across gaps.
+Balanced class weights recalculated naturally inside each fitting subset.
+All models were fitted before validation.csv was opened. Every one of the
+1,080 validation records from 18 other virtual participants was scored.
+
+OBSERVED REUSED-VALIDATION RESULTS
+control_rf_full_training: macro F1 = 0.5273; accuracy = 0.6213; High precision = 0.3514; High recall = 0.3768.
+filtered_rf_fit_tail_exclusion: macro F1 = 0.5178; accuracy = 0.6148; High precision = 0.3333; High recall = 0.3406.
+current_fatigue_persistence: macro F1 = 0.4952; accuracy = 0.6000; High precision = 0.3333; High recall = 0.3333.
+
+Filtered-minus-control macro F1 change: -0.0094.
+Paired participant-bootstrap 95% difference interval: [-0.025172853361459836, 0.0054798130782954466].
+High-recall change: -0.0362; bootstrap interval: [-0.07638999469214437, 0.0070460532982064925].
+
+REPRODUCIBILITY AND LIMITS
+Control predictions matched the official saved RF and historical
+eda_first_001 predictions for all 1,080 records. Model class scores matched
+the official artifact within 1e-12; floating accumulation can differ at
+machine precision. These are uncalibrated model scores, not medical risks.
+Source and official model hashes are unchanged. The filtered estimator is
+saved separately as filtered_candidate.joblib and is not a serving bundle.
+The prior noise_004 cross-validation gain was small and failed its
+prespecified improvement gate. That result is not overturned by reusing
+this development partition. No validation-based retuning or new promotion
+gate was performed. No final-test data was read or rescored.
+Flagged physiology events are not automatically bad measurements. Subgroup
+results describe fatigue classification only; the anomaly model is unchanged.
+Keep the official demo unchanged; no automatic promotion occurred.

@@ -1,0 +1,23 @@
+required_model_field,legacy_candidate,compatibility,uploaded_source_lines,model_contract_lines,required_action
+sleep_duration_hours,sleep_duration_hours,safe,server.ts:16,api.py:32,Same stated hours; preserve numerical validation.
+sleep_efficiency_pct,none; sleep_quality_score_1_10 is not equivalent,missing,server.ts:17,api.py:33,Collect percent time asleep/time in bed; do not multiply subjective quality by10.
+sleep_onset_delay_minutes,none,missing,server.ts:12,api.py:34,Add measured/reported sleep-onset delay in minutes.
+awakenings_count,sleep_disruptions_count,conditional,server.ts:18,api.py:35,Only map if disruptions means actual awakenings in the same completed sleep episode; must be required integer.
+sleep_midpoint_deviation_minutes,none,missing,server.ts:12,api.py:36,Collect/calculate signed midpoint deviation from planned schedule in minutes.
+resting_heart_rate_bpm,heart_rate_bpm,conditional,server.ts:14,api.py:37,Require matching quiet/resting measurement conditions; unspecified activity HR is not automatically resting HR.
+hrv_rmssd_ms,hrv_ms,conditional,server.ts:15,api.py:38,Require RMSSD milliseconds and matching measurement window; do not relabel SDNN/unknown HRV.
+reaction_time_median_ms,PVT_speed_seconds,incompatible,server.ts:19,api.py:39,Legacy score may be transformed slowness; do not multiply by1000 or invert without confirmed definition. Collect actual median response time ms.
+reaction_time_lapses_count,none,missing,server.ts:12,api.py:40,Add lapses from the specified60trial PVT-like demonstration protocol.
+attention_accuracy_pct,PVT_accuracy,incompatible,server.ts:20,api.py:41,Current model expects separate40trial attention accuracy percent; PVT accuracy is another task/metric.
+self_report_stress_score,stress_score_0_10,conditional,server.ts:21,api.py:42,Same custom0to10 definition and timing required; legacy optional field must become required.
+self_report_fatigue_score,none,missing,server.ts:12,api.py:43,Add current custom0to10 fatigue report; this is not a future target or KSS.
+self_report_mood_score,mood_score_0_10,conditional,server.ts:22,api.py:44,Confirm higher means more positive mood; legacy optional field must become required.
+workload_hours,none,missing,server.ts:12,api.py:45,"Add duty duration in the current24h interval, excluding sleep/exercise."
+exercise_minutes,none,missing,server.ts:12,api.py:46,Add exercise minutes in the current24h interval.
+baseline_sleep_duration_hours,no valid fixed7day mean,missing,server.ts:86-106,api.py:47,"Compute from seven fixed initial consecutive daily observations, not allhistory after2records."
+baseline_resting_heart_rate_bpm,no valid fixed7day mean,missing,server.ts:86-106,api.py:48,Requires restingHR enrollment measurements and frozen seven-day calibration.
+baseline_hrv_rmssd_ms,no valid fixed7day mean,missing,server.ts:86-106,api.py:49,Requires RMSSD enrollment measurements and frozen seven-day calibration.
+baseline_reaction_time_median_ms,no valid fixed7day mean,missing,server.ts:86-106,api.py:50,"Requires medianRTms enrollment data, not mean transformedPVT score."
+prior_3day_mean_sleep_hours,none; global history mean is not equivalent,missing,server.ts:93-105,api.py:51,"Mean t-3,t-2,t-1 only; consecutive daily cutoffs strictly beforecurrent."
+prior_3day_mean_resting_heart_rate_bpm,none; global history mean is not equivalent,missing,server.ts:93-105,api.py:52,Mean preceding3restingHRrecords only.
+prior_3day_mean_reaction_time_ms,none; global history mean is not equivalent,missing,server.ts:93-105,api.py:53,Mean preceding3medianRTmsrecords only.

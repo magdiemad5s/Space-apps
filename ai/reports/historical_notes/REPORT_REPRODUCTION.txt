@@ -1,0 +1,75 @@
+ASTRA-SHIELD — VISUAL EDA REPRODUCTION
+
+The report source and plotting dependencies were absent from the earlier model
+ZIPs. This handout supplies a separate, self-contained reproduction archive:
+ASTRA_SHIELD_visual_EDA_reproducible.zip. The earlier ZIPs are preserved.
+
+Contents are limited to the original synthetic TRAINING partition, its task
+definitions and feature contract, the EDA/report source, recorded feature
+decisions and the resulting plots/PDF. No validation/test observations, fitted
+models, Node packages or virtual environment are bundled.
+
+REQUIRED ENVIRONMENT
+
+Tested Python: 3.12, Linux. Core report dependencies are pinned in
+requirements-report.txt: numpy, pandas, matplotlib, reportlab and Pillow.
+The full model project also exposes an optional [report] extra. To reproduce
+only the report, use requirements-report.txt; installing the full model project
+is unnecessary and would add unrelated model/API dependencies.
+
+SETUP AND COMMANDS
+
+Extract the archive and change directory into astra_shield_visual_eda/.
+
+  python -m venv .venv
+
+Activate it on Linux/macOS:
+  . .venv/bin/activate
+
+Or activate it on Windows PowerShell:
+  .venv\Scripts\Activate.ps1
+
+Then run, from this extracted directory:
+  python -m pip install -r requirements-report.txt
+  python -m astra_shield_ml.eda
+  python -m astra_shield_ml.visual_eda_report
+
+The first command regenerates reports/eda/ from data/train.csv and
+data/task_config.json. The second generates the longitudinal plot and six-page
+reports/visual_eda/ASTRA_SHIELD_visual_EDA.pdf using those EDA outputs.
+
+The package resolves its input/output files relative to the extracted source
+tree, not /workspace or the original execution machine. Cache paths use the
+platform's temporary directory. PDF fonts are embedded from Matplotlib's
+bundled DejaVu font assets; no system font installation is required.
+
+VERIFICATION
+
+The archive is extracted to a separate temporary directory before regeneration.
+The verification confirms the imported report modules come from that extracted
+tree, records every pandas observation-file read, checks six PDF pages and
+confirms the training source hash and reported 5,040 rows / 84 virtual people.
+See reproduction_verification.json for the actual execution environment and
+whether a fresh dependency install or an existing pinned environment was used.
+
+EXPECTED REPRODUCIBILITY LIMITS
+
+The data, source feature definitions, pinned direct dependency versions and
+numeric audit results are reproducible. PDF bytes are not promised identical:
+PDF creation timestamps and EDA prepared_at_utc change on regeneration. Different
+operating systems or transitive font/rendering libraries may also change image
+bytes/layout slightly. Verification checks report structure and numeric results,
+not an identical generated PDF hash. The included SHA256SUMS.txt records the
+delivered archive contents; regenerating outputs legitimately changes their hashes.
+
+Windows/macOS execution has not been validated here. The source avoids hardcoded
+workspace paths and uses portable tempfile/Path operations, but those platforms
+still need compatible wheels for the pinned dependencies.
+
+SCIENTIFIC SCOPE
+
+All observations are synthetic. These figures describe the engineering simulator,
+not astronaut physiology. A requirement to delete a fixed fraction of rows is not
+a data-cleaning rule. This supplied training partition passes its documented
+checks without deleting observations. Redundancy may justify changing columns
+instead of rows, and repeated daily participant IDs preserve longitudinal history.

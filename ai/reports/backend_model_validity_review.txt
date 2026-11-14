@@ -1,0 +1,198 @@
+ASTRA-SHIELD BACKEND / MODEL VALIDITY REVIEW
+Reviewed: uploaded server.ts, original trained feature/API contract, existing
+permutation-importance and grouped-CV reports. Date: 2026-11-14.
+
+Bottom line
+This backend is a useful application scaffold, but it is not yet a scientifically
+consistent client of the trained ASTRA-SHIELD model. Its standalone path is a
+handwritten rules demonstration; its configured remote path uses a different
+request/response contract. Fixing these integration differences has higher
+priority than training more candidate models.
+
+No original backend, model, dataset, partition, threshold or prediction was
+modified. No model was fitted and no test observations were opened. Existing
+reports are cited as historical/development evidence only. Neither this backend
+nor the trained synthetic model establishes real NASA/astronaut/clinical validity.
+
+P0 — THE CURRENT CONNECTOR DOES NOT MATCH THE TRAINED MODEL CONTRACT
+Evidence: server.ts:210-219 posts to {AI_SERVICE_URL}/predict and sends legacy
+fields plus a nested personal_baseline. Our API uses POST /v1/predict; it requires
+22 explicit measured/baseline/history inputs and calculates four derived features.
+It forbids unknown fields such as heart_rate_bpm, hrv_ms and personal_baseline.
+Changing only the URL would therefore still leave an invalid request.
+
+The backend expects fatigue_score, fatigue_risk_level, fatigue_risk_percentage
+and top_contributing_factors (server.ts:327-351). The trained service returns
+label, points, reasons and structured next_day_forecasts/current_observation,
+with data origin, model version, forecast cutoff/horizon and limitations.
+Low/moderate/high are lowercase model labels, whereas backend logic expects
+Low/Moderate/High. Without explicit adaptation, fields can be absent and the
+recommendation conditions can silently fail. A TypeScript type assertion does
+not validate a remote JSON response at runtime.
+
+Action now: define one versioned request/response adapter and integration-test it
+against the actual frozen API. Preserve the model's scope/provenance/horizon and
+SHAP units. A valid HTTP 200 must also pass response-schema validation before the
+result is recorded or displayed as a model assessment.
+
+P0 — FALLBACK RULES ARE NOT THE MODEL OR SHAP EXPLANATIONS
+Evidence: when AI_SERVICE_URL is empty, server.ts:222-281 calculates points using
+fixed sleep/HR/HRV/PVT/stress thresholds. The increments 1.0/.8/.7/.8 and displayed
+risk_impact values .45/.35/.30/.40 are constants, not fitted parameters or actual
+SHAP contributions. There is no saved-estimator load, model training, probability
+calculation or journal-language analysis in that path. Mood, subjective sleep
+quality, disruption count, PVT accuracy and journal text do not affect its score.
+When an upstream request fails, the current code returns 502; it does NOT silently
+fall back on that error. The standalone rules branch is selected by an unset URL.
+
+The fallback's personal baseline is only displayed in factor descriptions. None
+of its score thresholds or increments uses baseline deltas. Thus
+used_personal_baseline=true does not establish that a personalized prediction
+was made, even though the response can contain a baseline object.
+
+Action now: make inference_mode explicit: trained_synthetic_model versus
+rules_demo. Keep rules_demo visibly separate from ML accuracy, genuine SHAP and
+personalized next-day forecasts. If no valid model result is available, return a
+clear unavailable/demo status instead of implying that the trained model ran.
+
+P1 — CONNECTION STATUS IS CONFIGURATION, NOT MEASURED READINESS
+Evidence: server.ts:298 labels the integration connected_to_ai_service whenever
+AI_SERVICE_URL is nonempty, without a health request. The remote branch sets
+connected:true after an HTTP-success response, before validating its model schema.
+An unrelated or incomplete JSON response could consequently be called connected.
+
+Action now: distinguish configured, reachable, compatible and ready. Probe the
+upstream /health, validate model version/tasks/data origin and predictor schema,
+and use bounded timeouts/error handling. "Backend online" must remain distinct
+from "compatible trained model ready" and from any claim about human health.
+
+P1 — POINTS AND FATIGUE SCORE ARE BEING GIVEN THE WRONG MEANING
+Evidence: server.ts:271-279 categorizes rule points and scales them into a
+fatigue_risk_percentage clamped to 15..95. With no rule triggered, it still returns
+15%; sleep alone gives 40%, HR/HRV alone 32%, and all rules give a capped95%.
+These values are arbitrary transformations, not observed event frequencies or
+calibrated probabilities. Its fatigue_score ranges from0 to3.3 under these rules;
+the trained regression output is a different custom next-day0..10 score.
+
+The trained service's points are also NOT a risk percentage. They are the
+disclosed index 0*P(low)+50*P(moderate)+100*P(high), using uncalibrated classifier
+outputs. Renaming points to fatigue_risk_percentage would change its meaning.
+
+Action now: use separate fields for prototype_severity_points, custom simulated
+fatigue_score_estimate and model_class_probabilities, retaining definitions and
+the 24-hour forecast scope. Do not append a percent sign or use medical-risk
+wording. A future probability claim requires an independently defined real outcome,
+appropriate calibration and separate evaluation; the present scores supply none.
+
+P1 — BASELINE/HISTORY CONSTRUCTION WOULD CREATE TRAIN/SERVE SKEW
+Evidence: server.ts:86-106 averages every stored prior numeric record after just
+two assessments, with two-decimal rounding. There is no fixed calibration period,
+daily cadence, measurement cutoff, warm-up quality state or prior-three-day mean.
+Repeated clicks within minutes can satisfy the two-assessment condition. As mission
+measurements accumulate, the baseline moves, potentially absorbing a sustained
+change that the fixed-reference model was trained to detect.
+
+The source model uses seven fixed initial daily calibration records, four means
+rounded to six decimals, and separate t-3,t-2,t-1 means. This construction is causal
+and explicitly tested. calculatePersonalBaseline runs before saving the current
+assessment, so it does not directly include the current row; the issue is the
+different window/meaning, not a proven future-label leak in this function.
+
+Action now: store a versioned fixed seven-day calibration window for each person,
+validate daily timestamp/cutoff/participant uniqueness, calculate the three
+separate prior-only means, and preserve warm-up status. Use the shared Python
+feature helper or test equivalent calculations numerically. Do not turn missing
+baselines into generic population constants and claim personal-model performance.
+
+P1 — REQUIRED MEASUREMENTS CANNOT BE RECOVERED BY SIMPLE COLUMN RENAMING
+The backend does not collect self_report_fatigue_score. That is the leading input
+in the existing validation permutation report (mean Macro-F1 drop .08812; next is
+reaction-time change at .04164). It is valid to collect today's fatigue to predict
+tomorrow; it is not future-label leakage. Missing it is a material model-input gap,
+not an opportunity to substitute tomorrow's target or a made-up neutral score.
+
+Other absent information includes measured sleep efficiency, sleep-onset delay,
+sleep midpoint deviation, reaction-time median/lapse count, separate attention
+accuracy, workload, exercise and the exact history summaries. If these cannot be
+collected, evaluate a separately declared reduced-input model under grouped CV
+rather than inventing values for the already-trained full model.
+
+Specific compatibility limits:
+- heart_rate_bpm -> resting_heart_rate_bpm only when the measurement actually uses
+  the documented five-minute quiet/resting conditions.
+- hrv_ms -> hrv_rmssd_ms only when metric, units, recording window and artifact
+  handling are confirmed. Generic HRV may instead mean SDNN or another quantity.
+- sleep_quality_score_1_10 is subjective quality, NOT sleep_efficiency_pct.
+  Multiplying it by10 does not create measured sleep efficiency. The latter is
+  100*sleep time/time in bed under the defined protocol.
+- PVT_speed_seconds values such as5.65 are ambiguous. In some NASA Cognition
+  definitions the reported PVT measure is10 minus mean reciprocal reaction time,
+  not raw seconds. Neither passing5.65 as milliseconds nor blindly multiplying
+  by1,000 yields the model's median reaction time. The transformed aggregate also
+  does not uniquely recover a median. Obtain raw response-time summaries under
+  the stated PVT-like protocol; do not manufacture lapse counts from an accuracy.
+- PVT_accuracy is not automatically attention_accuracy_pct. The trained attention
+  task is a separate40-trial task; PVT accuracy can account for lapses/false starts.
+- sleep_disruptions_count -> awakenings_count only after agreeing what counts as
+  an awakening and which sleep episode it describes.
+
+P1 — CURRENT HEALTH AND PRESCRIPTIVE CLAIMS EXCEED THESE OUTPUTS
+Evidence: server.ts:335/340 calls all metrics healthy when its factors list is
+empty. buildRecommendations:134-159 supplies exact90-minute rest, immediate
+hydration, six-hour exercise avoidance and postponement of precision tasks as
+named protocols. An empty factor list can also result from the response-schema
+mismatch, rather than evidence of normal physiology.
+
+The trained model estimates a synthetic next-day fatigue category, not all-body
+health, dehydration, suitability for exercise or permission to perform mission
+tasks. Handwritten fallback flags and actual TreeSHAP explanations provide no
+validation for those prescriptions. SHAP describes the classifier, not causes.
+
+Action now: remove blanket healthy/normal/safe conclusions and unsupported named
+protocol instructions. Present review-oriented advisory wording aligned with
+approved mission/medical procedures and human assessment. Preserve the original
+model's explicit synthetic/no-clinical-validation limitations in both languages.
+
+P2 — DATA CAPTURE NEEDS TO PRESERVE THE MEASUREMENT CONTRACT
+Evidence: server.ts:307-319 checks only required-field presence, not finite
+numerical types, ranges, protocols or cross-field consistency. A body cast to the
+TypeScript interface supplies no runtime guarantee. Stored timestamps are
+assessment processing times rather than caller measurement cutoffs. The saved
+metric subset omits several supplied fields, including journal text, disruption
+count and PVT accuracy, and cannot reconstruct the trained feature history.
+
+Action: validate input schemas before storage; keep measured-at/cutoff versus
+processed-at timestamps distinct; store the actual required observations with
+protocol/device/quality metadata, calibration status and model version. Missing,
+not-performed and stale readings must stay distinguishable. Avoid recording model
+predictions as if they were later independent ground-truth fatigue outcomes.
+
+PRIORITIZED MODEL WORK
+Now — integration correctness:
+1. Agree on units/protocols and add the genuinely available required observations,
+   especially current fatigue self-report. Do not synthesize missing live inputs.
+2. Reproduce fixed calibration/past-only summaries and call the exact model route.
+3. Validate/map the actual response, including target time, synthetic scope, points
+   definition, class mapping and genuine SHAP reasons. Separate rules_demo mode.
+4. Verify end-to-end predictions against the same saved model for known fixtures
+   and exercise missing/invalid/warm-up/unavailable cases before a dashboard demo.
+
+Next — research improvements, not claimed as already implemented:
+The completed improvement_002 compared eight prespecified candidates in three
+participant-disjoint folds inside training. Current RF remained selected:
+mean CV Macro-F1 .51630 versus persistence .51400. Reused validation remains
+development evidence; the deployed artifact and historical test were unchanged.
+The backend's formula has not been part of those comparisons and cannot inherit
+their reported metrics. Integration fixes do not by themselves demonstrate a new
+predictive-performance gain.
+
+After consistent data capture, prespecify causal fatigue-history/trend and
+accumulated sleep-deficit features, ordinal/regression comparisons, group-based
+probability calibration and measurement-dropout robustness. Tomorrow's planned
+workload may be used only if known at today's cutoff; actual tomorrow-completed
+measurements would leak. Keep participant groups separate and reserve genuinely
+untouched evaluation data. Actual astronaut/clinical claims require relevant real
+longitudinal measurements and independent outcomes, not this synthetic simulator.
+
+This review does not assert that numerical rule thresholds or recommendations
+are NASA-approved, medically validated or operationally safe.

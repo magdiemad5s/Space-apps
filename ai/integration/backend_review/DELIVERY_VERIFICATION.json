@@ -1,0 +1,17 @@
+{
+  "verified_at_utc": "2026-11-14T15:39:04.451595+00:00",
+  "node_version": "24.22.1",
+  "typescript_version": "5.9.3",
+  "strict_typecheck": "passed",
+  "build": "passed",
+  "feature_tests": {
+    "passed": 16,
+    "failed": 0,
+    "backend_only_fixtures_no_python_install_required": true
+  },
+  "real_backend_to_python_http_checks": 29,
+  "model_unchanged": true,
+  "original_uploads_unchanged": true,
+  "actual_frontend_application_tested": false,
+  "package_scope": "Updated TypeScript backend, synthetic integration examples and evidence; Python model package remains separate"
+}

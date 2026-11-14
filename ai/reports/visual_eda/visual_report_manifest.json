@@ -1,0 +1,22 @@
+{
+  "pdf": "reports/visual_eda/ASTRA_SHIELD_visual_EDA.pdf",
+  "pdf_sha256": "f451ffd8c5770703df3276e53ea1d72989db4b39df1965af14364f3c1eb9ec8d",
+  "pages": 6,
+  "observation_files_read": [
+    "data/train.csv"
+  ],
+  "train_rows": 5040,
+  "training_virtual_participants": 84,
+  "train_sha256": "a9b7aba9497fbcf68b6f5bb771b01dbf82c3b00c93a2a0c6873f705712a235e5",
+  "trend_selection": {
+    "rule": "first three training IDs in lexical order; days 1-30",
+    "participants": [
+      "SIM_001",
+      "SIM_002",
+      "SIM_005"
+    ],
+    "current_measurements_only": true
+  },
+  "no_validation_or_test_observations_loaded": true,
+  "clinical_validation": false
+}

@@ -1,0 +1,55 @@
+ASTRA-SHIELD — TRAIN-ONLY ROBUST-TAIL SENSITIVITY STUDY 004
+
+This experiment asks whether two fitting-only tail treatments improve the
+fatigue classifier. It does not prove that flagged observations are noise.
+The detector never sees future labels or injected-event annotations.
+Every candidate is scored on every original held-out observation.
+
+The original synthetic training partition contains 5,040 rows from 84
+virtual participants. Existing participant folds were reused. Fixed fitting
+medians and MAD values were computed separately in each fitting subset.
+A row is flagged when any of the four prespecified personalized features
+has absolute robust z greater than 4.5. Zero-MAD features are skipped.
+Flagged fitting rows are either omitted for one experimental RF or retained
+with weight 0.25 for another. Original data and all held-out rows remain intact.
+
+GROUPED-CV RESULTS
+current_fatigue_persistence: mean macro F1 = 0.5140; high precision = 0.3773; high recall = 0.3751.
+rf_fit_tail_exclusion: mean macro F1 = 0.5199; high precision = 0.3873; high recall = 0.3782.
+rf_fit_tail_weight_0.25: mean macro F1 = 0.5165; high precision = 0.3799; high recall = 0.3737.
+unchanged_rf_control: mean macro F1 = 0.5163; high precision = 0.3773; high recall = 0.3756.
+
+Treatment: rf_fit_tail_exclusion
+Mean grouped-CV macro F1 change versus control: +0.0036.
+Per-group-fold changes: {'0': 0.00443064604212795, '1': 0.0034884916217134965, '2': 0.0027741525131703693}.
+Forward-time changes: {'0': 0.004106733311575961, '1': 0.010456889981804995}.
+All prespecified engineering gates passed: False.
+Paired participant-bootstrap pooled-OOF macro F1 interval: [-0.004016043335317488, 0.011441980637212112].
+
+Treatment: rf_fit_tail_weight_0.25
+Mean grouped-CV macro F1 change versus control: +0.0002.
+Per-group-fold changes: {'0': -0.0017214962372314457, '1': 0.000635148701372712, '2': 0.0015464060123756562}.
+Forward-time changes: {'0': -0.003753890484822775, '1': -0.0013460422917308534}.
+All prespecified engineering gates passed: False.
+Paired participant-bootstrap pooled-OOF macro F1 interval: [-0.007036756799312779, 0.00719646804257555].
+
+FLAG DIAGNOSTICS (NOT USED TO CHOOSE THRESHOLDS OR MODELS)
+group_fold_0: 174 of 3,360 fitting rows flagged (5.18%); 174 injected-event rows and 0 uninjected rows.
+group_fold_1: 162 of 3,360 fitting rows flagged (4.82%); 162 injected-event rows and 0 uninjected rows.
+group_fold_2: 169 of 3,360 fitting rows flagged (5.03%); 169 injected-event rows and 0 uninjected rows.
+temporal_fold_0: 132 of 2,520 fitting rows flagged (5.24%); 132 injected-event rows and 0 uninjected rows.
+temporal_fold_1: 190 of 3,780 fitting rows flagged (5.03%); 190 injected-event rows and 0 uninjected rows.
+
+Interpret flagged injected events as potentially legitimate physiological
+anomalies, not automatically corrupted data. Event-subgroup metrics concern
+the fatigue classifier only; the separate Isolation Forest is unchanged.
+Bootstrap intervals describe reused synthetic development observations and
+correlated grouped-CV predictions, not independent clinical evidence.
+No validation or final-test observations were opened. No threshold was
+searched. No production model, API, original source row, target, or earlier
+report was changed. There is no automatic promotion, regardless of gates.
+
+ADDITIONAL REPRODUCIBILITY CHECK
+The unchanged control reproduced the prior improvement_002 out-of-fold
+predictions exactly for all 5,040 training observations. Source, official
+bundle and frozen experiment-script hashes were independently rechecked.

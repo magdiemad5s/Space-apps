@@ -1,0 +1,65 @@
+ASTRA-SHIELD — INDEPENDENT VERIFICATION OF FILTERED VALIDATION 005
+Completed 2026-11-14.
+
+Decision
+Keep the original model. On the same reused validation cohort, the experimental
+filtered candidate performed worse than the original control. This result does
+not establish that filtering is universally harmful, but gives no reason to
+replace this project's current model with this candidate.
+
+Independent numerical verification
+- Original training rows: 5,040 from 84 virtual participants.
+- Robust-tail flags independently recomputed: 254.
+- Filtered fitting rows: 4,786.
+- Retained classes: low 1,035; moderate 3,224; high 527.
+- Evaluation: all 1,080 saved validation predictions, 18 distinct participants,
+  60 daily rows each; no overlap with training participants.
+- Historical control predictions and labels match exactly by record ID.
+
+                        Macro-F1   High precision   High recall
+Original RF             0.527253   0.351351         0.376812
+Filtered RF             0.517824   0.333333         0.340580
+Current-fatigue baseline 0.495198   0.333333         0.333333
+
+Filtered-minus-control Macro-F1 difference: -0.009429.
+High-class true positives decreased from 52 to 47 out of 138 High examples.
+Paired whole-participant bootstrap intervals were independently reconstructed
+from per-person confusion matrices using the frozen seed and 1,000 resamples:
+  Macro-F1 difference: [-0.025173, +0.005480].
+  High-recall difference: [-0.076390, +0.007046].
+These descriptive intervals include zero and concern reused synthetic development
+validation. They are not fresh independent or clinical evidence.
+
+Implementation and artifact checks
+The detector computes its four-feature robust thresholds from TRAIN only, without
+labels or event annotations. Its flagged record IDs and every threshold agree
+with an independent median/MAD calculation. The retained target counts agree with
+the saved fit checkpoint. The candidate's RF parameters match the frozen recipe;
+its fitted imputer medians match the retained training records exactly within
+floating-point tolerance. Original labels, baselines and historical features are
+used as stored, without shifting over the excluded-row gaps.
+
+Code inspection confirms the mask and all model fits precede the validation-file
+load. All validation rows are then scored without filtering. No final-test file
+is loaded in the reviewed implementation. All three candidates' Macro-F1,
+per-class metrics, confusion matrices and six event-subgroup metric rows were
+recomputed from saved predictions. Prediction probabilities are finite and sum
+to one within their saved decimal precision; this is numerical consistency, not
+probability calibration.
+
+Hashes verified: original TRAIN file, official bundle, task configuration, frozen
+experiment script, reused detector script, threshold file, flagged-record file,
+and saved candidate checkpoint. The expected validation source hash matches the
+existing original manifest. This reviewer did not reopen the original validation
+file to rehash it; its saved predictions were independently compared with the
+historical validation record IDs and labels instead.
+
+No model was fitted by this reviewer. No original validation/test observation
+file was opened, and no source dataset, official model, API or earlier artifact
+was changed. The review writes only to filter_validation_005_review/.
+
+Reproduce this verification from the project root:
+  .venv/bin/python experiments/filter_validation_005_review/verify_saved_results.py
+
+Machine-readable evidence: VERIFICATION.json.
+The prospective methodological review remains in DESIGN_REVIEW.txt.

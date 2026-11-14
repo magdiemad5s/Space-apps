@@ -1,0 +1,21 @@
+column,primary_model_action,reason,unique_values,used_by_separate_NLP_task
+record_id,excluded_from_predictors; retained_in_audit_table,Traceability key; identifier must not become a predictive shortcut.,5040,False
+participant_id,excluded_from_predictors; retained_in_audit_table,Grouping key retained to enforce participant-disjoint partitions; not a predictor.,84,False
+observation_timestamp_utc,excluded_from_predictors; retained_in_audit_table,Prediction-cutoff audit; temporal history is supplied only through causal summary features.,60,False
+mission_day,excluded_from_predictors; retained_in_audit_table,Simulation timeline metadata; omitted from the fixed primary feature contract.,60,False
+split,excluded_from_predictors; retained_in_audit_table,Development partition assignment; never an input.,1,False
+is_synthetic,excluded_from_predictors; retained_in_audit_table,Constant provenance flag; retained to prevent misrepresentation as observed astronaut data.,1,False
+data_origin,excluded_from_predictors; retained_in_audit_table,Constant provenance; not a health measurement.,1,False
+generator_version,excluded_from_predictors; retained_in_audit_table,Constant generation provenance; not a health measurement.,1,False
+reaction_time_trials_count,excluded_from_predictors; retained_in_audit_table,Constant 60-trial protocol metadata; reaction time and lapse count already represent the simulated task.,1,False
+attention_correct_count,excluded_from_predictors; retained_in_audit_table,Redundant with attention_accuracy_pct and the constant trial count; retain only accuracy in the model.,12,False
+attention_trials_count,excluded_from_predictors; retained_in_audit_table,Constant 40-trial protocol metadata.,1,False
+journal_text,excluded_from_predictors; retained_in_audit_table,Text is handled by the separate NLP model; excluded only from the numerical fatigue model.,5040,True
+target_current_physiology_event_injected,excluded_from_predictors; retained_in_audit_table,Outcome/evaluation annotation; exclude from all predictors to prevent label leakage.,2,False
+target_journal_stress_class,excluded_from_predictors; retained_in_audit_table,Outcome/evaluation annotation; exclude from all predictors to prevent label leakage.,3,False
+baseline_days_count,excluded_from_predictors; retained_in_audit_table,Constant seven-day calibration protocol metadata.,1,False
+target_timestamp_utc,excluded_from_predictors; retained_in_audit_table,Future-outcome audit timestamp; unavailable as a current health feature.,60,False
+target_next_day_fatigue_score,excluded_from_predictors; retained_in_audit_table,Outcome/evaluation annotation; exclude from all predictors to prevent label leakage.,3295,False
+target_next_day_reaction_time_median_ms,excluded_from_predictors; retained_in_audit_table,Outcome/evaluation annotation; exclude from all predictors to prevent label leakage.,4927,False
+prediction_horizon_hours,excluded_from_predictors; retained_in_audit_table,Constant 24-hour forecast contract metadata.,1,False
+target_next_day_fatigue_class,excluded_from_predictors; retained_in_audit_table,Outcome/evaluation annotation; exclude from all predictors to prevent label leakage.,3,False

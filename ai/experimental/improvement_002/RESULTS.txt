@@ -1,0 +1,32 @@
+ASTRA-SHIELD — BOUNDED DEVELOPMENT IMPROVEMENT EXPERIMENT 002
+
+All observations are from the original longitudinal SYNTHETIC dataset.
+Candidate definitions, group folds and the selection tie rule were frozen
+in plan.json before fitting. Eight fixed candidates were compared using
+three participant-disjoint CV folds inside the training partition only.
+Imputation/scaling were fitted independently within fitting folds.
+
+CV-selected candidate: current_rf_leaf8_depth14.
+Selection used mean CV macro F1 rounded to six decimals; exact rounded
+ties preferred lower prespecified complexity rank. High recall is also
+reported but was not a secondary tuning objective.
+
+The existing validation partition was opened only after cv_selection.json
+was written. It is REUSED DEVELOPMENT VALIDATION, not a fresh independent
+test. No retuning or reselection followed these validation results.
+
+current_rf_leaf8_depth14: reused-validation macro F1=0.5273; high recall=0.3768.
+current_fatigue_persistence: reused-validation macro F1=0.4952; high recall=0.3333.
+Selected minus current_rf_leaf8_depth14: macro F1 difference=0.0000; paired participant bootstrap percentile 95% interval=[0.0, 0.0].
+Selected minus current_fatigue_persistence: macro F1 difference=0.0321; paired participant bootstrap percentile 95% interval=[0.0052334753069694685, 0.05829577211826152].
+
+The selected candidate is not automatically promoted. The existing saved
+model, serving worker, scripts, frozen reports, and test partition were
+left unchanged. A baseline can legitimately win this experiment.
+If a logistic candidate is promoted later, explanation support must use
+a suitable linear SHAP explainer rather than the current tree explainer.
+Any observed gain describes this simulator and reused development cohort,
+not improved medical validity or demonstrated astronaut safety.
+
+Reproduce in a new experiment directory only after defining another plan;
+this script refuses to overwrite an existing frozen experiment.

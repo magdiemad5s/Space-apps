@@ -1,0 +1,102 @@
+{
+  "frozen_before_fit_at_utc": "2026-11-14T14:04:56.568709+00:00",
+  "experiment": "improvement_002",
+  "seed": 20261114,
+  "scope": "Synthetic train-only grouped CV selection, followed by a single comparison on reused development validation",
+  "target": "target_next_day_fatigue_class",
+  "predictors": [
+    "sleep_duration_hours",
+    "sleep_efficiency_pct",
+    "sleep_onset_delay_minutes",
+    "awakenings_count",
+    "sleep_midpoint_deviation_minutes",
+    "resting_heart_rate_bpm",
+    "hrv_rmssd_ms",
+    "reaction_time_median_ms",
+    "reaction_time_lapses_count",
+    "attention_accuracy_pct",
+    "self_report_stress_score",
+    "self_report_fatigue_score",
+    "self_report_mood_score",
+    "workload_hours",
+    "exercise_minutes",
+    "baseline_sleep_duration_hours",
+    "baseline_resting_heart_rate_bpm",
+    "baseline_hrv_rmssd_ms",
+    "baseline_reaction_time_median_ms",
+    "sleep_duration_delta_from_baseline_hours",
+    "heart_rate_delta_from_baseline_bpm",
+    "hrv_delta_from_baseline_ms",
+    "reaction_time_change_from_baseline_pct",
+    "prior_3day_mean_sleep_hours",
+    "prior_3day_mean_resting_heart_rate_bpm",
+    "prior_3day_mean_reaction_time_ms"
+  ],
+  "train_sha256": "a9b7aba9497fbcf68b6f5bb771b01dbf82c3b00c93a2a0c6873f705712a235e5",
+  "task_config_sha256": "75f14b846e29ac1025bad7e3db51a1656365878f29925666a5eaf5165788ed60",
+  "script_sha256": "4509ef4aacae1c141ff14fb02854a877e6b36d962b94edf12423d7be7c12d5e2",
+  "participant_folds_sha256": "2cc50a69a961863067b24c3410919078a268e75079fda078a60aeacd03761743",
+  "candidates": [
+    {
+      "name": "current_rf_leaf8_depth14",
+      "kind": "rf",
+      "leaf": 8,
+      "depth": 14,
+      "complexity_rank": 7
+    },
+    {
+      "name": "rf_leaf16_depth10",
+      "kind": "rf",
+      "leaf": 16,
+      "depth": 10,
+      "complexity_rank": 6
+    },
+    {
+      "name": "rf_leaf32_depth8",
+      "kind": "rf",
+      "leaf": 32,
+      "depth": 8,
+      "complexity_rank": 5
+    },
+    {
+      "name": "rf_leaf48_depth6",
+      "kind": "rf",
+      "leaf": 48,
+      "depth": 6,
+      "complexity_rank": 4
+    },
+    {
+      "name": "balanced_logistic_C0.1",
+      "kind": "logistic",
+      "C": 0.1,
+      "complexity_rank": 2
+    },
+    {
+      "name": "balanced_logistic_C1",
+      "kind": "logistic",
+      "C": 1.0,
+      "complexity_rank": 3
+    },
+    {
+      "name": "current_fatigue_persistence",
+      "kind": "persistence",
+      "complexity_rank": 1
+    },
+    {
+      "name": "majority_class",
+      "kind": "majority",
+      "complexity_rank": 0
+    }
+  ],
+  "n_folds": 3,
+  "fold_policy": "Shuffle training participant IDs with seed; allocate round-robin to three held-out folds; all days of a participant stay together",
+  "selection": "Highest mean grouped-CV macro F1 rounded to 6 decimals; tie chooses lower prespecified complexity_rank",
+  "secondary_metric": "High-category recall, descriptive only and not a selection tiebreaker",
+  "preprocessing": "Fit imputer and (for logistic regression) scaler separately on each fold's fitting participants only",
+  "validation_policy": "Read existing validation.csv only AFTER writing CV winner selection; no validation-based retuning or reselection",
+  "test_policy": "Never read test.csv; original frozen model, scripts and reports remain untouched",
+  "candidate_promotion": "None; winner may be a baseline and remains development-only",
+  "future_shap_compatibility": "A logistic winner would require a linear explainer; existing deployed TreeSHAP service remains unchanged",
+  "ordinal_regression_not_selected": "Thresholding a conditional mean at 4/7 may suppress rare high outcomes; use balanced logistic as a regularized comparator instead",
+  "bootstrap": "1000 paired participant resamples of reused validation, selected winner minus control and persistence"
+}

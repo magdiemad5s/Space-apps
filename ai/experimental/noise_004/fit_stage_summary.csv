@@ -1,0 +1,6 @@
+stage_id,fitting_rows,flagged_rows,flagged_pct,retained_after_exclusion,flagged_injected_event_rows,flagged_uninjected_rows
+group_fold_0,3360,174,5.178571428571429,3186,174,0
+group_fold_1,3360,162,4.821428571428572,3198,162,0
+group_fold_2,3360,169,5.029761904761905,3191,169,0
+temporal_fold_0,2520,132,5.238095238095238,2388,132,0
+temporal_fold_1,3780,190,5.026455026455026,3590,190,0

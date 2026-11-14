@@ -1,0 +1,64 @@
+ASTRA-SHIELD API — LOCAL BACKEND INTEGRATION
+
+From the project root, with the included pretrained artifacts:
+  python -m uvicorn astra_shield_ml.api:app --host 127.0.0.1 --port 8000
+
+Interactive API documentation: http://127.0.0.1:8000/docs
+Health: GET http://127.0.0.1:8000/health
+Bundle metadata and validation metrics: GET /v1/model-info
+Single observation: POST /v1/predict with examples/example_request.json
+Batch: POST /v1/predict/batch with {"observations": [request1, request2]}
+Batch limit: 64 observations. Records are predicted independently; the API does
+not turn an unordered batch into participant histories.
+
+Example from Python, using the requests-free standard library:
+
+  import json
+  from urllib.request import Request, urlopen
+  payload = json.load(open('examples/example_request.json'))
+  request = Request('http://127.0.0.1:8000/v1/predict',
+                    data=json.dumps(payload).encode(),
+                    headers={'Content-Type': 'application/json'})
+  with urlopen(request) as response:
+      prediction = json.load(response)
+  print(prediction['next_day_forecasts']['fatigue'])
+
+Input contract:
+- 15 current numerical observations, 4 historical calibration means, and 3
+  strictly earlier three-day means. Raw physical units, no global scaling.
+- Optional journal_text, participant_id and aware observation_timestamp_utc.
+- Baseline/history summaries must come from records earlier than this observation.
+- Four baseline-change features are computed inside the service; do not send them.
+- Do not send labels, future outcomes, split fields or arbitrary extra columns.
+- Invalid fields, missing required inputs, non-finite numbers, naive timestamps,
+  and invalid cross-field combinations return HTTP 422.
+- Missing or incompatible local model artifacts return HTTP 503.
+
+Single-prediction summary fields:
+- label: low, moderate, or high (next-day simulated fatigue category).
+- points: round(50*P(moderate)+100*P(high), 1), a prototype 0..100 class-severity
+  index. This is not a clinical risk probability or a validated health score.
+- reasons: the top three TreeSHAP feature attributions supporting the predicted
+  class (opposing attributions fill remaining positions if fewer than three are
+  positive). Actual values, SHAP contributions and direction are included.
+
+Output distinction:
+- next_day_forecasts: 24-hour fatigue category, custom fatigue score and simulated
+  reaction-time estimate. Category and score come from separate fitted models.
+- current_observation: current physiology outlier and optional journal stress.
+- model_class_probabilities are uncalibrated model scores, not clinical risks.
+- explanation.tree_shap includes all classifier feature contributions, base value,
+  reconstructed model output and output-space definition. Random Forest SHAP uses
+  class-probability space; a selected XGBoost model uses raw class-margin space.
+  SHAP explains classifier behavior and does not establish medical causes.
+- explanation also includes observed baseline changes and separately labeled
+  grouped reference sensitivity (non-additive, non-causal; not SHAP).
+- input_quality lists values outside the synthetic training ranges; being within
+  these ranges is not evidence of real-world model reliability.
+- advisory_actions are informational and defer to approved mission procedures.
+
+Models load once from trusted artifacts/bundle.joblib and perform offline inference.
+ASTRA_MODEL_PATH may point to a trusted alternative bundle before server startup.
+Never load an untrusted joblib/pickle file. There is no model-upload API.
+This is a local development API. Public hosting, authentication, persistence,
+privacy controls and production deployment are outside this local service.

@@ -1,0 +1,50 @@
+{
+  "metadata": {
+    "model_version": "0.1.0",
+    "data_origin": "synthetic",
+    "forecast_horizon_hours": 24,
+    "clinical_validation": false,
+    "trained_at_utc": "2026-11-14T12:48:13.178755+00:00",
+    "dataset_sha256": "dd76fd2658586375a4f9fc44767c18731a5ecee061912ed625a44bd206ed6a95",
+    "random_seed": 20261114,
+    "training_location": "attached cloud workspace CPU",
+    "training_rows": 5040,
+    "validation_rows": 1080,
+    "training_participants": 84,
+    "validation_participants": 18,
+    "test_accessed_during_training": false,
+    "actual_fatigue_target": "target_next_day_fatigue_class",
+    "package_versions": {
+      "python": "3.12.14",
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "scikit_learn": "1.8.0",
+      "joblib": "1.5.3",
+      "xgboost": "3.4.1"
+    },
+    "cpu_logical_count": 5,
+    "probability_interpretation": "Uncalibrated model class scores on simulated data; not medical-risk probabilities",
+    "limitations": [
+      "Every training and validation observation is synthetic.",
+      "Journal text is generated from split-specific sentence banks.",
+      "Fatigue labels use arbitrary custom score thresholds 4 and 7.",
+      "No medical diagnosis or operational readiness inference is validated."
+    ]
+  },
+  "total_training_selection_seconds": 17.7727332190002,
+  "permutation_importance_seconds": 3.7888862559998415,
+  "selected_models": {
+    "next_day_fatigue_classification": "random_forest_balanced",
+    "next_day_fatigue_regression": "hist_gradient_boosting_regressor",
+    "next_day_reaction_time_regression": "hist_gradient_boosting_regressor",
+    "physiology_anomaly_detection": "fixed_isolation_forest",
+    "journal_stress_classification": "word_tfidf_logistic"
+  },
+  "quality_status": {
+    "next_day_fatigue_classification": "synthetic_demo_only",
+    "next_day_fatigue_regression": "synthetic_demo_only",
+    "next_day_reaction_time_regression": "synthetic_demo_only",
+    "physiology_anomaly_detection": "synthetic_injected_events_only",
+    "journal_stress_classification": "synthetic_demo_only"
+  }
+}

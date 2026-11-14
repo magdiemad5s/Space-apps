@@ -1,0 +1,166 @@
+{
+  "experiment": "history_003",
+  "frozen_before_fit_at_utc": "2026-11-14T16:08:32.326685+00:00",
+  "seed": 20261114,
+  "source": "Original longitudinal SYNTHETIC training partition only",
+  "source_train_sha256": "a9b7aba9497fbcf68b6f5bb771b01dbf82c3b00c93a2a0c6873f705712a235e5",
+  "task_config_sha256": "75f14b846e29ac1025bad7e3db51a1656365878f29925666a5eaf5165788ed60",
+  "source_folds_sha256": "2cc50a69a961863067b24c3410919078a268e75079fda078a60aeacd03761743",
+  "script_sha256": "11be24c14c9623491f3ad51ea1739aabab710856deb2a8ac1c226ecf3c2139c8",
+  "official_bundle_sha256_before": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706",
+  "target": "target_next_day_fatigue_class",
+  "control_predictors": [
+    "sleep_duration_hours",
+    "sleep_efficiency_pct",
+    "sleep_onset_delay_minutes",
+    "awakenings_count",
+    "sleep_midpoint_deviation_minutes",
+    "resting_heart_rate_bpm",
+    "hrv_rmssd_ms",
+    "reaction_time_median_ms",
+    "reaction_time_lapses_count",
+    "attention_accuracy_pct",
+    "self_report_stress_score",
+    "self_report_fatigue_score",
+    "self_report_mood_score",
+    "workload_hours",
+    "exercise_minutes",
+    "baseline_sleep_duration_hours",
+    "baseline_resting_heart_rate_bpm",
+    "baseline_hrv_rmssd_ms",
+    "baseline_reaction_time_median_ms",
+    "sleep_duration_delta_from_baseline_hours",
+    "heart_rate_delta_from_baseline_bpm",
+    "hrv_delta_from_baseline_ms",
+    "reaction_time_change_from_baseline_pct",
+    "prior_3day_mean_sleep_hours",
+    "prior_3day_mean_resting_heart_rate_bpm",
+    "prior_3day_mean_reaction_time_ms"
+  ],
+  "new_features": {
+    "history_prior3_fatigue_mean": "Within participant mean(self_report_fatigue_score[t-3:t-1]); shift(1), rolling(3), rounded6",
+    "history_current_minus_prior3_fatigue": "Current self_report_fatigue_score[t] minus history_prior3_fatigue_mean[t]; rounded6",
+    "history_prior3_sleep_shortfall_sum_hours": "Sum over t-3..t-1 of max(0,fixed baseline_sleep_duration_hours - observed sleep_duration_hours); rounded6; engineering shortfall proxy, not physiological sleep debt",
+    "history_prior7_sleep_midpoint_std_minutes": "Population SD(ddof=0) of sleep_midpoint_deviation_minutes over t-7..t-1; shift(1), rolling(7), rounded6"
+  },
+  "common_cohort": "All 84 training participants, mission days8..60 inclusive:4452 rows; earlier rows are history warmup, not invalid data removed during cleaning",
+  "candidates": {
+    "rf_current26_control": [
+      "sleep_duration_hours",
+      "sleep_efficiency_pct",
+      "sleep_onset_delay_minutes",
+      "awakenings_count",
+      "sleep_midpoint_deviation_minutes",
+      "resting_heart_rate_bpm",
+      "hrv_rmssd_ms",
+      "reaction_time_median_ms",
+      "reaction_time_lapses_count",
+      "attention_accuracy_pct",
+      "self_report_stress_score",
+      "self_report_fatigue_score",
+      "self_report_mood_score",
+      "workload_hours",
+      "exercise_minutes",
+      "baseline_sleep_duration_hours",
+      "baseline_resting_heart_rate_bpm",
+      "baseline_hrv_rmssd_ms",
+      "baseline_reaction_time_median_ms",
+      "sleep_duration_delta_from_baseline_hours",
+      "heart_rate_delta_from_baseline_bpm",
+      "hrv_delta_from_baseline_ms",
+      "reaction_time_change_from_baseline_pct",
+      "prior_3day_mean_sleep_hours",
+      "prior_3day_mean_resting_heart_rate_bpm",
+      "prior_3day_mean_reaction_time_ms"
+    ],
+    "rf_current26_plus4_history": [
+      "sleep_duration_hours",
+      "sleep_efficiency_pct",
+      "sleep_onset_delay_minutes",
+      "awakenings_count",
+      "sleep_midpoint_deviation_minutes",
+      "resting_heart_rate_bpm",
+      "hrv_rmssd_ms",
+      "reaction_time_median_ms",
+      "reaction_time_lapses_count",
+      "attention_accuracy_pct",
+      "self_report_stress_score",
+      "self_report_fatigue_score",
+      "self_report_mood_score",
+      "workload_hours",
+      "exercise_minutes",
+      "baseline_sleep_duration_hours",
+      "baseline_resting_heart_rate_bpm",
+      "baseline_hrv_rmssd_ms",
+      "baseline_reaction_time_median_ms",
+      "sleep_duration_delta_from_baseline_hours",
+      "heart_rate_delta_from_baseline_bpm",
+      "hrv_delta_from_baseline_ms",
+      "reaction_time_change_from_baseline_pct",
+      "prior_3day_mean_sleep_hours",
+      "prior_3day_mean_resting_heart_rate_bpm",
+      "prior_3day_mean_reaction_time_ms",
+      "history_prior3_fatigue_mean",
+      "history_current_minus_prior3_fatigue",
+      "history_prior3_sleep_shortfall_sum_hours",
+      "history_prior7_sleep_midpoint_std_minutes"
+    ],
+    "current_fatigue_persistence": [
+      "self_report_fatigue_score"
+    ]
+  },
+  "rf_parameters": {
+    "n_estimators": 200,
+    "max_depth": 14,
+    "min_samples_leaf": 8,
+    "class_weight": "balanced",
+    "random_state": 20261114,
+    "n_jobs": 2
+  },
+  "primary_selection": "Compare augmented RF to unchanged RF by mean macroF1 across the three fixed participant folds; persistence is descriptive baseline",
+  "folds": "Reuse improvement_002 participant assignments; train56 participants, holdout28, all candidates same rows",
+  "preprocessing": "Median imputer fitted inside each fitting fold only; no scaling/calibration/threshold tuning",
+  "temporal_evaluations": [
+    {
+      "fit_days": [
+        8,
+        30
+      ],
+      "label_availability_cutoff_day": 31,
+      "evaluation_days": [
+        32,
+        45
+      ]
+    },
+    {
+      "fit_days": [
+        8,
+        45
+      ],
+      "label_availability_cutoff_day": 46,
+      "evaluation_days": [
+        47,
+        60
+      ]
+    }
+  ],
+  "promotion_gate_engineering_only": {
+    "mean_groupcv_macro_f1_delta_min": 0.01,
+    "all_three_groupfold_deltas_min": 0.0,
+    "all_two_temporal_macro_f1_deltas_min": 0.0,
+    "aggregate_group_oof_high_recall_delta_min": -0.02,
+    "aggregate_group_oof_high_precision_delta_min": -0.02
+  },
+  "gate_interpretation": "Passing can only justify parent review for further development confirmation; no automatic promotion or clinical significance",
+  "uncertainty": "1000 whole-participant paired bootstrap resamples of OOF predictions; descriptive, not independent external evidence",
+  "validation_policy": "Do not read validation.csv in this experiment; parent review required before any prespecified reused-validation confirmation",
+  "test_policy": "Never open test.csv or rescore final test; original production model/API/data/reports stay untouched",
+  "invariants": [
+    "Future observation changes cannot affect earlier history features",
+    "Changing target labels cannot alter features",
+    "Prefix derivation agrees with full-history derivation",
+    "No target metadata in any predictor list",
+    "Same rows/folds for all candidates",
+    "Every fitting label available before temporal evaluation begins"
+  ]
+}

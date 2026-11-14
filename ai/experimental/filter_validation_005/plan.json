@@ -1,0 +1,80 @@
+{
+  "experiment": "filter_validation_005",
+  "frozen_before_fit_at_utc": "2026-11-14T17:15:38.910745+00:00",
+  "seed": 20261114,
+  "authorization": "The user explicitly requested the previously fixed experimental filtering approach on the same original validation partition that yielded macro F1 0.5273. This is a new comparison; the prior noise_004 validation prohibition applied to that earlier study.",
+  "scope": "Fixed-rule fitting-only filtering sensitivity comparison; reused development validation, not fresh confirmation",
+  "training_source": "Original data/train.csv, all 5,040 rows and 84 virtual participants",
+  "train_sha256": "a9b7aba9497fbcf68b6f5bb771b01dbf82c3b00c93a2a0c6873f705712a235e5",
+  "expected_validation_sha256_from_existing_frozen_manifest": "3dc18db6bfb9e1a025d37279e73dd51fe52769019d9c856668286006e0d55523",
+  "official_bundle_sha256_before": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706",
+  "task_config_sha256": "75f14b846e29ac1025bad7e3db51a1656365878f29925666a5eaf5165788ed60",
+  "script_sha256": "52c63fadf6e4c74c5292bc41ca9f75b1b4e1b28f0c21f5b072455ad241790bde",
+  "reused_noise_rule_script_sha256": "1a6b2a400569d3eaac985b766dd06b9a0367abad7b596f9a3ee35d6af5f814e0",
+  "target": "target_next_day_fatigue_class",
+  "rf_feature_allowlist": [
+    "sleep_duration_hours",
+    "sleep_efficiency_pct",
+    "sleep_onset_delay_minutes",
+    "awakenings_count",
+    "sleep_midpoint_deviation_minutes",
+    "resting_heart_rate_bpm",
+    "hrv_rmssd_ms",
+    "reaction_time_median_ms",
+    "reaction_time_lapses_count",
+    "attention_accuracy_pct",
+    "self_report_stress_score",
+    "self_report_fatigue_score",
+    "self_report_mood_score",
+    "workload_hours",
+    "exercise_minutes",
+    "baseline_sleep_duration_hours",
+    "baseline_resting_heart_rate_bpm",
+    "baseline_hrv_rmssd_ms",
+    "baseline_reaction_time_median_ms",
+    "sleep_duration_delta_from_baseline_hours",
+    "heart_rate_delta_from_baseline_bpm",
+    "hrv_delta_from_baseline_ms",
+    "reaction_time_change_from_baseline_pct",
+    "prior_3day_mean_sleep_hours",
+    "prior_3day_mean_resting_heart_rate_bpm",
+    "prior_3day_mean_reaction_time_ms"
+  ],
+  "persistence_effective_predictors": [
+    "self_report_fatigue_score"
+  ],
+  "candidates": [
+    "control_rf_full_training",
+    "filtered_rf_fit_tail_exclusion",
+    "current_fatigue_persistence"
+  ],
+  "fixed_rule": {
+    "features": [
+      "sleep_duration_delta_from_baseline_hours",
+      "heart_rate_delta_from_baseline_bpm",
+      "hrv_delta_from_baseline_ms",
+      "reaction_time_change_from_baseline_pct"
+    ],
+    "fit_statistics": "Medians and MADs from full TRAIN only",
+    "formula": "abs(x - training median) / (1.4826 * training MAD) > 4.5 in any listed feature",
+    "zero_mad": "Skip and record the feature",
+    "threshold_search": false,
+    "no_detector_inputs": "Future labels, injected-event annotation and all non-listed columns are excluded",
+    "flag_interpretation": "A robust tail flag does not prove a bad measurement; intentionally injected physiological events may be legitimate anomalies"
+  },
+  "rf_parameters": {
+    "n_estimators": 200,
+    "max_depth": 14,
+    "min_samples_leaf": 8,
+    "class_weight": "balanced",
+    "random_state": 20261114,
+    "n_jobs": 2
+  },
+  "fit_protocol": "Freeze the unlabeled TRAIN mask, then fit control on all TRAIN and filtered RF on retained TRAIN; fit median imputers and balanced class weights independently within their fitting subsets",
+  "label_and_history_policy": "Keep the original shifted targets and all original baseline/history values; do not recompute across gaps caused by fitting-row exclusion",
+  "holdout_policy": "Open validation.csv only after both RFs and persistence are fitted; retain ALL 1,080 observations from the same 18 participants",
+  "comparison_policy": "No retuning, new threshold choice, winner promotion, or new validation-based gates",
+  "uncertainty": "1,000 paired whole-validation-participant bootstrap resamples of filtered-minus-control macro F1 and High recall",
+  "final_test_policy": "Never open test.csv, full uploaded CSVs or raw observations",
+  "deployment_policy": "Save a separate development-only candidate; official service bundle and API remain unchanged"
+}

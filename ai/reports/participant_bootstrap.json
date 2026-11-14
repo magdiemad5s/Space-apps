@@ -1,0 +1,14 @@
+{
+  "method": "500 paired bootstrap resamples of complete held-out virtual participants; fixed model and predictions",
+  "scope": "Exploratory uncertainty on synthetic participant cohorts, not clinical validation",
+  "macro_f1_percentile_95_interval": [
+    0.4882875525984117,
+    0.562400049916074
+  ],
+  "macro_f1_difference_vs_persistence_percentile_95_interval": [
+    -0.017701662010667994,
+    0.036971598824240524
+  ],
+  "test_participants": 18,
+  "seed": 20261114
+}

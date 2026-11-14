@@ -1,0 +1,29 @@
+{
+  "model_artifact_sha256": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706",
+  "original_uploads": {
+    "/workspace/attachments/38314c9d-c5b4-48b2-b835-36dd82d0cf40/server.ts": "4aa31b550119888d8d58d0c672d1726cb55dd25795c6339a9dade5a0fae76cde",
+    "/workspace/attachments/f053e946-e422-4de4-ac3a-1ddd7d0902a0/package.json": "d636064047b0bd2fbdcf2481c77b919c15adb25d6f8f7f31ed17a7c7fa209775"
+  },
+  "model_unchanged": true,
+  "scope": "Contract and history integration improvement; no new training or model accuracy claim",
+  "decision": "User authorized extension to canonical model inputs",
+  "frontend_collection": [
+    "sleep_duration_hours",
+    "sleep_efficiency_pct",
+    "sleep_onset_delay_minutes",
+    "awakenings_count",
+    "sleep_midpoint_deviation_minutes",
+    "resting_heart_rate_bpm",
+    "hrv_rmssd_ms",
+    "reaction_time_median_ms",
+    "reaction_time_lapses_count",
+    "attention_accuracy_pct",
+    "self_report_stress_score",
+    "self_report_fatigue_score",
+    "self_report_mood_score",
+    "workload_hours",
+    "exercise_minutes"
+  ],
+  "backend_computation": "Fixed seven earlier daily calibration means + immediately preceding three daily means; Python computes four deltas",
+  "not_a_conversion": "Subjective sleep quality, generic HRV and transformed PVT scores are not equivalent to canonical measurements."
+}

@@ -1,0 +1,24 @@
+{
+  "reviewed_sources": {
+    "/workspace/attachments/38314c9d-c5b4-48b2-b835-36dd82d0cf40/server.ts": "4aa31b550119888d8d58d0c672d1726cb55dd25795c6339a9dade5a0fae76cde",
+    "/workspace/attachments/f053e946-e422-4de4-ac3a-1ddd7d0902a0/package.json": "d636064047b0bd2fbdcf2481c77b919c15adb25d6f8f7f31ed17a7c7fa209775"
+  },
+  "required_numeric_fields": 22,
+  "field_mapping_counts": {
+    "safe": 1,
+    "conditional": 5,
+    "incompatible": 2,
+    "missing": 14
+  },
+  "uploads_modified": false,
+  "python_model_modified": false,
+  "proposed_copy": {
+    "path": "proposed_backend",
+    "user_choice": "Extend frontend fields to existing model contract",
+    "typecheck": "passed",
+    "javascript_build": "passed",
+    "source_uploads_still_unchanged": true,
+    "model_artifact_changed": false,
+    "live_verification_report": "LIVE_INTEGRATION_VERIFICATION.json"
+  }
+}

@@ -1,0 +1,83 @@
+ASTRA-SHIELD — ACTUAL IMPLEMENTED PIPELINE
+
+Language: Python 3.12. Libraries: pandas/NumPy, scikit-learn, XGBoost,
+SHAP, joblib, FastAPI/Pydantic. Models were fitted locally in the attached
+cloud workspace on its CPU. They are not pretrained NASA models.
+
+DATA FLOW
+
+Original longitudinal synthetic cohort (120 virtual participants, 7,200 rows)
+  |
+  +-- Fixed participant partitions: 84 / 18 / 18 people = 70% / 15% / 15%
+  |     train 5,040 rows | validation 1,080 | test 1,080
+  |
+  +-- Past-only feature engineering
+  |     15 current measurements
+  |     + 4 fixed means from seven earlier calibration days
+  |     + 4 current-versus-baseline changes
+  |     + 3 means from strictly preceding three days
+  |     = 26 numeric fatigue-classification predictors
+  |     IDs, targets, future times, provenance and split columns are excluded
+  |
+  +-- Training-only preprocessing
+  |     SimpleImputer(strategy='median').fit(X_train)
+  |     No global normalization or validation/test-fitted statistics
+  |
+  +-- Fit training rows: Random Forest and XGBoost
+  |     Compare validation Macro-F1: RF 0.5273 vs XGBoost 0.4857
+  |     Also compare majority/persistence baselines
+  |
+  +-- Freeze selected Random Forest + fitted preprocessing + metadata/hashes
+  |
+  +-- Evaluate untouched test participants once
+  |     Test Macro-F1 0.5285; persistence 0.5181; High recall 0.4577
+  |     No feature/parameter/threshold changes based on these test results
+  |
+  +-- Load frozen bundle once in backend
+        Validate input -> recreate 26 features -> predict
+        -> actual TreeSHAP -> label + defined points + three reasons
+
+ACTUAL PRIMARY SCIKIT-LEARN PIPELINE
+
+Pipeline([
+  ('imputer', SimpleImputer(strategy='median')),
+  ('model', RandomForestClassifier(
+      n_estimators=200, max_depth=14, min_samples_leaf=8,
+      class_weight='balanced', random_state=20261114, n_jobs=2
+  ))
+])
+
+The input feature contract is astra_shield_ml/features.py.
+The training/selection code is astra_shield_ml/training.py.
+The immutable-test evaluation is astra_shield_ml/evaluation.py.
+The serving code is astra_shield_ml/service.py and api.py.
+
+SUPPORTING COMPONENTS
+
+Fatigue score and next-day reaction time use separate histogram-gradient-boosting
+regressors. Current physiology uses Isolation Forest with HR/RMSSD and baseline
+features. Current generated-journal analysis uses a training-fitted TF-IDF plus
+logistic classifier. Journal classifications are displayed separately rather
+than being silently fed into the numeric fatigue classifier.
+
+CHRONOLOGY OF EDA VS FEATURE ENGINEERING
+
+Feature engineering and source quality/causality validation were already present
+before model fitting. The standalone statistical EDA report and its figures were
+produced after initial model training, when requested. That report was not a
+prerequisite that had secretly been completed earlier. It found no failed defined
+consistency checks, and did not change the frozen features, models or thresholds.
+
+For the next development experiment, do training-only EDA before candidate
+fitting. If its findings prompt changes, use training/validation for development
+and a genuinely new untouched test cohort for new performance claims. Do not
+relabel the already evaluated cohort as unseen or train until its score improves.
+
+The current EDA is reports/eda/EDA_REPORT.txt and its accompanying charts/CSVs.
+All data and metrics are synthetic demonstration results, not medical validation.
+
+COMPLETED FOLLOW-UP
+See experiments/eda_first_001/SUMMARY.txt: the graph review, feature decisions
+and candidate recipes preceded the new fit/validation comparison. The same
+full26 Random Forest was retained, with matching validation predictions and an
+unchanged API artifact. No new test result is claimed.

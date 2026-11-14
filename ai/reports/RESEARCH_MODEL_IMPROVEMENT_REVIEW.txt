@@ -1,0 +1,183 @@
+ASTRA-SHIELD — RESEARCH-INFORMED MODEL REVIEW
+Reviewed: 2026-11-14. Scope: the original longitudinal synthetic-data models.
+This review used existing code/results and primary research/official documentation.
+No models were retrained, no final-test observations were opened, and no prediction
+thresholds or dataset contents were changed for this review.
+
+Assessment
+The Random Forest is a defensible tabular-data baseline. The main weaknesses are
+the target's scientific meaning, modest gain over persistence, incomplete temporal
+validation, confidence/alert evaluation and explanations—not the lack of a neural
+network. Benchmark research supports tree methods as strong tabular baselines;
+it does not prove that any algorithm is best on this project [1].
+
+What our existing evidence actually says
+- Historical synthetic test Macro-F1: RF 0.5285 versus persistence 0.5181.
+- Historical participant-bootstrap 95% interval for that gain: -0.0177 to +0.0370.
+  This does not establish a reliable improvement over the simple baseline.
+- Historical High-category precision 41.94%, recall 45.77%; many simulated High
+  cases are missed and many predicted High cases are false alarms.
+- More recent training-only grouped CV: RF mean Macro-F1 0.5163, persistence 0.5140.
+  Eight fixed candidates were compared; none displaced the RF under that objective.
+- Journal classification: historical synthetic test Macro-F1 0.3938; High recall
+  0.1695. It should remain an experimental generated-language component.
+- There are 120 virtual people, 84 in training. The 7,200 repeated daily records
+  are not 7,200 independent people. All performance above describes the simulator.
+
+Keep these parts
+Explicit next-day labels; fixed participant-disjoint splits; train-fitted
+preprocessing; past-only calibration/history; majority and persistence baselines;
+per-class metrics; participant bootstrap; versioned experiments; genuine TreeSHAP
+for the fatigue classifier; and clear synthetic provenance. Today's fatigue is a
+legitimate input to tomorrow's outcome when it is available at the forecast cutoff.
+
+Priority 1: define the outcome precisely
+The primary outcome is next-day classification of a CUSTOM SIMULATED FATIGUE
+SELF-REPORT. The low/moderate/high cutoffs at 4 and 7 are simulator choices. The
+seven-day baseline is an engineering protocol, not a NASA-validated healthy range.
+Research distinguishes subjective sleepiness/fatigue from objective performance;
+in a controlled sleep-restriction experiment, cognitive deficits accumulated while
+subjective sleepiness changed much less [2]. A forecast of our score does not
+validate cognitive readiness, medical risk or mission safety.
+
+Use research to justify domains such as sleep and schedule regularity [3], while
+separating that rationale from empirical validation. Real-data validation needs
+matched measurements, outcomes and a 24-hour horizon. Generic HRV datasets cannot
+substitute for labeled longitudinal fatigue outcomes. More simulations—even with
+a new random seed—cannot establish effectiveness on humans.
+
+Priority 2: test a small, causal history-feature experiment
+Keep the frozen 26-feature model as a control. Prespecify a compact extension:
+  prior_3day_mean_fatigue = mean of fatigue at t-3, t-2, t-1;
+  fatigue_change_vs_prior3 = today's fatigue minus that earlier mean;
+  prior_3day_sleep_shortfall = sum(max(0, fixed_calibration_sleep - sleep_i))
+                              for i in t-3, t-2, t-1;
+  prior_7day_sleep_timing_variability = SD of earlier schedule-deviation values.
+These are hypotheses, not improvements already demonstrated. The shortfall
+feature is a baseline-relative proxy, not proven physiological sleep debt. Most
+inputs can come from the canonical history now stored by the backend, without
+new frontend measurements. Adequate history is required; do not fill missing days
+with invented observations. Longer-term work could collect time since waking and
+planned duty known at the cutoff. Actual future sleep/workload would be leakage.
+Cumulative sleep-loss research motivates evaluating history rather than assuming
+one night's duration is sufficient [2].
+
+Priority 3: separate new-person validation from future-period validation
+Our participant-disjoint evaluation answers whether a model transfers to different
+virtual people after calibration. It does not test later mission conditions or
+schedule drift. Keep that split and add a separately defined rolling-origin
+assessment on development data. At each fitting cutoff, only use training outcomes
+that were already available. Fit preprocessing, feature selection, calibration and
+any threshold tuning inside the appropriate training folds [4].
+Past measurements that would actually be available may be used to compute history;
+blindly deleting all overlap between rolling histories is not the right rule.
+Avoid concatenating all people and using a naive row-level TimeSeriesSplit. For a
+claim about both unseen people and later dates, the protocol must enforce both.
+Use nested or otherwise separated selection/evaluation if repeatedly tuning many
+choices. The used test set remains historical; it is not a fresh test of revisions.
+
+Priority 4: choose an alert objective, then evaluate probabilities
+Macro-F1 reasonably weights the three categories, but does not alone define useful
+alerting. In existing CV, the current RF has High recall 0.3756; balanced logistic
+has High recall 0.6583 but lower Macro-F1 (0.4403). No universal winner follows.
+Agree on the acceptable missed-case/false-alarm tradeoff, report High precision,
+recall, PR curves and false alerts per person-week, and select an alert operating
+point using development folds. A separate High-versus-rest alert threshold is an
+option; sklearn's binary threshold utility is not automatically a three-class
+decision rule [5]. Do not choose thresholds on the consumed final test.
+
+Assess probability reliability using classwise reliability plots plus multiclass
+Brier score/log loss. Compare a simple calibration method using held-out training
+participants or grouped out-of-fold predictions, and evaluate the calibrated
+system separately [6]. Calibration does not guarantee better Macro-F1 or real-world
+validity. A 0–100 weighted class-severity index remains different from P(High).
+If calibration wraps the classifier, update explanation scope: current TreeSHAP
+explains the base classifier output, not automatically the calibrated output.
+
+Priority 5: improve feature-importance interpretation
+The prior top-five ranking is exploratory. The current calculation independently
+permutes columns even though several satisfy identities such as current-baseline
+= delta. Shuffling one column can create inconsistent feature combinations.
+Correlated variables may also share predictive information and look unimportant
+individually [7]. Prefer coherent feature-family comparisons or grouped-CV
+ablations; preserve derived identities and inspect feasibility if permuting.
+Three permutation repetitions do not quantify uncertainty across people. The
+17-feature experiment's lower validation score is evidence from that comparison,
+not proof that all 26 individual features are necessary.
+
+TreeSHAP identifies contributions to this classifier's output; it does not identify
+medical causes or prove that changing a feature will change an outcome [8]. Our
+top-level three reasons explain ONLY the fatigue classifier. They do not explain
+the Isolation Forest, either regressor, the journal classifier or overall health.
+
+Priority 6: preserve measurement and component boundaries
+The PVT-like simulator is a five-minute/60-response demonstration, not a separately
+validated PVT implementation. Original studies show that PVT metrics and task
+duration affect sensitivity; a validated brief task is not interchangeable with
+an arbitrary duration or transformed score [9,10]. Do not convert the old
+PVT_speed_seconds to median milliseconds without its actual definition. For future
+real collection, preserve trial-level responses so valid lapse/response-speed
+metrics can be calculated. HRV findings also depend on recording context/window;
+one study's task-specific model cannot establish a universal RMSSD-fatigue rule [11].
+
+Isolation Forest currently detects simulator-injected physiological outliers. The
+fixed contamination value matches a simulator design choice, not an established
+astronaut anomaly rate. Evaluate false alerts under exercise, recording artifacts,
+baseline drift and missingness before making stronger claims. The generated journal
+classifier needs separately annotated, representative text before real-language
+claims. These components are displayed alongside fatigue forecasts; there is no
+trained end-to-end fusion of all their outputs.
+
+Recommended next implementation sequence
+1. Freeze the intended outcome, deployment population, alert objective and current
+   model as a control. Preserve existing source/metric chronology.
+2. Compare the four history features above in bounded participant-group development
+   experiments, alongside persistence and the existing RF. Add temporal evaluation.
+3. Evaluate calibration and alert tradeoffs with separate training-fold data. A
+   prespecified continuous/ordinal alternative is reasonable because labels are
+   ordered, but thresholding a conditional mean may reduce rare-High recall.
+4. Run missing-sensor, stale-data and shifted-baseline stress tests; explicitly
+   abstain when required information is missing. Do not claim current strict-input
+   rejection already demonstrates robust missing-data prediction.
+5. Freeze a candidate and evaluate on a genuinely untouched, appropriately labeled
+   cohort. Apply reporting guidance transparently; TRIPOD+AI is reporting guidance,
+   not a certification or a substitute for methodological evaluation [12].
+
+Avoid metric gaming: changing category cutoffs or removing valid difficult cases
+just to raise F1; selecting a favorable random split; oversampling before splitting;
+calling 0.5273 accuracy; treating additional synthetic rows as new human evidence;
+claiming a more complex neural model must be better; or applying the old model to
+new units/protocols by renaming columns. None addresses the main evidence gap.
+
+PRIMARY SOURCES AND OFFICIAL DOCUMENTATION
+[1] Grinsztajn et al., NeurIPS 2022, tabular algorithm benchmark:
+https://proceedings.nips.cc/paper_files/paper/2022/hash/0378c7692da36807bdec87ab043cdadc-Abstract-Datasets_and_Benchmarks.html
+[2] Van Dongen et al., Sleep 2003, original controlled study, NASA NTRS record:
+https://ntrs.nasa.gov/citations/20040087752
+[3] NASA, Risk from Inadequate Sleep and Irregular Schedules:
+https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/
+[4] scikit-learn 1.8, grouped and temporal cross-validation:
+https://scikit-learn.org/1.8/modules/cross_validation.html
+[5] scikit-learn 1.8, decision-threshold tuning:
+https://scikit-learn.org/1.8/modules/classification_threshold.html
+[6] scikit-learn 1.8, probability calibration:
+https://scikit-learn.org/1.8/modules/calibration.html
+[7] scikit-learn 1.8, permutation importance and correlated features:
+https://scikit-learn.org/1.8/modules/permutation_importance.html
+[8] SHAP authors' causal-interpretation guidance:
+https://shap.readthedocs.io/en/latest/example_notebooks/overviews/Be%20careful%20when%20interpreting%20predictive%20models%20in%20search%20of%20causal%20insights.html
+[9] Basner and Dinges, Sleep 2011, PVT metric sensitivity:
+https://pubmed.ncbi.nlm.nih.gov/21532951/
+[10] Basner et al., Acta Astronautica 2011, brief PVT validation:
+https://pmc.ncbi.nlm.nih.gov/articles/PMC3197786/
+[11] Matuz et al., Scientific Reports 2022, HRV fatigue experiments:
+https://www.nature.com/articles/s41598-022-24415-y
+[12] Collins et al., BMJ 2024, TRIPOD+AI reporting guidance:
+https://pmc.ncbi.nlm.nih.gov/articles/PMC11019967/
+
+LOCAL EVIDENCE
+reports/RESULTS.txt; reports/participant_bootstrap.json;
+experiments/improvement_002/cv_comparison.csv;
+experiments/eda_first_001/model_comparison.csv;
+reports/fatigue_validation_permutation_importance.csv;
+astra_shield_ml/training.py; astra_shield_ml/service.py; data/source_generator.py.

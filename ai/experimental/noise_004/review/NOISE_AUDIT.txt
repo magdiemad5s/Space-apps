@@ -1,0 +1,126 @@
+ASTRA-SHIELD — INDEPENDENT TRAINING-DATA NOISE AUDIT
+Date: 2026-11-14
+
+Finding
+There is deliberate stochastic variation in the synthetic generator, but this
+audit found no demonstrated corrupt measurements or incorrectly assigned fatigue
+labels that justify deleting observations. Extreme values are not synonymous
+with erroneous values. The proposed robust-tail rule primarily identifies the
+intentional physiological anomaly examples.
+
+Scope and provenance
+Only data/train.csv was opened: 5,040 observations, 84 virtual participants, 60
+daily rows each, 46 columns. Source code and task definitions were also inspected.
+No validation, final-test, full prepared dataset, or raw calibration/outcome file
+was opened. No model was fitted, no row was changed, and the training-file hash
+remains a9b7aba9497fbcf68b6f5bb771b01dbf82c3b00c93a2a0c6873f705712a235e5.
+All measurements are from an uncalibrated simulator, not real astronaut records.
+
+What was checked again
+- Zero missing or non-finite values, exact duplicate rows, duplicate person/day
+  keys, duplicate full predictor vectors, or violations of documented bounds.
+- Zero mismatches in the four baseline-relative feature formulas beyond their
+  declared rounding precision. The four baselines stay fixed within each person.
+- The prior-three-day features can be reconstructed from the training file for
+  4,788 rows per feature. All agree within rounding tolerance. The first three
+  days per participant require earlier calibration records, which were not read.
+- Tomorrow's fatigue score agrees with the next recorded day's current score in
+  all 4,956 checkable adjacent-day pairs. The last day needs an outcome beyond this
+  training table and was not independently reconstructed here.
+- Every fatigue class agrees with its stated future-score cutoffs of 4 and 7.
+- Integer counts, attention correct/trial ratios, sleep opportunity, and the
+  non-overlapping 24-hour activity budget are internally consistent.
+- Attention accuracy is correctly quantized in 2.5-point steps for 40 trials.
+  Such steps, repeated baselines, and bounded counts are not noise to smooth away.
+
+Feature redundancy is a representation choice, not corrupt observations. Current
+sleep, baseline sleep, and sleep delta contain an exact arithmetic relationship;
+HR and HRV have analogous identities, and reaction-time percent change is derived
+from current and baseline reaction time. Dropping a redundant predictor can be
+tested as feature selection without deleting rows. It does not prove that the
+discarded measurements are scientifically irrelevant. Independent clipping or
+random perturbation of such linked columns would instead break their consistency.
+
+Noise that is deliberately built into the simulator
+data/source_generator.py adds a latent fatigue innovation with SD 0.62 and a
+fatigue self-report term with SD 0.65, followed by clipping and rounding. It also
+adds stress, mood, resting-HR, HRV, trial-level reaction-time, and future schedule
+variation. These distributions were not calibrated to measured human biology.
+
+There is no saved per-row latent truth or measurement-error realization in the
+training CSV that would identify which observed self-report is an error. The
+target is tomorrow's observed self-reported fatigue, not latent noiseless fatigue.
+Smoothing or replacing that target would change the prediction task. Tomorrow's
+fresh random perturbations also cannot be recovered from today's inputs.
+
+The future score lies within 0.5 points of a class cutoff in 1,615 rows (32.04%),
+and within 1 point in 3,250 rows (64.48%). Today's and tomorrow's classes differ
+in 1,871 rows (37.12%); continuous-score correlation is 0.5096. These describe a
+noisy and only partly predictable task, not 1,871 incorrect labels. Deleting hard
+or boundary-near outcomes would preferentially make the problem easier and alter
+its evaluation distribution.
+
+What the proposed outlier rule actually selects
+For descriptive context, medians and MADs were computed on the whole TRAIN table
+for sleep delta, HR delta, HRV delta, and reaction-time percent change. Flagging
+any absolute robust z-score > 4.5 gives:
+- 254 of 5,040 rows flagged (5.04%).
+- HR delta: 249 flags; HRV delta: 39; sleep delta and reaction-time change: zero.
+- Every flagged row is one of the deliberately injected physiological events.
+- There are 324 such event rows overall (6.43% of the training table).
+- Thus the descriptive rule would select 78.40% of those intended event examples.
+- Among the 254 flags, next-day classes are 44 Low, 187 Moderate, and 23 High.
+
+The event annotation was examined only after computing the input-only flags; it
+did not decide which rows were flagged. The experiment must fit median/MAD anew
+inside each fitting fold. These whole-TRAIN numbers are not CV preprocessing.
+
+The generator deliberately adds 13..24 bpm to HR and scales HRV by 0.45..0.72 on
+event days. Those examples are important for the separate anomaly-detection use
+case. Removing them from that task would remove the very examples the project
+wants to detect. A fatigue-classifier sensitivity experiment can still determine
+whether suppressing these events during fitting helps or harms fatigue forecasts.
+
+Other descriptive outlier definitions give different answers
+Across 15 current measurements, a conventional 1.5-IQR rule flags 727 rows
+(14.42%), including 140 of the 550 High next-day cases (25.45%). A 3-IQR rule flags
+45 rows. Neither rule proves that any flagged measurement is wrong. This also
+shows why a fixed cleaning deletion percentage is not scientifically justified.
+The complete per-feature tail table is descriptive_feature_tails.csv.
+
+Generator artifacts and repetition
+Some observations equal generator bounds: for example, exercise is zero on 80
+days, sleep midpoint reaches the +180-minute cap on 8 days, and fatigue report
+reaches 10 on 3 days. These follow explicit clipping rules; they are simulator
+artifacts to disclose, not evidence of malformed data that should be deleted.
+All 5,040 full journal strings are unique, but there are only 12 opening-sentence
+templates. This is limited language diversity and synthetic construction, not a
+reason to delete otherwise valid physiological observation rows. Improving the
+journal component requires representative independently annotated language.
+
+Assessment of the parent's bounded experiment
+The planned fixed-RF comparison is methodologically appropriate as a sensitivity
+analysis: control versus FIT-only exclusion or 0.25 weight for robust-tail rows;
+fit-only median/MAD; identical original participant folds and rows for evaluation;
+all held-out tails retained; additional forward-time evaluations; no final-test
+access and no automatic model or dataset replacement.
+
+It preserves algebraic feature relationships because it does not independently
+clip current, baseline, delta, and history columns. Report how many rows each
+fitting fold excludes/downweights, class composition, and the held-out event
+subgroup results. The main foreseeable harm is poorer predictions on genuine
+physiological deviations. Even a small aggregate F1 gain would not establish that
+the flagged rows were invalid or that the source dataset should be rewritten.
+
+No recommendation to delete source rows follows from this descriptive audit.
+Wait for the fixed comparison and its uncertainty/temporal checks before deciding
+whether any alternate training recipe is worth further development.
+
+Reproduce descriptive audit
+From /workspace/astra_shield_ml:
+  .venv/bin/python -m experiments.noise_004_review.audit_noise
+
+Files
+audit_noise.py: read-only training audit source.
+noise_audit.json: exact counts, flags, thresholds, and source hash.
+descriptive_feature_tails.csv: per-feature IQR tails, range, and skewness.

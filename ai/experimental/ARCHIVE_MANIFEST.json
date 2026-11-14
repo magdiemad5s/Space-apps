@@ -1,0 +1,678 @@
+{
+  "created_at_utc": "2026-11-14T17:28:33.974998+00:00",
+  "scope": "Historical experimental artifacts preserved byte-for-byte; packaging files are explicitly new. Relative legacy paths refer to the original AI project.",
+  "files": [
+    {
+      "path": "PACKAGING_VERIFICATION.json",
+      "legacy_path": null,
+      "origin": "repository packaging addition",
+      "sha256": "305288f9fd141041fb9a4c482c1a5aa4e0845ce48d3c4c0717acb6e5b2d18b09",
+      "bytes": 759
+    },
+    {
+      "path": "README.md",
+      "sha256": "eb40c939d10a4e7838310ffe34bfe297c01c6e9341b5a791d131d778fed6cb58",
+      "bytes": 9008,
+      "legacy_path": null,
+      "origin": "repository packaging addition"
+    },
+    {
+      "path": "eda_first_001/EDA_GRAPH_REVIEW.txt",
+      "sha256": "1f38fb219119afdc3e19f6ca6579ec13c4fe46f89f95b0912293b74079d66641",
+      "bytes": 5435,
+      "legacy_path": "experiments/eda_first_001/EDA_GRAPH_REVIEW.txt",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "eda_first_001/FEATURE_DECISIONS.json",
+      "sha256": "63be186b46c0a05353c73bb81c994f0a3e5895dc3b8490b9a7a720f122b17976",
+      "bytes": 13309,
+      "legacy_path": "experiments/eda_first_001/FEATURE_DECISIONS.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "eda_first_001/FROZEN_BEFORE_TRAINING.json",
+      "sha256": "bc250383ffd58702df0f0217531644ca79bbd88cb7e4ec447e1e71b7cafa939a",
+      "bytes": 3418,
+      "legacy_path": "experiments/eda_first_001/FROZEN_BEFORE_TRAINING.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "eda_first_001/RESULTS.json",
+      "sha256": "3d47cdb3fbad7aa14fc367b5c6a065c5c6e6595edb962638c7b271ad57401dc5",
+      "bytes": 15860,
+      "legacy_path": "experiments/eda_first_001/RESULTS.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "eda_first_001/SUMMARY.txt",
+      "sha256": "3aa46ab2092f66e3f92db798819978554b44e7835e54e61dcdb937da0e2e7b25",
+      "bytes": 1612,
+      "legacy_path": "experiments/eda_first_001/SUMMARY.txt",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "eda_first_001/VERIFICATION.json",
+      "sha256": "8ab71c1a19ac5c425856e28d141c09c8f3dec32294eb8217260f1bf89080c19d",
+      "bytes": 414,
+      "legacy_path": "experiments/eda_first_001/VERIFICATION.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "eda_first_001/development_models.joblib",
+      "sha256": "d9e6d0b21016196affa7acdfcee1406ca970278eeb25c04a99d5d17a241a90dc",
+      "bytes": 9408572,
+      "legacy_path": "experiments/eda_first_001/development_models.joblib",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "eda_first_001/model_comparison.csv",
+      "sha256": "d484ba3959cc156f5a51ee53f1688ad4967a8ea925414a566b4b4723f5914cfa",
+      "bytes": 667,
+      "legacy_path": "experiments/eda_first_001/model_comparison.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "eda_first_001/validation_predictions.csv",
+      "sha256": "ac4911566953d329f9a4510e01f5b6274e195dde97024acbf92c5b70442bb146",
+      "bytes": 78945,
+      "legacy_path": "experiments/eda_first_001/validation_predictions.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/RESULTS.txt",
+      "sha256": "9bbc57faa333ea16163bc2b6996894ae838066080800c53b134238eda9b56b55",
+      "bytes": 2793,
+      "legacy_path": "experiments/filter_validation_005/RESULTS.txt",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/filtered_candidate.joblib",
+      "sha256": "4f0701d9722b0a0bc2ee6929cab545328e169ec3bc83903a44312c24ffc85deb",
+      "bytes": 4270249,
+      "legacy_path": "experiments/filter_validation_005/filtered_candidate.joblib",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/fit_completed_before_validation.json",
+      "sha256": "01fbf5a45d2fa4d09eb7145956254e0f7c3a97cd0bfca983576c21f81a858ac0",
+      "bytes": 611,
+      "legacy_path": "experiments/filter_validation_005/fit_completed_before_validation.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/fixed_training_thresholds.csv",
+      "sha256": "b94d1bda593466dbe5a60082c67d968ecfd0b310c1bafab3dcd7e77e7708a842",
+      "bytes": 573,
+      "legacy_path": "experiments/filter_validation_005/fixed_training_thresholds.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/flagged_training_record_ids.csv",
+      "sha256": "1cf98a388af80e0a957c1e3df8da5338873472418179edab788249a211192142",
+      "bytes": 20723,
+      "legacy_path": "experiments/filter_validation_005/flagged_training_record_ids.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/plan.json",
+      "sha256": "ade8ef677a6e1327b6f9b0edace90a9681e50a1ae1279183ed2d7556f2129b05",
+      "bytes": 4265,
+      "legacy_path": "experiments/filter_validation_005/plan.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/removed_row_composition_diagnostics.csv",
+      "sha256": "fdbe717e65ba37fce7d84b2ede7afaf80d3c23f43e1c40a3777ddb43dead9bed",
+      "bytes": 488,
+      "legacy_path": "experiments/filter_validation_005/removed_row_composition_diagnostics.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/review/DESIGN_REVIEW.txt",
+      "sha256": "48af9125d48a16282978efd5866ab5debe2ba7477bbd8b01e49314aa2976068c",
+      "bytes": 4981,
+      "legacy_path": "experiments/filter_validation_005_review/DESIGN_REVIEW.txt",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/review/REVIEW.txt",
+      "sha256": "c9686c07f76847adf1d12429bd92a6fd2f6cf50847e48ebc3e18f67bbcbb1f79",
+      "bytes": 3638,
+      "legacy_path": "experiments/filter_validation_005_review/REVIEW.txt",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/review/VERIFICATION.json",
+      "sha256": "e2d0029e7d272ec5dbf969b97950f7dacff164993902d81193c656d9dde24b63",
+      "bytes": 2747,
+      "legacy_path": "experiments/filter_validation_005_review/VERIFICATION.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/review/verify_saved_results.py",
+      "sha256": "36fe7db5cb79a44c4fbaa6f3b5da63550232585149e05856d14d6f3e57403c37",
+      "bytes": 10657,
+      "legacy_path": "experiments/filter_validation_005_review/verify_saved_results.py",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/summary.json",
+      "sha256": "ee08f28875ce3aa8151bf38f31c49c895fb83c2d2b301258460d12c310b8cf7f",
+      "bytes": 7876,
+      "legacy_path": "experiments/filter_validation_005/summary.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/training_mask_frozen.json",
+      "sha256": "3ac1233f6f029c413724a5af4eee98db7f8cdfdd609f16324597d7b23c2ff322",
+      "bytes": 580,
+      "legacy_path": "experiments/filter_validation_005/training_mask_frozen.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/validation_comparison.csv",
+      "sha256": "f93f65525e08a58e18e64c0ac5deb7ae2c5561313e494b510b773f91eb183b11",
+      "bytes": 590,
+      "legacy_path": "experiments/filter_validation_005/validation_comparison.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/validation_event_subgroup_metrics.csv",
+      "sha256": "b44de624501246a099b7f1a94edae695a0a0eb32f3625f84413d250357e5bc8d",
+      "bytes": 1407,
+      "legacy_path": "experiments/filter_validation_005/validation_event_subgroup_metrics.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/validation_predictions.csv",
+      "sha256": "5cc2f643daf3a80b56bd67c36ca74f1c31853f2bcb7e4c2896acce53bfbb5c1f",
+      "bytes": 249504,
+      "legacy_path": "experiments/filter_validation_005/validation_predictions.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/verification.json",
+      "sha256": "f2079fef12f7fc3524dea8d7fddf8be8af2a64db92c3e9f78fa1ccfe583412f4",
+      "bytes": 1044,
+      "legacy_path": "experiments/filter_validation_005/verification.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/visual_report/ASTRA_SHIELD_filtered_validation.pdf",
+      "sha256": "634de26f4fa43b0d94daff5cf2a90b57a3f28fd3771f14a918383f19e86d2f3a",
+      "bytes": 25823,
+      "legacy_path": "reports/filter_validation_005/ASTRA_SHIELD_filtered_validation.pdf",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/visual_report/ASTRA_SHIELD_filtered_validation.png",
+      "sha256": "9735be8ea2e9340c8d0d771e5e2f4e914b5bc52bc1f22b8f04add58a7e4aa2bc",
+      "bytes": 148219,
+      "legacy_path": "reports/filter_validation_005/ASTRA_SHIELD_filtered_validation.png",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "filter_validation_005/visual_report/plot_validation_comparison.py",
+      "sha256": "03001e29f778efe52933cf066c96c80d569de499972ba9c58d8f5a95d139f5ee",
+      "bytes": 2834,
+      "legacy_path": "reports/filter_validation_005/plot_validation_comparison.py",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "history_003/INDEPENDENT_VERIFICATION.json",
+      "sha256": "653ab8609d88a541ad1d48f4aefff4ce46d1f39376abce9c8491bc0f9c8f64b4",
+      "bytes": 2502,
+      "legacy_path": "experiments/history_003/INDEPENDENT_VERIFICATION.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "history_003/RESULTS.txt",
+      "sha256": "9daf20c3ab2ca6072641ae7c9b462f8211729a5226e4762cdd695f471c55d2b8",
+      "bytes": 3245,
+      "legacy_path": "experiments/history_003/RESULTS.txt",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "history_003/execution_verification.json",
+      "sha256": "8f0b7f2cd352b3a8ba2a767ac966873e7aa6549d7eb7cc33c789d826390e09af",
+      "bytes": 1091,
+      "legacy_path": "experiments/history_003/execution_verification.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "history_003/experimental_history_features.csv",
+      "sha256": "e5db6c2831978afe8ff06cf8f25e0bb8446e01947bee4f48e0bd379712a8b3d5",
+      "bytes": 266302,
+      "legacy_path": "experiments/history_003/experimental_history_features.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "history_003/feature_invariants.json",
+      "sha256": "c6d5e8c822e6d4f131537bcb1aeaa1e7d8cd3b464c30f6e489419fadd4d24bbb",
+      "bytes": 305,
+      "legacy_path": "experiments/history_003/feature_invariants.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "history_003/groupcv_comparison.csv",
+      "sha256": "59cee47c4b5d4a2566f4067d920e59d9c85b8d1856edcfadb7f434cd664f65c3",
+      "bytes": 472,
+      "legacy_path": "experiments/history_003/groupcv_comparison.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "history_003/groupcv_fold_metrics.csv",
+      "sha256": "ad023ceca586a852bf42ee2f4bbf5178b2be21ff8060525f063eda0376a17ef7",
+      "bytes": 1561,
+      "legacy_path": "experiments/history_003/groupcv_fold_metrics.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "history_003/groupcv_predictions.csv",
+      "sha256": "f0f6f745505c7911a0caaff17b33f6b524c7961e0f7595433d95caadd8cfe6ef",
+      "bytes": 254248,
+      "legacy_path": "experiments/history_003/groupcv_predictions.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "history_003/participant_folds.csv",
+      "sha256": "2cc50a69a961863067b24c3410919078a268e75079fda078a60aeacd03761743",
+      "bytes": 869,
+      "legacy_path": "experiments/history_003/participant_folds.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "history_003/plan.json",
+      "sha256": "3b18031e0f291105cb531ec3f2024d00dbc7b86e11f745e79db8613fe4e2200a",
+      "bytes": 6803,
+      "legacy_path": "experiments/history_003/plan.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "history_003/summary.json",
+      "sha256": "f320caa13ed049262fc922bd3e5c72efbc23ebd95937ff4c48992c8e83a8f228",
+      "bytes": 14768,
+      "legacy_path": "experiments/history_003/summary.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "history_003/temporal_metrics.csv",
+      "sha256": "1579220e519c8de5db1e25439726f90609ef341d9bad3600e06e9389737c790c",
+      "bytes": 1196,
+      "legacy_path": "experiments/history_003/temporal_metrics.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "history_003/temporal_predictions.csv",
+      "sha256": "99991dfa158d9b300f31f999f98079bfe5a9a778541437dc6515e971d79cf61f",
+      "bytes": 475487,
+      "legacy_path": "experiments/history_003/temporal_predictions.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "improvement_002/INDEPENDENT_VERIFICATION.json",
+      "sha256": "c28a3925397d0d30315a79876f96f40e9ed4f3ea93fbb7e51d2e52461a8b3618",
+      "bytes": 333,
+      "legacy_path": "experiments/improvement_002/INDEPENDENT_VERIFICATION.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "improvement_002/RESULTS.txt",
+      "sha256": "1e12230a1533a18013cd3d83f6f8dd05e3567f50c0d92c1a80207e593205a307",
+      "bytes": 1985,
+      "legacy_path": "experiments/improvement_002/RESULTS.txt",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "improvement_002/cv_comparison.csv",
+      "sha256": "74919e86ba4c8cf4e761f68d9cecef88cc1b9cb07c00ff77230910842da21778",
+      "bytes": 1161,
+      "legacy_path": "experiments/improvement_002/cv_comparison.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "improvement_002/cv_comparison.png",
+      "sha256": "60e0f19302934d6a02d75f32e9f6c46a4ac1b173919433b23539673d2b0718d1",
+      "bytes": 164342,
+      "legacy_path": "experiments/improvement_002/cv_comparison.png",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "improvement_002/cv_fold_metrics.csv",
+      "sha256": "3d7148af3d807e2a172ce873894dbddece84d9c0441ed7c100083d2519a0041b",
+      "bytes": 2713,
+      "legacy_path": "experiments/improvement_002/cv_fold_metrics.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "improvement_002/cv_selection.json",
+      "sha256": "f29eb177806bd18cd52b5caf0df79d9a40bf0d12b9d43a28aea19312375974be",
+      "bytes": 5700,
+      "legacy_path": "experiments/improvement_002/cv_selection.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "improvement_002/development_bundle.joblib",
+      "sha256": "970f30725894173df26cd8d92c081f3694b462848e79184525f88f161bf49b30",
+      "bytes": 4452285,
+      "legacy_path": "experiments/improvement_002/development_bundle.joblib",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "improvement_002/fold_predictions.csv",
+      "sha256": "921afb0c3236697617a6083907432ef351c2bc6b878a4233236dcf9a2eab7115",
+      "bytes": 436490,
+      "legacy_path": "experiments/improvement_002/fold_predictions.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "improvement_002/participant_folds.csv",
+      "sha256": "2cc50a69a961863067b24c3410919078a268e75079fda078a60aeacd03761743",
+      "bytes": 869,
+      "legacy_path": "experiments/improvement_002/participant_folds.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "improvement_002/plan.json",
+      "sha256": "6d2b321cc4d151ea5c946050f11ce8dc6b04bd28c511a02ab0be1f644c01e1db",
+      "bytes": 3819,
+      "legacy_path": "experiments/improvement_002/plan.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "improvement_002/summary.json",
+      "sha256": "ad9899f05780ab4ce1b578ae19b7ee9e7a49f4f1a3284a7fa9625e8b063b3b0f",
+      "bytes": 8179,
+      "legacy_path": "experiments/improvement_002/summary.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "improvement_002/validation_comparison.csv",
+      "sha256": "5cf8cc2afbcff71e6a475da6aeb541b1b694dfe3875ade668c6a519b085d32b7",
+      "bytes": 334,
+      "legacy_path": "experiments/improvement_002/validation_comparison.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "improvement_002/validation_predictions.csv",
+      "sha256": "c44886a05c0a7ff043bf0eea1fd3ff697737216cbcfd62177051eabbdd73504b",
+      "bytes": 47698,
+      "legacy_path": "experiments/improvement_002/validation_predictions.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/RESULTS.txt",
+      "sha256": "ea12aa7f47a277df85d299c5f1d68ad6fcb6561e89fd7d9fa20512192d754e72",
+      "bytes": 3570,
+      "legacy_path": "experiments/noise_004/RESULTS.txt",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/detector_thresholds.csv",
+      "sha256": "9acaa3085076bbe1393d19f7122f19c35ce0069269b06a26e276d01ca896740a",
+      "bytes": 2824,
+      "legacy_path": "experiments/noise_004/detector_thresholds.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/execution_verification.json",
+      "sha256": "57e37e5a0cb9eea7f858a3178e66c7743931c575e354788f3965ed3a6f8b34e2",
+      "bytes": 1374,
+      "legacy_path": "experiments/noise_004/execution_verification.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/fit_flag_prevalence_diagnostics.csv",
+      "sha256": "5d11663e2c50244127118e8476394d92cce2e64bd4d45257053df508397020fd",
+      "bytes": 2170,
+      "legacy_path": "experiments/noise_004/fit_flag_prevalence_diagnostics.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/fit_stage_summary.csv",
+      "sha256": "020603106559a29105efaf8d3ee7da0567ca64eb59357254c45c2d5a65417c9e",
+      "bytes": 385,
+      "legacy_path": "experiments/noise_004/fit_stage_summary.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/fit_tail_flags.csv",
+      "sha256": "0ab7b526aa3558229fab8f1fe855fe42bcf7dad91515e95122f973b81c6800ef",
+      "bytes": 87295,
+      "legacy_path": "experiments/noise_004/fit_tail_flags.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/groupcv_comparison.csv",
+      "sha256": "f06661c45de710098e02ed9ebd10c6f901e1cec462d314d0c1a5adc3a11e78b2",
+      "bytes": 582,
+      "legacy_path": "experiments/noise_004/groupcv_comparison.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/groupcv_fold_metrics.csv",
+      "sha256": "6d1f1c6abcda988145518354538689164592abb6e7036697c9a5dfa2def92d02",
+      "bytes": 3161,
+      "legacy_path": "experiments/noise_004/groupcv_fold_metrics.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/groupcv_predictions.csv",
+      "sha256": "7abd508394b4310ac872edfef1637db90b81cee409aec285e9438e472f806ea9",
+      "bytes": 333877,
+      "legacy_path": "experiments/noise_004/groupcv_predictions.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/oof_event_subgroup_metrics.csv",
+      "sha256": "c9567efad1ef1fbdb74157e1bff99436000c389b8953cef211f578569464d80b",
+      "bytes": 1652,
+      "legacy_path": "experiments/noise_004/oof_event_subgroup_metrics.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/participant_folds.csv",
+      "sha256": "2cc50a69a961863067b24c3410919078a268e75079fda078a60aeacd03761743",
+      "bytes": 869,
+      "legacy_path": "experiments/noise_004/participant_folds.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/plan.json",
+      "sha256": "731900f143ffb5e773101466c9acc8b8d85ac5f1851ca96ee9f4924411d3e989",
+      "bytes": 4903,
+      "legacy_path": "experiments/noise_004/plan.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/review/NOISE_AUDIT.txt",
+      "sha256": "2a1e936e9627fdb67e55ca1c832ceb1fa8a48ac44f2c6e01427e5bffa786fadf",
+      "bytes": 7787,
+      "legacy_path": "experiments/noise_004_review/NOISE_AUDIT.txt",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/review/audit_noise.py",
+      "sha256": "c4eab1f716ca5393dca02203c687a827f0fa646e039da27d31295fabc0692b11",
+      "bytes": 11193,
+      "legacy_path": "experiments/noise_004_review/audit_noise.py",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/review/descriptive_feature_tails.csv",
+      "sha256": "1fe44ecfc93416c86a46f980db00b919c36705d2b40cac0c79342ef5c5272b88",
+      "bytes": 2859,
+      "legacy_path": "experiments/noise_004_review/descriptive_feature_tails.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/review/noise_audit.json",
+      "sha256": "3c6ef5d1b5a5e9fce0987c84a017cee9d544a6fc7f134e452b32797776edad47",
+      "bytes": 10148,
+      "legacy_path": "experiments/noise_004_review/noise_audit.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/summary.json",
+      "sha256": "f26ea7ed96cf2a0938b252dd8293d5ca62a88a6e1d32feee74b00994830781d7",
+      "bytes": 19266,
+      "legacy_path": "experiments/noise_004/summary.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/temporal_metrics.csv",
+      "sha256": "ac3c518867b9a0f8ecd43179856aec75a742c714c1bd8fd3b2fe9cf1adbbaa97",
+      "bytes": 2282,
+      "legacy_path": "experiments/noise_004/temporal_metrics.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/temporal_predictions.csv",
+      "sha256": "44e6630c9c3a46af19f21afebb95ebc32322950d7a411eb22380e258ef947eb4",
+      "bytes": 618753,
+      "legacy_path": "experiments/noise_004/temporal_predictions.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/visual_report/ASTRA_SHIELD_noise_review.pdf",
+      "sha256": "a64a163176fc0407d9f91e25c2feaa489b0108239e7689e6e3475cd19f0bac05",
+      "bytes": 119604,
+      "legacy_path": "reports/noise_004/ASTRA_SHIELD_noise_review.pdf",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/visual_report/INDEPENDENT_VERIFICATION.json",
+      "sha256": "70014870c59bb094b33b52d08b8e1e31751a7f64c97ee9ab405b1f7ec21ae5ce",
+      "bytes": 1295,
+      "legacy_path": "reports/noise_004/INDEPENDENT_VERIFICATION.json",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/visual_report/NOISE_REVIEW.txt",
+      "sha256": "f55cf2b29b2d6121b2ac021fcc166949fe1c831deb0baa1427a0de1f1c3b1aea",
+      "bytes": 6021,
+      "legacy_path": "reports/noise_004/NOISE_REVIEW.txt",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/visual_report/generate_noise_plots.py",
+      "sha256": "4b158f28973a4a7965ca8cccd863a455ce37ea205d202d15e5bdef3e63f7dd31",
+      "bytes": 7919,
+      "legacy_path": "reports/noise_004/generate_noise_plots.py",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/visual_report/noise_audit.png",
+      "sha256": "7b443a391193c5fadd85604d9d33c44e4f48e10f946aeaebff15f712429fa59c",
+      "bytes": 475644,
+      "legacy_path": "reports/noise_004/noise_audit.png",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/visual_report/noise_experiment.png",
+      "sha256": "5095cdf7f96d717f093e7302d1957a3fabf274d7bd71da03da5a0b88259c8620",
+      "bytes": 218769,
+      "legacy_path": "reports/noise_004/noise_experiment.png",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/visual_report/verified_comparison.csv",
+      "sha256": "206c184ad058f6a560af43c07e715b7df059abcf6507f4a148ba656ad423b317",
+      "bytes": 1523,
+      "legacy_path": "reports/noise_004/verified_comparison.csv",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "noise_004/visual_report/verify_noise_experiment.py",
+      "sha256": "a35945263b3c521c810b8294bca656c2fb0ec1de38ea764acd9a7f923177d8d6",
+      "bytes": 7736,
+      "legacy_path": "reports/noise_004/verify_noise_experiment.py",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "reproduce.py",
+      "sha256": "5279e66e97d0b6bf31b0f447da0b72d95114fba7a215e237c70371a447b7d37c",
+      "bytes": 7591,
+      "legacy_path": null,
+      "origin": "repository packaging addition"
+    },
+    {
+      "path": "source/astra_shield_ml/__init__.py",
+      "sha256": "ae1d8019998be97ba916b82ceb56875305739d2f9758ff387fd2c0c9b850c809",
+      "bytes": 82,
+      "legacy_path": "astra_shield_ml/__init__.py",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "source/astra_shield_ml/eda_first_experiment.py",
+      "sha256": "71dc13b06566528beebc3e8eec668d74f6f591f9363e29fb3c6768981a91d0e5",
+      "bytes": 8283,
+      "legacy_path": "astra_shield_ml/eda_first_experiment.py",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "source/astra_shield_ml/estimators.py",
+      "sha256": "5f4da7ff7762ed29f04947e511e8c929f1c6d0808c73f4ff71497f225a123691",
+      "bytes": 3250,
+      "legacy_path": "astra_shield_ml/estimators.py",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "source/astra_shield_ml/features.py",
+      "sha256": "d4e51b1ea46eb776766bd6f39b5882405fbf4f762248b2f94659c19fffb828bf",
+      "bytes": 9520,
+      "legacy_path": "astra_shield_ml/features.py",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "source/astra_shield_ml/filter_validation_experiment.py",
+      "sha256": "52c63fadf6e4c74c5292bc41ca9f75b1b4e1b28f0c21f5b072455ad241790bde",
+      "bytes": 21571,
+      "legacy_path": "astra_shield_ml/filter_validation_experiment.py",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "source/astra_shield_ml/history_feature_experiment.py",
+      "sha256": "11be24c14c9623491f3ad51ea1739aabab710856deb2a8ac1c226ecf3c2139c8",
+      "bytes": 23048,
+      "legacy_path": "astra_shield_ml/history_feature_experiment.py",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "source/astra_shield_ml/improvement_experiment.py",
+      "sha256": "4509ef4aacae1c141ff14fb02854a877e6b36d962b94edf12423d7be7c12d5e2",
+      "bytes": 17617,
+      "legacy_path": "astra_shield_ml/improvement_experiment.py",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "source/astra_shield_ml/noise_cleaning_experiment.py",
+      "sha256": "1a6b2a400569d3eaac985b766dd06b9a0367abad7b596f9a3ee35d6af5f814e0",
+      "bytes": 25536,
+      "legacy_path": "astra_shield_ml/noise_cleaning_experiment.py",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "source/astra_shield_ml/plot_improvement.py",
+      "sha256": "9fd77bdeddf2c58fcba4e8181f9757c5fc6171da05b59a3281507bdf6a61325d",
+      "bytes": 2644,
+      "legacy_path": "astra_shield_ml/plot_improvement.py",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "source/astra_shield_ml/training.py",
+      "sha256": "55673c1b44ef9f502da90814bb3f4c960a4a67b3ab5e0a99abe0adc4674b665e",
+      "bytes": 22977,
+      "legacy_path": "astra_shield_ml/training.py",
+      "origin": "byte-preserved historical artifact"
+    },
+    {
+      "path": "source/astra_shield_ml/visual_eda_report.py",
+      "sha256": "1b1e9b5e44cda5723ebd9ba29eafc98560154421e0ab0c5d52ce143af51bc372",
+      "bytes": 13833,
+      "legacy_path": "astra_shield_ml/visual_eda_report.py",
+      "origin": "byte-preserved historical artifact"
+    }
+  ]
+}

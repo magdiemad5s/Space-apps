@@ -1,0 +1,445 @@
+{
+  "label": "moderate",
+  "points": 42.8,
+  "points_definition": "Prototype class-severity index: 0*P(low) + 50*P(moderate) + 100*P(high); not a clinical risk probability.",
+  "reasons": [
+    {
+      "feature": "self_report_fatigue_score",
+      "value": 5.864,
+      "shap_value": 0.06167648966755403,
+      "direction": "supports_prediction",
+      "reason": "self report fatigue score increased the model's score for the predicted 'moderate' category relative to its SHAP reference."
+    },
+    {
+      "feature": "reaction_time_change_from_baseline_pct",
+      "value": 9.113644,
+      "shap_value": 0.02748636968256547,
+      "direction": "supports_prediction",
+      "reason": "reaction time change from baseline pct increased the model's score for the predicted 'moderate' category relative to its SHAP reference."
+    },
+    {
+      "feature": "sleep_efficiency_pct",
+      "value": 93.184,
+      "shap_value": 0.0257066714295442,
+      "direction": "supports_prediction",
+      "reason": "sleep efficiency pct increased the model's score for the predicted 'moderate' category relative to its SHAP reference."
+    }
+  ],
+  "model_version": "0.1.0",
+  "data_origin": "synthetic_training_data",
+  "clinical_validation": false,
+  "participant_id": "SIM_001",
+  "observation_timestamp_utc": "2026-01-04T18:00:00Z",
+  "forecast_horizon_hours": 24,
+  "target_timestamp_utc": "2026-01-05T18:00:00Z",
+  "input_quality": {
+    "status": "within_checked_training_ranges",
+    "out_of_training_range_features": [],
+    "interpretation": "Ranges describe this small synthetic training distribution, not medical limits or proof of model reliability."
+  },
+  "next_day_forecasts": {
+    "fatigue": {
+      "class": "moderate",
+      "model_class_probabilities": {
+        "high": 0.11462581916909188,
+        "low": 0.25890501384597964,
+        "moderate": 0.6264691669849282
+      },
+      "probability_interpretation": "uncalibrated synthetic-model class probabilities; not clinical risk",
+      "score_estimate": 5.1949,
+      "score_definition": "custom simulated 0..10 fatigue self-report; classification is a separate model"
+    },
+    "reaction_time_median_ms": 343.615
+  },
+  "current_observation": {
+    "physiology": {
+      "outlier_flag": false,
+      "decision_score": 0.093783,
+      "decision_definition": "IsolationForest decision_function; below zero is an outlier, not a medical diagnosis"
+    },
+    "journal": {
+      "status": "experimental",
+      "stress_class": "low",
+      "scope": "current generated-language demonstration; not diagnosis or forecast",
+      "model_information": {
+        "selected_model": "word_tfidf_logistic",
+        "selection_basis": "validation macro F1",
+        "validation_metrics": {
+          "accuracy": 0.45092592592592595,
+          "balanced_accuracy": 0.5454195011337869,
+          "macro_f1": 0.38257575757575757,
+          "classification_report": {
+            "low": {
+              "precision": 0.7012195121951219,
+              "recall": 0.5867346938775511,
+              "f1-score": 0.6388888888888888,
+              "support": 588.0
+            },
+            "moderate": {
+              "precision": 0.3157894736842105,
+              "recall": 0.24,
+              "f1-score": 0.2727272727272727,
+              "support": 450.0
+            },
+            "high": {
+              "precision": 0.13821138211382114,
+              "recall": 0.8095238095238095,
+              "f1-score": 0.2361111111111111,
+              "support": 42.0
+            },
+            "accuracy": 0.45092592592592595,
+            "macro avg": {
+              "precision": 0.38507345599771786,
+              "recall": 0.5454195011337869,
+              "f1-score": 0.38257575757575757,
+              "support": 1080.0
+            },
+            "weighted avg": {
+              "precision": 0.5187289022013026,
+              "recall": 0.45092592592592595,
+              "f1-score": 0.47065796857463527,
+              "support": 1080.0
+            }
+          },
+          "confusion_matrix_labels": [
+            "low",
+            "moderate",
+            "high"
+          ],
+          "confusion_matrix": [
+            [
+              345,
+              234,
+              9
+            ],
+            [
+              139,
+              108,
+              203
+            ],
+            [
+              8,
+              0,
+              34
+            ]
+          ]
+        },
+        "baseline_validation_metrics": {
+          "majority_class": {
+            "accuracy": 0.5444444444444444,
+            "balanced_accuracy": 0.3333333333333333,
+            "macro_f1": 0.23501199040767384,
+            "classification_report": {
+              "low": {
+                "precision": 0.5444444444444444,
+                "recall": 1.0,
+                "f1-score": 0.7050359712230215,
+                "support": 588.0
+              },
+              "moderate": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 450.0
+              },
+              "high": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 42.0
+              },
+              "accuracy": 0.5444444444444444,
+              "macro avg": {
+                "precision": 0.18148148148148147,
+                "recall": 0.3333333333333333,
+                "f1-score": 0.23501199040767384,
+                "support": 1080.0
+              },
+              "weighted avg": {
+                "precision": 0.29641975308641977,
+                "recall": 0.5444444444444444,
+                "f1-score": 0.38385291766586727,
+                "support": 1080.0
+              }
+            },
+            "confusion_matrix_labels": [
+              "low",
+              "moderate",
+              "high"
+            ],
+            "confusion_matrix": [
+              [
+                588,
+                0,
+                0
+              ],
+              [
+                450,
+                0,
+                0
+              ],
+              [
+                42,
+                0,
+                0
+              ]
+            ]
+          }
+        },
+        "best_baseline": "majority_class",
+        "improvement_over_best_baseline": 0.14756376716808373,
+        "fit_seconds": 0.18184927699985565,
+        "quality_status": "synthetic_demo_only",
+        "trained_on": "train only; validation used for candidate selection; no train+validation refit"
+      },
+      "model_class_probabilities": {
+        "high": 0.014700343382088024,
+        "low": 0.9664739781081252,
+        "moderate": 0.018825678509786666
+      }
+    }
+  },
+  "explanation": {
+    "tree_shap": {
+      "method": "TreeSHAP",
+      "explained_class": "moderate",
+      "model_output_space": "class_probability",
+      "base_value": 0.3330985288863621,
+      "sum_feature_contributions": 0.2933706380985701,
+      "reconstructed_model_output": 0.6264691669849323,
+      "top_three_reasons": [
+        {
+          "feature": "self_report_fatigue_score",
+          "value": 5.864,
+          "shap_value": 0.06167648966755403,
+          "direction": "supports_prediction",
+          "reason": "self report fatigue score increased the model's score for the predicted 'moderate' category relative to its SHAP reference."
+        },
+        {
+          "feature": "reaction_time_change_from_baseline_pct",
+          "value": 9.113644,
+          "shap_value": 0.02748636968256547,
+          "direction": "supports_prediction",
+          "reason": "reaction time change from baseline pct increased the model's score for the predicted 'moderate' category relative to its SHAP reference."
+        },
+        {
+          "feature": "sleep_efficiency_pct",
+          "value": 93.184,
+          "shap_value": 0.0257066714295442,
+          "direction": "supports_prediction",
+          "reason": "sleep efficiency pct increased the model's score for the predicted 'moderate' category relative to its SHAP reference."
+        }
+      ],
+      "all_feature_contributions": [
+        {
+          "feature": "sleep_duration_hours",
+          "value": 7.797,
+          "shap_value": 0.008195409656032198,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "sleep_efficiency_pct",
+          "value": 93.184,
+          "shap_value": 0.0257066714295442,
+          "direction": "supports_prediction",
+          "reason": "sleep efficiency pct increased the model's score for the predicted 'moderate' category relative to its SHAP reference."
+        },
+        {
+          "feature": "sleep_onset_delay_minutes",
+          "value": 17.372,
+          "shap_value": 0.014541393273155562,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "awakenings_count",
+          "value": 0.0,
+          "shap_value": 0.005526061239188831,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "sleep_midpoint_deviation_minutes",
+          "value": 33.905,
+          "shap_value": 0.010580224448889959,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "resting_heart_rate_bpm",
+          "value": 72.998,
+          "shap_value": 0.006049350400578016,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "hrv_rmssd_ms",
+          "value": 24.409,
+          "shap_value": 0.009632353844320742,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "reaction_time_median_ms",
+          "value": 351.605,
+          "shap_value": 0.009063606041137453,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "reaction_time_lapses_count",
+          "value": 3.0,
+          "shap_value": 0.0034824243251730287,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "attention_accuracy_pct",
+          "value": 97.5,
+          "shap_value": 0.006806400710556863,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "self_report_stress_score",
+          "value": 0.866,
+          "shap_value": 0.011446267061681477,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "self_report_fatigue_score",
+          "value": 5.864,
+          "shap_value": 0.06167648966755403,
+          "direction": "supports_prediction",
+          "reason": "self report fatigue score increased the model's score for the predicted 'moderate' category relative to its SHAP reference."
+        },
+        {
+          "feature": "self_report_mood_score",
+          "value": 6.357,
+          "shap_value": 0.009047675356484439,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "workload_hours",
+          "value": 9.107,
+          "shap_value": 0.008532091347258913,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "exercise_minutes",
+          "value": 39.215,
+          "shap_value": 0.006502897520274021,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "baseline_sleep_duration_hours",
+          "value": 8.021857,
+          "shap_value": 0.005523861490419028,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "baseline_resting_heart_rate_bpm",
+          "value": 69.714143,
+          "shap_value": 0.00373161430169629,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "baseline_hrv_rmssd_ms",
+          "value": 25.298286,
+          "shap_value": 0.014333874591890488,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "baseline_reaction_time_median_ms",
+          "value": 322.237429,
+          "shap_value": 0.007494966496581547,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "sleep_duration_delta_from_baseline_hours",
+          "value": -0.224857,
+          "shap_value": 0.0005149844928275148,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "heart_rate_delta_from_baseline_bpm",
+          "value": 3.283857,
+          "shap_value": 0.007630404299926628,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "hrv_delta_from_baseline_ms",
+          "value": -0.889286,
+          "shap_value": 0.0068247925985542544,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "reaction_time_change_from_baseline_pct",
+          "value": 9.113644,
+          "shap_value": 0.02748636968256547,
+          "direction": "supports_prediction",
+          "reason": "reaction time change from baseline pct increased the model's score for the predicted 'moderate' category relative to its SHAP reference."
+        },
+        {
+          "feature": "prior_3day_mean_sleep_hours",
+          "value": 7.763667,
+          "shap_value": 0.006714304423797507,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "prior_3day_mean_resting_heart_rate_bpm",
+          "value": 69.289667,
+          "shap_value": 0.006344420911653198,
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "prior_3day_mean_reaction_time_ms",
+          "value": 329.332,
+          "shap_value": 0.009981728486828441,
+          "direction": "supports_prediction"
+        }
+      ],
+      "interpretation": "Attributions explain this classifier output, not causes of fatigue or medical findings. Correlated and derived features may share attribution."
+    },
+    "personal_baseline_changes": {
+      "sleep_duration_hours": -0.2249,
+      "resting_heart_rate_bpm": 3.2839,
+      "hrv_rmssd_ms": -0.8893,
+      "reaction_time_percent": 9.1136
+    },
+    "reference_sensitivity": [
+      {
+        "group": "sleep",
+        "high_class_probability_difference": -0.028058,
+        "direction_relative_to_training_reference": "lower"
+      },
+      {
+        "group": "cognitive_performance",
+        "high_class_probability_difference": 0.00553,
+        "direction_relative_to_training_reference": "higher"
+      },
+      {
+        "group": "self_reports",
+        "high_class_probability_difference": -0.002846,
+        "direction_relative_to_training_reference": "lower"
+      },
+      {
+        "group": "workload_and_exercise",
+        "high_class_probability_difference": 0.001873,
+        "direction_relative_to_training_reference": "higher"
+      },
+      {
+        "group": "physiology",
+        "high_class_probability_difference": 0.001798,
+        "direction_relative_to_training_reference": "higher"
+      }
+    ],
+    "method": "Actual TreeSHAP for the predicted fatigue class, observed baseline differences, and separately labeled grouped reference substitutions.",
+    "interpretation": "TreeSHAP explains the selected classifier. Reference sensitivities are a separate non-additive calculation. Neither identifies causal or medically proven factors."
+  },
+  "advisory_actions": [
+    "Review these demonstration outputs alongside the recorded measurements and their quality.",
+    "Review the approved work/rest schedule with the responsible crew or mission-support person.",
+    "Use approved mission and medical procedures for concerning symptoms; this prototype makes no autonomous medical or mission decisions."
+  ],
+  "limitations": [
+    "All models were trained on explicitly synthetic demonstration data.",
+    "Outputs are not validated astronaut-health, medical-diagnostic, or operational-readiness assessments.",
+    "Class probabilities are uncalibrated model outputs, not clinical risk probabilities.",
+    "Current physiology and journal outputs are not next-day forecasts.",
+    "Personal baselines and recent-history summaries must come from earlier observations, never future records.",
+    "Journal language was generated from templates; journal predictions do not establish performance on real language."
+  ]
+}

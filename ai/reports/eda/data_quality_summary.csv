@@ -1,0 +1,42 @@
+check,status,invalid_count,details
+missing_cells,pass,0,No imputation was necessary in this prepared synthetic partition.
+nonfinite_numeric_cells,pass,0,NaN and infinity are invalid model values.
+exact_duplicate_rows,pass,0,Complete duplicate rows are distinct from legitimate repeated participant IDs.
+duplicate_record_ids,pass,0,Each observation must have a unique participant-day record ID.
+duplicate_participant_day_keys,pass,0,Each participant has one observation per mission day.
+duplicate_primary_predictor_vectors,pass,0,Exact duplicate 26-feature numerical vectors; no near-duplicate claim is made.
+non_training_partition_rows,pass,0,No validation/test observations are included in EDA.
+non_synthetic_flags,pass,0,This dataset is explicitly a synthetic engineering demonstration.
+future_or_target_predictors,pass,0,All outcome annotations and future labels are excluded from the predictor allowlist.
+zero_variance_primary_predictors,pass,0,Constant provenance/protocol columns exist in the source table but are not model inputs.
+participants_without_60_daily_rows,pass,0,"Repeated IDs represent valid longitudinal data, not duplicate people to remove."
+participants_without_days_1_to_60,pass,0,The training partition contains 60 consecutive simulation days per person.
+input_bounds__sleep_duration_hours,pass,0,"Broad numerical API bounds [0.1, 16]; engineering input validation, not clinical thresholds."
+input_bounds__sleep_efficiency_pct,pass,0,"Broad numerical API bounds [10, 100]; engineering input validation, not clinical thresholds."
+input_bounds__sleep_onset_delay_minutes,pass,0,"Broad numerical API bounds [0, 300]; engineering input validation, not clinical thresholds."
+input_bounds__awakenings_count,pass,0,"Broad numerical API bounds [0, 100]; engineering input validation, not clinical thresholds."
+input_bounds__sleep_midpoint_deviation_minutes,pass,0,"Broad numerical API bounds [-720, 720]; engineering input validation, not clinical thresholds."
+input_bounds__resting_heart_rate_bpm,pass,0,"Broad numerical API bounds [30, 220]; engineering input validation, not clinical thresholds."
+input_bounds__hrv_rmssd_ms,pass,0,"Broad numerical API bounds [1, 300]; engineering input validation, not clinical thresholds."
+input_bounds__reaction_time_median_ms,pass,0,"Broad numerical API bounds [100, 2000]; engineering input validation, not clinical thresholds."
+input_bounds__reaction_time_lapses_count,pass,0,"Broad numerical API bounds [0, 60]; engineering input validation, not clinical thresholds."
+input_bounds__attention_accuracy_pct,pass,0,"Broad numerical API bounds [0, 100]; engineering input validation, not clinical thresholds."
+input_bounds__self_report_stress_score,pass,0,"Broad numerical API bounds [0, 10]; engineering input validation, not clinical thresholds."
+input_bounds__self_report_fatigue_score,pass,0,"Broad numerical API bounds [0, 10]; engineering input validation, not clinical thresholds."
+input_bounds__self_report_mood_score,pass,0,"Broad numerical API bounds [0, 10]; engineering input validation, not clinical thresholds."
+input_bounds__workload_hours,pass,0,"Broad numerical API bounds [0, 24]; engineering input validation, not clinical thresholds."
+input_bounds__exercise_minutes,pass,0,"Broad numerical API bounds [0, 480]; engineering input validation, not clinical thresholds."
+input_bounds__baseline_sleep_duration_hours,pass,0,"Broad numerical API bounds [0.1, 16]; engineering input validation, not clinical thresholds."
+input_bounds__baseline_resting_heart_rate_bpm,pass,0,"Broad numerical API bounds [30, 220]; engineering input validation, not clinical thresholds."
+input_bounds__baseline_hrv_rmssd_ms,pass,0,"Broad numerical API bounds [1, 300]; engineering input validation, not clinical thresholds."
+input_bounds__baseline_reaction_time_median_ms,pass,0,"Broad numerical API bounds [100, 2000]; engineering input validation, not clinical thresholds."
+input_bounds__prior_3day_mean_sleep_hours,pass,0,"Broad numerical API bounds [0.1, 16]; engineering input validation, not clinical thresholds."
+input_bounds__prior_3day_mean_resting_heart_rate_bpm,pass,0,"Broad numerical API bounds [30, 220]; engineering input validation, not clinical thresholds."
+input_bounds__prior_3day_mean_reaction_time_ms,pass,0,"Broad numerical API bounds [100, 2000]; engineering input validation, not clinical thresholds."
+whole_count__awakenings_count,pass,0,Count variables must contain whole counts.
+whole_count__reaction_time_lapses_count,pass,0,Count variables must contain whole counts.
+sleep_onset_exceeds_awake_opportunity,pass,0,Sleep efficiency and duration must allow the reported onset delay.
+daily_time_budget_exceeds_24_hours,pass,0,"The simulator defines sleep opportunity, duty and exercise as non-overlapping parts of one day."
+forecast_horizon_not_24_hours,pass,0,Future target timestamps are exactly one day after observation cutoffs.
+invalid_custom_fatigue_score,pass,0,"The target is a custom simulated score, not KSS or a clinical scale."
+fatigue_class_not_matching_documented_rule,pass,0,Future demo fatigue score uses arbitrary category cutoffs 4 and 7; score itself is not an input.

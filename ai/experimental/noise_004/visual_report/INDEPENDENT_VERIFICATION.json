@@ -1,0 +1,52 @@
+{
+  "verified_at_utc": "2026-11-14T16:55:06.666543+00:00",
+  "scope": "TRAIN and saved predictions only; no model fits or validation/test reads.",
+  "hash_checks": {
+    "source_train_sha256": true,
+    "official_bundle_sha256_before": true,
+    "task_config_sha256": true,
+    "source_folds_sha256": true,
+    "script_sha256": true
+  },
+  "group_cv_metric_rows_verified": 12,
+  "temporal_metric_rows_verified": 8,
+  "event_subgroup_metric_rows_verified": 8,
+  "fitting_mask_checks": [
+    {
+      "stage": "group_fold_0",
+      "flagged_rows": 174,
+      "independent_mask_matches": true
+    },
+    {
+      "stage": "group_fold_1",
+      "flagged_rows": 162,
+      "independent_mask_matches": true
+    },
+    {
+      "stage": "group_fold_2",
+      "flagged_rows": 169,
+      "independent_mask_matches": true
+    },
+    {
+      "stage": "temporal_fold_0",
+      "flagged_rows": 132,
+      "independent_mask_matches": true
+    },
+    {
+      "stage": "temporal_fold_1",
+      "flagged_rows": 190,
+      "independent_mask_matches": true
+    }
+  ],
+  "bootstrap_interval_checks": {
+    "rf_fit_tail_exclusion": [
+      -0.004016043335317488,
+      0.011441980637212112
+    ],
+    "rf_fit_tail_weight_0.25": [
+      -0.007036756799312779,
+      0.00719646804257555
+    ]
+  },
+  "all_passed": true
+}

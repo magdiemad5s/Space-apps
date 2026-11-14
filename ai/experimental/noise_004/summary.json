@@ -1,0 +1,746 @@
+{
+  "experiment": "noise_004",
+  "completed_at_utc": "2026-11-14T16:53:52.282988+00:00",
+  "elapsed_seconds": 46.19421750699985,
+  "scope": "Exploratory train-only robust-tail sensitivity study on synthetic data; not proof of measured noise",
+  "original_training_rows": 5040,
+  "virtual_participants": 84,
+  "all_holdout_rows_retained": true,
+  "groupcv_comparison": [
+    {
+      "candidate": "current_fatigue_persistence",
+      "mean_macro_f1": 0.5140029226628239,
+      "std_macro_f1": 0.028140996396534362,
+      "mean_high_precision": 0.37727855288863926,
+      "mean_high_recall": 0.37509240943875,
+      "mean_false_high_per_100_non_high": 7.603627883435787
+    },
+    {
+      "candidate": "rf_fit_tail_exclusion",
+      "mean_macro_f1": 0.5198614880730174,
+      "std_macro_f1": 0.017421664093469857,
+      "mean_high_precision": 0.3872941000299491,
+      "mean_high_recall": 0.3781561283057358,
+      "mean_false_high_per_100_non_high": 7.335468666528136
+    },
+    {
+      "candidate": "rf_fit_tail_weight_0.25",
+      "mean_macro_f1": 0.516450410839519,
+      "std_macro_f1": 0.01970382465777859,
+      "mean_high_precision": 0.3799135220125786,
+      "mean_high_recall": 0.3736937800955064,
+      "mean_false_high_per_100_non_high": 7.51524965437234
+    },
+    {
+      "candidate": "unchanged_rf_control",
+      "mean_macro_f1": 0.5162970580140134,
+      "std_macro_f1": 0.018206225217050565,
+      "mean_high_precision": 0.37731265222060006,
+      "mean_high_recall": 0.3755621130636239,
+      "mean_false_high_per_100_non_high": 7.60281653920615
+    }
+  ],
+  "pooled_oof_metrics": {
+    "unchanged_rf_control": {
+      "macro_f1": 0.5172493385223573,
+      "high_precision": 0.376599634369287,
+      "high_recall": 0.37454545454545457,
+      "accuracy": 0.6285714285714286,
+      "false_high_count": 341,
+      "false_high_per_100_non_high": 7.594654788418708,
+      "classification_report": {
+        "low": {
+          "precision": 0.43978590544157004,
+          "recall": 0.4569045412418906,
+          "f1-score": 0.4481818181818182,
+          "support": 1079.0
+        },
+        "moderate": {
+          "precision": 0.7322064056939501,
+          "recall": 0.723834652594547,
+          "f1-score": 0.7279964617425918,
+          "support": 3411.0
+        },
+        "high": {
+          "precision": 0.376599634369287,
+          "recall": 0.37454545454545457,
+          "f1-score": 0.37556973564266183,
+          "support": 550.0
+        },
+        "accuracy": 0.6285714285714286,
+        "macro avg": {
+          "precision": 0.516197315168269,
+          "recall": 0.5184282161272974,
+          "f1-score": 0.5172493385223573,
+          "support": 5040.0
+        },
+        "weighted avg": {
+          "precision": 0.6307965953763146,
+          "recall": 0.6285714285714286,
+          "f1-score": 0.6296324340130212,
+          "support": 5040.0
+        }
+      },
+      "confusion_matrix_labels": [
+        "low",
+        "moderate",
+        "high"
+      ],
+      "confusion_matrix": [
+        [
+          493,
+          580,
+          6
+        ],
+        [
+          607,
+          2469,
+          335
+        ],
+        [
+          21,
+          323,
+          206
+        ]
+      ]
+    },
+    "rf_fit_tail_exclusion": {
+      "macro_f1": 0.5212189820256004,
+      "high_precision": 0.38733705772811916,
+      "high_recall": 0.3781818181818182,
+      "accuracy": 0.6337301587301587,
+      "false_high_count": 329,
+      "false_high_per_100_non_high": 7.327394209354121,
+      "classification_report": {
+        "low": {
+          "precision": 0.44133574007220217,
+          "recall": 0.4531974050046339,
+          "f1-score": 0.44718792866941015,
+          "support": 1079.0
+        },
+        "moderate": {
+          "precision": 0.7354933726067747,
+          "recall": 0.7320433890354735,
+          "f1-score": 0.7337643255950632,
+          "support": 3411.0
+        },
+        "high": {
+          "precision": 0.38733705772811916,
+          "recall": 0.3781818181818182,
+          "f1-score": 0.3827046918123275,
+          "support": 550.0
+        },
+        "accuracy": 0.6337301587301587,
+        "macro avg": {
+          "precision": 0.5213887234690321,
+          "recall": 0.5211408707406419,
+          "f1-score": 0.5212189820256004,
+          "support": 5040.0
+        },
+        "weighted avg": {
+          "precision": 0.6345247101686667,
+          "recall": 0.6337301587301587,
+          "f1-score": 0.6341018789952052,
+          "support": 5040.0
+        }
+      },
+      "confusion_matrix_labels": [
+        "low",
+        "moderate",
+        "high"
+      ],
+      "confusion_matrix": [
+        [
+          489,
+          582,
+          8
+        ],
+        [
+          593,
+          2497,
+          321
+        ],
+        [
+          26,
+          316,
+          208
+        ]
+      ]
+    },
+    "rf_fit_tail_weight_0.25": {
+      "macro_f1": 0.5169675163484935,
+      "high_precision": 0.37822878228782286,
+      "high_recall": 0.37272727272727274,
+      "accuracy": 0.6297619047619047,
+      "false_high_count": 337,
+      "false_high_per_100_non_high": 7.505567928730512,
+      "classification_report": {
+        "low": {
+          "precision": 0.4403254972875226,
+          "recall": 0.45134383688600554,
+          "f1-score": 0.445766590389016,
+          "support": 1079.0
+        },
+        "moderate": {
+          "precision": 0.7317216981132075,
+          "recall": 0.7276458516564057,
+          "f1-score": 0.7296780831985888,
+          "support": 3411.0
+        },
+        "high": {
+          "precision": 0.37822878228782286,
+          "recall": 0.37272727272727274,
+          "f1-score": 0.37545787545787546,
+          "support": 550.0
+        },
+        "accuracy": 0.6297619047619047,
+        "macro avg": {
+          "precision": 0.5167586592295176,
+          "recall": 0.5172389870898947,
+          "f1-score": 0.5169675163484935,
+          "support": 5040.0
+        },
+        "weighted avg": {
+          "precision": 0.6307618559713671,
+          "recall": 0.6297619047619047,
+          "f1-score": 0.630241254825787,
+          "support": 5040.0
+        }
+      },
+      "confusion_matrix_labels": [
+        "low",
+        "moderate",
+        "high"
+      ],
+      "confusion_matrix": [
+        [
+          487,
+          586,
+          6
+        ],
+        [
+          598,
+          2482,
+          331
+        ],
+        [
+          21,
+          324,
+          205
+        ]
+      ]
+    },
+    "current_fatigue_persistence": {
+      "macro_f1": 0.5154157126850512,
+      "high_precision": 0.37545787545787546,
+      "high_recall": 0.37272727272727274,
+      "accuracy": 0.6287698412698413,
+      "false_high_count": 341,
+      "false_high_per_100_non_high": 7.594654788418708,
+      "classification_report": {
+        "low": {
+          "precision": 0.436036036036036,
+          "recall": 0.448563484708063,
+          "f1-score": 0.44221105527638194,
+          "support": 1079.0
+        },
+        "moderate": {
+          "precision": 0.7328605200945626,
+          "recall": 0.7270595133391967,
+          "f1-score": 0.7299484915378955,
+          "support": 3411.0
+        },
+        "high": {
+          "precision": 0.37545787545787546,
+          "recall": 0.37272727272727274,
+          "f1-score": 0.3740875912408759,
+          "support": 550.0
+        },
+        "accuracy": 0.6287698412698413,
+        "macro avg": {
+          "precision": 0.5147848105294913,
+          "recall": 0.5161167569248442,
+          "f1-score": 0.5154157126850512,
+          "support": 5040.0
+        },
+        "weighted avg": {
+          "precision": 0.6303118945292197,
+          "recall": 0.6287698412698413,
+          "f1-score": 0.6295135334248927,
+          "support": 5040.0
+        }
+      },
+      "confusion_matrix_labels": [
+        "low",
+        "moderate",
+        "high"
+      ],
+      "confusion_matrix": [
+        [
+          484,
+          578,
+          17
+        ],
+        [
+          607,
+          2480,
+          324
+        ],
+        [
+          19,
+          326,
+          205
+        ]
+      ]
+    }
+  },
+  "fit_stage_summaries": [
+    {
+      "stage_id": "group_fold_0",
+      "fitting_rows": 3360,
+      "flagged_rows": 174,
+      "flagged_pct": 5.178571428571429,
+      "retained_after_exclusion": 3186,
+      "flagged_injected_event_rows": 174,
+      "flagged_uninjected_rows": 0
+    },
+    {
+      "stage_id": "group_fold_1",
+      "fitting_rows": 3360,
+      "flagged_rows": 162,
+      "flagged_pct": 4.821428571428572,
+      "retained_after_exclusion": 3198,
+      "flagged_injected_event_rows": 162,
+      "flagged_uninjected_rows": 0
+    },
+    {
+      "stage_id": "group_fold_2",
+      "fitting_rows": 3360,
+      "flagged_rows": 169,
+      "flagged_pct": 5.029761904761905,
+      "retained_after_exclusion": 3191,
+      "flagged_injected_event_rows": 169,
+      "flagged_uninjected_rows": 0
+    },
+    {
+      "stage_id": "temporal_fold_0",
+      "fitting_rows": 2520,
+      "flagged_rows": 132,
+      "flagged_pct": 5.238095238095238,
+      "retained_after_exclusion": 2388,
+      "flagged_injected_event_rows": 132,
+      "flagged_uninjected_rows": 0
+    },
+    {
+      "stage_id": "temporal_fold_1",
+      "fitting_rows": 3780,
+      "flagged_rows": 190,
+      "flagged_pct": 5.026455026455026,
+      "retained_after_exclusion": 3590,
+      "flagged_injected_event_rows": 190,
+      "flagged_uninjected_rows": 0
+    }
+  ],
+  "gates_by_treatment": {
+    "rf_fit_tail_exclusion": {
+      "mean_cv_macro_f1_delta": 0.0035644300590039757,
+      "groupfold_deltas": {
+        "0": 0.00443064604212795,
+        "1": 0.0034884916217134965,
+        "2": 0.0027741525131703693
+      },
+      "temporal_deltas": {
+        "0": 0.004106733311575961,
+        "1": 0.010456889981804995
+      },
+      "pooled_high_precision_delta": 0.010737423358832154,
+      "pooled_high_recall_delta": 0.0036363636363636043,
+      "gates": {
+        "mean_cv_macro_f1_gain_at_least_0.01": false,
+        "all_groupfold_macro_f1_deltas_nonnegative": true,
+        "all_temporal_macro_f1_deltas_nonnegative": true,
+        "pooled_high_precision_drop_no_more_than_0.02": true,
+        "pooled_high_recall_drop_no_more_than_0.02": true
+      },
+      "passes_all_gates": false
+    },
+    "rf_fit_tail_weight_0.25": {
+      "mean_cv_macro_f1_delta": 0.00015335282550565932,
+      "groupfold_deltas": {
+        "0": -0.0017214962372314457,
+        "1": 0.000635148701372712,
+        "2": 0.0015464060123756562
+      },
+      "temporal_deltas": {
+        "0": -0.003753890484822775,
+        "1": -0.0013460422917308534
+      },
+      "pooled_high_precision_delta": 0.001629147918535856,
+      "pooled_high_recall_delta": -0.0018181818181818299,
+      "gates": {
+        "mean_cv_macro_f1_gain_at_least_0.01": false,
+        "all_groupfold_macro_f1_deltas_nonnegative": false,
+        "all_temporal_macro_f1_deltas_nonnegative": false,
+        "pooled_high_precision_drop_no_more_than_0.02": true,
+        "pooled_high_recall_drop_no_more_than_0.02": true
+      },
+      "passes_all_gates": false
+    }
+  },
+  "paired_participant_bootstrap": {
+    "rf_fit_tail_exclusion": {
+      "comparison": "rf_fit_tail_exclusion minus unchanged_rf_control",
+      "repetitions": 1000,
+      "seed": 20261114,
+      "resampling_unit": "Whole training participant and all days together",
+      "observed_pooled_oof_macro_f1_difference": 0.0039696435032430255,
+      "percentile_95ci": [
+        -0.004016043335317488,
+        0.011441980637212112
+      ],
+      "fraction_positive": 0.839,
+      "scope": "Exploratory uncertainty from reused synthetic development observations; grouped-CV predictions are correlated, not independent scientific evidence"
+    },
+    "rf_fit_tail_weight_0.25": {
+      "comparison": "rf_fit_tail_weight_0.25 minus unchanged_rf_control",
+      "repetitions": 1000,
+      "seed": 20261114,
+      "resampling_unit": "Whole training participant and all days together",
+      "observed_pooled_oof_macro_f1_difference": -0.0002818221738638549,
+      "percentile_95ci": [
+        -0.007036756799312779,
+        0.00719646804257555
+      ],
+      "fraction_positive": 0.466,
+      "scope": "Exploratory uncertainty from reused synthetic development observations; grouped-CV predictions are correlated, not independent scientific evidence"
+    }
+  },
+  "fold_independence": [
+    {
+      "fold": 0,
+      "fitting_participants": [
+        "SIM_005",
+        "SIM_006",
+        "SIM_009",
+        "SIM_010",
+        "SIM_013",
+        "SIM_014",
+        "SIM_015",
+        "SIM_017",
+        "SIM_018",
+        "SIM_019",
+        "SIM_023",
+        "SIM_026",
+        "SIM_027",
+        "SIM_029",
+        "SIM_032",
+        "SIM_034",
+        "SIM_036",
+        "SIM_037",
+        "SIM_039",
+        "SIM_044",
+        "SIM_048",
+        "SIM_049",
+        "SIM_050",
+        "SIM_051",
+        "SIM_053",
+        "SIM_054",
+        "SIM_056",
+        "SIM_057",
+        "SIM_059",
+        "SIM_064",
+        "SIM_065",
+        "SIM_066",
+        "SIM_068",
+        "SIM_070",
+        "SIM_079",
+        "SIM_080",
+        "SIM_081",
+        "SIM_083",
+        "SIM_085",
+        "SIM_086",
+        "SIM_087",
+        "SIM_089",
+        "SIM_090",
+        "SIM_092",
+        "SIM_093",
+        "SIM_094",
+        "SIM_095",
+        "SIM_097",
+        "SIM_101",
+        "SIM_103",
+        "SIM_104",
+        "SIM_105",
+        "SIM_107",
+        "SIM_110",
+        "SIM_113",
+        "SIM_119"
+      ],
+      "held_out_participants": [
+        "SIM_001",
+        "SIM_002",
+        "SIM_011",
+        "SIM_021",
+        "SIM_028",
+        "SIM_033",
+        "SIM_035",
+        "SIM_041",
+        "SIM_042",
+        "SIM_043",
+        "SIM_047",
+        "SIM_055",
+        "SIM_060",
+        "SIM_061",
+        "SIM_062",
+        "SIM_063",
+        "SIM_067",
+        "SIM_071",
+        "SIM_075",
+        "SIM_076",
+        "SIM_084",
+        "SIM_100",
+        "SIM_102",
+        "SIM_108",
+        "SIM_111",
+        "SIM_112",
+        "SIM_115",
+        "SIM_117"
+      ],
+      "overlap": 0
+    },
+    {
+      "fold": 1,
+      "fitting_participants": [
+        "SIM_001",
+        "SIM_002",
+        "SIM_005",
+        "SIM_006",
+        "SIM_011",
+        "SIM_013",
+        "SIM_021",
+        "SIM_028",
+        "SIM_032",
+        "SIM_033",
+        "SIM_035",
+        "SIM_036",
+        "SIM_037",
+        "SIM_039",
+        "SIM_041",
+        "SIM_042",
+        "SIM_043",
+        "SIM_047",
+        "SIM_048",
+        "SIM_049",
+        "SIM_051",
+        "SIM_053",
+        "SIM_055",
+        "SIM_057",
+        "SIM_060",
+        "SIM_061",
+        "SIM_062",
+        "SIM_063",
+        "SIM_067",
+        "SIM_068",
+        "SIM_071",
+        "SIM_075",
+        "SIM_076",
+        "SIM_079",
+        "SIM_080",
+        "SIM_081",
+        "SIM_084",
+        "SIM_087",
+        "SIM_090",
+        "SIM_092",
+        "SIM_093",
+        "SIM_094",
+        "SIM_095",
+        "SIM_097",
+        "SIM_100",
+        "SIM_101",
+        "SIM_102",
+        "SIM_104",
+        "SIM_105",
+        "SIM_108",
+        "SIM_110",
+        "SIM_111",
+        "SIM_112",
+        "SIM_115",
+        "SIM_117",
+        "SIM_119"
+      ],
+      "held_out_participants": [
+        "SIM_009",
+        "SIM_010",
+        "SIM_014",
+        "SIM_015",
+        "SIM_017",
+        "SIM_018",
+        "SIM_019",
+        "SIM_023",
+        "SIM_026",
+        "SIM_027",
+        "SIM_029",
+        "SIM_034",
+        "SIM_044",
+        "SIM_050",
+        "SIM_054",
+        "SIM_056",
+        "SIM_059",
+        "SIM_064",
+        "SIM_065",
+        "SIM_066",
+        "SIM_070",
+        "SIM_083",
+        "SIM_085",
+        "SIM_086",
+        "SIM_089",
+        "SIM_103",
+        "SIM_107",
+        "SIM_113"
+      ],
+      "overlap": 0
+    },
+    {
+      "fold": 2,
+      "fitting_participants": [
+        "SIM_001",
+        "SIM_002",
+        "SIM_009",
+        "SIM_010",
+        "SIM_011",
+        "SIM_014",
+        "SIM_015",
+        "SIM_017",
+        "SIM_018",
+        "SIM_019",
+        "SIM_021",
+        "SIM_023",
+        "SIM_026",
+        "SIM_027",
+        "SIM_028",
+        "SIM_029",
+        "SIM_033",
+        "SIM_034",
+        "SIM_035",
+        "SIM_041",
+        "SIM_042",
+        "SIM_043",
+        "SIM_044",
+        "SIM_047",
+        "SIM_050",
+        "SIM_054",
+        "SIM_055",
+        "SIM_056",
+        "SIM_059",
+        "SIM_060",
+        "SIM_061",
+        "SIM_062",
+        "SIM_063",
+        "SIM_064",
+        "SIM_065",
+        "SIM_066",
+        "SIM_067",
+        "SIM_070",
+        "SIM_071",
+        "SIM_075",
+        "SIM_076",
+        "SIM_083",
+        "SIM_084",
+        "SIM_085",
+        "SIM_086",
+        "SIM_089",
+        "SIM_100",
+        "SIM_102",
+        "SIM_103",
+        "SIM_107",
+        "SIM_108",
+        "SIM_111",
+        "SIM_112",
+        "SIM_113",
+        "SIM_115",
+        "SIM_117"
+      ],
+      "held_out_participants": [
+        "SIM_005",
+        "SIM_006",
+        "SIM_013",
+        "SIM_032",
+        "SIM_036",
+        "SIM_037",
+        "SIM_039",
+        "SIM_048",
+        "SIM_049",
+        "SIM_051",
+        "SIM_053",
+        "SIM_057",
+        "SIM_068",
+        "SIM_079",
+        "SIM_080",
+        "SIM_081",
+        "SIM_087",
+        "SIM_090",
+        "SIM_092",
+        "SIM_093",
+        "SIM_094",
+        "SIM_095",
+        "SIM_097",
+        "SIM_101",
+        "SIM_104",
+        "SIM_105",
+        "SIM_110",
+        "SIM_119"
+      ],
+      "overlap": 0
+    }
+  ],
+  "verification": {
+    "detector_invariant_checks": [
+      {
+        "stage_id": "group_fold_0",
+        "mask_invariant_to_all_non_detector_columns": true,
+        "fitting_rows": 3360,
+        "tail_rows": 174
+      },
+      {
+        "stage_id": "group_fold_1",
+        "mask_invariant_to_all_non_detector_columns": true,
+        "fitting_rows": 3360,
+        "tail_rows": 162
+      },
+      {
+        "stage_id": "group_fold_2",
+        "mask_invariant_to_all_non_detector_columns": true,
+        "fitting_rows": 3360,
+        "tail_rows": 169
+      },
+      {
+        "stage_id": "temporal_fold_0",
+        "mask_invariant_to_all_non_detector_columns": true,
+        "fitting_rows": 2520,
+        "tail_rows": 132
+      },
+      {
+        "stage_id": "temporal_fold_1",
+        "mask_invariant_to_all_non_detector_columns": true,
+        "fitting_rows": 3780,
+        "tail_rows": 190
+      }
+    ],
+    "all_detector_invariants_passed": true,
+    "heldout_cohort_equality_all_candidates": true,
+    "group_separation_passed": true,
+    "temporal_label_availability_passed": true,
+    "source_train_unchanged": true,
+    "official_bundle_unchanged": true,
+    "script_sha256_matches_frozen_plan": true,
+    "validation_read": false,
+    "final_test_read": false,
+    "isolation_forest_retrained": false,
+    "source_rows_deleted_or_rewritten": 0,
+    "unchanged_control_matches_improvement_002_oof_predictions": true,
+    "unchanged_control_prediction_rows_verified": 5040
+  },
+  "automatic_promotion": false,
+  "clinical_validation": false,
+  "conclusion_policy": "Keep the official demo unchanged. Passing a gate could only justify a separately planned investigation; flagged physiology events are not automatically bad measurements."
+}

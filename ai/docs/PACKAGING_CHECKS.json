@@ -1,0 +1,19 @@
+{
+  "checked_at_utc": "2026-11-14T17:33:52.328082+00:00",
+  "scope": "Repository packaging checks; no new model selection or frontend test",
+  "python_contract_tests": {
+    "passed": 21,
+    "failed": 0,
+    "elapsed_seconds": 7.57
+  },
+  "packaged_typescript_and_http_report": "PACKAGED_INTEGRATION_CHECKS.json",
+  "experimental_archive_verification": "../experimental/PACKAGING_VERIFICATION.json",
+  "model_sha256": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706",
+  "original_dataset_sha256": "dd76fd2658586375a4f9fc44767c18731a5ecee061912ed625a44bd206ed6a95",
+  "actual_frontend_tested": false,
+  "dependencies": "Existing pinned Python environment and existing Node dependencies reused; not a clean-OS installation.",
+  "main_source_layout_change": "visual_eda_report.py resolves archived decisions under experimental/; historical original source preserved under experimental/source/astra_shield_ml.",
+  "source_partitions_and_model_changed": false,
+  "final_test_outcomes_rescored": false,
+  "note": "Contract tests inspect test participant metadata for split disjointness; they do not reevaluate test targets."
+}

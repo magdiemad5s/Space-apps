@@ -1,0 +1,28 @@
+{
+  "dataset_file": "astra_shield_synthetic_ml.csv",
+  "dataset_sha256": "dd76fd2658586375a4f9fc44767c18731a5ecee061912ed625a44bd206ed6a95",
+  "task_config_sha256": "75f14b846e29ac1025bad7e3db51a1656365878f29925666a5eaf5165788ed60",
+  "data_origin": "synthetic",
+  "seed": 20261114,
+  "partition_policy": "Frozen participant-disjoint splits; test is evaluation-only",
+  "splits": {
+    "train": {
+      "file": "train.csv",
+      "sha256": "a9b7aba9497fbcf68b6f5bb771b01dbf82c3b00c93a2a0c6873f705712a235e5",
+      "rows": 5040,
+      "participants": 84
+    },
+    "validation": {
+      "file": "validation.csv",
+      "sha256": "3dc18db6bfb9e1a025d37279e73dd51fe52769019d9c856668286006e0d55523",
+      "rows": 1080,
+      "participants": 18
+    },
+    "test": {
+      "file": "test.csv",
+      "sha256": "410e8afa809bfdad126db4c3b64c5e793ba4bce2e5e7e60e7b8e7345868a30af",
+      "rows": 1080,
+      "participants": 18
+    }
+  }
+}

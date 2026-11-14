@@ -1,0 +1,47 @@
+ASTRA-SHIELD — HISTORY FEATURE EXPERIMENT 003
+
+Original synthetic TRAINING participants only. No validation or final-test
+partition was opened. The official saved model/API/backend/dataset are unchanged.
+A frozen plan and existing participant folds were saved before model fitting.
+
+COMMON COHORT
+84 virtual participants x53days(days8..60)=4452 observations. Days1..7 were
+retained as causal history warmup; these are not invalid rows removed during
+cleaning. All candidates use exactly the same4452observations and folds.
+Do not directly compare these metrics with earlier5040row experiment scores.
+
+ADDED FEATURES
+history_prior3_fatigue_mean: Within participant mean(self_report_fatigue_score[t-3:t-1]); shift(1), rolling(3), rounded6
+history_current_minus_prior3_fatigue: Current self_report_fatigue_score[t] minus history_prior3_fatigue_mean[t]; rounded6
+history_prior3_sleep_shortfall_sum_hours: Sum over t-3..t-1 of max(0,fixed baseline_sleep_duration_hours - observed sleep_duration_hours); rounded6; engineering shortfall proxy, not physiological sleep debt
+history_prior7_sleep_midpoint_std_minutes: Population SD(ddof=0) of sleep_midpoint_deviation_minutes over t-7..t-1; shift(1), rolling(7), rounded6
+
+RESULTS
+current_fatigue_persistence: mean grouped-CV macro F1=0.5036; mean high recall=0.3716; mean high precision=0.3684.
+rf_current26_control: mean grouped-CV macro F1=0.5100; mean high recall=0.3838; mean high precision=0.3786.
+rf_current26_plus4_history: mean grouped-CV macro F1=0.5161; mean high recall=0.3852; mean high precision=0.3897.
+Mean CV macro F1 augmented-control delta=+0.0061.
+Per-groupfold deltas={0: 0.009533990650143376, 1: 0.0032081304004030198, 2: 0.005561332093334981}.
+Forward-time deltas={0: -0.0077290015169101944, 1: -0.010846719820288453}.
+Gate mean_cv_macro_f1_gain_at_least_0.01: False.
+Gate all_groupfold_macro_f1_deltas_nonnegative: True.
+Gate all_temporal_macro_f1_deltas_nonnegative: False.
+Gate oof_high_recall_drop_no_more_than_0.02: True.
+Gate oof_high_precision_drop_no_more_than_0.02: True.
+augmented_minus_control: pooledOOFmacroF1delta=+0.0063, participant-bootstrap95%interval=[-0.0027977575678700406, 0.014825815960096867].
+augmented_minus_persistence: pooledOOFmacroF1delta=+0.0120, participant-bootstrap95%interval=[-0.0032285454108265748, 0.026271741395287453].
+
+All prespecified engineering comparison gates passed: False.
+These are exploratory engineering criteria, not medical thresholds or an
+independent scientific validation. Bootstrap intervals describe correlated
+OOF predictions from the same synthetic development cohort.
+No model was promoted, no threshold/calibration was tuned, and no new official
+bundle was written. Keep the baseline demo until parent review; even a gate
+pass only justifies a separately frozen development-confirmation step.
+
+BASELINE INPUT METADATA CLARIFICATION
+Persistence was supplied the same26-column frame but predict() reads only
+self_report_fatigue_score. Its effective predictor count is1, as prespecified.
+The fold CSV predictor_count26 for this baseline records supplied frame width;
+it does not mean26 measurements were consumed. Predictions and metrics are
+unchanged. See execution_verification.json; frozen plan/script remain intact.

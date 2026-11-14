@@ -1,0 +1,28 @@
+{
+  "seed": 20261114,
+  "version": "astra_synthetic_v1.0",
+  "virtual_participants": 120,
+  "main_rows": 7200,
+  "raw_rows": 8160,
+  "calibration_days": [
+    -6,
+    0
+  ],
+  "main_days": [
+    1,
+    60
+  ],
+  "raw_days": [
+    -6,
+    61
+  ],
+  "split_participants": {
+    "train": 84,
+    "validation": 18,
+    "test": 18
+  },
+  "numpy_version": "2.3.5",
+  "pandas_version": "2.2.3",
+  "raw_includes_held_out_future_data": "audit_only; never use as a predictor table",
+  "calibrated_to_real_data": false
+}

@@ -1,0 +1,18 @@
+{
+  "frozen_at_utc": "2026-11-14T12:49:09.874008+00:00",
+  "selection_complete": true,
+  "test_used_for_selection": false,
+  "artifact_sha256": {
+    "artifacts/bundle.joblib": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706",
+    "reports/validation_metrics.json": "3a5c0f372672e986b76ad458d107e9f5277c3fd29bcef3d5ba6ec15187e9bf49",
+    "reports/training_summary.json": "de6ffd1e4c72110c8d7e0217fbf26c328054115af84c0ce1c314917e5bd0023d",
+    "reports/ablation_validation_metrics.json": "12f2e29908c447a04e6811aa36d916bd39ba72957bf4d2e9b27ad21be10cfdcd"
+  },
+  "data_sha256": {
+    "data/train.csv": "a9b7aba9497fbcf68b6f5bb771b01dbf82c3b00c93a2a0c6873f705712a235e5",
+    "data/validation.csv": "3dc18db6bfb9e1a025d37279e73dd51fe52769019d9c856668286006e0d55523",
+    "data/test.csv": "410e8afa809bfdad126db4c3b64c5e793ba4bce2e5e7e60e7b8e7345868a30af"
+  },
+  "task_config_sha256": "75f14b846e29ac1025bad7e3db51a1656365878f29925666a5eaf5165788ed60",
+  "note": "The final test CSV has not been loaded by training; run the separate evaluation command once."
+}

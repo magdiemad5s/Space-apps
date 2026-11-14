@@ -1,0 +1,19 @@
+{
+  "name": "astra-shield-model-client",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --test modelClient.test.mjs",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit false --outDir dist"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0"
+  },
+  "main": "./dist/modelClient.js",
+  "types": "./dist/modelClient.d.ts"
+}

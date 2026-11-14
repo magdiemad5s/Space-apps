@@ -1,0 +1,9 @@
+candidate,current_simulator_event,held_out_rows,scope,macro_f1,high_precision,high_recall,accuracy,false_high_count,false_high_per_100_non_high
+unchanged_rf_control,0,4716,Fatigue classification on event subgroup; not anomaly detection,0.517324078413879,0.38461538461538464,0.372848948374761,0.6274385072094996,312,7.440973050321965
+rf_fit_tail_exclusion,0,4716,Fatigue classification on event subgroup; not anomaly detection,0.5214416617616637,0.3951612903225806,0.37476099426386233,0.6335877862595419,300,7.154781779155735
+rf_fit_tail_weight_0.25,0,4716,Fatigue classification on event subgroup; not anomaly detection,0.5161729100930428,0.384,0.367112810707457,0.6287107718405428,308,7.345575959933222
+current_fatigue_persistence,0,4716,Fatigue classification on event subgroup; not anomaly detection,0.5135776287992716,0.378698224852071,0.367112810707457,0.6272264631043257,315,7.512520868113523
+unchanged_rf_control,1,324,Fatigue classification on event subgroup; not anomaly detection,0.5156089672877929,0.275,0.4074074074074074,0.6450617283950617,29,9.764309764309765
+rf_fit_tail_exclusion,1,324,Fatigue classification on event subgroup; not anomaly detection,0.5176299087388508,0.2926829268292683,0.4444444444444444,0.6358024691358025,29,9.764309764309765
+rf_fit_tail_weight_0.25,1,324,Fatigue classification on event subgroup; not anomaly detection,0.5286821089460774,0.30952380952380953,0.48148148148148145,0.6450617283950617,29,9.764309764309765
+current_fatigue_persistence,1,324,Fatigue classification on event subgroup; not anomaly detection,0.5418095896109443,0.3333333333333333,0.48148148148148145,0.6512345679012346,26,8.754208754208754

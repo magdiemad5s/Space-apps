@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "typescript_version": "5.9.3",
+  "node_version": "24.22.1",
+  "strict_typecheck": "tsc --noEmit passed",
+  "runtime_tests": 8,
+  "test_source": "mock HTTP using actual model request/response/OpenAPI fixtures",
+  "scope": "Server-side TypeScript HTTP adapter only; no new product backend and no model changes",
+  "server_semantics": "Full physical/time validation remains in existing Python feature contract",
+  "platform_note": "Node tests required outside-sandbox execution; sandbox child test runner reported the file without executing registered tests",
+  "javascript_build": "tsc --noEmit false --outDir dist passed",
+  "built_adapter_import": "ES-module JavaScript import passed"
+}

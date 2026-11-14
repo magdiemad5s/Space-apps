@@ -1,0 +1,258 @@
+{
+  "experiment": "filter_validation_005",
+  "completed_at_utc": "2026-11-14T17:15:46.915908+00:00",
+  "elapsed_seconds": 8.100998980997247,
+  "scope": "Newly authorized comparison on reused original synthetic development validation; not a fresh independent validation",
+  "training_rows": 5040,
+  "flagged_training_rows": 254,
+  "retained_candidate_fit_rows": 4786,
+  "validation_rows": 1080,
+  "validation_participants": 18,
+  "all_validation_rows_retained": true,
+  "metrics": {
+    "control_rf_full_training": {
+      "macro_f1": 0.5272528187101052,
+      "high_precision": 0.35135135135135137,
+      "high_recall": 0.37681159420289856,
+      "accuracy": 0.6212962962962963,
+      "false_high_count": 96,
+      "false_high_per_100_non_high": 10.19108280254777,
+      "classification_report": {
+        "low": {
+          "precision": 0.491869918699187,
+          "recall": 0.5148936170212766,
+          "f1-score": 0.5031185031185031,
+          "support": 235.0
+        },
+        "moderate": {
+          "precision": 0.7259475218658892,
+          "recall": 0.7043847241867044,
+          "f1-score": 0.7150035893754487,
+          "support": 707.0
+        },
+        "high": {
+          "precision": 0.35135135135135137,
+          "recall": 0.37681159420289856,
+          "f1-score": 0.36363636363636365,
+          "support": 138.0
+        },
+        "accuracy": 0.6212962962962963,
+        "macro avg": {
+          "precision": 0.5230562639721424,
+          "recall": 0.5320299784702932,
+          "f1-score": 0.5272528187101052,
+          "support": 1080.0
+        },
+        "weighted avg": {
+          "precision": 0.6271489030925732,
+          "recall": 0.6212962962962963,
+          "f1-score": 0.6240020408362117,
+          "support": 1080.0
+        }
+      },
+      "confusion_matrix_labels": [
+        "low",
+        "moderate",
+        "high"
+      ],
+      "confusion_matrix": [
+        [
+          121,
+          110,
+          4
+        ],
+        [
+          117,
+          498,
+          92
+        ],
+        [
+          8,
+          78,
+          52
+        ]
+      ]
+    },
+    "filtered_rf_fit_tail_exclusion": {
+      "macro_f1": 0.5178236567195789,
+      "high_precision": 0.3333333333333333,
+      "high_recall": 0.34057971014492755,
+      "accuracy": 0.6148148148148148,
+      "false_high_count": 94,
+      "false_high_per_100_non_high": 9.978768577494693,
+      "classification_report": {
+        "low": {
+          "precision": 0.48638132295719844,
+          "recall": 0.5319148936170213,
+          "f1-score": 0.508130081300813,
+          "support": 235.0
+        },
+        "moderate": {
+          "precision": 0.7214076246334311,
+          "recall": 0.695898161244696,
+          "f1-score": 0.7084233261339092,
+          "support": 707.0
+        },
+        "high": {
+          "precision": 0.3333333333333333,
+          "recall": 0.34057971014492755,
+          "f1-score": 0.33691756272401435,
+          "support": 138.0
+        },
+        "accuracy": 0.6148148148148148,
+        "macro avg": {
+          "precision": 0.5137074269746543,
+          "recall": 0.5227975883355482,
+          "f1-score": 0.5178236567195789,
+          "support": 1080.0
+        },
+        "weighted avg": {
+          "precision": 0.6206803717692384,
+          "recall": 0.6148148148148148,
+          "f1-score": 0.6173708188317397,
+          "support": 1080.0
+        }
+      },
+      "confusion_matrix_labels": [
+        "low",
+        "moderate",
+        "high"
+      ],
+      "confusion_matrix": [
+        [
+          125,
+          106,
+          4
+        ],
+        [
+          125,
+          492,
+          90
+        ],
+        [
+          7,
+          84,
+          47
+        ]
+      ]
+    },
+    "current_fatigue_persistence": {
+      "macro_f1": 0.49519846112355265,
+      "high_precision": 0.3333333333333333,
+      "high_recall": 0.3333333333333333,
+      "accuracy": 0.6,
+      "false_high_count": 92,
+      "false_high_per_100_non_high": 9.766454352441613,
+      "classification_report": {
+        "low": {
+          "precision": 0.44214876033057854,
+          "recall": 0.4553191489361702,
+          "f1-score": 0.44863731656184486,
+          "support": 235.0
+        },
+        "moderate": {
+          "precision": 0.7071428571428572,
+          "recall": 0.7001414427157001,
+          "f1-score": 0.7036247334754797,
+          "support": 707.0
+        },
+        "high": {
+          "precision": 0.3333333333333333,
+          "recall": 0.3333333333333333,
+          "f1-score": 0.3333333333333333,
+          "support": 138.0
+        },
+        "accuracy": 0.6,
+        "macro avg": {
+          "precision": 0.4942083169355897,
+          "recall": 0.4962646416617345,
+          "f1-score": 0.49519846112355265,
+          "support": 1080.0
+        },
+        "weighted avg": {
+          "precision": 0.6017175543311908,
+          "recall": 0.6,
+          "f1-score": 0.6008263481103683,
+          "support": 1080.0
+        }
+      },
+      "confusion_matrix_labels": [
+        "low",
+        "moderate",
+        "high"
+      ],
+      "confusion_matrix": [
+        [
+          107,
+          122,
+          6
+        ],
+        [
+          126,
+          495,
+          86
+        ],
+        [
+          9,
+          83,
+          46
+        ]
+      ]
+    }
+  },
+  "filtered_minus_control": {
+    "macro_f1": -0.009429161990526347,
+    "accuracy": -0.0064814814814815325,
+    "high_precision": -0.018018018018018056,
+    "high_recall": -0.03623188405797101
+  },
+  "paired_participant_bootstrap": {
+    "comparison": "Filtered fitting-only RF minus unchanged RF control",
+    "resampling": "1,000 paired whole-validation-participant bootstrap resamples",
+    "repetitions": 1000,
+    "participants": 18,
+    "seed": 20261114,
+    "macro_f1_difference": -0.009429161990526347,
+    "macro_f1_difference_percentile_95ci": [
+      -0.025172853361459836,
+      0.0054798130782954466
+    ],
+    "high_recall_difference": -0.03623188405797101,
+    "high_recall_difference_percentile_95ci": [
+      -0.07638999469214437,
+      0.0070460532982064925
+    ],
+    "fraction_f1_differences_positive": 0.126,
+    "scope": "Descriptive uncertainty on REUSED synthetic development validation; not an independent fresh test or clinical evidence"
+  },
+  "verification": {
+    "original_train_sha256_matches_frozen_manifest": true,
+    "original_validation_sha256_matches_frozen_manifest": true,
+    "official_bundle_unchanged": true,
+    "original_training_csv_unchanged": true,
+    "original_validation_csv_unchanged": true,
+    "script_sha256_matches_frozen_plan": true,
+    "feature_allowlist_matches_official_artifact": true,
+    "mask_invariant_to_all_non_detector_columns": true,
+    "participant_overlap_count": 0,
+    "all_validation_rows_retained": 1080,
+    "control_predictions_exactly_match_official": true,
+    "control_model_probabilities_bitwise_equal_to_official": false,
+    "control_model_probabilities_max_abs_difference": 3.3306690738754696e-16,
+    "control_model_probabilities_equal_within_1e_minus12": true,
+    "control_predictions_exactly_match_eda_first_001": true,
+    "mask_and_all_fits_completed_before_validation_csv_loaded": true,
+    "future_labels_and_history_recomputed_after_exclusion": false,
+    "final_test_read": false,
+    "raw_or_uploaded_full_data_read": false,
+    "official_model_promoted_or_changed": false
+  },
+  "previous_noise_004_context": {
+    "mean_groupcv_macro_f1_delta": 0.0035644300590039757,
+    "all_original_gates_passed": false,
+    "note": "The earlier failed engineering gate stands. Reusing validation here is not independent confirmation or permission to tune."
+  },
+  "automatic_promotion": false,
+  "clinical_validation": false,
+  "conclusion": "Report the observed change and uncertainty; retain the official demo unchanged. Tail flags correspond to possible legitimate events, not proven corruption."
+}

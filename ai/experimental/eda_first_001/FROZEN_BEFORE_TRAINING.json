@@ -1,0 +1,73 @@
+{
+  "stage": "frozen_before_fit",
+  "created_at_utc": "2026-11-14T13:13:59.887323+00:00",
+  "data_origin": "original_longitudinal_synthetic_dataset",
+  "observation_files_permitted": [
+    "data/train.csv",
+    "data/validation.csv"
+  ],
+  "test_policy": "No test file is opened, scored or selected on. The original test was already evaluated in the historical baseline experiment.",
+  "feature_decisions_sha256": "63be186b46c0a05353c73bb81c994f0a3e5895dc3b8490b9a7a720f122b17976",
+  "graph_review_sha256": "1f38fb219119afdc3e19f6ca6579ec13c4fe46f89f95b0912293b74079d66641",
+  "eda_summary_sha256": "c88307c0d13565f8df5762e4b64ebc7ef2df02ecefc1adf1dcc4129d55482cbc",
+  "train_sha256": "a9b7aba9497fbcf68b6f5bb771b01dbf82c3b00c93a2a0c6873f705712a235e5",
+  "validation_sha256": "3dc18db6bfb9e1a025d37279e73dd51fe52769019d9c856668286006e0d55523",
+  "target": "target_next_day_fatigue_class",
+  "selection_metric": "validation macro_f1",
+  "tie_break": "If exactly tied, choose fewer model input columns, then lexical candidate name",
+  "prespecified_feature_sets": {
+    "full_26": [
+      "sleep_duration_hours",
+      "sleep_efficiency_pct",
+      "sleep_onset_delay_minutes",
+      "awakenings_count",
+      "sleep_midpoint_deviation_minutes",
+      "resting_heart_rate_bpm",
+      "hrv_rmssd_ms",
+      "reaction_time_median_ms",
+      "reaction_time_lapses_count",
+      "attention_accuracy_pct",
+      "self_report_stress_score",
+      "self_report_fatigue_score",
+      "self_report_mood_score",
+      "workload_hours",
+      "exercise_minutes",
+      "baseline_sleep_duration_hours",
+      "baseline_resting_heart_rate_bpm",
+      "baseline_hrv_rmssd_ms",
+      "baseline_reaction_time_median_ms",
+      "sleep_duration_delta_from_baseline_hours",
+      "heart_rate_delta_from_baseline_bpm",
+      "hrv_delta_from_baseline_ms",
+      "reaction_time_change_from_baseline_pct",
+      "prior_3day_mean_sleep_hours",
+      "prior_3day_mean_resting_heart_rate_bpm",
+      "prior_3day_mean_reaction_time_ms"
+    ],
+    "personalized_reduced": [
+      "sleep_duration_hours",
+      "sleep_efficiency_pct",
+      "sleep_onset_delay_minutes",
+      "awakenings_count",
+      "sleep_midpoint_deviation_minutes",
+      "reaction_time_lapses_count",
+      "attention_accuracy_pct",
+      "self_report_stress_score",
+      "self_report_fatigue_score",
+      "self_report_mood_score",
+      "workload_hours",
+      "exercise_minutes",
+      "baseline_sleep_duration_hours",
+      "heart_rate_delta_from_baseline_bpm",
+      "hrv_delta_from_baseline_ms",
+      "reaction_time_change_from_baseline_pct",
+      "prior_3day_mean_sleep_hours"
+    ]
+  },
+  "prespecified_algorithms": {
+    "random_forest_balanced": "Pipeline(steps=[('imputer', SimpleImputer(strategy='median')),\n                ('model',\n                 RandomForestClassifier(class_weight='balanced', max_depth=14,\n                                        min_samples_leaf=8, n_estimators=200,\n                                        n_jobs=2, random_state=20261114))])",
+    "xgboost_balanced": "Pipeline(steps=[('imputer', SimpleImputer(strategy='median')),\n                ('model', EncodedXGBClassifier())])"
+  },
+  "sampling": "Existing participant partitions unchanged; class weights learned using training only; no row oversampling",
+  "scope": "Development comparison, not a new independent test or a scientific claim of improved human forecasting"
+}

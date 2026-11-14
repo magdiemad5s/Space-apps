@@ -1,0 +1,20 @@
+{
+  "original_model_bundle_unchanged": true,
+  "original_training_csv_unchanged": true,
+  "frozen_experiment_script_unchanged": true,
+  "reused_training_participant_folds_unchanged": true,
+  "persistence_baseline_metadata_clarification": {
+    "candidate": "current_fatigue_persistence",
+    "supplied_dataframe_column_count": 26,
+    "effective_predictor_count": 1,
+    "effective_predictor_columns": [
+      "self_report_fatigue_score"
+    ],
+    "fold_metric_predictor_count_meaning": "The current CSV predictor_count records supplied DataFrame width, not effective columns consumed by the persistence baseline.",
+    "reason": "PersistenceClassifier.predict selects X[self.column] only; this is the same one-column baseline prespecified in plan.json.",
+    "prediction_or_metric_effect": "None. No model was refitted and no predictions, metrics, plan or frozen experiment script were changed."
+  },
+  "validation_partition_read": false,
+  "final_test_partition_read": false,
+  "decision": "Prespecified gates failed; no new official artifact and no validation confirmation performed."
+}

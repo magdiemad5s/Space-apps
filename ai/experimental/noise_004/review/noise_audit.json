@@ -1,0 +1,229 @@
+{
+  "scope": "Original synthetic TRAIN partition only; no validation/test/full CSV/raw observations were opened, no model fitting or data cleaning performed.",
+  "source_train_sha256": "a9b7aba9497fbcf68b6f5bb771b01dbf82c3b00c93a2a0c6873f705712a235e5",
+  "quality_and_consistency_checks": {
+    "rows": 5040,
+    "columns": 46,
+    "virtual_participants": 84,
+    "missing_cells": 0,
+    "nonfinite_numeric_cells": 0,
+    "exact_duplicate_rows": 0,
+    "duplicate_person_day": 0,
+    "duplicate_predictor_vectors": 0,
+    "bound_violations": {
+      "sleep_duration_hours": 0,
+      "sleep_efficiency_pct": 0,
+      "sleep_onset_delay_minutes": 0,
+      "awakenings_count": 0,
+      "sleep_midpoint_deviation_minutes": 0,
+      "resting_heart_rate_bpm": 0,
+      "hrv_rmssd_ms": 0,
+      "reaction_time_median_ms": 0,
+      "reaction_time_lapses_count": 0,
+      "attention_accuracy_pct": 0,
+      "self_report_stress_score": 0,
+      "self_report_fatigue_score": 0,
+      "self_report_mood_score": 0,
+      "workload_hours": 0,
+      "exercise_minutes": 0,
+      "baseline_sleep_duration_hours": 0,
+      "baseline_resting_heart_rate_bpm": 0,
+      "baseline_hrv_rmssd_ms": 0,
+      "baseline_reaction_time_median_ms": 0,
+      "prior_3day_mean_sleep_hours": 0,
+      "prior_3day_mean_resting_heart_rate_bpm": 0,
+      "prior_3day_mean_reaction_time_ms": 0
+    },
+    "baseline_person_fields_that_vary": 0,
+    "sleep_onset_and_awakenings_exceed_opportunity": 0,
+    "time_budget_above_24h": 0,
+    "attention_ratio_mismatch": 0,
+    "attention_accuracy_off_2p5_grid": 0,
+    "fatigue_class_rule_mismatch": 0,
+    "noninteger_awakenings_count": 0,
+    "noninteger_reaction_time_lapses_count": 0,
+    "noninteger_attention_correct_count": 0,
+    "noninteger_attention_trials_count": 0,
+    "noninteger_reaction_time_trials_count": 0,
+    "derived_feature_max_absolute_errors": {
+      "sleep_duration_delta_from_baseline_hours": 1.7763568394002505e-15,
+      "heart_rate_delta_from_baseline_bpm": 1.4210854715202004e-14,
+      "hrv_delta_from_baseline_ms": 9.769962616701378e-15,
+      "reaction_time_change_from_baseline_pct": 4.999213525369584e-07
+    },
+    "derived_feature_errors_above_rounding_tolerance": {
+      "sleep_duration_delta_from_baseline_hours": 0,
+      "heart_rate_delta_from_baseline_bpm": 0,
+      "hrv_delta_from_baseline_ms": 0,
+      "reaction_time_change_from_baseline_pct": 0
+    },
+    "prior_3day_mean_sleep_hours_reconstructable_rows": 4788,
+    "prior_3day_mean_sleep_hours_mismatch_over_rounding_tolerance": 0,
+    "prior_3day_mean_resting_heart_rate_bpm_reconstructable_rows": 4788,
+    "prior_3day_mean_resting_heart_rate_bpm_mismatch_over_rounding_tolerance": 0,
+    "prior_3day_mean_reaction_time_ms_reconstructable_rows": 4788,
+    "prior_3day_mean_reaction_time_ms_mismatch_over_rounding_tolerance": 0,
+    "next_day_fatigue_linkage_checkable_rows": 4956,
+    "next_day_fatigue_linkage_mismatches": 0
+  },
+  "descriptive_tails": {
+    "iqr_1.5": {
+      "rows_flagged": 727,
+      "fraction_rows_flagged": 0.14424603174603173,
+      "injected_event_rows_flagged": 99,
+      "target_class_counts_among_flagged": {
+        "moderate": 482,
+        "high": 140,
+        "low": 105
+      },
+      "target_class_counts_unflagged": {
+        "moderate": 2929,
+        "low": 974,
+        "high": 410
+      },
+      "note": "Descriptive whole-TRAIN fences only, not proof of error and not fitted preprocessing for CV. Fold experiments must fit their own fences within each training fold."
+    },
+    "iqr_3.0": {
+      "rows_flagged": 45,
+      "fraction_rows_flagged": 0.008928571428571428,
+      "injected_event_rows_flagged": 4,
+      "target_class_counts_among_flagged": {
+        "moderate": 32,
+        "high": 7,
+        "low": 6
+      },
+      "target_class_counts_unflagged": {
+        "moderate": 3379,
+        "low": 1073,
+        "high": 543
+      },
+      "note": "Descriptive whole-TRAIN fences only, not proof of error and not fitted preprocessing for CV. Fold experiments must fit their own fences within each training fold."
+    },
+    "personalized_delta_robust_z_over_4p5": {
+      "rows_flagged": 254,
+      "fraction_rows_flagged": 0.0503968253968254,
+      "feature_flag_counts": {
+        "sleep_duration_delta_from_baseline_hours": 0,
+        "heart_rate_delta_from_baseline_bpm": 249,
+        "hrv_delta_from_baseline_ms": 39,
+        "reaction_time_change_from_baseline_pct": 0
+      },
+      "medians": {
+        "sleep_duration_delta_from_baseline_hours": -0.6727855,
+        "heart_rate_delta_from_baseline_bpm": 2.9107855000000002,
+        "hrv_delta_from_baseline_ms": -5.6765,
+        "reaction_time_change_from_baseline_pct": 9.922093499999999
+      },
+      "median_absolute_deviations": {
+        "sleep_duration_delta_from_baseline_hours": 0.6120714999999999,
+        "heart_rate_delta_from_baseline_bpm": 2.2507144999999995,
+        "hrv_delta_from_baseline_ms": 3.779,
+        "reaction_time_change_from_baseline_pct": 4.999117
+      },
+      "injected_event_rows_flagged": 254,
+      "target_class_counts_among_flagged": {
+        "moderate": 187,
+        "low": 44,
+        "high": 23
+      },
+      "target_class_counts_unflagged": {
+        "moderate": 3224,
+        "low": 1035,
+        "high": 527
+      },
+      "note": "Descriptive full-TRAIN flags only. The experiment must estimate median and MAD independently on each fitting fold. The event flag and future target were not used to calculate flags."
+    }
+  },
+  "injected_current_physiology_events": {
+    "count": 324,
+    "fraction": 0.06428571428571428,
+    "note": "Intentional positive anomaly examples; generator adds HR 13..24 bpm and multiplies HRV by 0.45..0.72. Event flag was used only for this audit, never to choose training rows."
+  },
+  "target_variability": {
+    "next_day_score_within_0p5_of_cutoff": 1615,
+    "next_day_score_within_1_of_cutoff": 3250,
+    "current_vs_next_day_class_differences": 1871,
+    "current_next_day_fatigue_pearson_r": 0.5095573604142862,
+    "note": "Threshold-near scores and day-to-day changes are not mislabeled rows. Labels agree with shifted observed scores and their declared cutoff rules. The unknown latent fatigue is a different target and cannot replace observed self-report silently."
+  },
+  "generator_noise_specification": {
+    "latent_fatigue_innovation_sd": 0.62,
+    "fatigue_report_noise_sd": 0.65,
+    "stress_innovation_sd": 0.8,
+    "stress_report_noise_sd": 0.7,
+    "mood_report_noise_sd": 0.9,
+    "hr_noise_sd_bpm": 2.2,
+    "hrv_logscale_noise_sd": 0.08,
+    "reaction_time_trial_lognormal_sigma": 0.12,
+    "note": "These stochastic terms are deliberately generated and not independent estimated real sensor-error distributions. Day-to-day future schedule and physiological innovations cannot be denoised from today's measurements without changing target or introducing unavailable information."
+  },
+  "generator_boundary_counts": {
+    "sleep_duration_hours": {
+      "at_lower_generator_bound": 0,
+      "at_upper_generator_bound": 6
+    },
+    "sleep_efficiency_pct": {
+      "at_lower_generator_bound": 0,
+      "at_upper_generator_bound": 0
+    },
+    "sleep_onset_delay_minutes": {
+      "at_lower_generator_bound": 3,
+      "at_upper_generator_bound": 0
+    },
+    "awakenings_count": {
+      "at_lower_generator_bound": 1198,
+      "at_upper_generator_bound": 1
+    },
+    "sleep_midpoint_deviation_minutes": {
+      "at_lower_generator_bound": 0,
+      "at_upper_generator_bound": 8
+    },
+    "resting_heart_rate_bpm": {
+      "at_lower_generator_bound": 0,
+      "at_upper_generator_bound": 0
+    },
+    "hrv_rmssd_ms": {
+      "at_lower_generator_bound": 0,
+      "at_upper_generator_bound": 0
+    },
+    "reaction_time_median_ms": {
+      "at_lower_generator_bound": 0,
+      "at_upper_generator_bound": 0
+    },
+    "self_report_stress_score": {
+      "at_lower_generator_bound": 20,
+      "at_upper_generator_bound": 0
+    },
+    "self_report_fatigue_score": {
+      "at_lower_generator_bound": 0,
+      "at_upper_generator_bound": 3
+    },
+    "self_report_mood_score": {
+      "at_lower_generator_bound": 0,
+      "at_upper_generator_bound": 1
+    },
+    "workload_hours": {
+      "at_lower_generator_bound": 0,
+      "at_upper_generator_bound": 0
+    },
+    "exercise_minutes": {
+      "at_lower_generator_bound": 80,
+      "at_upper_generator_bound": 0
+    }
+  },
+  "journal_structure": {
+    "distinct_full_journals": 5040,
+    "distinct_opening_sentences": 12,
+    "note": "Unique full text still has only 12 generated opening templates. This is limited language diversity, not duplicate sensor rows to delete."
+  },
+  "recommended_experiment": "Parent-prespecified comparison: unchanged RF versus FIT-only exclusion or weight 0.25 for extreme rows. Define extremes using any of four personal-baseline deltas with absolute robust z >4.5, median and MAD fitted within fitting fold only. Freeze rule before fits; keep all held-out observations untouched, retain person-disjoint folds, include forward-time checks, and report removed class/event composition after fitting. This respects derived feature identities because inputs are not independently clipped. The chief risk is suppressing intended HR/HRV anomaly examples, not repairing proven errors. Do not promote solely on reused validation or alter source CSV. A filtering win is evidence about this synthetic development setup, not proof that removed rows are erroneous.",
+  "do_not_do": [
+    "Do not delete intentional injected anomalies from the anomaly detector's task.",
+    "Do not filter using target_current_physiology_event_injected or any future target.",
+    "Do not relabel outcomes using a predictor or delete rows simply because the model predicts them poorly.",
+    "Do not trim the evaluation distribution; all held-out rows, including tails and rare High examples, must remain.",
+    "Do not independently clip derived/baseline/current columns; that breaks their exact engineering relationships.",
+    "Do not smooth across people, use centered future windows, or claim unknown irreducible noise was removed."
+  ],
+  "source_train_unchanged": true
+}

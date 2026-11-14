@@ -1,0 +1,7 @@
+candidate,current_simulator_event,validation_rows,scope,macro_f1,high_precision,high_recall,accuracy,false_high_count,false_high_per_100_non_high
+control_rf_full_training,0,1012,Descriptive fatigue classification on current-event subgroup; not anomaly detection,0.5273970291813311,0.35036496350364965,0.3779527559055118,0.6215415019762845,89,10.056497175141242
+filtered_rf_fit_tail_exclusion,0,1012,Descriptive fatigue classification on current-event subgroup; not anomaly detection,0.5163811884907219,0.328125,0.33070866141732286,0.616600790513834,86,9.717514124293785
+current_fatigue_persistence,0,1012,Descriptive fatigue classification on current-event subgroup; not anomaly detection,0.495266202478819,0.328125,0.33070866141732286,0.6027667984189723,86,9.717514124293785
+control_rf_full_training,1,68,Descriptive fatigue classification on current-event subgroup; not anomaly detection,0.524915824915825,0.36363636363636365,0.36363636363636365,0.6176470588235294,7,12.280701754385966
+filtered_rf_fit_tail_exclusion,1,68,Descriptive fatigue classification on current-event subgroup; not anomaly detection,0.5277777777777778,0.38461538461538464,0.45454545454545453,0.5882352941176471,8,14.035087719298245
+current_fatigue_persistence,1,68,Descriptive fatigue classification on current-event subgroup; not anomaly detection,0.4896849301969784,0.4,0.36363636363636365,0.5588235294117647,6,10.526315789473685

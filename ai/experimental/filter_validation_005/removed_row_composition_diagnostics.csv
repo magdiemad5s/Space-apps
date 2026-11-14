@@ -1,0 +1,6 @@
+diagnostic_variable,category,original_train_rows,flagged_fitting_rows,retained_fitting_rows,flagged_pct_of_category,diagnostic_only
+target_next_day_fatigue_class,high,550,23,527,4.181818181818182,True
+target_next_day_fatigue_class,low,1079,44,1035,4.077849860982391,True
+target_next_day_fatigue_class,moderate,3411,187,3224,5.482263265904427,True
+target_current_physiology_event_injected,0,4716,0,4716,0.0,True
+target_current_physiology_event_injected,1,324,254,70,78.39506172839506,True

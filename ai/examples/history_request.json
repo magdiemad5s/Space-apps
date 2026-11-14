@@ -1,0 +1,106 @@
+{
+  "current": {
+    "sleep_duration_hours": 7.797,
+    "sleep_efficiency_pct": 93.184,
+    "sleep_onset_delay_minutes": 17.372,
+    "awakenings_count": 0,
+    "sleep_midpoint_deviation_minutes": 33.905,
+    "resting_heart_rate_bpm": 72.998,
+    "hrv_rmssd_ms": 24.409,
+    "reaction_time_median_ms": 351.605,
+    "reaction_time_lapses_count": 3,
+    "attention_accuracy_pct": 97.5,
+    "self_report_stress_score": 0.866,
+    "self_report_fatigue_score": 5.864,
+    "self_report_mood_score": 6.357,
+    "workload_hours": 9.107,
+    "exercise_minutes": 39.215,
+    "participant_id": "SIM_001",
+    "observation_timestamp_utc": "2026-01-04T18:00:00Z",
+    "journal_text": "I felt composed during the scheduled work. I inspected the storage rack and inspected the storage rack. I worked alongside a teammate. My energy varied as the day went on. I recorded 11 checklist items for follow-up."
+  },
+  "calibration_history": [
+    {
+      "participant_id": "SIM_001",
+      "observation_timestamp_utc": "2025-12-25T18:00:00Z",
+      "sleep_duration_hours": 7.765,
+      "resting_heart_rate_bpm": 69.808,
+      "hrv_rmssd_ms": 26.68,
+      "reaction_time_median_ms": 317.189
+    },
+    {
+      "participant_id": "SIM_001",
+      "observation_timestamp_utc": "2025-12-26T18:00:00Z",
+      "sleep_duration_hours": 7.587,
+      "resting_heart_rate_bpm": 71.39,
+      "hrv_rmssd_ms": 23.17,
+      "reaction_time_median_ms": 324.579
+    },
+    {
+      "participant_id": "SIM_001",
+      "observation_timestamp_utc": "2025-12-27T18:00:00Z",
+      "sleep_duration_hours": 8.558,
+      "resting_heart_rate_bpm": 68.854,
+      "hrv_rmssd_ms": 26.152,
+      "reaction_time_median_ms": 306.889
+    },
+    {
+      "participant_id": "SIM_001",
+      "observation_timestamp_utc": "2025-12-28T18:00:00Z",
+      "sleep_duration_hours": 7.976,
+      "resting_heart_rate_bpm": 64.602,
+      "hrv_rmssd_ms": 25.721,
+      "reaction_time_median_ms": 337.777
+    },
+    {
+      "participant_id": "SIM_001",
+      "observation_timestamp_utc": "2025-12-29T18:00:00Z",
+      "sleep_duration_hours": 8.251,
+      "resting_heart_rate_bpm": 72.147,
+      "hrv_rmssd_ms": 24.157,
+      "reaction_time_median_ms": 322.545
+    },
+    {
+      "participant_id": "SIM_001",
+      "observation_timestamp_utc": "2025-12-30T18:00:00Z",
+      "sleep_duration_hours": 7.807,
+      "resting_heart_rate_bpm": 71.186,
+      "hrv_rmssd_ms": 24.812,
+      "reaction_time_median_ms": 327.804
+    },
+    {
+      "participant_id": "SIM_001",
+      "observation_timestamp_utc": "2025-12-31T18:00:00Z",
+      "sleep_duration_hours": 8.209,
+      "resting_heart_rate_bpm": 70.012,
+      "hrv_rmssd_ms": 26.396,
+      "reaction_time_median_ms": 318.879
+    }
+  ],
+  "recent_history": [
+    {
+      "participant_id": "SIM_001",
+      "observation_timestamp_utc": "2026-01-01T18:00:00Z",
+      "sleep_duration_hours": 8.608,
+      "resting_heart_rate_bpm": 69.55,
+      "hrv_rmssd_ms": 25.862,
+      "reaction_time_median_ms": 309.868
+    },
+    {
+      "participant_id": "SIM_001",
+      "observation_timestamp_utc": "2026-01-02T18:00:00Z",
+      "sleep_duration_hours": 7.343,
+      "resting_heart_rate_bpm": 70.457,
+      "hrv_rmssd_ms": 26.34,
+      "reaction_time_median_ms": 331.67
+    },
+    {
+      "participant_id": "SIM_001",
+      "observation_timestamp_utc": "2026-01-03T18:00:00Z",
+      "sleep_duration_hours": 7.34,
+      "resting_heart_rate_bpm": 67.862,
+      "hrv_rmssd_ms": 22.023,
+      "reaction_time_median_ms": 346.458
+    }
+  ]
+}

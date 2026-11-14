@@ -1,0 +1,17 @@
+{
+  "scope": "Repository layout and reproduction-adapter verification; not new model-selection evidence",
+  "all_five_workspace_layouts_prepared": true,
+  "validation_supplied_only_to_001_002_005": true,
+  "test_csv_absent_from_all_scratch_workspaces": true,
+  "raw_observations_absent_from_all_scratch_workspaces": true,
+  "existing_output_directory_rejected": true,
+  "output_inside_ai_directory_rejected": true,
+  "wrapper_integration_experiment": "filter_validation_005",
+  "wrapper_run_completed": true,
+  "filtered_training_rows": 4786,
+  "excluded_training_rows": 254,
+  "all_recomputed_metrics_exactly_match_archive": true,
+  "official_model_replaced": false,
+  "original_sources_modified": false,
+  "historical_files_preserved_byte_for_byte": true
+}

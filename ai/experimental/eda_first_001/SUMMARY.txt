@@ -1,0 +1,31 @@
+EDA-FIRST FOLLOW-UP — COMPLETED
+
+The initial baseline run preceded the standalone EDA report. That history is
+preserved. This follow-up was performed in the requested order:
+training-only EDA -> visual graph review -> documented feature decisions ->
+frozen candidate recipes -> training-only fit -> validation comparison.
+
+The visual review supports a prespecified comparison of the existing 26 model
+features against a reduced 17-feature personalized representation. Both use
+only current information and earlier calibration/history. No missing values,
+new target labels or personal histories were invented. All 26 individual
+feature choices are documented in FEATURE_DECISIONS.json.
+
+Validation Macro-F1:
+  Full 26 / Random Forest: 0.5273
+  Reduced 17 / Random Forest: 0.5189
+  Full 26 / XGBoost: 0.4857
+  Reduced 17 / XGBoost: 0.4842
+  Persistence baseline: 0.4952
+  Majority baseline: 0.2638
+
+The same full-26 Random Forest configuration remains the choice. Its validation
+predictions match the currently delivered API model. The API artifact was not
+replaced. Its original test report remains historical evidence for that model;
+no new held-out test evaluation or test-based tuning was done in this follow-up.
+This remains a synthetic-data prototype with modest forecasting performance.
+
+The supporting regression, journal and anomaly components were not retrained in
+this follow-up; their original model cards and evaluation reports remain in force.
+A new independent evaluation cohort is required for any future revised-model
+performance claim. Repeating an already examined cohort does not create one.

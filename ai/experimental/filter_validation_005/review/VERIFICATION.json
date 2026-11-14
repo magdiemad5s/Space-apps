@@ -1,0 +1,112 @@
+{
+  "verified_at_utc": "2026-11-14T17:17:05.781019+00:00",
+  "source_scope": "TRAIN, saved predictions, source and trusted artifacts only; no original validation/test observation reads and no fitting",
+  "hash_checks": {
+    "train_sha256": true,
+    "official_bundle_sha256_before": true,
+    "task_config_sha256": true,
+    "script_sha256": true,
+    "reused_noise_rule_script_sha256": true,
+    "thresholds_match_mask_freeze": true,
+    "flagged_ids_match_mask_freeze": true,
+    "candidate_matches_before_validation_checkpoint": true,
+    "expected_validation_hash_matches_original_manifest": true
+  },
+  "training_rows": 5040,
+  "independently_flagged_rows": 254,
+  "retained_fitting_rows": 4786,
+  "retained_class_counts": {
+    "moderate": 3224,
+    "low": 1035,
+    "high": 527
+  },
+  "validation_predictions_checked": 1080,
+  "validation_participants": 18,
+  "historical_control_predictions_match_by_record_id": true,
+  "candidate_parameters_and_imputer_verified": true,
+  "recomputed_metrics": {
+    "control_rf_full_training": {
+      "macro_f1": 0.5272528187101052,
+      "high_precision": 0.35135135135135137,
+      "high_recall": 0.37681159420289856,
+      "confusion_matrix": [
+        [
+          121,
+          110,
+          4
+        ],
+        [
+          117,
+          498,
+          92
+        ],
+        [
+          8,
+          78,
+          52
+        ]
+      ]
+    },
+    "filtered_rf_fit_tail_exclusion": {
+      "macro_f1": 0.5178236567195789,
+      "high_precision": 0.3333333333333333,
+      "high_recall": 0.34057971014492755,
+      "confusion_matrix": [
+        [
+          125,
+          106,
+          4
+        ],
+        [
+          125,
+          492,
+          90
+        ],
+        [
+          7,
+          84,
+          47
+        ]
+      ]
+    },
+    "current_fatigue_persistence": {
+      "macro_f1": 0.49519846112355265,
+      "high_precision": 0.3333333333333333,
+      "high_recall": 0.3333333333333333,
+      "confusion_matrix": [
+        [
+          107,
+          122,
+          6
+        ],
+        [
+          126,
+          495,
+          86
+        ],
+        [
+          9,
+          83,
+          46
+        ]
+      ]
+    }
+  },
+  "event_subgroup_rows_verified": 6,
+  "independent_bootstrap_macro_f1_difference_interval": [
+    -0.025172853361459836,
+    0.0054798130782954466
+  ],
+  "independent_bootstrap_high_recall_difference_interval": [
+    -0.07638999469214437,
+    0.0070460532982064925
+  ],
+  "implementation_review": {
+    "detector_fit_on_train_only": true,
+    "all_fits_precede_validation_load": true,
+    "original_target_and_history_values_preserved": true,
+    "validation_not_filtered": true,
+    "test_not_opened_in_reviewed_script": true
+  },
+  "all_checks_passed": true
+}

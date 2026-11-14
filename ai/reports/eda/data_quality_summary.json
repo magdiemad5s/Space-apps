@@ -1,0 +1,279 @@
+{
+  "scope": "Training-only EDA and schema-quality audit; not clinical validation",
+  "prepared_at_utc": "2026-11-14T12:57:03.506917+00:00",
+  "observation_files_read": [
+    "data/train.csv"
+  ],
+  "train_sha256": "a9b7aba9497fbcf68b6f5bb771b01dbf82c3b00c93a2a0c6873f705712a235e5",
+  "task_config_sha256": "75f14b846e29ac1025bad7e3db51a1656365878f29925666a5eaf5165788ed60",
+  "rows": 5040,
+  "columns": 46,
+  "virtual_participants": 84,
+  "daily_observations_per_participant": 60,
+  "primary_predictor_count": 26,
+  "excluded_primary_columns": 20,
+  "legitimate_repeated_participant_id_occurrences": 4956,
+  "zero_variance_primary_predictors": [],
+  "class_counts": {
+    "low": 1079,
+    "moderate": 3411,
+    "high": 550
+  },
+  "majority_class_training_accuracy": 0.6767857142857143,
+  "high_correlation_threshold_abs_r": 0.85,
+  "high_correlation_pairs": 2,
+  "rows_removed_by_this_audit": 0,
+  "cells_imputed_in_prepared_training_csv": 0,
+  "cleaning_action": "Already prepared source retained unchanged; no observed invalid rows required deletion or repair.",
+  "pipeline_imputer": "Median imputer was fitted on training data as a defensive pipeline step; supplied training inputs have no missing cells.",
+  "clinical_validation": false,
+  "all_checks_passed": true,
+  "checks": [
+    {
+      "check": "missing_cells",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "No imputation was necessary in this prepared synthetic partition."
+    },
+    {
+      "check": "nonfinite_numeric_cells",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "NaN and infinity are invalid model values."
+    },
+    {
+      "check": "exact_duplicate_rows",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Complete duplicate rows are distinct from legitimate repeated participant IDs."
+    },
+    {
+      "check": "duplicate_record_ids",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Each observation must have a unique participant-day record ID."
+    },
+    {
+      "check": "duplicate_participant_day_keys",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Each participant has one observation per mission day."
+    },
+    {
+      "check": "duplicate_primary_predictor_vectors",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Exact duplicate 26-feature numerical vectors; no near-duplicate claim is made."
+    },
+    {
+      "check": "non_training_partition_rows",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "No validation/test observations are included in EDA."
+    },
+    {
+      "check": "non_synthetic_flags",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "This dataset is explicitly a synthetic engineering demonstration."
+    },
+    {
+      "check": "future_or_target_predictors",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "All outcome annotations and future labels are excluded from the predictor allowlist."
+    },
+    {
+      "check": "zero_variance_primary_predictors",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Constant provenance/protocol columns exist in the source table but are not model inputs."
+    },
+    {
+      "check": "participants_without_60_daily_rows",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Repeated IDs represent valid longitudinal data, not duplicate people to remove."
+    },
+    {
+      "check": "participants_without_days_1_to_60",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "The training partition contains 60 consecutive simulation days per person."
+    },
+    {
+      "check": "input_bounds__sleep_duration_hours",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [0.1, 16]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__sleep_efficiency_pct",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [10, 100]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__sleep_onset_delay_minutes",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [0, 300]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__awakenings_count",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [0, 100]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__sleep_midpoint_deviation_minutes",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [-720, 720]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__resting_heart_rate_bpm",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [30, 220]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__hrv_rmssd_ms",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [1, 300]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__reaction_time_median_ms",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [100, 2000]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__reaction_time_lapses_count",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [0, 60]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__attention_accuracy_pct",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [0, 100]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__self_report_stress_score",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [0, 10]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__self_report_fatigue_score",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [0, 10]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__self_report_mood_score",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [0, 10]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__workload_hours",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [0, 24]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__exercise_minutes",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [0, 480]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__baseline_sleep_duration_hours",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [0.1, 16]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__baseline_resting_heart_rate_bpm",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [30, 220]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__baseline_hrv_rmssd_ms",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [1, 300]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__baseline_reaction_time_median_ms",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [100, 2000]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__prior_3day_mean_sleep_hours",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [0.1, 16]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__prior_3day_mean_resting_heart_rate_bpm",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [30, 220]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "input_bounds__prior_3day_mean_reaction_time_ms",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Broad numerical API bounds [100, 2000]; engineering input validation, not clinical thresholds."
+    },
+    {
+      "check": "whole_count__awakenings_count",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Count variables must contain whole counts."
+    },
+    {
+      "check": "whole_count__reaction_time_lapses_count",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Count variables must contain whole counts."
+    },
+    {
+      "check": "sleep_onset_exceeds_awake_opportunity",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Sleep efficiency and duration must allow the reported onset delay."
+    },
+    {
+      "check": "daily_time_budget_exceeds_24_hours",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "The simulator defines sleep opportunity, duty and exercise as non-overlapping parts of one day."
+    },
+    {
+      "check": "forecast_horizon_not_24_hours",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Future target timestamps are exactly one day after observation cutoffs."
+    },
+    {
+      "check": "invalid_custom_fatigue_score",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "The target is a custom simulated score, not KSS or a clinical scale."
+    },
+    {
+      "check": "fatigue_class_not_matching_documented_rule",
+      "status": "pass",
+      "invalid_count": 0,
+      "details": "Future demo fatigue score uses arbitrary category cutoffs 4 and 7; score itself is not an input."
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+ASTRA-SHIELD — TRAINING-ONLY DATA QUALITY AND EDA
+
+Observation source: data/train.csv (SHA-256 a9b7aba9497fbcf68b6f5bb771b01dbf82c3b00c93a2a0c6873f705712a235e5).
+No validation or test observation file was loaded for these summaries or plots.
+The original longitudinal synthetic dataset is used; supplied V2/V3 files are not mixed in.
+
+Shape: 5,040 rows, 46 columns, 84 virtual participants.
+Every participant has 60 daily observations. Repeated participant IDs are
+intentional longitudinal structure and must not be removed as duplicates.
+All 41 quality checks passed: True.
+Complete-row duplicates, duplicate participant-day keys and duplicate numerical
+predictor vectors are checked separately; counts appear in data_quality_summary.csv.
+
+CLEANING EVIDENCE
+The already prepared synthetic data contains no missing/non-finite cells or
+invalid values under the documented engineering input bounds. No rows were
+deleted, no measurements were rewritten, and no imputation was necessary.
+The model pipeline's training-fitted median imputer is defensive and unused
+for this complete partition. This audit does not claim to have repaired raw
+sensor artifacts, clinically adjudicated observations or cleaned real astronauts.
+
+RELEVANCE AND LEAKAGE
+The primary model uses the exact 26-column allowlist. Other columns remain in
+the audit table for provenance, grouping, protocol context or evaluation; they
+are excluded from the prediction input. Journal text is used by a separate NLP
+task. Excluded columns and reasons appear individually in excluded_columns.csv.
+All target columns, record/participant identifiers, split information and future
+outcome timestamps are excluded. Baseline/history causality has separate source
+and unit-test checks; this training-only EDA does not open the calibration audit file.
+
+CLASS BALANCE
+low: 1,079 (21.41%).
+moderate: 3,411 (67.68%).
+high: 550 (10.91%).
+Always predicting the majority category gives 67.68% training accuracy.
+Model comparisons therefore use macro F1 and per-class precision/recall,
+with persistence baselines and final held-out evaluation reported separately.
+The category thresholds (4 and 7 on a custom simulated 0–10 score) are
+engineering choices and do not establish clinical or operational risk.
+
+CORRELATION AND LIMITATIONS
+2 primary-predictor pairs have absolute Pearson r >= 0.85.
+Strongly correlated baseline/delta/history variables are retained deliberately
+for personalization. Correlation is not causation, and derived-feature redundancy
+can affect permutation/SHAP importance allocation. No claim is made that all
+statistically redundant or clinically irrelevant information has been eliminated.
+Training-only charts describe the simulator, not measured human physiology.
+Generated journals and target labels are not human clinical annotations.
+
+REPRODUCE
+.venv/bin/python -m astra_shield_ml.eda

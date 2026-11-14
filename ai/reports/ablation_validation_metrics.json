@@ -1,0 +1,297 @@
+{
+  "data_origin": "synthetic",
+  "test_used": false,
+  "actual_target": "target_next_day_fatigue_class",
+  "scope": "Without current fatigue self-report and current/baseline/historical reaction-time features",
+  "excluded_available_proxies": [
+    "self_report_fatigue_score",
+    "reaction_time_median_ms",
+    "reaction_time_lapses_count",
+    "baseline_reaction_time_median_ms",
+    "reaction_time_change_from_baseline_pct",
+    "prior_3day_mean_reaction_time_ms"
+  ],
+  "remaining_predictors": [
+    "sleep_duration_hours",
+    "sleep_efficiency_pct",
+    "sleep_onset_delay_minutes",
+    "awakenings_count",
+    "sleep_midpoint_deviation_minutes",
+    "resting_heart_rate_bpm",
+    "hrv_rmssd_ms",
+    "attention_accuracy_pct",
+    "self_report_stress_score",
+    "self_report_mood_score",
+    "workload_hours",
+    "exercise_minutes",
+    "baseline_sleep_duration_hours",
+    "baseline_resting_heart_rate_bpm",
+    "baseline_hrv_rmssd_ms",
+    "sleep_duration_delta_from_baseline_hours",
+    "heart_rate_delta_from_baseline_bpm",
+    "hrv_delta_from_baseline_ms",
+    "prior_3day_mean_sleep_hours",
+    "prior_3day_mean_resting_heart_rate_bpm"
+  ],
+  "full_predictor_count": 26,
+  "ablation_predictor_count": 20,
+  "full_model_results": {
+    "random_forest_balanced": {
+      "fit_seconds": 1.225929902000189,
+      "validation_metrics": {
+        "accuracy": 0.6212962962962963,
+        "balanced_accuracy": 0.5320299784702932,
+        "macro_f1": 0.5272528187101052,
+        "classification_report": {
+          "low": {
+            "precision": 0.491869918699187,
+            "recall": 0.5148936170212766,
+            "f1-score": 0.5031185031185031,
+            "support": 235.0
+          },
+          "moderate": {
+            "precision": 0.7259475218658892,
+            "recall": 0.7043847241867044,
+            "f1-score": 0.7150035893754487,
+            "support": 707.0
+          },
+          "high": {
+            "precision": 0.35135135135135137,
+            "recall": 0.37681159420289856,
+            "f1-score": 0.36363636363636365,
+            "support": 138.0
+          },
+          "accuracy": 0.6212962962962963,
+          "macro avg": {
+            "precision": 0.5230562639721424,
+            "recall": 0.5320299784702932,
+            "f1-score": 0.5272528187101052,
+            "support": 1080.0
+          },
+          "weighted avg": {
+            "precision": 0.6271489030925732,
+            "recall": 0.6212962962962963,
+            "f1-score": 0.6240020408362117,
+            "support": 1080.0
+          }
+        },
+        "confusion_matrix_labels": [
+          "low",
+          "moderate",
+          "high"
+        ],
+        "confusion_matrix": [
+          [
+            121,
+            110,
+            4
+          ],
+          [
+            117,
+            498,
+            92
+          ],
+          [
+            8,
+            78,
+            52
+          ]
+        ]
+      },
+      "parameters": "Pipeline(steps=[('imputer', SimpleImputer(strategy='median')),\n                ('model',\n                 RandomForestClassifier(class_weight='balanced', max_depth=14,\n                                        min_samples_leaf=8, n_estimators=200,\n                                        n_jobs=2, random_state=20261114))])"
+    },
+    "xgboost_balanced": {
+      "fit_seconds": 0.4999428930000249,
+      "validation_metrics": {
+        "accuracy": 0.5212962962962963,
+        "balanced_accuracy": 0.5540809690854113,
+        "macro_f1": 0.48572368707222124,
+        "classification_report": {
+          "low": {
+            "precision": 0.41424802110817943,
+            "recall": 0.6680851063829787,
+            "f1-score": 0.511400651465798,
+            "support": 235.0
+          },
+          "moderate": {
+            "precision": 0.7488789237668162,
+            "recall": 0.4724186704384724,
+            "f1-score": 0.5793581960104076,
+            "support": 707.0
+          },
+          "high": {
+            "precision": 0.2823529411764706,
+            "recall": 0.5217391304347826,
+            "f1-score": 0.366412213740458,
+            "support": 138.0
+          },
+          "accuracy": 0.5212962962962963,
+          "macro avg": {
+            "precision": 0.48182662868382203,
+            "recall": 0.5540809690854113,
+            "f1-score": 0.48572368707222124,
+            "support": 1080.0
+          },
+          "weighted avg": {
+            "precision": 0.6164540647647354,
+            "recall": 0.5212962962962963,
+            "f1-score": 0.5373613733055592,
+            "support": 1080.0
+          }
+        },
+        "confusion_matrix_labels": [
+          "low",
+          "moderate",
+          "high"
+        ],
+        "confusion_matrix": [
+          [
+            157,
+            67,
+            11
+          ],
+          [
+            201,
+            334,
+            172
+          ],
+          [
+            21,
+            45,
+            72
+          ]
+        ]
+      },
+      "parameters": "Pipeline(steps=[('imputer', SimpleImputer(strategy='median')),\n                ('model', EncodedXGBClassifier())])"
+    }
+  },
+  "ablation_model_results": {
+    "random_forest_balanced": {
+      "fit_seconds": 1.031176480999875,
+      "validation_metrics": {
+        "accuracy": 0.5916666666666667,
+        "balanced_accuracy": 0.4831482976499051,
+        "macro_f1": 0.481205314215122,
+        "classification_report": {
+          "low": {
+            "precision": 0.42424242424242425,
+            "recall": 0.4765957446808511,
+            "f1-score": 0.44889779559118237,
+            "support": 235.0
+          },
+          "moderate": {
+            "precision": 0.7062228654124457,
+            "recall": 0.6902404526166902,
+            "f1-score": 0.698140200286123,
+            "support": 707.0
+          },
+          "high": {
+            "precision": 0.312,
+            "recall": 0.2826086956521739,
+            "f1-score": 0.2965779467680608,
+            "support": 138.0
+          },
+          "accuracy": 0.5916666666666667,
+          "macro avg": {
+            "precision": 0.48082176321829,
+            "recall": 0.4831482976499051,
+            "f1-score": 0.481205314215122,
+            "support": 1080.0
+          },
+          "weighted avg": {
+            "precision": 0.5944930884662675,
+            "recall": 0.5916666666666667,
+            "f1-score": 0.592596166870564,
+            "support": 1080.0
+          }
+        },
+        "confusion_matrix_labels": [
+          "low",
+          "moderate",
+          "high"
+        ],
+        "confusion_matrix": [
+          [
+            112,
+            117,
+            6
+          ],
+          [
+            139,
+            488,
+            80
+          ],
+          [
+            13,
+            86,
+            39
+          ]
+        ]
+      }
+    },
+    "xgboost_balanced": {
+      "fit_seconds": 0.40633392100016863,
+      "validation_metrics": {
+        "accuracy": 0.49074074074074076,
+        "balanced_accuracy": 0.5257111861576008,
+        "macro_f1": 0.45590771868260876,
+        "classification_report": {
+          "low": {
+            "precision": 0.3761467889908257,
+            "recall": 0.6978723404255319,
+            "f1-score": 0.488822652757079,
+            "support": 235.0
+          },
+          "moderate": {
+            "precision": 0.7360774818401937,
+            "recall": 0.42998585572843,
+            "f1-score": 0.5428571428571428,
+            "support": 707.0
+          },
+          "high": {
+            "precision": 0.2683982683982684,
+            "recall": 0.4492753623188406,
+            "f1-score": 0.33604336043360433,
+            "support": 138.0
+          },
+          "accuracy": 0.49074074074074076,
+          "macro avg": {
+            "precision": 0.4602075130764293,
+            "recall": 0.5257111861576008,
+            "f1-score": 0.45590771868260876,
+            "support": 1080.0
+          },
+          "weighted avg": {
+            "precision": 0.5980002186229834,
+            "recall": 0.49074074074074076,
+            "f1-score": 0.5046734325349546,
+            "support": 1080.0
+          }
+        },
+        "confusion_matrix_labels": [
+          "low",
+          "moderate",
+          "high"
+        ],
+        "confusion_matrix": [
+          [
+            164,
+            62,
+            9
+          ],
+          [
+            243,
+            304,
+            160
+          ],
+          [
+            29,
+            47,
+            62
+          ]
+        ]
+      }
+    }
+  },
+  "deployment_selection": "Full-model RF versus XGBoost comparison on validation macro F1 only; ablation does not choose deployment model"
+}

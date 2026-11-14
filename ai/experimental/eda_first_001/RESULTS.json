@@ -1,0 +1,551 @@
+{
+  "experiment": "eda_first_001",
+  "completed_at_utc": "2026-11-14T13:14:04.010420+00:00",
+  "sequence": [
+    "training-only EDA",
+    "visual graph review",
+    "feature decisions",
+    "frozen recipe",
+    "training-only fit",
+    "validation comparison"
+  ],
+  "frozen_plan_sha256": "bc250383ffd58702df0f0217531644ca79bbd88cb7e4ec447e1e71b7cafa939a",
+  "fit_started_after_plan": true,
+  "train_rows": 5040,
+  "validation_rows": 1080,
+  "train_participants": 84,
+  "validation_participants": 18,
+  "test_accessed": false,
+  "test_score": null,
+  "historical_test_policy": "Old test report retained as historical evidence; not a new test for this revision",
+  "selected_candidate": "full_26__random_forest_balanced",
+  "selected_predictors": [
+    "sleep_duration_hours",
+    "sleep_efficiency_pct",
+    "sleep_onset_delay_minutes",
+    "awakenings_count",
+    "sleep_midpoint_deviation_minutes",
+    "resting_heart_rate_bpm",
+    "hrv_rmssd_ms",
+    "reaction_time_median_ms",
+    "reaction_time_lapses_count",
+    "attention_accuracy_pct",
+    "self_report_stress_score",
+    "self_report_fatigue_score",
+    "self_report_mood_score",
+    "workload_hours",
+    "exercise_minutes",
+    "baseline_sleep_duration_hours",
+    "baseline_resting_heart_rate_bpm",
+    "baseline_hrv_rmssd_ms",
+    "baseline_reaction_time_median_ms",
+    "sleep_duration_delta_from_baseline_hours",
+    "heart_rate_delta_from_baseline_bpm",
+    "hrv_delta_from_baseline_ms",
+    "reaction_time_change_from_baseline_pct",
+    "prior_3day_mean_sleep_hours",
+    "prior_3day_mean_resting_heart_rate_bpm",
+    "prior_3day_mean_reaction_time_ms"
+  ],
+  "selected_validation_macro_f1": 0.5272528187101052,
+  "results": [
+    {
+      "candidate": "majority_class",
+      "feature_set": "baseline",
+      "predictor_count": 26,
+      "validation_metrics": {
+        "accuracy": 0.6546296296296297,
+        "balanced_accuracy": 0.3333333333333333,
+        "macro_f1": 0.263756761798172,
+        "classification_report": {
+          "low": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 235.0
+          },
+          "moderate": {
+            "precision": 0.6546296296296297,
+            "recall": 1.0,
+            "f1-score": 0.7912702853945159,
+            "support": 707.0
+          },
+          "high": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 138.0
+          },
+          "accuracy": 0.6546296296296297,
+          "macro avg": {
+            "precision": 0.2182098765432099,
+            "recall": 0.3333333333333333,
+            "f1-score": 0.263756761798172,
+            "support": 1080.0
+          },
+          "weighted avg": {
+            "precision": 0.42853995198902606,
+            "recall": 0.6546296296296297,
+            "f1-score": 0.5179889738647433,
+            "support": 1080.0
+          }
+        },
+        "confusion_matrix_labels": [
+          "low",
+          "moderate",
+          "high"
+        ],
+        "confusion_matrix": [
+          [
+            0,
+            235,
+            0
+          ],
+          [
+            0,
+            707,
+            0
+          ],
+          [
+            0,
+            138,
+            0
+          ]
+        ]
+      },
+      "fit_seconds": null
+    },
+    {
+      "candidate": "current_fatigue_persistence",
+      "feature_set": "baseline",
+      "predictor_count": 26,
+      "validation_metrics": {
+        "accuracy": 0.6,
+        "balanced_accuracy": 0.4962646416617346,
+        "macro_f1": 0.49519846112355265,
+        "classification_report": {
+          "low": {
+            "precision": 0.44214876033057854,
+            "recall": 0.4553191489361702,
+            "f1-score": 0.44863731656184486,
+            "support": 235.0
+          },
+          "moderate": {
+            "precision": 0.7071428571428572,
+            "recall": 0.7001414427157001,
+            "f1-score": 0.7036247334754797,
+            "support": 707.0
+          },
+          "high": {
+            "precision": 0.3333333333333333,
+            "recall": 0.3333333333333333,
+            "f1-score": 0.3333333333333333,
+            "support": 138.0
+          },
+          "accuracy": 0.6,
+          "macro avg": {
+            "precision": 0.4942083169355897,
+            "recall": 0.4962646416617345,
+            "f1-score": 0.49519846112355265,
+            "support": 1080.0
+          },
+          "weighted avg": {
+            "precision": 0.6017175543311908,
+            "recall": 0.6,
+            "f1-score": 0.6008263481103683,
+            "support": 1080.0
+          }
+        },
+        "confusion_matrix_labels": [
+          "low",
+          "moderate",
+          "high"
+        ],
+        "confusion_matrix": [
+          [
+            107,
+            122,
+            6
+          ],
+          [
+            126,
+            495,
+            86
+          ],
+          [
+            9,
+            83,
+            46
+          ]
+        ]
+      },
+      "fit_seconds": null
+    },
+    {
+      "candidate": "full_26__random_forest_balanced",
+      "algorithm": "random_forest_balanced",
+      "feature_set": "full_26",
+      "predictor_count": 26,
+      "predictors": [
+        "sleep_duration_hours",
+        "sleep_efficiency_pct",
+        "sleep_onset_delay_minutes",
+        "awakenings_count",
+        "sleep_midpoint_deviation_minutes",
+        "resting_heart_rate_bpm",
+        "hrv_rmssd_ms",
+        "reaction_time_median_ms",
+        "reaction_time_lapses_count",
+        "attention_accuracy_pct",
+        "self_report_stress_score",
+        "self_report_fatigue_score",
+        "self_report_mood_score",
+        "workload_hours",
+        "exercise_minutes",
+        "baseline_sleep_duration_hours",
+        "baseline_resting_heart_rate_bpm",
+        "baseline_hrv_rmssd_ms",
+        "baseline_reaction_time_median_ms",
+        "sleep_duration_delta_from_baseline_hours",
+        "heart_rate_delta_from_baseline_bpm",
+        "hrv_delta_from_baseline_ms",
+        "reaction_time_change_from_baseline_pct",
+        "prior_3day_mean_sleep_hours",
+        "prior_3day_mean_resting_heart_rate_bpm",
+        "prior_3day_mean_reaction_time_ms"
+      ],
+      "validation_metrics": {
+        "accuracy": 0.6212962962962963,
+        "balanced_accuracy": 0.5320299784702932,
+        "macro_f1": 0.5272528187101052,
+        "classification_report": {
+          "low": {
+            "precision": 0.491869918699187,
+            "recall": 0.5148936170212766,
+            "f1-score": 0.5031185031185031,
+            "support": 235.0
+          },
+          "moderate": {
+            "precision": 0.7259475218658892,
+            "recall": 0.7043847241867044,
+            "f1-score": 0.7150035893754487,
+            "support": 707.0
+          },
+          "high": {
+            "precision": 0.35135135135135137,
+            "recall": 0.37681159420289856,
+            "f1-score": 0.36363636363636365,
+            "support": 138.0
+          },
+          "accuracy": 0.6212962962962963,
+          "macro avg": {
+            "precision": 0.5230562639721424,
+            "recall": 0.5320299784702932,
+            "f1-score": 0.5272528187101052,
+            "support": 1080.0
+          },
+          "weighted avg": {
+            "precision": 0.6271489030925732,
+            "recall": 0.6212962962962963,
+            "f1-score": 0.6240020408362117,
+            "support": 1080.0
+          }
+        },
+        "confusion_matrix_labels": [
+          "low",
+          "moderate",
+          "high"
+        ],
+        "confusion_matrix": [
+          [
+            121,
+            110,
+            4
+          ],
+          [
+            117,
+            498,
+            92
+          ],
+          [
+            8,
+            78,
+            52
+          ]
+        ]
+      },
+      "fit_seconds": 1.6124848389999897
+    },
+    {
+      "candidate": "full_26__xgboost_balanced",
+      "algorithm": "xgboost_balanced",
+      "feature_set": "full_26",
+      "predictor_count": 26,
+      "predictors": [
+        "sleep_duration_hours",
+        "sleep_efficiency_pct",
+        "sleep_onset_delay_minutes",
+        "awakenings_count",
+        "sleep_midpoint_deviation_minutes",
+        "resting_heart_rate_bpm",
+        "hrv_rmssd_ms",
+        "reaction_time_median_ms",
+        "reaction_time_lapses_count",
+        "attention_accuracy_pct",
+        "self_report_stress_score",
+        "self_report_fatigue_score",
+        "self_report_mood_score",
+        "workload_hours",
+        "exercise_minutes",
+        "baseline_sleep_duration_hours",
+        "baseline_resting_heart_rate_bpm",
+        "baseline_hrv_rmssd_ms",
+        "baseline_reaction_time_median_ms",
+        "sleep_duration_delta_from_baseline_hours",
+        "heart_rate_delta_from_baseline_bpm",
+        "hrv_delta_from_baseline_ms",
+        "reaction_time_change_from_baseline_pct",
+        "prior_3day_mean_sleep_hours",
+        "prior_3day_mean_resting_heart_rate_bpm",
+        "prior_3day_mean_reaction_time_ms"
+      ],
+      "validation_metrics": {
+        "accuracy": 0.5212962962962963,
+        "balanced_accuracy": 0.5540809690854113,
+        "macro_f1": 0.48572368707222124,
+        "classification_report": {
+          "low": {
+            "precision": 0.41424802110817943,
+            "recall": 0.6680851063829787,
+            "f1-score": 0.511400651465798,
+            "support": 235.0
+          },
+          "moderate": {
+            "precision": 0.7488789237668162,
+            "recall": 0.4724186704384724,
+            "f1-score": 0.5793581960104076,
+            "support": 707.0
+          },
+          "high": {
+            "precision": 0.2823529411764706,
+            "recall": 0.5217391304347826,
+            "f1-score": 0.366412213740458,
+            "support": 138.0
+          },
+          "accuracy": 0.5212962962962963,
+          "macro avg": {
+            "precision": 0.48182662868382203,
+            "recall": 0.5540809690854113,
+            "f1-score": 0.48572368707222124,
+            "support": 1080.0
+          },
+          "weighted avg": {
+            "precision": 0.6164540647647354,
+            "recall": 0.5212962962962963,
+            "f1-score": 0.5373613733055592,
+            "support": 1080.0
+          }
+        },
+        "confusion_matrix_labels": [
+          "low",
+          "moderate",
+          "high"
+        ],
+        "confusion_matrix": [
+          [
+            157,
+            67,
+            11
+          ],
+          [
+            201,
+            334,
+            172
+          ],
+          [
+            21,
+            45,
+            72
+          ]
+        ]
+      },
+      "fit_seconds": 0.5125051860004533
+    },
+    {
+      "candidate": "personalized_reduced__random_forest_balanced",
+      "algorithm": "random_forest_balanced",
+      "feature_set": "personalized_reduced",
+      "predictor_count": 17,
+      "predictors": [
+        "sleep_duration_hours",
+        "sleep_efficiency_pct",
+        "sleep_onset_delay_minutes",
+        "awakenings_count",
+        "sleep_midpoint_deviation_minutes",
+        "reaction_time_lapses_count",
+        "attention_accuracy_pct",
+        "self_report_stress_score",
+        "self_report_fatigue_score",
+        "self_report_mood_score",
+        "workload_hours",
+        "exercise_minutes",
+        "baseline_sleep_duration_hours",
+        "heart_rate_delta_from_baseline_bpm",
+        "hrv_delta_from_baseline_ms",
+        "reaction_time_change_from_baseline_pct",
+        "prior_3day_mean_sleep_hours"
+      ],
+      "validation_metrics": {
+        "accuracy": 0.6046296296296296,
+        "balanced_accuracy": 0.5294254204064519,
+        "macro_f1": 0.5188805729202967,
+        "classification_report": {
+          "low": {
+            "precision": 0.46303501945525294,
+            "recall": 0.5063829787234042,
+            "f1-score": 0.483739837398374,
+            "support": 235.0
+          },
+          "moderate": {
+            "precision": 0.7220543806646526,
+            "recall": 0.6760961810466761,
+            "f1-score": 0.6983199415631848,
+            "support": 707.0
+          },
+          "high": {
+            "precision": 0.34782608695652173,
+            "recall": 0.4057971014492754,
+            "f1-score": 0.3745819397993311,
+            "support": 138.0
+          },
+          "accuracy": 0.6046296296296296,
+          "macro avg": {
+            "precision": 0.5109718290254758,
+            "recall": 0.5294254204064519,
+            "f1-score": 0.5188805729202967,
+            "support": 1080.0
+          },
+          "weighted avg": {
+            "precision": 0.6178756265758276,
+            "recall": 0.6046296296296296,
+            "f1-score": 0.6102623779315716,
+            "support": 1080.0
+          }
+        },
+        "confusion_matrix_labels": [
+          "low",
+          "moderate",
+          "high"
+        ],
+        "confusion_matrix": [
+          [
+            119,
+            111,
+            5
+          ],
+          [
+            129,
+            478,
+            100
+          ],
+          [
+            9,
+            73,
+            56
+          ]
+        ]
+      },
+      "fit_seconds": 1.0029273250002007
+    },
+    {
+      "candidate": "personalized_reduced__xgboost_balanced",
+      "algorithm": "xgboost_balanced",
+      "feature_set": "personalized_reduced",
+      "predictor_count": 17,
+      "predictors": [
+        "sleep_duration_hours",
+        "sleep_efficiency_pct",
+        "sleep_onset_delay_minutes",
+        "awakenings_count",
+        "sleep_midpoint_deviation_minutes",
+        "reaction_time_lapses_count",
+        "attention_accuracy_pct",
+        "self_report_stress_score",
+        "self_report_fatigue_score",
+        "self_report_mood_score",
+        "workload_hours",
+        "exercise_minutes",
+        "baseline_sleep_duration_hours",
+        "heart_rate_delta_from_baseline_bpm",
+        "hrv_delta_from_baseline_ms",
+        "reaction_time_change_from_baseline_pct",
+        "prior_3day_mean_sleep_hours"
+      ],
+      "validation_metrics": {
+        "accuracy": 0.5175925925925926,
+        "balanced_accuracy": 0.5550860134249186,
+        "macro_f1": 0.48419402484693524,
+        "classification_report": {
+          "low": {
+            "precision": 0.41578947368421054,
+            "recall": 0.6723404255319149,
+            "f1-score": 0.5138211382113821,
+            "support": 235.0
+          },
+          "moderate": {
+            "precision": 0.7454545454545455,
+            "recall": 0.4639321074964639,
+            "f1-score": 0.5719267654751525,
+            "support": 707.0
+          },
+          "high": {
+            "precision": 0.28076923076923077,
+            "recall": 0.5289855072463768,
+            "f1-score": 0.36683417085427134,
+            "support": 138.0
+          },
+          "accuracy": 0.5175925925925926,
+          "macro avg": {
+            "precision": 0.48067108330266234,
+            "recall": 0.5550860134249186,
+            "f1-score": 0.48419402484693524,
+            "support": 1080.0
+          },
+          "weighted avg": {
+            "precision": 0.6143454109243582,
+            "recall": 0.5175925925925926,
+            "f1-score": 0.533077135415275,
+            "support": 1080.0
+          }
+        },
+        "confusion_matrix_labels": [
+          "low",
+          "moderate",
+          "high"
+        ],
+        "confusion_matrix": [
+          [
+            158,
+            66,
+            11
+          ],
+          [
+            203,
+            328,
+            176
+          ],
+          [
+            19,
+            46,
+            73
+          ]
+        ]
+      },
+      "fit_seconds": 0.35018695300004765
+    }
+  ],
+  "training_and_comparison_seconds": 4.117207629999939,
+  "model_sha256": "d9e6d0b21016196affa7acdfcee1406ca970278eeb25c04a99d5d17a241a90dc",
+  "current_api_bundle_modified": false,
+  "clinical_validation": false
+}

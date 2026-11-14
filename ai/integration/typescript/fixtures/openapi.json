@@ -1,0 +1,390 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ASTRA-SHIELD Prototype Model API",
+    "description": "Offline inference for synthetic-data fatigue and cognitive forecasts, current physiology outliers, and generated-journal analysis. No clinical or astronaut-health validation is claimed. This local development service has no authentication; do not expose it publicly without the deployment controls your team requires.",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/model-info": {
+      "get": {
+        "summary": "Model Info",
+        "operationId": "model_info_v1_model_info_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/predict": {
+      "post": {
+        "summary": "Predict",
+        "operationId": "predict_v1_predict_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Observation"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/predict/batch": {
+      "post": {
+        "summary": "Predict Batch",
+        "operationId": "predict_batch_v1_predict_batch_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BatchRequest": {
+        "properties": {
+          "observations": {
+            "items": {
+              "$ref": "#/components/schemas/Observation"
+            },
+            "type": "array",
+            "maxItems": 64,
+            "minItems": 1,
+            "title": "Observations"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "observations"
+        ],
+        "title": "BatchRequest"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Observation": {
+        "properties": {
+          "sleep_duration_hours": {
+            "type": "number",
+            "maximum": 16.0,
+            "minimum": 0.1,
+            "title": "Sleep Duration Hours"
+          },
+          "sleep_efficiency_pct": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": 10.0,
+            "title": "Sleep Efficiency Pct"
+          },
+          "sleep_onset_delay_minutes": {
+            "type": "number",
+            "maximum": 300.0,
+            "minimum": 0.0,
+            "title": "Sleep Onset Delay Minutes"
+          },
+          "awakenings_count": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Awakenings Count"
+          },
+          "sleep_midpoint_deviation_minutes": {
+            "type": "number",
+            "maximum": 720.0,
+            "minimum": -720.0,
+            "title": "Sleep Midpoint Deviation Minutes"
+          },
+          "resting_heart_rate_bpm": {
+            "type": "number",
+            "maximum": 220.0,
+            "minimum": 30.0,
+            "title": "Resting Heart Rate Bpm"
+          },
+          "hrv_rmssd_ms": {
+            "type": "number",
+            "maximum": 300.0,
+            "minimum": 1.0,
+            "title": "Hrv Rmssd Ms"
+          },
+          "reaction_time_median_ms": {
+            "type": "number",
+            "maximum": 2000.0,
+            "minimum": 100.0,
+            "title": "Reaction Time Median Ms"
+          },
+          "reaction_time_lapses_count": {
+            "type": "integer",
+            "maximum": 60.0,
+            "minimum": 0.0,
+            "title": "Reaction Time Lapses Count"
+          },
+          "attention_accuracy_pct": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Attention Accuracy Pct"
+          },
+          "self_report_stress_score": {
+            "type": "number",
+            "maximum": 10.0,
+            "minimum": 0.0,
+            "title": "Self Report Stress Score"
+          },
+          "self_report_fatigue_score": {
+            "type": "number",
+            "maximum": 10.0,
+            "minimum": 0.0,
+            "title": "Self Report Fatigue Score"
+          },
+          "self_report_mood_score": {
+            "type": "number",
+            "maximum": 10.0,
+            "minimum": 0.0,
+            "title": "Self Report Mood Score"
+          },
+          "workload_hours": {
+            "type": "number",
+            "maximum": 24.0,
+            "minimum": 0.0,
+            "title": "Workload Hours"
+          },
+          "exercise_minutes": {
+            "type": "number",
+            "maximum": 480.0,
+            "minimum": 0.0,
+            "title": "Exercise Minutes"
+          },
+          "baseline_sleep_duration_hours": {
+            "type": "number",
+            "maximum": 16.0,
+            "minimum": 0.1,
+            "title": "Baseline Sleep Duration Hours"
+          },
+          "baseline_resting_heart_rate_bpm": {
+            "type": "number",
+            "maximum": 220.0,
+            "minimum": 30.0,
+            "title": "Baseline Resting Heart Rate Bpm"
+          },
+          "baseline_hrv_rmssd_ms": {
+            "type": "number",
+            "maximum": 300.0,
+            "minimum": 1.0,
+            "title": "Baseline Hrv Rmssd Ms"
+          },
+          "baseline_reaction_time_median_ms": {
+            "type": "number",
+            "maximum": 2000.0,
+            "minimum": 100.0,
+            "title": "Baseline Reaction Time Median Ms"
+          },
+          "prior_3day_mean_sleep_hours": {
+            "type": "number",
+            "maximum": 16.0,
+            "minimum": 0.1,
+            "title": "Prior 3Day Mean Sleep Hours"
+          },
+          "prior_3day_mean_resting_heart_rate_bpm": {
+            "type": "number",
+            "maximum": 220.0,
+            "minimum": 30.0,
+            "title": "Prior 3Day Mean Resting Heart Rate Bpm"
+          },
+          "prior_3day_mean_reaction_time_ms": {
+            "type": "number",
+            "maximum": 2000.0,
+            "minimum": 100.0,
+            "title": "Prior 3Day Mean Reaction Time Ms"
+          },
+          "journal_text": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 5000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Journal Text"
+          },
+          "participant_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 100,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Participant Id"
+          },
+          "observation_timestamp_utc": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observation Timestamp Utc"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "sleep_duration_hours",
+          "sleep_efficiency_pct",
+          "sleep_onset_delay_minutes",
+          "awakenings_count",
+          "sleep_midpoint_deviation_minutes",
+          "resting_heart_rate_bpm",
+          "hrv_rmssd_ms",
+          "reaction_time_median_ms",
+          "reaction_time_lapses_count",
+          "attention_accuracy_pct",
+          "self_report_stress_score",
+          "self_report_fatigue_score",
+          "self_report_mood_score",
+          "workload_hours",
+          "exercise_minutes",
+          "baseline_sleep_duration_hours",
+          "baseline_resting_heart_rate_bpm",
+          "baseline_hrv_rmssd_ms",
+          "baseline_reaction_time_median_ms",
+          "prior_3day_mean_sleep_hours",
+          "prior_3day_mean_resting_heart_rate_bpm",
+          "prior_3day_mean_reaction_time_ms"
+        ],
+        "title": "Observation",
+        "description": "Today\u2019s observations and genuinely earlier baseline/history summaries.\n\nAll quantities retain their documented units. The service computes the four\nbaseline-difference features; callers must never submit labels or deltas."
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

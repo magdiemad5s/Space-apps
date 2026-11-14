@@ -1,0 +1,101 @@
+ASTRA-SHIELD — NOISE CHECK AND CLEANING EXPERIMENT
+Reviewed 2026-11-14. Original longitudinal synthetic dataset only.
+
+DECISION
+Keep the original dataset and official model. The data includes deliberately
+simulated random variation, but this audit did not identify corrupted records.
+Experimental exclusion produced a small positive development result, not enough
+evidence to adopt it or to label excluded records as errors.
+
+WHAT WAS CHECKED
+Only the 5,040-row training partition (84 virtual participants) was opened for
+observation-level analysis. No validation or final-test partition was opened.
+Missing/non-finite values, duplicates, documented bounds, measurement arithmetic,
+fixed baselines, reconstructable prior means and next-day target linkage passed
+the specified checks. This does not establish scientific validity or absence of
+every possible type of noise. The underlying simulator is not calibrated to real
+astronaut measurements.
+
+WHAT LOOKS LIKE NOISE
+1. The generator deliberately adds fatigue variation and self-report error-like
+   random terms. Their respective standard deviations are 0.62 and 0.65 in the
+   custom score units. These are simulator parameters, not estimates from humans.
+   The target is tomorrow's observed simulated self-report, not hidden fatigue.
+   The stochastic terms do not identify particular records that should be deleted.
+2. There are 324 intentionally injected current HR/HRV events. A descriptive
+   robust rule flags 254 of 5,040 rows (5.04%); every flagged row is one of those
+   events. These examples represent unusual physiology by design. An outlier
+   flag is not proof that a measurement is wrong.
+3. 1,615 future fatigue scores are within 0.5 of a class cutoff. Their labels
+   match the declared score rules. Deleting or relabeling these difficult cases
+   would change the forecasting task rather than repair an established error.
+4. Attention scores in 2.5-point steps follow a 40-trial protocol. Repeated
+   personal baselines and exact current/baseline/delta identities are expected.
+
+CONTROLLED EXPERIMENT
+The fixed 26-feature Random Forest was compared with two fitting treatments:
+exclude extreme fitting rows, or retain them with sample weight 0.25. A row was
+flagged if any of four baseline-relative features had absolute robust z > 4.5.
+Medians and median absolute deviations were fitted separately within every
+fitting subset. No future target or event annotation was used to make a flag.
+No feature values or target labels were changed. Every original held-out row was
+scored by every candidate. The anomaly detector was not retrained.
+
+All candidates used the same three participant folds and all 5,040 observations:
+  Treatment                     Mean grouped-CV Macro-F1
+  Unchanged Random Forest       0.51630
+  Exclude flagged fitting rows  0.51986
+  Weight flagged rows 0.25      0.51645
+  Current-fatigue persistence   0.51400
+
+These are development cross-validation scores. They are not the earlier 0.5273
+validation score and are not directly comparable with the 4,452-row history study.
+
+Exclusion improved mean Macro-F1 by 0.00356. Its two forward-time differences
+were +0.00411 and +0.01046, with all evaluation rows retained. This is a small
+positive signal. However, the paired participant-bootstrap 95% interval for
+the pooled out-of-fold difference was [-0.00402, +0.01144], including zero.
+Weighting improved mean Macro-F1 by only 0.00015 and worsened both time checks;
+its pooled-difference interval was [-0.00704, +0.00720]. Neither candidate met
+the prespecified +0.01 mean improvement requirement.
+
+The intervals describe reused synthetic development predictions, not a new
+independent test. The small exclusion result does not prove no benefit exists,
+and does not establish the flagged data as corrupt. It could reflect reduced
+influence of current physiological events on the separate next-day fatigue task.
+
+ACTUAL FITTING COUNTS
+Group fold 0: 174 of 3,360 fitting rows excluded; 3,186 retained.
+Group fold 1: 162 of 3,360 fitting rows excluded; 3,198 retained.
+Group fold 2: 169 of 3,360 fitting rows excluded; 3,191 retained.
+Each candidate still scored all 1,680 held-out rows in each fold.
+All flagged fitting rows were injected events in every group/time stage.
+These are temporary experimental fitting subsets, not a cleaned replacement CSV.
+
+GRAPH INTERPRETATION
+PDF page 1: the separate HR/HRV cluster consists of deliberate injected events.
+The fatigue plot shows real variation in the simulated forecasting target: similar
+current scores can be followed by different next-day scores. Neither plot supplies
+a reliable rule for deciding that an individual record is incorrect.
+PDF page 2: the small gains are visible beside fold variation. Exclusion improves
+both time checks, while weighting worsens them. The source dataset is retained.
+
+DELIVERABLES AND REPRODUCTION
+Visual report: reports/noise_004/ASTRA_SHIELD_noise_review.pdf
+Full audit: experiments/noise_004_review/NOISE_AUDIT.txt
+Detailed experiment: experiments/noise_004/RESULTS.txt
+Frozen plan: experiments/noise_004/plan.json
+Independent verification: reports/noise_004/INDEPENDENT_VERIFICATION.json
+
+Using the existing project Python environment, from the project root:
+  .venv/bin/python reports/noise_004/verify_noise_experiment.py
+  .venv/bin/python reports/noise_004/generate_noise_plots.py
+Model and plot dependencies are in requirements.txt and requirements-report.txt.
+The experiment source is astra_shield_ml/noise_cleaning_experiment.py. It refuses
+to overwrite a completed frozen experiment. For a full rerun use a fresh project
+copy without experiments/noise_004, retaining the same input/config/fold hashes.
+
+Independent checks recomputed all 12 grouped, 8 temporal and 8 subgroup metric
+rows, all five fitting masks, and both bootstrap intervals. Hashes confirm that
+the original training CSV, official model and frozen experiment script are intact.
+No source rows were deleted, no official model was replaced, and no API changed.

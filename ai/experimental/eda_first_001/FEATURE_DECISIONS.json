@@ -1,0 +1,284 @@
+{
+  "experiment_id": "eda_first_001",
+  "review_created_at_utc": "2026-11-14T13:13:12.373693+00:00",
+  "stage": "EDA review and feature decisions only; no revised candidate has been trained by this reviewer",
+  "data_source": "Original ASTRA-SHIELD longitudinal synthetic dataset only",
+  "review_observation_scope": "Training EDA charts and training summaries; no test.csv or validation metrics opened for these decisions",
+  "train_csv_sha256": "a9b7aba9497fbcf68b6f5bb771b01dbf82c3b00c93a2a0c6873f705712a235e5",
+  "target": "target_next_day_fatigue_class",
+  "forecast_horizon_hours": 24,
+  "selection_metric": "macro_f1",
+  "feature_sets": {
+    "full_26": [
+      "sleep_duration_hours",
+      "sleep_efficiency_pct",
+      "sleep_onset_delay_minutes",
+      "awakenings_count",
+      "sleep_midpoint_deviation_minutes",
+      "resting_heart_rate_bpm",
+      "hrv_rmssd_ms",
+      "reaction_time_median_ms",
+      "reaction_time_lapses_count",
+      "attention_accuracy_pct",
+      "self_report_stress_score",
+      "self_report_fatigue_score",
+      "self_report_mood_score",
+      "workload_hours",
+      "exercise_minutes",
+      "baseline_sleep_duration_hours",
+      "baseline_resting_heart_rate_bpm",
+      "baseline_hrv_rmssd_ms",
+      "baseline_reaction_time_median_ms",
+      "sleep_duration_delta_from_baseline_hours",
+      "heart_rate_delta_from_baseline_bpm",
+      "hrv_delta_from_baseline_ms",
+      "reaction_time_change_from_baseline_pct",
+      "prior_3day_mean_sleep_hours",
+      "prior_3day_mean_resting_heart_rate_bpm",
+      "prior_3day_mean_reaction_time_ms"
+    ],
+    "personalized_reduced": [
+      "sleep_duration_hours",
+      "sleep_efficiency_pct",
+      "sleep_onset_delay_minutes",
+      "awakenings_count",
+      "sleep_midpoint_deviation_minutes",
+      "reaction_time_lapses_count",
+      "attention_accuracy_pct",
+      "self_report_stress_score",
+      "self_report_fatigue_score",
+      "self_report_mood_score",
+      "workload_hours",
+      "exercise_minutes",
+      "baseline_sleep_duration_hours",
+      "heart_rate_delta_from_baseline_bpm",
+      "hrv_delta_from_baseline_ms",
+      "reaction_time_change_from_baseline_pct",
+      "prior_3day_mean_sleep_hours"
+    ]
+  },
+  "feature_decisions": [
+    {
+      "feature": "sleep_duration_hours",
+      "full_26": "retain",
+      "personalized_reduced": "retain",
+      "rationale": "Preserve absolute recent sleep duration; relative change alone can hide a short sleep episode."
+    },
+    {
+      "feature": "sleep_efficiency_pct",
+      "full_26": "retain",
+      "personalized_reduced": "retain",
+      "rationale": "Retain a distinct sleep opportunity/continuity indicator; bounded percent, not a generic z-score."
+    },
+    {
+      "feature": "sleep_onset_delay_minutes",
+      "full_26": "retain",
+      "personalized_reduced": "retain",
+      "rationale": "Retain a distinct sleep-onset indicator available before cutoff."
+    },
+    {
+      "feature": "awakenings_count",
+      "full_26": "retain",
+      "personalized_reduced": "retain",
+      "rationale": "Retain discrete sleep-interruption information; observed skew alone is not an error or a reason to delete counts."
+    },
+    {
+      "feature": "sleep_midpoint_deviation_minutes",
+      "full_26": "retain",
+      "personalized_reduced": "retain",
+      "rationale": "Retain signed timing deviation for the circadian monitoring objective; negative means earlier, not invalid."
+    },
+    {
+      "feature": "resting_heart_rate_bpm",
+      "full_26": "retain",
+      "personalized_reduced": "drop",
+      "rationale": "Reduced representation uses current HR minus the fixed personal HR baseline; absolute HR remains in the full candidate."
+    },
+    {
+      "feature": "hrv_rmssd_ms",
+      "full_26": "retain",
+      "personalized_reduced": "drop",
+      "rationale": "Reduced representation uses current RMSSD minus the fixed personal RMSSD baseline; absolute RMSSD remains in the full candidate."
+    },
+    {
+      "feature": "reaction_time_median_ms",
+      "full_26": "retain",
+      "personalized_reduced": "drop",
+      "rationale": "Reduced representation uses percent change from fixed personal reaction-time baseline, with lapse count and attention accuracy retained."
+    },
+    {
+      "feature": "reaction_time_lapses_count",
+      "full_26": "retain",
+      "personalized_reduced": "retain",
+      "rationale": "Retain discrete cognitive-response lapses alongside baseline-relative median response time."
+    },
+    {
+      "feature": "attention_accuracy_pct",
+      "full_26": "retain",
+      "personalized_reduced": "retain",
+      "rationale": "Retain a separate accuracy domain, not a duplicated raw correct count."
+    },
+    {
+      "feature": "self_report_stress_score",
+      "full_26": "retain",
+      "personalized_reduced": "retain",
+      "rationale": "Retain the current custom stress report as an available behavioral input; it is not a psychiatric diagnosis."
+    },
+    {
+      "feature": "self_report_fatigue_score",
+      "full_26": "retain",
+      "personalized_reduced": "retain",
+      "rationale": "Retain current fatigue as a valid available predictor for tomorrow; explicitly compare a persistence baseline. It is not the future target or KSS."
+    },
+    {
+      "feature": "self_report_mood_score",
+      "full_26": "retain",
+      "personalized_reduced": "retain",
+      "rationale": "Retain the current custom mood report as a complementary behavioral input."
+    },
+    {
+      "feature": "workload_hours",
+      "full_26": "retain",
+      "personalized_reduced": "retain",
+      "rationale": "Retain daily workload context rather than inferring it from sleep/cognitive variables."
+    },
+    {
+      "feature": "exercise_minutes",
+      "full_26": "retain",
+      "personalized_reduced": "retain",
+      "rationale": "Retain distinct daily exercise context; no target-based ranking was used to delete it."
+    },
+    {
+      "feature": "baseline_sleep_duration_hours",
+      "full_26": "retain",
+      "personalized_reduced": "retain",
+      "rationale": "Retain fixed calibration sleep level so absolute sleep can be interpreted alongside the individual reference."
+    },
+    {
+      "feature": "baseline_resting_heart_rate_bpm",
+      "full_26": "retain",
+      "personalized_reduced": "drop",
+      "rationale": "Stable individual HR level contributes to the correlated absolute HR block; its information is used to compute HR delta before prediction."
+    },
+    {
+      "feature": "baseline_hrv_rmssd_ms",
+      "full_26": "retain",
+      "personalized_reduced": "drop",
+      "rationale": "Stable individual RMSSD level is used to compute HRV delta before prediction, rather than being a separate reduced-model predictor."
+    },
+    {
+      "feature": "baseline_reaction_time_median_ms",
+      "full_26": "retain",
+      "personalized_reduced": "drop",
+      "rationale": "Used in the causal percent-change feature before prediction rather than as a separate reduced-model predictor."
+    },
+    {
+      "feature": "sleep_duration_delta_from_baseline_hours",
+      "full_26": "retain",
+      "personalized_reduced": "drop",
+      "rationale": "Training Pearson r=0.919637 with absolute sleep duration; reduced candidate keeps absolute duration plus fixed sleep baseline and past-only mean, avoiding this redundant derived predictor."
+    },
+    {
+      "feature": "heart_rate_delta_from_baseline_bpm",
+      "full_26": "retain",
+      "personalized_reduced": "retain",
+      "rationale": "Retain the project-required personal-baseline HR change in original bpm units."
+    },
+    {
+      "feature": "hrv_delta_from_baseline_ms",
+      "full_26": "retain",
+      "personalized_reduced": "retain",
+      "rationale": "Retain the project-required personal-baseline RMSSD change in milliseconds."
+    },
+    {
+      "feature": "reaction_time_change_from_baseline_pct",
+      "full_26": "retain",
+      "personalized_reduced": "retain",
+      "rationale": "Retain relative cognitive slowing/speeding versus a fixed earlier baseline, preserving the personalized objective."
+    },
+    {
+      "feature": "prior_3day_mean_sleep_hours",
+      "full_26": "retain",
+      "personalized_reduced": "retain",
+      "rationale": "Retain a strictly past-only sleep summary for persistent sleep patterns, excluding today and future days."
+    },
+    {
+      "feature": "prior_3day_mean_resting_heart_rate_bpm",
+      "full_26": "retain",
+      "personalized_reduced": "drop",
+      "rationale": "Training Pearson r=0.892748 with fixed HR baseline; omitting this absolute history summary reduces stable-person-level redundancy in the relative-physiology sensitivity candidate."
+    },
+    {
+      "feature": "prior_3day_mean_reaction_time_ms",
+      "full_26": "retain",
+      "personalized_reduced": "drop",
+      "rationale": "Omitted in the compressed candidate to avoid mixing absolute reaction-time history with its retained relative-change representation; the full candidate preserves this potentially useful history."
+    }
+  ],
+  "feature_engineering_contract": {
+    "new_columns": [],
+    "baseline": "Seven fixed earlier calibration days per virtual participant; never recalculated from future outcomes or full mission history",
+    "changes": "Existing current-minus-baseline HR/RMSSD and 100*(current reaction time/baseline reaction time - 1)",
+    "history": "Existing three-day means contain t-3,t-2,t-1 only",
+    "measurement_burden_note": "Reduced predictor count does not remove baseline measurement requirements; raw values and fixed baseline means remain necessary to calculate relative features before serving."
+  },
+  "predeclared_model_comparison": {
+    "algorithms": [
+      "RandomForestClassifier",
+      "EncodedXGBClassifier"
+    ],
+    "class_imbalance_handling": "RF balanced class weights and XGBoost balanced training sample weights; no full-dataset resampling",
+    "preprocessing": "Train-fitted defensive median imputer only; no global scaling and no validation/test-derived statistics",
+    "baseline_comparators": [
+      "majority_class",
+      "current_fatigue_persistence"
+    ],
+    "selection": "Four candidates: two feature sets x two algorithms, compared using validation Macro-F1; report all per-class precision/recall and candidate scores",
+    "hyperparameter_search": "Use the already specified small candidate recipes; do not expand search after seeing validation/test results",
+    "test_policy": "Previously evaluated test participants are excluded from this revised development experiment. Report validation only; no claim of fresh unseen-test generalization.",
+    "deployment_policy": "Do not automatically replace the delivered initial API artifact based solely on development scores. Preserve its historical test report and label any new model development-only until independently evaluated."
+  },
+  "eda_based_actions": [
+    {
+      "finding": "Moderate=3411/5040 (67.68%), low=1079 (21.41%), high=550 (10.91%)",
+      "decision": "Use Macro-F1 and per-class metrics; report majority and persistence baselines; keep original participant partitions"
+    },
+    {
+      "finding": "No missing/nonfinite values or failed documented engineering bounds; no duplicate row/day keys",
+      "decision": "Retain all prepared training rows unchanged; no invented cleaning or imputation of already complete cells"
+    },
+    {
+      "finding": "HR histogram has a right tail; other reviewed histograms are bounded simulator distributions",
+      "decision": "Do not delete tail rows solely for being uncommon; trees do not require normality and synthetic tails may be intentionally generated"
+    },
+    {
+      "finding": "Sleep duration versus sleep delta r=0.919637; fixed HR baseline versus prior HR mean r=0.892748",
+      "decision": "Prespecify a reduced relative-feature representation as a sensitivity candidate; retain full26 as the comparison because correlation alone does not prove irrelevance"
+    },
+    {
+      "finding": "Repeated daily measurements from 84 people are correlated observations",
+      "decision": "Preserve participant grouping; do not treat repeated IDs as duplicates or random-split their days"
+    }
+  ],
+  "charts_visually_reviewed": [
+    {
+      "path": "reports/eda/training_feature_distributions.png",
+      "sha256": "10fcf5966634eed89dc8ee3757ef28216f1dcf467ea158af9a1da0883c0155ea"
+    },
+    {
+      "path": "reports/eda/training_class_distribution.png",
+      "sha256": "32241955ca0d23966f630e97bcdbc464dfa2e81072cac530bba1293cc0291b33"
+    },
+    {
+      "path": "reports/eda/numeric_correlation_heatmap.png",
+      "sha256": "b8b4a1a2c055d7fab5a6f3995f20e6c70c83a2e41dd4df520f520472084ea96b"
+    }
+  ],
+  "limitations": [
+    "Training EDA describes an engineering simulator, not measured human physiology or clinical risk.",
+    "Input-only correlation does not establish future predictive importance or causal effects.",
+    "The reduced17 set is a predeclared hypothesis, not a claim that its dropped features are medically irrelevant.",
+    "Current custom fatigue is allowed for a next-day target; all future target columns and target-derived annotations remain forbidden predictors.",
+    "No real KSS, undefined SP, V3 target, additional participant history or sensor measurements were invented."
+  ]
+}

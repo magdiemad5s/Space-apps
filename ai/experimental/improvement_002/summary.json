@@ -1,0 +1,258 @@
+{
+  "experiment": "improvement_002",
+  "completed_at_utc": "2026-11-14T14:05:16.642563+00:00",
+  "elapsed_seconds": 20.138083134000226,
+  "selected_candidate": "current_rf_leaf8_depth14",
+  "candidate_is_baseline": false,
+  "scope": "Synthetic development experiment; existing validation reused; no fresh test or scientific improvement claim",
+  "cv_results": [
+    {
+      "candidate": "current_rf_leaf8_depth14",
+      "mean_cv_macro_f1": 0.5162970580140134,
+      "std_cv_macro_f1": 0.018206225217050565,
+      "mean_cv_high_recall": 0.3755621130636239,
+      "mean_cv_accuracy": 0.6285714285714286,
+      "total_fit_predict_seconds": 2.6258546689996365,
+      "complexity_rank": 7,
+      "selection_f1_rounded_6dp": 0.516297
+    },
+    {
+      "candidate": "current_fatigue_persistence",
+      "mean_cv_macro_f1": 0.5140029226628239,
+      "std_cv_macro_f1": 0.028140996396534362,
+      "mean_cv_high_recall": 0.37509240943875,
+      "mean_cv_accuracy": 0.6287698412698413,
+      "total_fit_predict_seconds": 0.004249862000506255,
+      "complexity_rank": 1,
+      "selection_f1_rounded_6dp": 0.514003
+    },
+    {
+      "candidate": "rf_leaf16_depth10",
+      "mean_cv_macro_f1": 0.5102038040011428,
+      "std_cv_macro_f1": 0.019611308660260413,
+      "mean_cv_high_recall": 0.5100756995848986,
+      "mean_cv_accuracy": 0.574404761904762,
+      "total_fit_predict_seconds": 2.2873044370007847,
+      "complexity_rank": 6,
+      "selection_f1_rounded_6dp": 0.510204
+    },
+    {
+      "candidate": "rf_leaf32_depth8",
+      "mean_cv_macro_f1": 0.4854641479000034,
+      "std_cv_macro_f1": 0.01286642745480237,
+      "mean_cv_high_recall": 0.5920014778959243,
+      "mean_cv_accuracy": 0.5259920634920635,
+      "total_fit_predict_seconds": 1.9532388819998232,
+      "complexity_rank": 5,
+      "selection_f1_rounded_6dp": 0.485464
+    },
+    {
+      "candidate": "rf_leaf48_depth6",
+      "mean_cv_macro_f1": 0.46331602602966676,
+      "std_cv_macro_f1": 0.017680421144749835,
+      "mean_cv_high_recall": 0.6030935584766274,
+      "mean_cv_accuracy": 0.493452380952381,
+      "total_fit_predict_seconds": 1.8245261900001424,
+      "complexity_rank": 4,
+      "selection_f1_rounded_6dp": 0.463316
+    },
+    {
+      "candidate": "balanced_logistic_C0.1",
+      "mean_cv_macro_f1": 0.4402568781663414,
+      "std_cv_macro_f1": 0.02510511254025092,
+      "mean_cv_high_recall": 0.6582519622573156,
+      "mean_cv_accuracy": 0.4599206349206349,
+      "total_fit_predict_seconds": 0.11831214599988016,
+      "complexity_rank": 2,
+      "selection_f1_rounded_6dp": 0.440257
+    },
+    {
+      "candidate": "balanced_logistic_C1",
+      "mean_cv_macro_f1": 0.4397899173453223,
+      "std_cv_macro_f1": 0.024734497503822808,
+      "mean_cv_high_recall": 0.6547720938398403,
+      "mean_cv_accuracy": 0.4597222222222222,
+      "total_fit_predict_seconds": 0.15120260000094277,
+      "complexity_rank": 3,
+      "selection_f1_rounded_6dp": 0.43979
+    },
+    {
+      "candidate": "majority_class",
+      "mean_cv_macro_f1": 0.26902320661953943,
+      "std_cv_macro_f1": 0.005825476198275041,
+      "mean_cv_high_recall": 0.0,
+      "mean_cv_accuracy": 0.6767857142857143,
+      "total_fit_predict_seconds": 0.007194462998995732,
+      "complexity_rank": 0,
+      "selection_f1_rounded_6dp": 0.269023
+    }
+  ],
+  "validation_metrics": {
+    "current_rf_leaf8_depth14": {
+      "macro_f1": 0.5272528187101052,
+      "high_recall": 0.37681159420289856,
+      "high_precision": 0.35135135135135137,
+      "accuracy": 0.6212962962962963,
+      "classification_report": {
+        "low": {
+          "precision": 0.491869918699187,
+          "recall": 0.5148936170212766,
+          "f1-score": 0.5031185031185031,
+          "support": 235.0
+        },
+        "moderate": {
+          "precision": 0.7259475218658892,
+          "recall": 0.7043847241867044,
+          "f1-score": 0.7150035893754487,
+          "support": 707.0
+        },
+        "high": {
+          "precision": 0.35135135135135137,
+          "recall": 0.37681159420289856,
+          "f1-score": 0.36363636363636365,
+          "support": 138.0
+        },
+        "accuracy": 0.6212962962962963,
+        "macro avg": {
+          "precision": 0.5230562639721424,
+          "recall": 0.5320299784702932,
+          "f1-score": 0.5272528187101052,
+          "support": 1080.0
+        },
+        "weighted avg": {
+          "precision": 0.6271489030925732,
+          "recall": 0.6212962962962963,
+          "f1-score": 0.6240020408362117,
+          "support": 1080.0
+        }
+      },
+      "confusion_matrix_labels": [
+        "low",
+        "moderate",
+        "high"
+      ],
+      "confusion_matrix": [
+        [
+          121,
+          110,
+          4
+        ],
+        [
+          117,
+          498,
+          92
+        ],
+        [
+          8,
+          78,
+          52
+        ]
+      ]
+    },
+    "current_fatigue_persistence": {
+      "macro_f1": 0.49519846112355265,
+      "high_recall": 0.3333333333333333,
+      "high_precision": 0.3333333333333333,
+      "accuracy": 0.6,
+      "classification_report": {
+        "low": {
+          "precision": 0.44214876033057854,
+          "recall": 0.4553191489361702,
+          "f1-score": 0.44863731656184486,
+          "support": 235.0
+        },
+        "moderate": {
+          "precision": 0.7071428571428572,
+          "recall": 0.7001414427157001,
+          "f1-score": 0.7036247334754797,
+          "support": 707.0
+        },
+        "high": {
+          "precision": 0.3333333333333333,
+          "recall": 0.3333333333333333,
+          "f1-score": 0.3333333333333333,
+          "support": 138.0
+        },
+        "accuracy": 0.6,
+        "macro avg": {
+          "precision": 0.4942083169355897,
+          "recall": 0.4962646416617345,
+          "f1-score": 0.49519846112355265,
+          "support": 1080.0
+        },
+        "weighted avg": {
+          "precision": 0.6017175543311908,
+          "recall": 0.6,
+          "f1-score": 0.6008263481103683,
+          "support": 1080.0
+        }
+      },
+      "confusion_matrix_labels": [
+        "low",
+        "moderate",
+        "high"
+      ],
+      "confusion_matrix": [
+        [
+          107,
+          122,
+          6
+        ],
+        [
+          126,
+          495,
+          86
+        ],
+        [
+          9,
+          83,
+          46
+        ]
+      ]
+    }
+  },
+  "paired_participant_bootstrap": {
+    "current_rf_leaf8_depth14": {
+      "method": "paired whole-participant bootstrap; repeated development validation",
+      "repetitions": 1000,
+      "participants": 18,
+      "seed": 20261114,
+      "comparison": "current_rf_leaf8_depth14",
+      "macro_f1_difference_selected_minus_comparison": 0.0,
+      "macro_f1_difference_percentile_95ci": [
+        0.0,
+        0.0
+      ],
+      "high_recall_difference_percentile_95ci": [
+        0.0,
+        0.0
+      ],
+      "fraction_bootstrap_differences_above_zero": 0.0,
+      "interpretation": "Descriptive uncertainty on reused synthetic development validation; not a new independent or clinical test"
+    },
+    "current_fatigue_persistence": {
+      "method": "paired whole-participant bootstrap; repeated development validation",
+      "repetitions": 1000,
+      "participants": 18,
+      "seed": 20261114,
+      "comparison": "current_fatigue_persistence",
+      "macro_f1_difference_selected_minus_comparison": 0.03205435758655256,
+      "macro_f1_difference_percentile_95ci": [
+        0.0052334753069694685,
+        0.05829577211826152
+      ],
+      "high_recall_difference_percentile_95ci": [
+        -0.02240528128587831,
+        0.1148693494379335
+      ],
+      "fraction_bootstrap_differences_above_zero": 0.992,
+      "interpretation": "Descriptive uncertainty on reused synthetic development validation; not a new independent or clinical test"
+    }
+  },
+  "validation_sha256": "3dc18db6bfb9e1a025d37279e73dd51fe52769019d9c856668286006e0d55523",
+  "test_read": false,
+  "deployed_model_changed": false,
+  "clinical_validation": false,
+  "promotion": "None; fitted artifact is development-only",
+  "shap_compatibility": "If logistic wins, future promotion needs linear SHAP support; current TreeSHAP service unchanged"
+}

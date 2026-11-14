@@ -1,0 +1,4 @@
+node_modules/
+dist/
+history_db_v2.json
+*.tmp

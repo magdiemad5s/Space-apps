@@ -1,0 +1,156 @@
+ASTRA-SHIELD WORKFLOW AUDIT — 2026-11-14
+
+Scope and bottom line
+I inspected current preparation/feature/training/EDA/inference code, the source
+generator, existing experiment/metric reports, and ONLY data/train.csv for new
+observation-level calculations. I did not open test.csv, validation.csv, raw
+observation records, or test_predictions.csv, and did not rerun evaluation or fit
+any model. Existing published metric summaries were used as historical evidence.
+
+No blocking correctness defect or direct future-label leakage was found in the
+reviewed original-data workflow. The principal constraints on improvement are
+evaluation reuse, noisy simulated outcomes, and limited independent subjects.
+Severity below separates research limitations from integration hardening.
+
+P1 / RESEARCH: Preserve the meaning of a held-out result during further tuning.
+Evidence: reports/RESULTS.txt reports historical final-test Macro-F1 0.52849 versus
+persistence 0.5181. The existing paired-participant bootstrap interval for the
+gain spans -0.01770 to +0.03697 (reports/participant_bootstrap.json). This does not
+establish a reliable gain over persistence. The 18 validation participants have
+also already served multiple candidate/feature comparisons. The EDA-first
+experiment correctly marks itself development-only and leaves the API unchanged.
+Action now: use the prespecified bounded participant-group CV comparison within
+the 84 training people; retain every day's records for one person within one fold.
+Fit imputation/scaling/text processing inside each fold's pipeline. Report all
+candidates and variation across folds. Do not advertise validation reuse or a
+repeat of the old test as fresh independent evidence. After decisions are frozen,
+an actually untouched cohort is needed for a new final-generalization statement.
+A new seed/new virtual cohort tests the simulator only, not astronaut validity.
+
+P1 / RESEARCH: The label-generation process limits predictable information.
+Evidence: data/source_generator.py:78-95 draws new duty, sleep and stress noise
+each day; latent fatigue includes independent SD 0.62 noise, and its reported
+score adds SD 0.65 noise. Lines 147-151 correctly shift the observed score to t+1
+and categorize it at arbitrary 4/7 cutoffs. In TRAIN only, 1,615/5,040 future
+scores (32.04%) are within 0.5 of a cutoff; 3,250 (64.48%) are within 1 point.
+Today's and tomorrow's categories differ in 1,871 rows (37.12%); current/future
+continuous fatigue correlation is approximately 0.5096. These are generator
+properties, not evidence that labels were accidentally misaligned.
+Action: retain the continuous-score regression task and compare its fixed 4/7
+categorization with direct classification as a preregistered next experiment.
+Assess uncertainty near boundaries. Do not reduce simulator noise or change label
+cutoffs merely to produce better-looking model scores. Tomorrow's planned duty
+schedule can be a future feature ONLY if genuinely known at today's cutoff; actual
+tomorrow-completed workload, sleep or physiological measurements would leak.
+
+P2 / NEXT FEATURE EXPERIMENT: Add persistence information causally, not by
+removing today's fatigue as alleged leakage.
+Evidence: the current predictor list has only self_report_fatigue_score for
+fatigue history; its rolling summaries cover sleep, heart rate and reaction time.
+The source process is explicitly temporally persistent (fatigue coefficient .57,
+stress .58, circadian state .65). Current fatigue is available before the forecast
+cutoff and is a legitimate input; it is not the shifted future target.
+Action later: prespecify prior-only fatigue lag/3-day mean/trend and cumulative
+sleep-deficit features, with adequate-history flags and feature-contract tests.
+Build them by sorting within participant and shift(1), using only earlier records.
+Define sleep deficit against a justified personal reference, not the simulator's
+unobserved sleep_need parameter or future sleep. Compare with persistence under
+group CV; do not claim these features are already implemented.
+
+P2 / RESEARCH: Redundancy is wider than two large pairwise correlations.
+Evidence: EDA reports two pairs with |r| >= .85, but three current/baseline/delta
+triples satisfy exact algebraic identities in TRAIN to floating precision:
+sleep delta = current sleep - baseline sleep; likewise HR and RMSSD deltas.
+Reaction-time percentage change is also derived from current and baseline RT.
+This is intentional personalization, not direct target leakage. The reduced17
+experiment's validation Macro-F1 0.51888 did not exceed full26's 0.52725; pruning
+correlation alone therefore did not establish an improvement.
+Action: keep full26 as the reference; compare a bounded simple/scaled model and
+tree regularization within training-group CV. Use grouped feature explanations
+when interpreting related current/baseline/delta variables. Do not delete a
+physiological feature solely because its marginal correlation is high or low.
+
+P2 / RESEARCH: Probability calibration and alert utility are separate from F1.
+Evidence: RF uses balanced class weights; XGBoost uses balanced training weights.
+service.py:244 computes points from 50*P(moderate)+100*P(high), while correctly
+labeling this an uncalibrated prototype index. The existing historical test High
+recall is 45.77%; most High examples are still missed. The selection objective is
+Macro-F1, not an agreed alert-cost or minimum sensitivity requirement.
+Action: first agree on the decision objective. For a later calibrated prototype,
+learn calibration using grouped training out-of-fold predictions or a reserved
+calibration group; assess log loss/Brier score/reliability as well as Macro-F1,
+precision and recall. Do not calibrate on the used final test, equate points with
+a clinical probability, or tune an alert threshold after inspecting final results.
+
+P2 / INTEGRATION HARDENING: Fixed baseline provenance remains a trust boundary.
+Evidence: source generation uses only calibration days -6..0, and history means
+are shift(1).rolling(3); this construction is sound. features.py:121-174 rejects
+future/current history, wrong participants, duplicate timestamps and missing daily
+cutoffs. However, it cannot prove that supplied seven consecutive earlier rows
+are the SAME initial calibration window on subsequent requests. The flat API can
+also receive baseline/history means without their source records.
+Action before real collection: store an immutable per-participant calibration
+window/version and its cutoff/hash in the backend, with measurement-quality and
+warm-up status. Do not silently replace it with a sliding recent seven-day mean.
+This is not a detected error in the present synthetic training CSV.
+
+P2 / DATA COVERAGE: Clean complete data does not test missing/device failure.
+Evidence: training-only EDA passes 41 engineering checks, with no missing cells,
+non-finite values, duplicate rows/day keys or failed documented input bounds.
+The defensive median imputer is consequently unused on supplied observations.
+Every training person has 60 complete days and seven prior calibration days.
+Action: keep these valid records unchanged. Separately evaluate realistic device
+dropout, stale records, measurement noise and warm-up scenarios, preserving
+missingness indicators and making abstention/degraded-output behavior explicit.
+Fit any learned imputation only inside training folds. Do not invent cleaning or
+automatically trim the HR right tail to make distributions appear Gaussian.
+
+P2 / PROTOCOL AND EXTERNAL VALIDITY: Units are mostly explicit; semantics still
+need enforcement when the data source changes.
+Evidence: the dictionary specifies five-minute quiet RMSSD and a five-minute,
+60-response PVT-like demo with a >=500 ms lapse definition. These are better
+specified than generic HRV/PVT columns, but are simulator protocols rather than
+verified instrument recordings or an interchangeable NASA Cognition implementation.
+attention_accuracy_pct is quantized at 2.5% in all TRAIN rows (40 trials), while
+the generic API permits arbitrary percentages. Workload/exercise are assumed
+non-overlapping in the 24-hour time budget; an outside system that counts exercise
+inside workload would violate that semantic convention. Sleep midpoint deviation
+is relative to a planned schedule, not a measured physiological circadian phase.
+Action: attach protocol/device/window versions and state exactly what each score
+means. Do not remap KSS, SDNN, a transformed PVT score, different test lengths or
+overlapping duty counts into current fields by name alone. Strengthen protocol-
+compatibility checks when actual collection begins; no such measurement rewrite
+is justified in the current already-defined training data.
+
+P2 / NLP: Distinct full journals overstate independent language diversity.
+Evidence: TRAIN has 5,040 distinct full journals but only 12 distinct first
+sentences (four per generated stress category); split-specific sentence banks
+create a deliberate vocabulary shift. The journal class is assigned from latent
+stress and used to choose the sentence, not annotated by a human. The existing
+historical text Macro-F1 is 0.3938 with High recall 0.1695.
+Action: retain its experimental status; real journal analysis needs representative
+language and independent annotations, or a separately validated pretrained model.
+Do not improve apparent text scores by placing identical generated templates
+across train/test and calling that language generalization.
+
+WHAT IS ALREADY CORRECT
+- Participant-disjoint partitions, train-fitted preprocessing, target/identity
+  exclusion and explicit fixed next-day targets.
+- Training-only EDA; no false claim that complete data required repairs.
+- Fixed unlabeled Isolation Forest fit; injected-event labels used for evaluation.
+- Actual TreeSHAP with explicit classifier-output units and non-causal wording.
+- Frozen experiment decisions and honest separation of development from final test.
+
+PRIORITY ORDER
+1. Complete the bounded TRAIN-only grouped-CV comparison already being implemented
+   by the parent team. No API/feature-contract promotion based on old-test retuning.
+2. Report gain over persistence with uncertainty and the agreed alert objective.
+3. Prespecify causal fatigue-history/sleep-deficit and ordinal/regression comparisons
+   as the next feature experiment; keep planned future inputs strictly cutoff-known.
+4. Add probability calibration and robustness/abstention evaluation with fresh
+   grouped development data before interpreting confidence or points.
+5. Acquire appropriately labeled real longitudinal data for any astronaut-health
+   claim; more samples from the same custom simulator cannot supply that evidence.
+
+No model, prediction threshold, dataset, partition or API file was changed by
+this audit. Only this report was written.

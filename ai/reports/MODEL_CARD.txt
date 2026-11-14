@@ -1,0 +1,35 @@
+ASTRA-SHIELD 0.1.0 — SYNTHETIC PROTOTYPE
+
+Five components were trained in the attached cloud CPU workspace.
+The primary full model compares Random Forest and XGBoost by validation
+macro F1. A separate sensitivity ablation excludes current custom
+fatigue self-report and all current/historical PVT-like predictors.
+Primary task: predict next-day custom low/moderate/high fatigue from
+today's data. Secondary tasks: next-day fatigue score, next-day median
+reaction time, current injected physiology-event detection, current
+generated-journal stress classification. These are separate tasks.
+
+All values and target labels are simulated. They are not NASA astronaut
+measurements, clinical labels, or validated medical-risk probabilities.
+Fatigue cutoffs 4 and 7 are engineering demo choices. Physiological
+events are injected by the generator, not diagnosed diseases. Journal
+language is templated and its held-out performance cannot validate real
+human-language or psychiatric assessment.
+
+Training uses 84 virtual participants; validation uses 18 different
+participants. Seven premission days establish personal baselines,
+including for held-out participants. Historical means use prior days
+only. Every target and identifier is excluded from model input.
+Preprocessing is fitted on training data only. Validation selects
+among small prespecified candidates and baseline alternatives; no
+train+validation refit is performed. IsolationForest is fitted without
+event annotations; its configuration and threshold are fixed.
+
+Final test evaluation was executed separately after the selection freeze.
+The frozen test report is reports/test_metrics.json. Test Macro-F1 is 0.5285
+versus 0.5181 for a persistence baseline; High-fatigue recall is 0.4577.
+Do not tune the frozen models against these test results.
+
+Only load joblib artifacts from trusted sources: they contain Python
+pickle objects. Keep the model, feature contract and dependency versions
+together. No external AI services or API keys are used.

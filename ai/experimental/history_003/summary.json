@@ -1,0 +1,582 @@
+{
+  "experiment": "history_003",
+  "completed_at_utc": "2026-11-14T16:09:09.910794+00:00",
+  "elapsed_seconds": 37.68614080400039,
+  "scope": "Exploratory synthetic TRAIN-only comparison; no validation/finaltest read, no deployment promotion",
+  "eligible_rows": 4452,
+  "virtual_participants": 84,
+  "eligible_days": [
+    8,
+    60
+  ],
+  "cohort_warning": "Scores apply to4452commonrows and are not directly comparable with previous5040row experiment scores",
+  "groupcv_comparison": [
+    {
+      "candidate": "current_fatigue_persistence",
+      "mean_macro_f1": 0.5036455993975696,
+      "std_macro_f1": 0.022147071343227263,
+      "mean_high_recall": 0.3716129032258064,
+      "mean_high_precision": 0.3683612959467392,
+      "mean_false_high_per_100_non_high": 7.997545780413859
+    },
+    {
+      "candidate": "rf_current26_control",
+      "mean_macro_f1": 0.509999770870146,
+      "std_macro_f1": 0.017509407875208858,
+      "mean_high_recall": 0.3838344491783323,
+      "mean_high_precision": 0.37861726250784006,
+      "mean_false_high_per_100_non_high": 7.869892625859062
+    },
+    {
+      "candidate": "rf_current26_plus4_history",
+      "mean_macro_f1": 0.5161009219181065,
+      "std_macro_f1": 0.014859729593743615,
+      "mean_high_recall": 0.3851964563467911,
+      "mean_high_precision": 0.38969370942308523,
+      "mean_false_high_per_100_non_high": 7.541250452193445
+    }
+  ],
+  "pooled_oof_metrics": {
+    "rf_current26_control": {
+      "macro_f1": 0.5102346735852871,
+      "high_precision": 0.378,
+      "high_recall": 0.38181818181818183,
+      "accuracy": 0.6300539083557951,
+      "false_high_count": 311,
+      "false_high_per_100_non_high": 7.8594895122567605,
+      "classification_report": {
+        "low": {
+          "precision": 0.4140197152245345,
+          "recall": 0.41814159292035397,
+          "f1-score": 0.4160704457897633,
+          "support": 904.0
+        },
+        "moderate": {
+          "precision": 0.736426456071076,
+          "recall": 0.7330494595479856,
+          "f1-score": 0.7347340774786605,
+          "support": 3053.0
+        },
+        "high": {
+          "precision": 0.378,
+          "recall": 0.38181818181818183,
+          "f1-score": 0.3798994974874372,
+          "support": 495.0
+        },
+        "accuracy": 0.6300539083557951,
+        "macro avg": {
+          "precision": 0.5094820570985369,
+          "recall": 0.5110030780955072,
+          "f1-score": 0.5102346735852871,
+          "support": 4452.0
+        },
+        "weighted avg": {
+          "precision": 0.6311082194402459,
+          "recall": 0.6300539083557951,
+          "f1-score": 0.6305752634304982,
+          "support": 4452.0
+        }
+      },
+      "confusion_matrix_labels": [
+        "low",
+        "moderate",
+        "high"
+      ],
+      "confusion_matrix": [
+        [
+          378,
+          516,
+          10
+        ],
+        [
+          514,
+          2238,
+          301
+        ],
+        [
+          21,
+          285,
+          189
+        ]
+      ]
+    },
+    "rf_current26_plus4_history": {
+      "macro_f1": 0.5165707255672407,
+      "high_precision": 0.38934426229508196,
+      "high_recall": 0.3838383838383838,
+      "accuracy": 0.6338724168912848,
+      "false_high_count": 298,
+      "false_high_per_100_non_high": 7.530957796310337,
+      "classification_report": {
+        "low": {
+          "precision": 0.42015005359056806,
+          "recall": 0.4336283185840708,
+          "f1-score": 0.4267827980402831,
+          "support": 904.0
+        },
+        "moderate": {
+          "precision": 0.7390300230946882,
+          "recall": 0.7337045528987881,
+          "f1-score": 0.7363576594345825,
+          "support": 3053.0
+        },
+        "high": {
+          "precision": 0.38934426229508196,
+          "recall": 0.3838383838383838,
+          "f1-score": 0.38657171922685657,
+          "support": 495.0
+        },
+        "accuracy": 0.6338724168912848,
+        "macro avg": {
+          "precision": 0.5161747796601127,
+          "recall": 0.5170570851070809,
+          "f1-score": 0.5165707255672407,
+          "support": 4452.0
+        },
+        "weighted avg": {
+          "precision": 0.635399757140616,
+          "recall": 0.6338724168912848,
+          "f1-score": 0.6346057018642162,
+          "support": 4452.0
+        }
+      },
+      "confusion_matrix_labels": [
+        "low",
+        "moderate",
+        "high"
+      ],
+      "confusion_matrix": [
+        [
+          392,
+          504,
+          8
+        ],
+        [
+          523,
+          2240,
+          290
+        ],
+        [
+          18,
+          287,
+          190
+        ]
+      ]
+    },
+    "current_fatigue_persistence": {
+      "macro_f1": 0.5045238106229423,
+      "high_precision": 0.3667334669338677,
+      "high_recall": 0.3696969696969697,
+      "accuracy": 0.6275831087151842,
+      "false_high_count": 316,
+      "false_high_per_100_non_high": 7.985847864543846,
+      "classification_report": {
+        "low": {
+          "precision": 0.41150442477876104,
+          "recall": 0.41150442477876104,
+          "f1-score": 0.41150442477876104,
+          "support": 904.0
+        },
+        "moderate": {
+          "precision": 0.734339127582814,
+          "recall": 0.7333770062233869,
+          "f1-score": 0.7338577515568666,
+          "support": 3053.0
+        },
+        "high": {
+          "precision": 0.3667334669338677,
+          "recall": 0.3696969696969697,
+          "f1-score": 0.3682092555331992,
+          "support": 495.0
+        },
+        "accuracy": 0.6275831087151842,
+        "macro avg": {
+          "precision": 0.5041923397651477,
+          "recall": 0.5048594668997058,
+          "f1-score": 0.5045238106229423,
+          "support": 4452.0
+        },
+        "weighted avg": {
+          "precision": 0.6279133923276271,
+          "recall": 0.6275831087151842,
+          "f1-score": 0.6277473712920142,
+          "support": 4452.0
+        }
+      },
+      "confusion_matrix_labels": [
+        "low",
+        "moderate",
+        "high"
+      ],
+      "confusion_matrix": [
+        [
+          372,
+          515,
+          17
+        ],
+        [
+          515,
+          2239,
+          299
+        ],
+        [
+          17,
+          295,
+          183
+        ]
+      ]
+    }
+  },
+  "groupfold_macro_f1_deltas_augmented_minus_control": {
+    "0": 0.009533990650143376,
+    "1": 0.0032081304004030198,
+    "2": 0.005561332093334981
+  },
+  "temporal_macro_f1_deltas_augmented_minus_control": {
+    "0": -0.0077290015169101944,
+    "1": -0.010846719820288453
+  },
+  "oof_high_precision_delta": 0.011344262295081953,
+  "oof_high_recall_delta": 0.0020202020202019777,
+  "prespecified_gate_results": {
+    "mean_cv_macro_f1_gain_at_least_0.01": false,
+    "all_groupfold_macro_f1_deltas_nonnegative": true,
+    "all_temporal_macro_f1_deltas_nonnegative": false,
+    "oof_high_recall_drop_no_more_than_0.02": true,
+    "oof_high_precision_drop_no_more_than_0.02": true
+  },
+  "passes_all_engineering_comparison_gates": false,
+  "paired_participant_bootstrap": {
+    "augmented_minus_control": {
+      "comparison": "rf_current26_plus4_history minus rf_current26_control",
+      "repetitions": 1000,
+      "seed": 20261114,
+      "unit": "whole participant, all eligible days together",
+      "observed_oof_macro_f1_difference": 0.006336051981953639,
+      "percentile_95ci": [
+        -0.0027977575678700406,
+        0.014825815960096867
+      ],
+      "fraction_positive": 0.917,
+      "scope": "Descriptive uncertainty for correlated grouped-CV predictions from a synthetic training cohort; not a fresh or independent test"
+    },
+    "augmented_minus_persistence": {
+      "comparison": "rf_current26_plus4_history minus current_fatigue_persistence",
+      "repetitions": 1000,
+      "seed": 20261114,
+      "unit": "whole participant, all eligible days together",
+      "observed_oof_macro_f1_difference": 0.012046914944298437,
+      "percentile_95ci": [
+        -0.0032285454108265748,
+        0.026271741395287453
+      ],
+      "fraction_positive": 0.928,
+      "scope": "Descriptive uncertainty for correlated grouped-CV predictions from a synthetic training cohort; not a fresh or independent test"
+    }
+  },
+  "fold_independence": [
+    {
+      "fold": 0,
+      "fit_participants": [
+        "SIM_005",
+        "SIM_006",
+        "SIM_009",
+        "SIM_010",
+        "SIM_013",
+        "SIM_014",
+        "SIM_015",
+        "SIM_017",
+        "SIM_018",
+        "SIM_019",
+        "SIM_023",
+        "SIM_026",
+        "SIM_027",
+        "SIM_029",
+        "SIM_032",
+        "SIM_034",
+        "SIM_036",
+        "SIM_037",
+        "SIM_039",
+        "SIM_044",
+        "SIM_048",
+        "SIM_049",
+        "SIM_050",
+        "SIM_051",
+        "SIM_053",
+        "SIM_054",
+        "SIM_056",
+        "SIM_057",
+        "SIM_059",
+        "SIM_064",
+        "SIM_065",
+        "SIM_066",
+        "SIM_068",
+        "SIM_070",
+        "SIM_079",
+        "SIM_080",
+        "SIM_081",
+        "SIM_083",
+        "SIM_085",
+        "SIM_086",
+        "SIM_087",
+        "SIM_089",
+        "SIM_090",
+        "SIM_092",
+        "SIM_093",
+        "SIM_094",
+        "SIM_095",
+        "SIM_097",
+        "SIM_101",
+        "SIM_103",
+        "SIM_104",
+        "SIM_105",
+        "SIM_107",
+        "SIM_110",
+        "SIM_113",
+        "SIM_119"
+      ],
+      "held_out_participants": [
+        "SIM_001",
+        "SIM_002",
+        "SIM_011",
+        "SIM_021",
+        "SIM_028",
+        "SIM_033",
+        "SIM_035",
+        "SIM_041",
+        "SIM_042",
+        "SIM_043",
+        "SIM_047",
+        "SIM_055",
+        "SIM_060",
+        "SIM_061",
+        "SIM_062",
+        "SIM_063",
+        "SIM_067",
+        "SIM_071",
+        "SIM_075",
+        "SIM_076",
+        "SIM_084",
+        "SIM_100",
+        "SIM_102",
+        "SIM_108",
+        "SIM_111",
+        "SIM_112",
+        "SIM_115",
+        "SIM_117"
+      ],
+      "overlap_count": 0
+    },
+    {
+      "fold": 1,
+      "fit_participants": [
+        "SIM_001",
+        "SIM_002",
+        "SIM_005",
+        "SIM_006",
+        "SIM_011",
+        "SIM_013",
+        "SIM_021",
+        "SIM_028",
+        "SIM_032",
+        "SIM_033",
+        "SIM_035",
+        "SIM_036",
+        "SIM_037",
+        "SIM_039",
+        "SIM_041",
+        "SIM_042",
+        "SIM_043",
+        "SIM_047",
+        "SIM_048",
+        "SIM_049",
+        "SIM_051",
+        "SIM_053",
+        "SIM_055",
+        "SIM_057",
+        "SIM_060",
+        "SIM_061",
+        "SIM_062",
+        "SIM_063",
+        "SIM_067",
+        "SIM_068",
+        "SIM_071",
+        "SIM_075",
+        "SIM_076",
+        "SIM_079",
+        "SIM_080",
+        "SIM_081",
+        "SIM_084",
+        "SIM_087",
+        "SIM_090",
+        "SIM_092",
+        "SIM_093",
+        "SIM_094",
+        "SIM_095",
+        "SIM_097",
+        "SIM_100",
+        "SIM_101",
+        "SIM_102",
+        "SIM_104",
+        "SIM_105",
+        "SIM_108",
+        "SIM_110",
+        "SIM_111",
+        "SIM_112",
+        "SIM_115",
+        "SIM_117",
+        "SIM_119"
+      ],
+      "held_out_participants": [
+        "SIM_009",
+        "SIM_010",
+        "SIM_014",
+        "SIM_015",
+        "SIM_017",
+        "SIM_018",
+        "SIM_019",
+        "SIM_023",
+        "SIM_026",
+        "SIM_027",
+        "SIM_029",
+        "SIM_034",
+        "SIM_044",
+        "SIM_050",
+        "SIM_054",
+        "SIM_056",
+        "SIM_059",
+        "SIM_064",
+        "SIM_065",
+        "SIM_066",
+        "SIM_070",
+        "SIM_083",
+        "SIM_085",
+        "SIM_086",
+        "SIM_089",
+        "SIM_103",
+        "SIM_107",
+        "SIM_113"
+      ],
+      "overlap_count": 0
+    },
+    {
+      "fold": 2,
+      "fit_participants": [
+        "SIM_001",
+        "SIM_002",
+        "SIM_009",
+        "SIM_010",
+        "SIM_011",
+        "SIM_014",
+        "SIM_015",
+        "SIM_017",
+        "SIM_018",
+        "SIM_019",
+        "SIM_021",
+        "SIM_023",
+        "SIM_026",
+        "SIM_027",
+        "SIM_028",
+        "SIM_029",
+        "SIM_033",
+        "SIM_034",
+        "SIM_035",
+        "SIM_041",
+        "SIM_042",
+        "SIM_043",
+        "SIM_044",
+        "SIM_047",
+        "SIM_050",
+        "SIM_054",
+        "SIM_055",
+        "SIM_056",
+        "SIM_059",
+        "SIM_060",
+        "SIM_061",
+        "SIM_062",
+        "SIM_063",
+        "SIM_064",
+        "SIM_065",
+        "SIM_066",
+        "SIM_067",
+        "SIM_070",
+        "SIM_071",
+        "SIM_075",
+        "SIM_076",
+        "SIM_083",
+        "SIM_084",
+        "SIM_085",
+        "SIM_086",
+        "SIM_089",
+        "SIM_100",
+        "SIM_102",
+        "SIM_103",
+        "SIM_107",
+        "SIM_108",
+        "SIM_111",
+        "SIM_112",
+        "SIM_113",
+        "SIM_115",
+        "SIM_117"
+      ],
+      "held_out_participants": [
+        "SIM_005",
+        "SIM_006",
+        "SIM_013",
+        "SIM_032",
+        "SIM_036",
+        "SIM_037",
+        "SIM_039",
+        "SIM_048",
+        "SIM_049",
+        "SIM_051",
+        "SIM_053",
+        "SIM_057",
+        "SIM_068",
+        "SIM_079",
+        "SIM_080",
+        "SIM_081",
+        "SIM_087",
+        "SIM_090",
+        "SIM_092",
+        "SIM_093",
+        "SIM_094",
+        "SIM_095",
+        "SIM_097",
+        "SIM_101",
+        "SIM_104",
+        "SIM_105",
+        "SIM_110",
+        "SIM_119"
+      ],
+      "overlap_count": 0
+    }
+  ],
+  "feature_invariants": {
+    "source_train_only": true,
+    "future_mutation_safe": true,
+    "target_mutation_safe": true,
+    "prefix_safe": true,
+    "all_new_features_finite_on_common_cohort": true,
+    "new_feature_warmup_rows_excluded_per_participant": 7,
+    "source_rows_deleted_or_rewritten": 0,
+    "source_dataset_modified": false
+  },
+  "validation_read": false,
+  "final_test_read": false,
+  "official_bundle_unchanged": true,
+  "source_train_unchanged": true,
+  "clinical_validation": false,
+  "next_action": "Parent review only; retain official demo unchanged regardless of gate result; any validation confirmation needs a separate frozen step",
+  "persistence_input_metadata": {
+    "candidate": "current_fatigue_persistence",
+    "supplied_dataframe_column_count": 26,
+    "effective_predictor_count": 1,
+    "effective_predictor_columns": [
+      "self_report_fatigue_score"
+    ],
+    "fold_metric_predictor_count_meaning": "The current CSV predictor_count records supplied DataFrame width, not effective columns consumed by the persistence baseline.",
+    "reason": "PersistenceClassifier.predict selects X[self.column] only; this is the same one-column baseline prespecified in plan.json.",
+    "prediction_or_metric_effect": "None. No model was refitted and no predictions, metrics, plan or frozen experiment script were changed."
+  }
+}

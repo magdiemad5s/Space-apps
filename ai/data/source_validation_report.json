@@ -1,0 +1,363 @@
+{
+  "status": "passed",
+  "validation_scope": "Structural integrity and disclosed simulator rules only; not biological or clinical validation",
+  "rows": 7200,
+  "columns": 46,
+  "raw_rows": 8160,
+  "participants": 120,
+  "split_participants": {
+    "train": 84,
+    "test": 18,
+    "validation": 18
+  },
+  "split_rows": {
+    "train": 5040,
+    "test": 1080,
+    "validation": 1080
+  },
+  "next_day_fatigue_class_by_split": {
+    "test": {
+      "high": 142,
+      "low": 214,
+      "moderate": 724
+    },
+    "train": {
+      "high": 550,
+      "low": 1079,
+      "moderate": 3411
+    },
+    "validation": {
+      "high": 138,
+      "low": 235,
+      "moderate": 707
+    }
+  },
+  "journal_stress_class_by_split": {
+    "test": {
+      "high": 59,
+      "low": 578,
+      "moderate": 443
+    },
+    "train": {
+      "high": 201,
+      "low": 2754,
+      "moderate": 2085
+    },
+    "validation": {
+      "high": 42,
+      "low": 588,
+      "moderate": 450
+    }
+  },
+  "injected_event_counts_by_split": {
+    "test": 54,
+    "train": 324,
+    "validation": 68
+  },
+  "missing_cells_primary": 0,
+  "checks_passed": 72,
+  "checks": [
+    {
+      "check": "7200 primary rows and 8160 raw audit rows",
+      "status": "passed"
+    },
+    {
+      "check": "120 virtual participants",
+      "status": "passed"
+    },
+    {
+      "check": "no primary CSV missing values",
+      "status": "passed"
+    },
+    {
+      "check": "no raw CSV missing values",
+      "status": "passed"
+    },
+    {
+      "check": "unique records and participant/day keys",
+      "status": "passed"
+    },
+    {
+      "check": "all records explicitly synthetic",
+      "status": "passed"
+    },
+    {
+      "check": "each participant has days 1 through 60",
+      "status": "passed"
+    },
+    {
+      "check": "raw includes days -6 through 61",
+      "status": "passed"
+    },
+    {
+      "check": "no participant crosses splits",
+      "status": "passed"
+    },
+    {
+      "check": "84 train, 18 validation, 18 test participants",
+      "status": "passed"
+    },
+    {
+      "check": "cutoff is consistently 18:00 UTC",
+      "status": "passed"
+    },
+    {
+      "check": "target is exactly 24 hours ahead",
+      "status": "passed"
+    },
+    {
+      "check": "timestamps increase within participants",
+      "status": "passed"
+    },
+    {
+      "check": "fatigue target exactly matches same participant following day",
+      "status": "passed"
+    },
+    {
+      "check": "reaction target exactly matches same participant following day",
+      "status": "passed"
+    },
+    {
+      "check": "target timestamp exactly matches following-day observation",
+      "status": "passed"
+    },
+    {
+      "check": "fatigue categories match disclosed prototype thresholds",
+      "status": "passed"
+    },
+    {
+      "check": "all fatigue classes occur in every split",
+      "status": "passed"
+    },
+    {
+      "check": "all journal classes occur in every split",
+      "status": "passed"
+    },
+    {
+      "check": "fixed calibration-only baseline: sleep_duration_hours",
+      "status": "passed"
+    },
+    {
+      "check": "fixed calibration-only baseline: resting_heart_rate_bpm",
+      "status": "passed"
+    },
+    {
+      "check": "fixed calibration-only baseline: hrv_rmssd_ms",
+      "status": "passed"
+    },
+    {
+      "check": "fixed calibration-only baseline: reaction_time_median_ms",
+      "status": "passed"
+    },
+    {
+      "check": "calibration contains exactly seven days per participant",
+      "status": "passed"
+    },
+    {
+      "check": "calibration contains no injected events",
+      "status": "passed"
+    },
+    {
+      "check": "strictly previous three days: prior_3day_mean_sleep_hours",
+      "status": "passed"
+    },
+    {
+      "check": "strictly previous three days: prior_3day_mean_resting_heart_rate_bpm",
+      "status": "passed"
+    },
+    {
+      "check": "strictly previous three days: prior_3day_mean_reaction_time_ms",
+      "status": "passed"
+    },
+    {
+      "check": "baseline delta matches stored measurements: sleep_duration_delta_from_baseline_hours",
+      "status": "passed"
+    },
+    {
+      "check": "baseline delta matches stored measurements: heart_rate_delta_from_baseline_bpm",
+      "status": "passed"
+    },
+    {
+      "check": "baseline delta matches stored measurements: hrv_delta_from_baseline_ms",
+      "status": "passed"
+    },
+    {
+      "check": "reaction-time percent change matches stored baseline",
+      "status": "passed"
+    },
+    {
+      "check": "finite numeric range: sleep_duration_hours",
+      "status": "passed"
+    },
+    {
+      "check": "finite numeric range: sleep_efficiency_pct",
+      "status": "passed"
+    },
+    {
+      "check": "finite numeric range: sleep_onset_delay_minutes",
+      "status": "passed"
+    },
+    {
+      "check": "finite numeric range: awakenings_count",
+      "status": "passed"
+    },
+    {
+      "check": "finite numeric range: sleep_midpoint_deviation_minutes",
+      "status": "passed"
+    },
+    {
+      "check": "finite numeric range: resting_heart_rate_bpm",
+      "status": "passed"
+    },
+    {
+      "check": "finite numeric range: hrv_rmssd_ms",
+      "status": "passed"
+    },
+    {
+      "check": "finite numeric range: reaction_time_median_ms",
+      "status": "passed"
+    },
+    {
+      "check": "finite numeric range: reaction_time_lapses_count",
+      "status": "passed"
+    },
+    {
+      "check": "finite numeric range: attention_correct_count",
+      "status": "passed"
+    },
+    {
+      "check": "finite numeric range: attention_accuracy_pct",
+      "status": "passed"
+    },
+    {
+      "check": "finite numeric range: self_report_stress_score",
+      "status": "passed"
+    },
+    {
+      "check": "finite numeric range: self_report_fatigue_score",
+      "status": "passed"
+    },
+    {
+      "check": "finite numeric range: self_report_mood_score",
+      "status": "passed"
+    },
+    {
+      "check": "finite numeric range: workload_hours",
+      "status": "passed"
+    },
+    {
+      "check": "finite numeric range: exercise_minutes",
+      "status": "passed"
+    },
+    {
+      "check": "finite numeric range: target_next_day_fatigue_score",
+      "status": "passed"
+    },
+    {
+      "check": "finite numeric range: target_next_day_reaction_time_median_ms",
+      "status": "passed"
+    },
+    {
+      "check": "integer trial counts and valid attention denominator",
+      "status": "passed"
+    },
+    {
+      "check": "attention accuracy exact percentage",
+      "status": "passed"
+    },
+    {
+      "check": "sleep opportunity includes latency and awake periods: primary",
+      "status": "passed"
+    },
+    {
+      "check": "sleep opportunity plus workload and exercise fits 24 hours: primary",
+      "status": "passed"
+    },
+    {
+      "check": "sleep opportunity includes latency and awake periods: raw_audit",
+      "status": "passed"
+    },
+    {
+      "check": "sleep opportunity plus workload and exercise fits 24 hours: raw_audit",
+      "status": "passed"
+    },
+    {
+      "check": "event flag is binary and present in every split",
+      "status": "passed"
+    },
+    {
+      "check": "all journals nonempty and unique across raw history",
+      "status": "passed"
+    },
+    {
+      "check": "dictionary covers every primary and raw field exactly once",
+      "status": "passed"
+    },
+    {
+      "check": "task features exist and contain no targets/metadata: next_day_fatigue_classification",
+      "status": "passed"
+    },
+    {
+      "check": "task features exclude its label: next_day_fatigue_classification",
+      "status": "passed"
+    },
+    {
+      "check": "task features exist and contain no targets/metadata: next_day_fatigue_regression",
+      "status": "passed"
+    },
+    {
+      "check": "task features exclude its label: next_day_fatigue_regression",
+      "status": "passed"
+    },
+    {
+      "check": "task features exist and contain no targets/metadata: next_day_reaction_time_regression",
+      "status": "passed"
+    },
+    {
+      "check": "task features exclude its label: next_day_reaction_time_regression",
+      "status": "passed"
+    },
+    {
+      "check": "task features exist and contain no targets/metadata: physiology_anomaly_detection",
+      "status": "passed"
+    },
+    {
+      "check": "task features exclude its label: physiology_anomaly_detection",
+      "status": "passed"
+    },
+    {
+      "check": "task features exist and contain no targets/metadata: journal_stress_classification",
+      "status": "passed"
+    },
+    {
+      "check": "task features exclude its label: journal_stress_classification",
+      "status": "passed"
+    },
+    {
+      "check": "NLP uses text only",
+      "status": "passed"
+    },
+    {
+      "check": "anomaly detection uses only physiology feature allowlist",
+      "status": "passed"
+    },
+    {
+      "check": "CSV round-trip preserves structure and values",
+      "status": "passed"
+    }
+  ],
+  "csv_sha256": {
+    "raw_observations.csv": "a5ac832cad271b4502a07f8ecc888b0504248047bb05c265d6f09c432d9386dc",
+    "data_dictionary.csv": "808f42a18adb82cb6fbb834a72aeb0e009205e5eac313d2762145b840aa4d75a",
+    "participant_splits.csv": "96a0579a09abda98906c060cd82377c9b4a44e5aeda8c2d86437b586d39c0f96",
+    "astra_shield_synthetic_ml.csv": "dd76fd2658586375a4f9fc44767c18731a5ecee061912ed625a44bd206ed6a95",
+    "source_manifest.csv": "deba9eebe060cdc0782d7ba3786a9bedf3fc8f892c93e34f344530bccfc58742"
+  },
+  "limitations": [
+    "Entirely synthetic, not actual astronaut data",
+    "No model training performed",
+    "Labels are simulator outputs or annotations, not validated medical outcomes",
+    "Observed class imbalance preserved",
+    "No statistical power or generalization guarantee for real humans"
+  ]
+}

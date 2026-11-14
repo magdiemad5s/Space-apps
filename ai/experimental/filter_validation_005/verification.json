@@ -1,0 +1,22 @@
+{
+  "original_train_sha256_matches_frozen_manifest": true,
+  "original_validation_sha256_matches_frozen_manifest": true,
+  "official_bundle_unchanged": true,
+  "original_training_csv_unchanged": true,
+  "original_validation_csv_unchanged": true,
+  "script_sha256_matches_frozen_plan": true,
+  "feature_allowlist_matches_official_artifact": true,
+  "mask_invariant_to_all_non_detector_columns": true,
+  "participant_overlap_count": 0,
+  "all_validation_rows_retained": 1080,
+  "control_predictions_exactly_match_official": true,
+  "control_model_probabilities_bitwise_equal_to_official": false,
+  "control_model_probabilities_max_abs_difference": 3.3306690738754696e-16,
+  "control_model_probabilities_equal_within_1e_minus12": true,
+  "control_predictions_exactly_match_eda_first_001": true,
+  "mask_and_all_fits_completed_before_validation_csv_loaded": true,
+  "future_labels_and_history_recomputed_after_exclusion": false,
+  "final_test_read": false,
+  "raw_or_uploaded_full_data_read": false,
+  "official_model_promoted_or_changed": false
+}

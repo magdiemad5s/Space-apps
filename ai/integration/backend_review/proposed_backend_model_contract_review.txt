@@ -1,0 +1,101 @@
+INDEPENDENT FOLLOW-UP REVIEW — PROPOSED CANONICAL BACKEND
+Date: 2026-11-14
+Code reviewed: integration/backend_review/proposed_backend/server.ts,
+featureHistory.ts and modelClient.ts. The uploaded original server.ts is unchanged.
+This is a read-only code/protocol review. Parent owns execution/typechecking and
+the real Python-worker/TypeScript end-to-end verification; no such runtime test
+or new model evaluation is claimed by this review.
+
+Assessment
+The proposed code resolves the original backend's principal model-contract and
+scientific-presentation mismatches. No blocking scientific contract inconsistency
+was identified in the reviewed proposed version. Runtime verification remains a
+separate requirement; successful integration does not improve the model's measured
+forecast performance or create real astronaut/clinical evidence.
+
+CANONICAL INPUT AND INFERENCE
+- featureHistory.ts accepts exactly the15 canonical current measurements plus ID,
+  timezone-aware observation timestamp and optional journal. Values are checked
+  for finite numerical types, the shared engineering bounds, count integrality,
+  sleep opportunity and non-overlapping daily time budget.
+- Legacy HRV/PVT/sleep-quality names, supplied targets, frontend baseline values
+  and derived deltas are rejected. No generic mean or neutral score fills a
+  missing current fatigue, PVT-like median, efficiency or other measurement.
+- This prevents the original unsupported subjective-quality-to-efficiency and
+  transformed-PVT-to-milliseconds conversions. Actual field definitions and
+  collection protocols still matter when real observations are introduced.
+- The TypeScript adapter constructs22 raw/summary inputs and calls /v1/predict;
+  Python retains ownership of the four derived deltas and26-column model order.
+
+CAUSAL CALIBRATION AND DAILY HISTORY
+- History is validated as same-person, strictly earlier, chronological, unique
+  and exactly24hours between daily cutoffs. Future/current-cutoff or duplicated
+  history cannot enter a prediction. Seven button clicks at the same time cannot
+  satisfy calibration.
+- The first seven accepted daily observations form the fixed calibration window.
+  Prediction begins with record8 and uses only its earlier7records for baseline
+  means, with the preceding3records for separate history means.
+- Record7 can complete calibration using its own RAW measurement, but it does not
+  produce a model prediction. This is distinct from using the current prediction
+  or a future outcome as a baseline input. Record8's current measurements do not
+  enter its own baseline/history summaries.
+- Later baseline means continue using slice(0,7), rather than an all-history or
+  sliding mean. Raw observations and assessments are stored separately. Serialized
+  writes and atomic rename protect this single-instance local prototype's sequence.
+- All original15 measurements, journal and measured-at cutoff remain available in
+  the history response under observations. Predictions remain separately labeled
+  in history/model_result; the UI can graph raw time series without presenting
+  predicted fatigue as an independently observed future outcome.
+
+WARM-UP / OUTAGE / PROVENANCE
+- Collecting-baseline responses have no fabricated label, score, points or SHAP.
+- Valid observations are preserved if the model is unavailable, allowing future
+  daily history to continue. An identical latest outage retry does not create a
+  duplicate observation or an extra calibration day.
+- Model-input rejection is distinguished from outage and does not save a rejected
+  current observation. Old/corrupt history formats fail explicitly rather than
+  being replaced silently with invented empty history.
+- Health distinguishes configured, reachable and model-ready instead of equating
+  a nonempty environment URL with a working model.
+- The adapter checks the actual summary/forecast/explanation fields consumed by
+  the route, including matching class, finite class probabilities/score, declared
+  points calculation, person/cutoff metadata and24hour target time. It requires
+  synthetic origin and clinical_validation=false before treating a response as
+  compatible. Remaining unused nested extensions are not fully schema validated.
+- The wrapper preserves model_version, model_training_data_origin, target cutoff,
+  full model_result, true SHAP reasons/output units and model limitations.
+
+OUTPUT MEANINGS
+- fatigue_points is a prototype index, never a medical probability;
+  fatigue_risk_percentage remains null. The actual model points definition is
+  retained. Uppercase display category mapping is explicit, while model_result
+  preserves the classifier's original lower-case labels.
+- The explanation says it is a next-day synthetic-model forecast and that SHAP
+  explains the classifier rather than medical causes. No hardcoded risk_impact
+  constants are substituted for actual model contributions.
+- Blanket healthy/normal/safe assertions and the original exact rest/hydration/
+  exercise/mission-task prescriptions have been removed. The proposal forwards
+  the model's review-oriented advisory actions and limitations instead.
+
+REMAINING OPERATING LIMITS — DOCUMENT, DO NOT CLAIM SOLVED
+1. Exactly24hour uninterrupted history is an explicit prototype assumption. A
+   missing day currently rejects later submissions with409; the system does not
+   implement irregular-history recovery, sensor-dropout tolerance or an alternative
+   model. Never fill the missing day automatically or pretend it was measured.
+2. First seven valid inputs are a fixed computational reference, not clinically
+   adjudicated normal physiology. Backend collection should distinguish a protocol-
+   complete baseline from a demonstrated healthy baseline. Resetting history starts
+   a new calibration lifecycle; it does not preserve prior-person validation.
+3. JSON-file storage and a process-local queue are local-development mechanisms,
+   not a multi-instance database, authenticated health-record platform or durable
+   clinical audit system. No such production property is inferred here.
+4. Real users' live inputs are not transformed into training evidence simply by
+   being accepted. The deployed model remains trained on a custom simulator with
+   weak High-category detection and no real-human/astronaut validation.
+5. Current recommendation priority is end-to-end consistency and truthful demo
+   behavior. Subsequent model research remains the previously documented group-
+   based calibration, causal fatigue-history/sleep-deficit experiments, robust
+   missingness handling and genuinely independent outcome evaluation.
+
+This review changed no backend, model or observation file. It wrote only this
+follow-up report, alongside backend_model_validity_review.txt for the original.

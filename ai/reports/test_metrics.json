@@ -1,0 +1,401 @@
+{
+  "evaluation_scope": "held-out synthetic participants; simulator fidelity only",
+  "clinical_validation": false,
+  "evaluated_at_utc": "2026-11-14T12:50:09.053262+00:00",
+  "model_version": "0.1.0",
+  "test_rows": 1080,
+  "test_participants": 18,
+  "test_sha256": "410e8afa809bfdad126db4c3b64c5e793ba4bce2e5e7e60e7b8e7345868a30af",
+  "bundle_sha256": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706",
+  "frozen_manifest_sha256": "9afdd35b64cc3be52abb26d14d1fb619d3be43609470fc0bdd0d507a06fd0b75",
+  "selection_policy": "Models and thresholds frozen using training/validation only; no fitting in evaluation",
+  "tasks": {
+    "next_day_fatigue_classification": {
+      "selected_model": "random_forest_balanced",
+      "target": "target_next_day_fatigue_class",
+      "selected_metrics": {
+        "accuracy": 0.6185185185185185,
+        "balanced_accuracy": 0.536637511511644,
+        "macro_f1": 0.5284939495469679,
+        "classification_report": {
+          "low": {
+            "precision": 0.4127659574468085,
+            "recall": 0.4532710280373832,
+            "f1-score": 0.43207126948775054,
+            "support": 214.0
+          },
+          "moderate": {
+            "precision": 0.7333333333333333,
+            "recall": 0.6988950276243094,
+            "f1-score": 0.7157001414427157,
+            "support": 724.0
+          },
+          "high": {
+            "precision": 0.41935483870967744,
+            "recall": 0.45774647887323944,
+            "f1-score": 0.4377104377104377,
+            "support": 142.0
+          },
+          "accuracy": 0.6185185185185185,
+          "macro avg": {
+            "precision": 0.5218180431632731,
+            "recall": 0.5366375115116441,
+            "f1-score": 0.5284939495469679,
+            "support": 1080.0
+          },
+          "weighted avg": {
+            "precision": 0.6285311438182635,
+            "recall": 0.6185185185185185,
+            "f1-score": 0.6229491076201732,
+            "support": 1080.0
+          }
+        },
+        "confusion_matrix_labels": [
+          "low",
+          "moderate",
+          "high"
+        ],
+        "confusion_matrix": [
+          [
+            97,
+            112,
+            5
+          ],
+          [
+            133,
+            506,
+            85
+          ],
+          [
+            5,
+            72,
+            65
+          ]
+        ]
+      },
+      "baseline_metrics": {
+        "majority_class": {
+          "accuracy": 0.6703703703703704,
+          "balanced_accuracy": 0.3333333333333333,
+          "macro_f1": 0.2675535846267553,
+          "classification_report": {
+            "low": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0,
+              "support": 214.0
+            },
+            "moderate": {
+              "precision": 0.6703703703703704,
+              "recall": 1.0,
+              "f1-score": 0.802660753880266,
+              "support": 724.0
+            },
+            "high": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0,
+              "support": 142.0
+            },
+            "accuracy": 0.6703703703703704,
+            "macro avg": {
+              "precision": 0.2234567901234568,
+              "recall": 0.3333333333333333,
+              "f1-score": 0.2675535846267553,
+              "support": 1080.0
+            },
+            "weighted avg": {
+              "precision": 0.44939643347050756,
+              "recall": 0.6703703703703704,
+              "f1-score": 0.5380799868604746,
+              "support": 1080.0
+            }
+          },
+          "confusion_matrix_labels": [
+            "low",
+            "moderate",
+            "high"
+          ],
+          "confusion_matrix": [
+            [
+              0,
+              214,
+              0
+            ],
+            [
+              0,
+              724,
+              0
+            ],
+            [
+              0,
+              142,
+              0
+            ]
+          ]
+        },
+        "current_fatigue_persistence": {
+          "accuracy": 0.6222222222222222,
+          "balanced_accuracy": 0.5182043362566061,
+          "macro_f1": 0.5180825284795963,
+          "classification_report": {
+            "low": {
+              "precision": 0.42727272727272725,
+              "recall": 0.4392523364485981,
+              "f1-score": 0.43317972350230416,
+              "support": 214.0
+            },
+            "moderate": {
+              "precision": 0.723994452149792,
+              "recall": 0.7209944751381215,
+              "f1-score": 0.7224913494809688,
+              "support": 724.0
+            },
+            "high": {
+              "precision": 0.4028776978417266,
+              "recall": 0.39436619718309857,
+              "f1-score": 0.398576512455516,
+              "support": 142.0
+            },
+            "accuracy": 0.6222222222222222,
+            "macro avg": {
+              "precision": 0.5180482924214153,
+              "recall": 0.5182043362566061,
+              "f1-score": 0.5180825284795963,
+              "support": 1080.0
+            },
+            "weighted avg": {
+              "precision": 0.6229786852651279,
+              "recall": 0.6222222222222222,
+              "f1-score": 0.6225759839096277,
+              "support": 1080.0
+            }
+          },
+          "confusion_matrix_labels": [
+            "low",
+            "moderate",
+            "high"
+          ],
+          "confusion_matrix": [
+            [
+              94,
+              118,
+              2
+            ],
+            [
+              121,
+              522,
+              81
+            ],
+            [
+              5,
+              81,
+              56
+            ]
+          ]
+        }
+      },
+      "validation_selected_model": true
+    },
+    "next_day_fatigue_regression": {
+      "selected_model": "hist_gradient_boosting_regressor",
+      "target": "target_next_day_fatigue_score",
+      "selected_metrics": {
+        "mae": 1.019662098948068,
+        "rmse": 1.2785675252224704,
+        "r2": 0.29274674693435276
+      },
+      "baseline_metrics": {
+        "training_mean": {
+          "mae": 1.2141976410934745,
+          "rmse": 1.524197667610739,
+          "r2": -0.005102145994097418
+        },
+        "current_fatigue_persistence": {
+          "mae": 1.168098148148148,
+          "rmse": 1.465600900654745,
+          "r2": 0.07069331507134435
+        }
+      },
+      "validation_selected_model": true
+    },
+    "next_day_reaction_time_regression": {
+      "selected_model": "hist_gradient_boosting_regressor",
+      "target": "target_next_day_reaction_time_median_ms",
+      "selected_metrics": {
+        "mae": 14.021330244981804,
+        "rmse": 18.059530369042612,
+        "r2": 0.5186848439422842
+      },
+      "baseline_metrics": {
+        "training_mean": {
+          "mae": 22.696383990299815,
+          "rmse": 28.4492404294651,
+          "r2": -0.1944225212666253
+        },
+        "current_reaction_time_persistence": {
+          "mae": 15.555626851851853,
+          "rmse": 19.91352786566161,
+          "r2": 0.414788240229093
+        }
+      },
+      "validation_selected_model": true
+    },
+    "physiology_anomaly_detection": {
+      "selected_model": "fixed_isolation_forest",
+      "target": "target_current_physiology_event_injected",
+      "selected_metrics": {
+        "precision": 0.7096774193548387,
+        "recall": 0.8148148148148148,
+        "f1": 0.7586206896551724,
+        "confusion_matrix_labels": [
+          0,
+          1
+        ],
+        "confusion_matrix": [
+          [
+            1008,
+            18
+          ],
+          [
+            10,
+            44
+          ]
+        ],
+        "anomaly_definition": "simulator-injected higher heart rate/lower RMSSD; not disease",
+        "roc_auc": 0.9889177676702043,
+        "average_precision": 0.8462754159564526
+      },
+      "baseline_metrics": {},
+      "validation_selected_model": true
+    },
+    "journal_stress_classification": {
+      "selected_model": "word_tfidf_logistic",
+      "target": "target_journal_stress_class",
+      "selected_metrics": {
+        "accuracy": 0.4981481481481482,
+        "balanced_accuracy": 0.407567652462433,
+        "macro_f1": 0.39383107674374956,
+        "classification_report": {
+          "low": {
+            "precision": 0.7667638483965015,
+            "recall": 0.45501730103806226,
+            "f1-score": 0.5711183496199783,
+            "support": 578.0
+          },
+          "moderate": {
+            "precision": 0.43874172185430466,
+            "recall": 0.5981941309255079,
+            "f1-score": 0.5062082139446036,
+            "support": 443.0
+          },
+          "high": {
+            "precision": 0.07518796992481203,
+            "recall": 0.1694915254237288,
+            "f1-score": 0.10416666666666667,
+            "support": 59.0
+          },
+          "accuracy": 0.4981481481481482,
+          "macro avg": {
+            "precision": 0.4268978467252061,
+            "recall": 0.407567652462433,
+            "f1-score": 0.39383107674374956,
+            "support": 1080.0
+          },
+          "weighted avg": {
+            "precision": 0.5944334975742581,
+            "recall": 0.4981481481481482,
+            "f1-score": 0.5189837761029076,
+            "support": 1080.0
+          }
+        },
+        "confusion_matrix_labels": [
+          "low",
+          "moderate",
+          "high"
+        ],
+        "confusion_matrix": [
+          [
+            263,
+            315,
+            0
+          ],
+          [
+            55,
+            265,
+            123
+          ],
+          [
+            25,
+            24,
+            10
+          ]
+        ]
+      },
+      "baseline_metrics": {
+        "majority_class": {
+          "accuracy": 0.5351851851851852,
+          "balanced_accuracy": 0.3333333333333333,
+          "macro_f1": 0.2324085243264978,
+          "classification_report": {
+            "low": {
+              "precision": 0.5351851851851852,
+              "recall": 1.0,
+              "f1-score": 0.6972255729794934,
+              "support": 578.0
+            },
+            "moderate": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0,
+              "support": 443.0
+            },
+            "high": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1-score": 0.0,
+              "support": 59.0
+            },
+            "accuracy": 0.5351851851851852,
+            "macro avg": {
+              "precision": 0.17839506172839506,
+              "recall": 0.3333333333333333,
+              "f1-score": 0.2324085243264978,
+              "support": 1080.0
+            },
+            "weighted avg": {
+              "precision": 0.286423182441701,
+              "recall": 0.5351851851851852,
+              "f1-score": 0.373144797390877,
+              "support": 1080.0
+            }
+          },
+          "confusion_matrix_labels": [
+            "low",
+            "moderate",
+            "high"
+          ],
+          "confusion_matrix": [
+            [
+              578,
+              0,
+              0
+            ],
+            [
+              443,
+              0,
+              0
+            ],
+            [
+              59,
+              0,
+              0
+            ]
+          ]
+        }
+      },
+      "validation_selected_model": true
+    }
+  },
+  "evaluation_seconds": 0.7851454249998824
+}

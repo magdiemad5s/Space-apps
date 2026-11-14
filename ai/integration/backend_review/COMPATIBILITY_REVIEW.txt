@@ -1,0 +1,117 @@
+ASTRA-SHIELD — TEAMMATE TYPESCRIPT BACKEND COMPATIBILITY REVIEW
+
+Scope: source review of the uploaded server.ts and package.json against the
+existing Python model API and checked TypeScript model client. Uploaded files,
+Python models and deployed inference endpoints were not modified by this review.
+
+RESULT
+The teammate's TypeScript/Express backend can remain the application backend.
+Its current model connector cannot call the current model successfully as-is.
+The main blockers are input meaning/availability and response mapping, not the
+choice of TypeScript versus Python. See input_field_mapping.csv for every one
+of the model's22required numeric inputs.
+
+1. ENDPOINT AND REQUEST BODY — BLOCKING
+Uploaded server.ts:202 accepts AI_SERVICE_URL,210 appends /predict, and213 sends
+{...legacyInput, personal_baseline: baseline}. The actual model route is
+POST /v1/predict (astra_shield_ml/api.py:128) and its Observation schema forbids
+extra fields and requires22flat numeric fields (api.py:30-53). The proposed
+connector must call /v1/predict and explicitly construct that canonical body.
+astronaut_id may map to optional participant_id; neither is a model predictor.
+A nested personal_baseline object is not an accepted payload field.
+
+2. INPUT COVERAGE — BLOCKING
+The legacy interface is server.ts:12-24. Of22model inputs, only sleep duration
+is directly equivalent from the supplied definition;5possible aliases need
+protocol/scale confirmation,2PVTlookalikes are incompatible with automatic
+conversion, and14required fields have no valid supplied source. The latter
+includes7properly calculated calibration/history features, as well as actual
+sleep efficiency/onset/timing, reaction lapses, current fatigue, workload and
+exercise measurements. This count is not a request to fill14fake defaults.
+
+heart_rate_bpm (server.ts:14) is only resting_heart_rate_bpm if the recording was
+actually at rest. hrv_ms (:15) is only hrv_rmssd_ms if the metric is RMSSD in ms.
+sleep_quality_score_1_10 (:17) is not a measured sleep-efficiency percentage.
+PVT_speed_seconds (:19) is ambiguous and may be transformed slowness; do not
+convert it to ms or invert it without the original metric definition.
+PVT_accuracy (:20) is not the separate40trial attention accuracy percentage.
+stress/mood (:21-22) are optional in the legacy body but required by the current
+model. Current custom fatigue is entirely absent. Missing optional measurements
+must not be silently replaced with constants.
+
+3. BASELINE AND TEMPORAL HISTORY — BLOCKING
+server.ts:86-106 starts a baseline after2stored records, then averages all records
+and rounds to2decimals. The model was trained on a frozen7day calibration mean
+plus a distinct3day prior-only mean. Its helper explicitly requires seven
+consecutive earlier calibration days and the three preceding daily cutoffs
+(features.py:125-172). A global rolling mean after two clicks is not compatible.
+
+Only7legacy metrics are stored at server.ts:365-373. Sleep disruptions and PVT
+accuracy are not even stored there. The current expanded15measurement schema,
+units, actual observation cutoff and fixed enrollment provenance must be stored
+to reconstruct the model's features. assessment.timestamp uses server completion
+time (:347), which is not necessarily the actual measurement cutoff. Warm-up
+needs an explicit collecting-baseline state, not an invented population baseline.
+
+4. RESPONSE KEYS — BLOCKING
+server.ts:218-219 trusts arbitrary JSON. server.ts:327-351 expects
+fatigue_risk_level, fatigue_risk_percentage, fatigue_score and
+top_contributing_factors. The model actually returns label, points, reasons and
+next_day_forecasts.fatigue.score_estimate (service.py:283-304). Setting only the
+URL will therefore leave expected values undefined, even after fixing inputs.
+
+Safe mapping when a complete canonical model request is genuinely available:
+- label low/moderate/high -> displayed Low/Moderate/High.
+- score_estimate -> custom0to10 fatigue_score, preserving its definition.
+- points -> fatigue_points, a defined0to100 demo severity index.
+- reasons -> actual SHAP features/value/shap_value/direction/reason.
+- preserve synthetic source, clinical_validation=false, forecast horizon24hours,
+  target timestamp and model version.
+
+Do not relabel points as a medically meaningful fatigue_risk_percentage. The
+model's service.py:286 explicitly defines it as an uncalibrated severity index.
+ContributingFactor requires baseline_value/risk_impact (server.ts:26-32), but an
+actual SHAP reason may concern a derived or non-baseline feature. A baseline may
+be absent; never fabricate one. SHAP values explain a selected classifier class,
+not physiological risk impacts or medically causal factors. Preserve output
+space and explained class for correct interpretation.
+
+5. FALLBACK, HEALTH AND ADVISORIES
+AI_SERVICE_URL being set controls the reported connected state at server.ts:298;
+it is not a readiness check. The existing fetch has no timeout (:210-214). It
+throws on an upstream error and does not actually fall back after failure despite
+the function name. Distinguish configuration, reachability and model readiness.
+Use the checked client's timeout and response validation or equivalent behavior.
+
+The URL-unset rule fallback at server.ts:222-280 uses demo cutoffs/constants and
+hardcoded contributions, not the trained model or actual SHAP. It must be labeled
+as demo rules if retained, with a distinct inference_source. Its default baseline
+values (:233,244,255,266) are not personal measurements. Returning an unavailable
+or collecting-baseline status is preferable to presenting fabricated model data.
+
+The timed rest/exercise/hydration/task-deferral recommendations (:130-181) are
+not supplied or validated by this synthetic model. The default healthy-bounds
+claim (:191,334-340) does not follow from having no mapped factor names. Keep
+advisories informational and tied to approved human review; do not infer health
+normality or task permission from these model outputs.
+
+6. PACKAGE / OWNERSHIP
+The uploaded package already supplies Express, CORS, TypeScript and tsx. It is
+appropriate to keep this backend. It runs a development watch command and does
+not itself provide a production build/typecheck/deployment contract. No Express
+rewrite or language switch is needed. The existing modelClient.ts can be copied
+into this backend, or its compiled dist JavaScript imported. If compiling the
+source with .ts relative imports, use the checked compiler/configuration rather
+than assuming an unrelated project tsconfig supports that syntax.
+
+The TypeScript backend should own enrollment, history, application routes and
+frontend responses. The Python service should remain a private inference worker.
+The frontend must first collect the expanded measurement fields; merely wiring
+the current legacy form to a new URL cannot satisfy the trained model contract.
+
+IMPLEMENTATION PATH
+The user chose to extend frontend fields to match the existing model. A reviewable
+updated backend copy can therefore introduce the canonical15current measurements,
+derive the7history features from real earlier records, and map the actual model
+response. The original upload remains unchanged. Use a new versioned history file
+instead of silently treating old incomplete histories as valid calibration data.

@@ -1,0 +1,119 @@
+{
+  "experiment": "noise_004",
+  "study_type": "Train-only fitting-tail sensitivity study; not identified-noise cleaning",
+  "frozen_before_fit_at_utc": "2026-11-14T16:53:06.193707+00:00",
+  "seed": 20261114,
+  "source": "Original synthetic data/train.csv only",
+  "source_train_sha256": "a9b7aba9497fbcf68b6f5bb771b01dbf82c3b00c93a2a0c6873f705712a235e5",
+  "official_bundle_sha256_before": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706",
+  "task_config_sha256": "75f14b846e29ac1025bad7e3db51a1656365878f29925666a5eaf5165788ed60",
+  "source_folds_sha256": "2cc50a69a961863067b24c3410919078a268e75079fda078a60aeacd03761743",
+  "script_sha256": "1a6b2a400569d3eaac985b766dd06b9a0367abad7b596f9a3ee35d6af5f814e0",
+  "rows": 5040,
+  "virtual_participants": 84,
+  "target": "target_next_day_fatigue_class",
+  "rf_predictors": [
+    "sleep_duration_hours",
+    "sleep_efficiency_pct",
+    "sleep_onset_delay_minutes",
+    "awakenings_count",
+    "sleep_midpoint_deviation_minutes",
+    "resting_heart_rate_bpm",
+    "hrv_rmssd_ms",
+    "reaction_time_median_ms",
+    "reaction_time_lapses_count",
+    "attention_accuracy_pct",
+    "self_report_stress_score",
+    "self_report_fatigue_score",
+    "self_report_mood_score",
+    "workload_hours",
+    "exercise_minutes",
+    "baseline_sleep_duration_hours",
+    "baseline_resting_heart_rate_bpm",
+    "baseline_hrv_rmssd_ms",
+    "baseline_reaction_time_median_ms",
+    "sleep_duration_delta_from_baseline_hours",
+    "heart_rate_delta_from_baseline_bpm",
+    "hrv_delta_from_baseline_ms",
+    "reaction_time_change_from_baseline_pct",
+    "prior_3day_mean_sleep_hours",
+    "prior_3day_mean_resting_heart_rate_bpm",
+    "prior_3day_mean_reaction_time_ms"
+  ],
+  "persistence_effective_predictors": [
+    "self_report_fatigue_score"
+  ],
+  "candidates": [
+    "unchanged_rf_control",
+    "rf_fit_tail_exclusion",
+    "rf_fit_tail_weight_0.25",
+    "current_fatigue_persistence"
+  ],
+  "rf_parameters": {
+    "n_estimators": 200,
+    "max_depth": 14,
+    "min_samples_leaf": 8,
+    "class_weight": "balanced",
+    "random_state": 20261114,
+    "n_jobs": 2
+  },
+  "detector": {
+    "features": [
+      "sleep_duration_delta_from_baseline_hours",
+      "heart_rate_delta_from_baseline_bpm",
+      "hrv_delta_from_baseline_ms",
+      "reaction_time_change_from_baseline_pct"
+    ],
+    "formula": "abs(x - fitting median) / (1.4826 * fitting MAD)",
+    "tail_union_rule": "Flag fitting row if any active feature has robust z strictly greater than 4.5",
+    "threshold": 4.5,
+    "zero_mad": "Skip that feature and record the reason",
+    "fit_scope": "Compute medians/MAD separately inside every fitting subset, never from held-out observations",
+    "forbidden_inputs": "Targets, event annotation, identities and all non-listed fields are unavailable to the detector",
+    "semantics": "A tail flag is not proof of corrupted data; legitimate injected physiology events may be flagged"
+  },
+  "treatments": {
+    "exclusion": "Remove flagged rows only from that candidate's fitting subset",
+    "downweight": "Retain all fitting rows; flagged rows receive sample_weight 0.25 and all others 1",
+    "unchanged": "All fitting rows, standard fixed RF recipe",
+    "source": "No original rows, targets or features are removed, replaced or overwritten"
+  },
+  "preprocessing": "Fit median imputer and class weights inside each candidate's fitting subset. For downweighting, RF class weights multiply the fixed row weights. No holdout filtering or feature transformation.",
+  "groupcv": "Reuse the three improvement_002 participant folds; every candidate scores all 5040 held-out observations once",
+  "temporal_evaluations": [
+    {
+      "fit_days": [
+        1,
+        30
+      ],
+      "label_cutoff_day": 31,
+      "evaluation_days": [
+        32,
+        45
+      ]
+    },
+    {
+      "fit_days": [
+        1,
+        45
+      ],
+      "label_cutoff_day": 46,
+      "evaluation_days": [
+        47,
+        60
+      ]
+    }
+  ],
+  "comparison_gates": {
+    "mean_groupcv_macro_f1_delta_min": 0.01,
+    "all_groupfold_deltas_min": 0.0,
+    "all_temporal_deltas_min": 0.0,
+    "pooled_oof_high_precision_delta_min": -0.02,
+    "pooled_oof_high_recall_delta_min": -0.02
+  },
+  "gates_scope": "Engineering investigation criteria only; a passing candidate is not automatically promoted",
+  "diagnostics": "Report future class and injected-event prevalence only after masks are fixed; subgroup performance is descriptive and never used for selection",
+  "uncertainty": "1000 paired whole-participant bootstrap resamples of grouped OOF predictions, each treatment versus unchanged control",
+  "no_external_evaluation": "Do not open validation.csv, test.csv, raw_observations.csv or any uploaded/full CSV",
+  "no_production_change": "Do not retrain the official model or Isolation Forest; do not change API, source data, earlier artifacts or reports"
+}

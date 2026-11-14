@@ -1,0 +1,28 @@
+{
+  "name": "astra-shield-backend-reviewed",
+  "version": "2.0.0-prototype",
+  "private": true,
+  "type": "module",
+  "description": "Reviewable extension of teammate TypeScript backend for canonical model contract",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "tsx server.ts",
+    "dev": "tsx watch server.ts",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit false --outDir dist",
+    "test": "tsx --test featureHistory.test.ts"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.5.4",
+    "tsx": "^4.19.1",
+    "typescript": "^5.9.0"
+  }
+}

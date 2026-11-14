@@ -1,0 +1,122 @@
+{
+  "scope": "Actual Pydantic request-schema check, no model inference",
+  "accepted": false,
+  "errors": [
+    {
+      "field": "sleep_efficiency_pct",
+      "type": "missing"
+    },
+    {
+      "field": "sleep_onset_delay_minutes",
+      "type": "missing"
+    },
+    {
+      "field": "awakenings_count",
+      "type": "missing"
+    },
+    {
+      "field": "sleep_midpoint_deviation_minutes",
+      "type": "missing"
+    },
+    {
+      "field": "resting_heart_rate_bpm",
+      "type": "missing"
+    },
+    {
+      "field": "hrv_rmssd_ms",
+      "type": "missing"
+    },
+    {
+      "field": "reaction_time_median_ms",
+      "type": "missing"
+    },
+    {
+      "field": "reaction_time_lapses_count",
+      "type": "missing"
+    },
+    {
+      "field": "attention_accuracy_pct",
+      "type": "missing"
+    },
+    {
+      "field": "self_report_stress_score",
+      "type": "missing"
+    },
+    {
+      "field": "self_report_fatigue_score",
+      "type": "missing"
+    },
+    {
+      "field": "self_report_mood_score",
+      "type": "missing"
+    },
+    {
+      "field": "workload_hours",
+      "type": "missing"
+    },
+    {
+      "field": "exercise_minutes",
+      "type": "missing"
+    },
+    {
+      "field": "baseline_sleep_duration_hours",
+      "type": "missing"
+    },
+    {
+      "field": "baseline_resting_heart_rate_bpm",
+      "type": "missing"
+    },
+    {
+      "field": "baseline_hrv_rmssd_ms",
+      "type": "missing"
+    },
+    {
+      "field": "baseline_reaction_time_median_ms",
+      "type": "missing"
+    },
+    {
+      "field": "prior_3day_mean_sleep_hours",
+      "type": "missing"
+    },
+    {
+      "field": "prior_3day_mean_resting_heart_rate_bpm",
+      "type": "missing"
+    },
+    {
+      "field": "prior_3day_mean_reaction_time_ms",
+      "type": "missing"
+    },
+    {
+      "field": "astronaut_id",
+      "type": "extra_forbidden"
+    },
+    {
+      "field": "heart_rate_bpm",
+      "type": "extra_forbidden"
+    },
+    {
+      "field": "hrv_ms",
+      "type": "extra_forbidden"
+    },
+    {
+      "field": "sleep_quality_score_1_10",
+      "type": "extra_forbidden"
+    },
+    {
+      "field": "PVT_speed_seconds",
+      "type": "extra_forbidden"
+    },
+    {
+      "field": "stress_score_0_10",
+      "type": "extra_forbidden"
+    },
+    {
+      "field": "mood_score_0_10",
+      "type": "extra_forbidden"
+    },
+    {
+      "field": "personal_baseline",
+      "type": "extra_forbidden"
+    }
+  ]
+}

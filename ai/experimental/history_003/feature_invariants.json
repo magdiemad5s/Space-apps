@@ -1,0 +1,10 @@
+{
+  "source_train_only": true,
+  "future_mutation_safe": true,
+  "target_mutation_safe": true,
+  "prefix_safe": true,
+  "all_new_features_finite_on_common_cohort": true,
+  "new_feature_warmup_rows_excluded_per_participant": 7,
+  "source_rows_deleted_or_rewritten": 0,
+  "source_dataset_modified": false
+}

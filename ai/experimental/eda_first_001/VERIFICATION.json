@@ -1,0 +1,10 @@
+{
+  "eda_review_and_feature_decisions_preceded_new_training": true,
+  "four_prespecified_candidates_fitted": true,
+  "selected_candidate": "full_26__random_forest_balanced",
+  "validation_predictions_match_current_api_model": true,
+  "original_api_artifact_hash_unchanged": true,
+  "test_outcomes_not_used_by_new_experiment": true,
+  "revised_validation_macro_f1": 0.5272528187101052,
+  "fresh_test_score": null
+}
