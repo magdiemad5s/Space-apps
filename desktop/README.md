@@ -8,9 +8,9 @@ The installer is for **Windows x64**. It is unsigned; a downloaded installer may
 
 ## Build status and verification
 
-**Version 0.1.1 passed native Windows checks in [build 5](https://github.com/magdiemad5s/Space-apps/actions/runs/43720287539)**, from commit `e1a8dc1350d1e6aeeb6c2b8d995b45ceec1b5f2d`. Download the [installer and matching evidence](https://github.com/magdiemad5s/Space-apps/releases/tag/v0.1.1-prototype). This version includes the submission UI fixes and separate demo storage.
+**Version 0.1.2 passed native Windows checks in [build 6](https://github.com/magdiemad5s/Space-apps/actions/runs/43726368621)**, from commit `34f513aed953c0aaa9ca63611334e99457d52065`. Download the [installer and matching evidence](https://github.com/magdiemad5s/Space-apps/releases/tag/v0.1.2-prototype). This version embeds visible SI-generation labels directly in the astronaut and watch SVG artwork. It retains the existing measurement workflow and separate demo storage.
 
-Both the portable and installed executables passed **19 checks each**, including actual prediction, TreeSHAP and shutdown. Six original reference responses matched on Windows. Installation/uninstallation and an installation path containing spaces were exercised. The build also passed 30 frontend and 16 backend tests. See [verification metadata](../integration-reports/windows-build-5/verification.json). The earlier 0.1.0 release remains available as historical evidence; use 0.1.1 for these fixes.
+Both the portable and installed executables passed **19 checks each**, including actual prediction, TreeSHAP and shutdown. Six original reference responses matched on Windows. Installation/uninstallation and an installation path containing spaces were exercised. The build also passed 30 frontend and 16 backend tests. The packaged frontend was byte-identical to the production UI used for the 28 rendered-artwork checks, and both visible SVG text nodes were verified inside the portable bundle. See [verification metadata](../integration-reports/windows-build-6/verification.json). Earlier 0.1.0 and 0.1.1 releases remain available as historical evidence; use 0.1.2 for the embedded artwork labels.
 
 The release contains:
 
@@ -29,7 +29,7 @@ Checksums were verified after downloading the CI artifact. Automated checks cove
 4. Wait until the console prints **ASTRA-SHIELD is ready**. The browser opens the printed local URL, normally `http://127.0.0.1:4173`. If that port is occupied, the launcher chooses a free port.
 5. Keep the console open while using the dashboard. **Ctrl+C in that console stops the app.** Closing only the browser tab does not stop the local services.
 
-The 0.1.1 Demo shortcut and post-install launch use `--seed-demo --data-dir "%LOCALAPPDATA%\ASTRA-SHIELD\demo"`. They add nine fictional observations for `DEMO_SIM_001` only if that participant has no history in this separate demo store. Records 1–7 are calibration; records 8–9 receive forecasts from the shipped model. Relaunching preserves existing demo history and does not add another nine records. Normal startup retains its original default store; earlier records are not migrated or deleted automatically.
+The 0.1.2 Demo shortcut and post-install launch use `--seed-demo --data-dir "%LOCALAPPDATA%\ASTRA-SHIELD\demo"`. They add nine fictional observations for `DEMO_SIM_001` only if that participant has no history in this separate demo store. Records 1–7 are calibration; records 8–9 receive forecasts from the shipped model. Relaunching preserves existing demo history and does not add another nine records. Normal startup retains its original default store; earlier records are not migrated or deleted automatically.
 
 The portable ZIP needs to be extracted completely. Keep `ASTRA-SHIELD.exe` beside its `_internal` folder and the other supplied files. Copying only the inner executable is insufficient. From the extracted folder, start its presentation with a separate store:
 
@@ -81,7 +81,7 @@ If the browser does not open, copy the printed URL. If startup fails, retain the
 The [workflow](../.github/workflows/windows-app.yml) supplies the pinned Python/Node toolchain. A manual build requires Windows x64, Python 3.12, Node 24, PowerShell, and Inno Setup 6:
 
 ```powershell
-pwsh -File desktop/build_windows.ps1 -AppVersion 0.1.1
+pwsh -File desktop/build_windows.ps1 -AppVersion 0.1.2
 ```
 
 The script builds the production Angular assets, compiles the backend, bundles Python with PyInstaller, and produces a per-user Inno Setup installer. See the workflow and `requirements-build.txt` for the build dependencies. Build output goes under `desktop/dist/`; temporary resources go under `desktop/build/`. The workflow uploads `ASTRA-SHIELD-Windows-x64-<run_number>`, with a separate diagnostics artifact. These are generated files, not replacements for the model or source data. No training step is included.

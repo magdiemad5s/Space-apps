@@ -1,0 +1,23 @@
+{
+  "app_version": "0.1.2",
+  "built_at_utc": "2026-11-15T14:51:17.3890198Z",
+  "commit": "34f513aed953c0aaa9ca63611334e99457d52065",
+  "platform": "Windows x64",
+  "python": "Python 3.12.10",
+  "node": "v24.22.1",
+  "npm": "12.0.2",
+  "original_model_sha256": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706",
+  "deployment_model_sha256": "d744a32bafad5bd8ec707fa61b218471760b4c7416a3d683ddc97545af88c079",
+  "original_dataset_sha256": "dd76fd2658586375a4f9fc44767c18731a5ecee061912ed625a44bd206ed6a95",
+  "embedded_node_sha256": "d702daa815eabbff763c7d3808e235cf031cf2ca70211b56847bc72f51e240e5",
+  "signed": false,
+  "data_origin": "synthetic",
+  "clinical_validation": false,
+  "training_performed": false,
+  "runtime_install_required": false,
+  "tests": [
+    "windows-model-equivalence-report.json",
+    "windows-smoke-report.json",
+    "installed-smoke-report.json"
+  ]
+}

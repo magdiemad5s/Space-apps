@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "platform": "win32",
+  "case_count": 6,
+  "absolute_tolerance": 1e-08,
+  "relative_tolerance": 1e-07,
+  "deployment_model_sha256": "d744a32bafad5bd8ec707fa61b218471760b4c7416a3d683ddc97545af88c079",
+  "object_graph_nodes_checked": 7781,
+  "scope": "All five selected tasks, class probabilities and every TreeSHAP contribution; numerical portability, not accuracy"
+}

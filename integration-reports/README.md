@@ -13,10 +13,11 @@ These checks use fictional integration observations and the existing model. They
 | Bundled runtime lifecycle on Linux | 21 passed; duplicate launch, persistence, crash cleanup | [DESKTOP_LIFECYCLE_CHECKS.json](DESKTOP_LIFECYCLE_CHECKS.json) |
 | Desktop runtime regressions | 13 passed on Linux; one Windows-only case omitted here and exercised in CI | `desktop/runtime_tests.py` |
 | Frontend strict typecheck and production build | Passed | `npm run typecheck`, `npm run build` |
+| Embedded artwork labels and standalone exports | 28 rendered checks passed at 1440/768/375/320px; no browser errors | [ARTWORK_WATERMARK_CHECKS.json](ARTWORK_WATERMARK_CHECKS.json) |
 | Launcher helper/process tests | 10 passed | `scripts/test_launcher.py` |
 | Actual startup, duplicate-start protection, shutdown and restart persistence | Passed | [LAUNCHER_INTEGRATION_CHECKS.json](LAUNCHER_INTEGRATION_CHECKS.json) |
 | Original model and main dataset | Unchanged SHA-256 | [preserved-model-data.json](preserved-model-data.json) |
-| Native Windows portable and installed executables | **19 checks passed each** on a Windows runner | [Windows build evidence](windows-build-5/verification.json) |
+| Native Windows portable and installed executables | **19 checks passed each** on a Windows runner | [Windows build evidence](windows-build-6/verification.json) |
 | Inference-only deployment export | 130 original/deployment comparisons; six Windows reference cases passed | [Equivalence report](DEPLOYMENT_MODEL_EQUIVALENCE.json) |
 | Interactive Windows laptop rehearsal | Still required | [Tester checklist](../docs/FRIEND_TEST_CHECKLIST.md) |
 | Clinical Alert V2's 14 medical scenarios | **Not run** | Five preset UI examples are not a clinical engine |
@@ -57,11 +58,15 @@ The model/data hashes and 51 browser-relevant source/artifact hashes were checke
 
 ## Screenshots
 
-- [Desktop overview](app-overview-desktop.png)
-- [Mobile overview](app-overview-mobile.png)
+- [Current desktop overview with embedded artwork labels](dashboard-current.png)
+- [Current mobile overview with embedded artwork labels](dashboard-current-mobile.png)
+- [Watch label detail](watch-watermark-detail.png)
+- [Labeled standalone PNG and SVG artwork](../docs/media/)
 - [Mobile forecast](app-forecast-mobile.png)
 
 These screenshots use fictional observations with the actual local model computation. Services started for verification were stopped afterward; this is not a hosted deployment.
+
+Historical test captures are retained with their original reports and hashes. Use the current labeled exports above for presentation media. The artwork check confirms the label is part of each SVG, fits inside its bounds across the checked viewport sizes, and survives standalone SVG/PNG export; it does not validate future crops or recordings.
 
 ## Final UI audit
 

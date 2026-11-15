@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "files": [
+    {
+      "file": "ASTRA-SHIELD/_internal/resources/frontend/main-S2TQV73K.js",
+      "sha256": "75902d49f8beb0680ea3ba1187145ed90577b0ba978fbf22f11b00eca98c0d3d",
+      "marker_count": 2,
+      "astronaut_label": true,
+      "watch_label": true
+    }
+  ],
+  "outer_zip_sha256": "06e1f46cacfb2e330f74cba0cb5a9b779bd88a9fd9677ea74d61d6681b7149a3",
+  "portable_zip_crc_verified": true,
+  "visible_svg_text_nodes_verified": true,
+  "windows_frontend_identical_to_visually_reviewed_linux_production_build": true,
+  "all_packaged_frontend_files_match_reviewed_production_build": true,
+  "frontend_file_count": 22
+}

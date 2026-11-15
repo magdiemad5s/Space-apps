@@ -147,14 +147,15 @@
     "generated_audio_review": "No generated audio identified in reviewed app assets. If used in the final demo, acknowledge it in descriptive text and metadata.",
     "label_implementation": "Text and backing shapes added through code to the existing SVGs; no replacement image generation used.",
     "verification_report_path": "integration-reports/ARTWORK_WATERMARK_CHECKS.json",
-    "verification_status": "Passed 28 rendered checks at 1440, 768, 375 and 320 pixels, including label containment/readability, body-map interaction and standalone SVG exports. The two PNG exports and current dashboard captures were visually reviewed. See the report for source hashes. Scope excludes historical screenshots, future crops and recordings.",
+    "verification_status": "Passed 28 rendered checks at 1440, 768, 375 and 320 pixels, including label containment/readability, body-map interaction and standalone SVG exports. The two PNG exports and current dashboard captures were visually reviewed. See the report for source hashes. Scope excludes historical screenshots, future crops and recordings. The packaged Windows frontend was verified byte-identical to the visually reviewed production build.",
     "presentation": {
       "path": "Project_SuperMoon_Final_Presentation.pdf",
       "public_url": "https://github.com/magdiemad5s/Space-apps/blob/main/Project_SuperMoon_Final_Presentation.pdf",
       "page_count": 7,
       "language": "English",
-      "public_access_checked": "2026-11-15; anonymous HTTP 200",
-      "scope_note": "The public PDF matched the reviewed seven-slide copy at the pre-submission check. Check any later export separately."
+      "public_access_checked": "Pending final publication of refreshed PDF; previous seven-slide copy opened anonymously on 2026-11-15.",
+      "scope_note": "Refreshed seven-slide PDF uses the current screenshot with embedded SVG labels as well as the existing visible artwork caption. Layout and label presence checked after export.",
+      "sha256": "9c27bc54cff53941453c4bf7a5b522ef145b233ad3e6191819fa28008199b03d"
     },
     "labelled_exports": [
       "docs/media/astronaut-si-generated.svg",
@@ -233,9 +234,9 @@
     "font_source_url": "https://github.com/google/fonts/tree/main/ofl/manrope"
   },
   "release_scope": {
-    "release_tag": "v0.1.1-prototype",
-    "executable_source_commit": "e1a8dc1350d1e6aeeb6c2b8d995b45ceec1b5f2d",
-    "verification_path": "integration-reports/windows-build-5/verification.json",
-    "note": "Repository provenance accompanies the tested 0.1.1 release. Documentation updates after its source commit do not change the executable or the frozen models/data."
+    "release_tag": "v0.1.2-prototype",
+    "executable_source_commit": "34f513aed953c0aaa9ca63611334e99457d52065",
+    "verification_path": "integration-reports/windows-build-6/verification.json",
+    "note": "Version 0.1.2 includes embedded SVG artwork labels. Release publication uses the independently verified Windows build; documentation and presentation updates after its source commit do not change the executable or frozen models/data."
   }
 }

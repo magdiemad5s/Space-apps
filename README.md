@@ -41,7 +41,7 @@ The [machine-readable provenance record](PROVENANCE.json) identifies AI-assisted
 
 ## Start on Windows
 
-Download the **[Windows x64 installer (.exe)](https://github.com/magdiemad5s/Space-apps/releases/download/v0.1.1-prototype/ASTRA-SHIELD-Setup-x64.exe)** from the **[0.1.1 prototype release](https://github.com/magdiemad5s/Space-apps/releases/tag/v0.1.1-prototype)**. It includes Python, Node, and the five selected models and opens this same dashboard in your browser. The installer is unsigned.
+Download the **[Windows x64 installer (.exe)](https://github.com/magdiemad5s/Space-apps/releases/download/v0.1.2-prototype/ASTRA-SHIELD-Setup-x64.exe)** from the **[0.1.2 prototype release](https://github.com/magdiemad5s/Space-apps/releases/tag/v0.1.2-prototype)**. It includes Python, Node, and the five selected models and opens this same dashboard in your browser. The installer is unsigned.
 
 The portable and installed executables passed native Windows checks. Follow the **[Windows instructions](desktop/README.md)** and give your tester the **[handoff checklist](docs/FRIEND_TEST_CHECKLIST.md)**; interactive rehearsal on their laptop remains necessary.
 
