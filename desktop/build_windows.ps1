@@ -2,7 +2,7 @@
 [CmdletBinding()]
 param(
     [ValidatePattern('^\d+\.\d+\.\d+$')]
-    [string]$AppVersion = '0.1.1',
+    [string]$AppVersion = '0.1.2',
     [switch]$SkipInstaller
 )
 

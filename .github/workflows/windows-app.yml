@@ -5,7 +5,7 @@ on:
     inputs:
       app_version:
         description: "Installer version (three numeric components)"
-        default: "0.1.1"
+        default: "0.1.2"
         required: true
         type: string
   push:
@@ -68,7 +68,7 @@ jobs:
       - name: Build, run bundled forecast and test installed executable
         shell: pwsh
         env:
-          ASTRA_APP_VERSION: ${{ inputs.app_version || '0.1.1' }}
+          ASTRA_APP_VERSION: ${{ inputs.app_version || '0.1.2' }}
         run: ./desktop/build_windows.ps1 -AppVersion $env:ASTRA_APP_VERSION
       - name: Upload tested installer, portable folder, reports and checksums
         uses: actions/upload-artifact@v4

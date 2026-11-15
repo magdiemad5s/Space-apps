@@ -76,6 +76,10 @@ export class Wave {
         [style.animation-duration]="60 / bpm() + 's'"
         d="M60 74 C46 64 41 57 41 50 C41 44 45 40 50.5 40 C55 40 58.5 43 60 46.5 C61.5 43 65 40 69.5 40 C75 40 79 44 79 50 C79 57 74 64 60 74 Z"
       />
+      <g data-si-watermark="true" pointer-events="none">
+        <rect x="14" y="104" width="92" height="16" rx="4" fill="#ffffff" fill-opacity="0.96" />
+        <text x="60" y="115" text-anchor="middle" fill="#444444" font-family="Arial, sans-serif" font-size="10">SI-generated</text>
+      </g>
     </svg>
   `,
 })

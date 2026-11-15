@@ -91,8 +91,6 @@ const ZONES: Zone[] = [
       }
       }
     </div>
-    <p class="si-mark">SI-generated illustration</p>
-
     @if (!scenarioPreview()) {
     <aside class="zone-card" [attr.data-level]="zoneLevel(active()) ?? 'none'" [style.--zone-y]="active().y + '%'">
       <p class="zone-label">{{ active().label }}</p>

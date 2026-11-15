@@ -1,0 +1,211 @@
+{
+  "passed": true,
+  "checked_at_utc": "2026-11-15T14:47:11.788215+00:00",
+  "scope": "Rendered embedded SVG watermarks, four viewport widths, body-map interaction, standalone exports and refreshed screenshots. Compiled production UI; isolated synthetic demo records.",
+  "image_generation_used": false,
+  "clinical_validation": false,
+  "checks": [
+    {
+      "name": "1440px astronaut: visible SI label embedded within the SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1440px astronaut: label not clipped and readable size",
+      "passed": true,
+      "detail": {
+        "inside": true,
+        "renderedFont": 12.196044921875,
+        "width": 128.71875,
+        "height": 14,
+        "fill": "rgb(68, 68, 68)"
+      }
+    },
+    {
+      "name": "1440px watch: visible SI label embedded within the SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1440px watch: label not clipped and readable size",
+      "passed": true,
+      "detail": {
+        "inside": true,
+        "renderedFont": 9.333333333333334,
+        "width": 53.9375,
+        "height": 10,
+        "fill": "rgb(68, 68, 68)"
+      }
+    },
+    {
+      "name": "1440px: no horizontal overflow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "1440px: body-map hotspot remains interactive",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "768px astronaut: visible SI label embedded within the SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "768px astronaut: label not clipped and readable size",
+      "passed": true,
+      "detail": {
+        "inside": true,
+        "renderedFont": 13.28125,
+        "width": 140.109375,
+        "height": 15,
+        "fill": "rgb(68, 68, 68)"
+      }
+    },
+    {
+      "name": "768px watch: visible SI label embedded within the SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "768px watch: label not clipped and readable size",
+      "passed": true,
+      "detail": {
+        "inside": true,
+        "renderedFont": 9.333333333333334,
+        "width": 53.9375,
+        "height": 9.9998779296875,
+        "fill": "rgb(68, 68, 68)"
+      }
+    },
+    {
+      "name": "768px: no horizontal overflow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "768px: body-map hotspot remains interactive",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "375px astronaut: visible SI label embedded within the SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "375px astronaut: label not clipped and readable size",
+      "passed": true,
+      "detail": {
+        "inside": true,
+        "renderedFont": 13.28125,
+        "width": 140.109375,
+        "height": 15,
+        "fill": "rgb(68, 68, 68)"
+      }
+    },
+    {
+      "name": "375px watch: visible SI label embedded within the SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "375px watch: label not clipped and readable size",
+      "passed": true,
+      "detail": {
+        "inside": true,
+        "renderedFont": 9.333333333333334,
+        "width": 53.9375,
+        "height": 10,
+        "fill": "rgb(68, 68, 68)"
+      }
+    },
+    {
+      "name": "375px: no horizontal overflow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "375px: body-map hotspot remains interactive",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320px astronaut: visible SI label embedded within the SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320px astronaut: label not clipped and readable size",
+      "passed": true,
+      "detail": {
+        "inside": true,
+        "renderedFont": 11.25,
+        "width": 118.82811737060547,
+        "height": 12,
+        "fill": "rgb(68, 68, 68)"
+      }
+    },
+    {
+      "name": "320px watch: visible SI label embedded within the SVG",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320px watch: label not clipped and readable size",
+      "passed": true,
+      "detail": {
+        "inside": true,
+        "renderedFont": 9.333333333333334,
+        "width": 53.9375,
+        "height": 10,
+        "fill": "rgb(68, 68, 68)"
+      }
+    },
+    {
+      "name": "320px: no horizontal overflow",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "320px: body-map hotspot remains interactive",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "astronaut: standalone SVG export retains visible label",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "watch: standalone SVG export retains visible label",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Alert demo retains embedded astronaut label",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No uncaught browser errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "screenshots": [
+    "integration-reports/dashboard-current.png",
+    "integration-reports/watch-watermark-detail.png",
+    "integration-reports/astronaut-watermark-detail.png",
+    "docs/media/astronaut-si-generated.png",
+    "docs/media/watch-si-generated.png",
+    "integration-reports/dashboard-current-mobile.png"
+  ],
+  "source_sha256": {
+    "frontend/src/app/components/astronaut-figure.ts": "91fe723f195a7d5d3a0ce07ec5b6a292864ba5cae775d03f3f0a155d97e51501",
+    "frontend/src/app/components/tile-visuals.ts": "ff595e64a48f56f72d398131ebd21ef27540d021e83d407a23fc7c41496f37d5",
+    "frontend/src/app/components/body-map.ts": "c94faf95e5d1cf26500055c7d6d4c89b20a43759076244220c6f04446fbc21cc",
+    "frontend/src/styles.css": "4925e4d40419866cdc995d656b00a18b2a176a6f2399c20d2f4f3b86692876e0"
+  }
+}

@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-astronaut-figure',
   host: { style: 'display: contents' },
   template: `
-    <svg class="astronaut" viewBox="0 0 320 520" role="img" aria-label="Astronaut body map">
+    <svg class="astronaut" viewBox="0 0 320 520" role="img" aria-label="Astronaut body map, SI-generated illustration">
       <defs>
         <linearGradient id="suit" x1="0" x2="1" y1="0" y2="1">
           <stop offset="0" stop-color="#fbfbfa" />
@@ -71,6 +71,10 @@ import { Component } from '@angular/core';
         <rect x="116" y="56" width="88" height="68" rx="30" fill="url(#visor)" />
         <path d="M128 74 C136 64 150 60 162 60" stroke="#fff" stroke-opacity="0.55" stroke-width="5" stroke-linecap="round" fill="none" />
         <circle cx="190" cy="106" r="3" fill="#fff" opacity="0.35" />
+      </g>
+      <g data-si-watermark="true" pointer-events="none">
+        <rect x="63" y="493" width="194" height="24" rx="5" fill="#ffffff" fill-opacity="0.96" />
+        <text x="160" y="509" text-anchor="middle" fill="#444444" font-family="Arial, sans-serif" font-size="12.5">SI-generated illustration</text>
       </g>
     </svg>
   `,
