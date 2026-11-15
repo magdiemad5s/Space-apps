@@ -3,7 +3,7 @@
   "platform": "linux",
   "frozen": false,
   "scope": "Packaging and local inference integration; not model accuracy or clinical validation",
-  "model_artifact_sha256": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706",
+  "model_artifact_sha256": "d744a32bafad5bd8ec707fa61b218471760b4c7416a3d683ddc97545af88c079",
   "forecast": {
     "label": "moderate",
     "points": 33.1,

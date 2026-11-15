@@ -1,0 +1,77 @@
+name: Publish verified Windows prototype
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'desktop/release.json'
+      - '.github/workflows/publish-windows.yml'
+      - '.github/scripts/publish_windows.py'
+
+permissions:
+  actions: read
+  contents: write
+
+concurrency:
+  group: publish-windows-prototype
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.repository == 'magdiemad5s/Space-apps' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify the reviewed successful build and artifact identity
+        id: release
+        run: python .github/scripts/publish_windows.py run
+      - name: Download the existing tested binaries; do not rebuild
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ steps.release.outputs.artifact_name }}
+          run-id: ${{ steps.release.outputs.run_id }}
+          github-token: ${{ github.token }}
+          path: release-download
+      - name: Verify binary checksums, Windows reports and release destination
+        id: destination
+        run: python .github/scripts/publish_windows.py prepare
+      - name: Create a draft or resume the matching draft; upload missing assets
+        if: steps.destination.outputs.mode != 'already_published'
+        env:
+          RELEASE_MODE: ${{ steps.destination.outputs.mode }}
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+          RELEASE_TITLE: ${{ steps.release.outputs.title }}
+          SOURCE_COMMIT: ${{ steps.release.outputs.source_commit }}
+        run: |
+          set -euo pipefail
+          if [ "$RELEASE_MODE" = create ]; then
+            gh release create "$RELEASE_TAG" --target "$SOURCE_COMMIT" --title "$RELEASE_TITLE" --notes-file desktop/RELEASE_NOTES.md --draft --prerelease
+          fi
+          assets=()
+          while IFS= read -r name; do
+            assets+=("release-download/$name")
+          done < "$RUNNER_TEMP/astra-assets-to-upload.txt"
+          if [ "${#assets[@]}" -gt 0 ]; then
+            gh release upload "$RELEASE_TAG" "${assets[@]}"
+          fi
+      - name: Verify every uploaded asset before publishing
+        run: python .github/scripts/publish_windows.py uploaded
+      - name: Publish the verified prototype prerelease
+        if: steps.destination.outputs.mode != 'already_published'
+        env:
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+          RELEASE_TITLE: ${{ steps.release.outputs.title }}
+        run: gh release edit "$RELEASE_TAG" --draft=false --prerelease --title "$RELEASE_TITLE" --notes-file desktop/RELEASE_NOTES.md
+      - name: Confirm the public release and record its URL
+        env:
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+        run: |
+          python .github/scripts/publish_windows.py published
+          echo "Verified Windows prototype: https://github.com/$GH_REPO/releases/tag/$RELEASE_TAG" >> "$GITHUB_STEP_SUMMARY"

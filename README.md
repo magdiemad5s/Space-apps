@@ -14,7 +14,9 @@ The teammate's dashboard design and Manrope typography are retained. Manrope is 
 
 ## Start on Windows
 
-For the self-contained Windows x64 installer, see **[Windows bundle instructions](desktop/README.md)** and the **[tester checklist](docs/FRIEND_TEST_CHECKLIST.md)**. The bundle includes Python, Node, and the unchanged model; it opens this same dashboard in your browser. Only a successful Windows build with matching smoke-test reports should be handed out as a tested executable.
+Download the **[Windows x64 installer (.exe)](https://github.com/magdiemad5s/Space-apps/releases/download/v0.1.0-prototype/ASTRA-SHIELD-Setup-x64.exe)** from the **[0.1.0 prototype release](https://github.com/magdiemad5s/Space-apps/releases/tag/v0.1.0-prototype)**. It includes Python, Node, and the five selected models and opens this same dashboard in your browser. The installer is unsigned.
+
+The portable and installed executables passed native Windows checks. Follow the **[Windows instructions](desktop/README.md)** and give your tester the **[handoff checklist](docs/FRIEND_TEST_CHECKLIST.md)**; interactive rehearsal on their laptop remains necessary.
 
 The source launcher remains available for development:
 

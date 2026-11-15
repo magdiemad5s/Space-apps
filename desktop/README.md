@@ -8,14 +8,16 @@ The installer is for **Windows x64**. It is unsigned; a downloaded installer may
 
 ## Build status and verification
 
-The packaging source and automated Windows build are provided here. A build specification alone is not evidence that a particular executable works. Use the successful [Windows application bundle workflow](https://github.com/magdiemad5s/Space-apps/actions/workflows/windows-app.yml), its artifact, and its matching reports to identify a tested build:
+**Version 0.1.0 passed native Windows checks in [build 4](https://github.com/magdiemad5s/Space-apps/actions/runs/43693862661)**, from commit `26b14a678b67173e85a6621bb242b9e41f4f0014`. Download the [installer and matching evidence](https://github.com/magdiemad5s/Space-apps/releases/tag/v0.1.0-prototype). Both the portable and installed executables passed 19 checks, including actual prediction, TreeSHAP, and shutdown. Six original reference responses matched on Windows. Installation/uninstallation and an installation path containing spaces were exercised.
+
+The release contains:
 
 - `ASTRA-SHIELD-Setup-x64.exe`: per-user installer.
 - `ASTRA-SHIELD-portable-x64.zip`: the complete portable application folder.
 - `SHA256SUMS.txt` and `build-manifest.json`: download checksums, versions, and model identity.
-- `windows-smoke-report.json` and `installed-smoke-report.json`: checks performed against the bundled executable and the installed copy.
+- `windows-smoke-report.json`, `installed-smoke-report.json`, and `windows-model-equivalence-report.json`: native runtime and numerical portability checks.
 
-Native Windows build results must be checked before calling the package verified. Automated smoke checks cover application wiring and real local inference; the [friend's test checklist](../docs/FRIEND_TEST_CHECKLIST.md) covers the interactive handoff on the actual laptop. Neither is medical validation.
+Checksums were verified after downloading the CI artifact. Automated checks cover application wiring and real local inference on a Windows runner; the [friend's test checklist](../docs/FRIEND_TEST_CHECKLIST.md) covers interactive use on the actual laptop. Windows browser interaction on that laptop is not established by the automated executable tests. Neither is medical validation.
 
 ## Install and open
 
@@ -73,6 +75,8 @@ pwsh -File desktop/build_windows.ps1 -AppVersion 0.1.0
 ```
 
 The script builds the production Angular assets, compiles the backend, bundles Python with PyInstaller, and produces a per-user Inno Setup installer. See the workflow and `requirements-build.txt` for the build dependencies. Build output goes under `desktop/dist/`; temporary resources go under `desktop/build/`. The workflow uploads `ASTRA-SHIELD-Windows-x64-<run_number>`, with a separate diagnostics artifact. These are generated files, not replacements for the model or source data. No training step is included.
+
+The source repository includes the validated deployment artifact. To reproduce its export in the compatible original Linux Python environment, run `python desktop/export_inference_bundle.py`; this writes the deployment artifact, reference cases, and equivalence report without fitting a model. `python desktop/export_inference_bundle.py --validate-only` checks the portable artifact against its original reference outputs. The build refuses to perform its temporary installer test over an existing ASTRA installation; use the clean CI runner or `-SkipInstaller` for a portable-only local build.
 
 The web frontend remains independent of this optional Windows wrapper. Linux/source-launcher instructions remain in [RUNNING.md](../docs/RUNNING.md), and the web deployment path remains in [WEB_DEPLOYMENT.md](../docs/WEB_DEPLOYMENT.md).
 

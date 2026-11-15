@@ -15,7 +15,9 @@ These checks use fictional integration observations and the existing model. They
 | Launcher helper/process tests | 10 passed | `scripts/test_launcher.py` |
 | Actual startup, duplicate-start protection, shutdown and restart persistence | Passed | [LAUNCHER_INTEGRATION_CHECKS.json](LAUNCHER_INTEGRATION_CHECKS.json) |
 | Original model and main dataset | Unchanged SHA-256 | [preserved-model-data.json](preserved-model-data.json) |
-| Native Windows execution | **Not run in this Linux workspace** | Rehearsal required on the presentation laptop |
+| Native Windows portable and installed executables | **19 checks passed each** on a Windows runner | [Windows build evidence](windows-build-4/verification.json) |
+| Inference-only deployment export | 130 original/deployment comparisons; six Windows reference cases passed | [Equivalence report](DEPLOYMENT_MODEL_EQUIVALENCE.json) |
+| Interactive Windows laptop rehearsal | Still required | [Tester checklist](../docs/FRIEND_TEST_CHECKLIST.md) |
 | Clinical Alert V2's 14 medical scenarios | **Not run** | Five preset UI examples are not a clinical engine |
 
 The browser checks cover seven calibration records, eighth-record form submission, real category/index/SHAP rendering, invalid and duplicate input, preserved history, exact journal-aware retry after an actual model-unavailable backend and restart, explicit demo selection, calibration baseline visibility, and layouts at 320/375px. Network/read-failure simulations are named separately in the report. The five Alert demo states make no API/model calls and do not change actual observations or forecasts.

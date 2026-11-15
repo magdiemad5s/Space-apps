@@ -26,7 +26,7 @@ To check prerequisites without starting servers:
 .\Start-Astra.cmd --check
 ```
 
-The Windows launch scripts have been reviewed, but this workspace runs Linux. **Rehearse setup, prediction, and Ctrl+C shutdown on the actual Windows laptop before presenting.** Windows-specific driver, antivirus, Python-wheel, or process-cleanup behavior has not been exercised here. Closing the terminal abruptly is not the supported shutdown procedure.
+The bundled installer and its installed executable passed native Windows tests, including actual prediction and shutdown. Source-launcher helper tests also ran on Windows; the full source development stack was exercised on Linux. **Rehearse the chosen startup path, prediction, and Ctrl+C shutdown on the actual Windows laptop before presenting.** For these source launch scripts, Ctrl+C is the supported shutdown procedure.
 
 ## Linux
 

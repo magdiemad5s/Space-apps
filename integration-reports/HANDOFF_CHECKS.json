@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-11-15T08:04:18.523258+00:00",
+  "checked_at_utc": "2026-11-15T08:24:26.820844+00:00",
   "frontend_api_tests_passed": 25,
   "launcher_tests_passed": 10,
   "browser_integration_checks_passed": 48,
@@ -8,7 +8,7 @@
   "frontend_production_build_passed": true,
   "original_model_and_dataset_unchanged": true,
   "local_document_links_resolve": true,
-  "windows_native_execution_tested": false,
+  "windows_native_execution_tested": true,
   "clinical_v2_14_cases_executed": false,
   "services_stopped_after_verification": true,
   "publication_status_scope": "This report records local checks; subsequent publication is recorded by Git history.",
@@ -18,7 +18,15 @@
   "desktop_runtime_linux_integration_checks_passed": 19,
   "desktop_runtime_unit_tests_passed_linux": 13,
   "desktop_runtime_windows_only_test_skipped_linux": 1,
-  "windows_bundle_status": "Native Windows build pending; unused XGBoost comparison removed from deployment-only artifact, selected models preserved",
+  "windows_bundle_status": "Native Windows installer and portable executable passed; see windows-build-4 reports",
   "desktop_production_browser_checks_passed": 15,
-  "desktop_runtime_lifecycle_checks_passed": 21
+  "desktop_runtime_lifecycle_checks_passed": 21,
+  "windows_portable_smoke_checks_passed": 19,
+  "windows_installed_smoke_checks_passed": 19,
+  "deployment_model_equivalence_cases_passed": 130,
+  "windows_model_equivalence_cases_passed": 6,
+  "interactive_windows_gui_rehearsal_completed": false,
+  "windows_build_commit": "26b14a678b67173e85a6621bb242b9e41f4f0014",
+  "windows_installer_sha256": "47a80a9879950b8bc0547d6cf34829697068b7f86b394ae89a94b291296e93c0",
+  "windows_deployment_model_sha256": "d744a32bafad5bd8ec707fa61b218471760b4c7416a3d683ddc97545af88c079"
 }

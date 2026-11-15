@@ -1,0 +1,22 @@
+{
+  "workflow_url": "https://github.com/magdiemad5s/Space-apps/actions/runs/43693862661",
+  "build_commit": "26b14a678b67173e85a6621bb242b9e41f4f0014",
+  "artifact_id": 14153936535,
+  "artifact_download_crc_and_asset_checksums_verified": true,
+  "installer_sha256": "47a80a9879950b8bc0547d6cf34829697068b7f86b394ae89a94b291296e93c0",
+  "installer_bytes": 107157532,
+  "windows_runtime_regression_tests_passed": 13,
+  "windows_runtime_platform_skips": 1,
+  "windows_source_launcher_tests_passed": 8,
+  "windows_source_launcher_platform_skips": 2,
+  "frontend_tests_passed": 25,
+  "backend_tests_passed": 16,
+  "portable_and_installed_smoke_checks_passed_each": 19,
+  "reference_cases_matched": 6,
+  "installer_and_uninstaller_passed": true,
+  "space_containing_install_path_tested": true,
+  "path_excluded_system_python_and_node_for_smoke": true,
+  "unsigned": true,
+  "interactive_windows_gui_rehearsal_completed": false,
+  "clinical_v2_14_cases_executed": false
+}
