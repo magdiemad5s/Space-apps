@@ -153,7 +153,7 @@
       "public_url": "https://github.com/magdiemad5s/Space-apps/blob/main/Project_SuperMoon_Final_Presentation.pdf",
       "page_count": 7,
       "language": "English",
-      "public_access_checked": "Pending final publication of refreshed PDF; previous seven-slide copy opened anonymously on 2026-11-15.",
+      "public_access_checked": "2026-11-15: refreshed seven-slide PDF opened anonymously with HTTP 200 and matched local SHA-256 9c27bc54cff53941453c4bf7a5b522ef145b233ad3e6191819fa28008199b03d.",
       "scope_note": "Refreshed seven-slide PDF uses the current screenshot with embedded SVG labels as well as the existing visible artwork caption. Layout and label presence checked after export.",
       "sha256": "9c27bc54cff53941453c4bf7a5b522ef145b233ad3e6191819fa28008199b03d"
     },
@@ -237,6 +237,7 @@
     "release_tag": "v0.1.2-prototype",
     "executable_source_commit": "34f513aed953c0aaa9ca63611334e99457d52065",
     "verification_path": "integration-reports/windows-build-6/verification.json",
-    "note": "Version 0.1.2 includes embedded SVG artwork labels. Release publication uses the independently verified Windows build; documentation and presentation updates after its source commit do not change the executable or frozen models/data."
+    "note": "Version 0.1.2 includes embedded SVG artwork labels. Release publication uses the independently verified Windows build; documentation and presentation updates after its source commit do not change the executable or frozen models/data.",
+    "public_access_checked": "2026-11-15: release publication succeeded; seven published asset digests matched verified files; anonymous installer range request returned HTTP 206 and the Windows executable header."
   }
 }
