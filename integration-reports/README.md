@@ -12,7 +12,7 @@ These checks use fictional integration observations and the existing model. They
 | Bundled runtime lifecycle on Linux | 21 passed; duplicate launch, persistence, crash cleanup | [DESKTOP_LIFECYCLE_CHECKS.json](DESKTOP_LIFECYCLE_CHECKS.json) |
 | Desktop runtime regressions | 13 passed on Linux; one Windows-only test deferred to CI | `desktop/runtime_tests.py` |
 | Frontend strict typecheck and production build | Passed | `npm run typecheck`, `npm run build` |
-| Launcher helper/process tests | 9 passed | `scripts/test_launcher.py` |
+| Launcher helper/process tests | 10 passed | `scripts/test_launcher.py` |
 | Actual startup, duplicate-start protection, shutdown and restart persistence | Passed | [LAUNCHER_INTEGRATION_CHECKS.json](LAUNCHER_INTEGRATION_CHECKS.json) |
 | Original model and main dataset | Unchanged SHA-256 | [preserved-model-data.json](preserved-model-data.json) |
 | Native Windows execution | **Not run in this Linux workspace** | Rehearsal required on the presentation laptop |

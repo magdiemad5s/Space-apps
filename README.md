@@ -6,6 +6,8 @@ The team's Angular/Ionic dashboard is connected to the TypeScript application ba
 
 The selected model is unchanged. Its training data is synthetic; NASA resources informed the project, not participant measurements. Forecasts and dashboard guidance are prototype outputs, not clinical validation or permission to perform a mission-critical task.
 
+The Windows package uses an inference-only export of the five selected models. It excludes unused research comparisons, including an XGBoost snapshot that cannot deserialize on Windows. Selected model parameters and outputs are checked against the original; the original research artifact remains intact. See [deployment equivalence evidence](integration-reports/DEPLOYMENT_MODEL_EQUIVALENCE.json).
+
 ![Crew Health Console connected to the model, using synthetic demo observations](integration-reports/dashboard-current.png)
 
 The teammate's dashboard design and Manrope typography are retained. Manrope is bundled locally for offline use. The added Alert demo tab, explicit connection controls, and mobile tab wrapping are documented integration changes.

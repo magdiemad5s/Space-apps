@@ -22,10 +22,17 @@ $Dist = Join-Path $PSScriptRoot 'dist'
 $Resources = Join-Path $Build 'resources'
 $BackendSource = Join-Path $Project 'ai/integration/backend_review/proposed_backend'
 $FrontendSource = Join-Path $Project 'frontend'
-$ModelSource = Join-Path $Project 'ai/artifacts/bundle.joblib'
+$OriginalModelSource = Join-Path $Project 'ai/artifacts/bundle.joblib'
+$ModelSource = Join-Path $PSScriptRoot 'artifacts/inference_bundle.joblib'
+$InferenceManifestPath = Join-Path $PSScriptRoot 'artifacts/inference_manifest.json'
 $DataSource = Join-Path $Project 'ai/data/astra_shield_synthetic_ml.csv'
-$ExpectedModelHash = '7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706'
+$ExpectedOriginalModelHash = '7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706'
 $ExpectedDataHash = 'dd76fd2658586375a4f9fc44767c18731a5ecee061912ed625a44bd206ed6a95'
+$InferenceManifest = Get-Content $InferenceManifestPath -Raw | ConvertFrom-Json
+$ExpectedModelHash = $InferenceManifest.deployment_model_sha256
+if ($ExpectedModelHash -notmatch '^[0-9a-f]{64}$' -or $InferenceManifest.original_model_sha256 -ne $ExpectedOriginalModelHash) {
+    throw 'The inference export manifest does not identify the expected original model and deployment artifact.'
+}
 $Python = (Get-Command python.exe -ErrorAction Stop).Source
 $Node = (Get-Command node.exe -ErrorAction Stop).Source
 $Npm = (Get-Command npm.cmd -ErrorAction Stop).Source
@@ -35,8 +42,11 @@ if ($NodeVersion -notmatch '^v24\.') { throw "Node 24 is required for this build
 if ((& $Node -p 'process.arch').Trim() -ne 'x64') { throw 'Node x64 is required.' }
 
 function Assert-FrozenInputs {
+    if ((Get-FileHash $OriginalModelSource -Algorithm SHA256).Hash.ToLowerInvariant() -ne $ExpectedOriginalModelHash) {
+        throw 'The original research model has changed. The deployment export must retain its exact selected fitted models.'
+    }
     if ((Get-FileHash $ModelSource -Algorithm SHA256).Hash.ToLowerInvariant() -ne $ExpectedModelHash) {
-        throw 'The frozen model has changed. Review and deliberately update the expected hash before packaging.'
+        throw 'The inference export does not match its reviewed deployment manifest.'
     }
     if ((Get-FileHash $DataSource -Algorithm SHA256).Hash.ToLowerInvariant() -ne $ExpectedDataHash) {
         throw 'The original synthetic dataset has changed. Packaging must not modify the dataset.'
@@ -70,16 +80,10 @@ Invoke-Checked $Python @('-m', 'venv', (Join-Path $Build 'venv'))
 $BuildPython = Join-Path $Build 'venv/Scripts/python.exe'
 Invoke-Checked $BuildPython @('-m', 'pip', 'install', '--disable-pip-version-check', '-r', (Join-Path $Project 'ai/requirements.txt'), '-r', (Join-Path $PSScriptRoot 'requirements-build.txt'))
 Invoke-Checked $BuildPython @((Join-Path $PSScriptRoot 'runtime_tests.py'))
-$ModelPreflight = @'
-import sys
-sys.path.insert(0, sys.argv[1])
-from astra_shield_ml.service import ModelService
-service = ModelService(sys.argv[2])
-assert len(service.models) == 5
-assert service.model_info()['clinical_validation'] is False
-print('Windows model preflight: all five frozen tasks loaded; TreeSHAP initialized.')
-'@
-Invoke-Checked $BuildPython @('-c', $ModelPreflight, (Join-Path $Project 'ai'), $ModelSource)
+Invoke-Checked $BuildPython @((Join-Path $Project 'scripts/test_launcher.py'))
+# Validate every output field for six training-only reference requests against
+# the original Linux artifact. This loads no cross-platform research snapshot.
+Invoke-Checked $BuildPython @((Join-Path $PSScriptRoot 'export_inference_bundle.py'), '--validate-only', '--artifact', $ModelSource, '--reference', (Join-Path $PSScriptRoot 'artifacts/inference_reference.json')) | Tee-Object -FilePath (Join-Path $Dist 'windows-model-equivalence-report.json')
 
 Push-Location $FrontendSource
 try {
@@ -116,10 +120,12 @@ if (Test-Path $NodeLicense) {
     Invoke-WebRequest "https://raw.githubusercontent.com/nodejs/node/$NodeVersion/LICENSE" -OutFile (Join-Path $Resources 'node/LICENSE')
 }
 Copy-Item $ModelSource (Join-Path $Resources 'model/bundle.joblib')
-Copy-Item (Join-Path $Project 'ai/artifacts/frozen_manifest.json') (Join-Path $Resources 'model/frozen_manifest.json')
+Copy-Item (Join-Path $Project 'ai/artifacts/frozen_manifest.json') (Join-Path $Resources 'model/original_research_manifest.json')
+Copy-Item $InferenceManifestPath (Join-Path $Resources 'model/inference_manifest.json')
 Copy-Item (Join-Path $BackendSource 'examples/synthetic_daily_sequence.json') (Join-Path $Resources 'fixtures/synthetic_daily_sequence.json')
+Copy-Item (Join-Path $PSScriptRoot 'artifacts/inference_reference.json') (Join-Path $Resources 'fixtures/inference_reference.json')
 if ((Get-FileHash (Join-Path $Resources 'model/bundle.joblib') -Algorithm SHA256).Hash.ToLowerInvariant() -ne $ExpectedModelHash) {
-    throw 'Staged model hash does not match the frozen original.'
+    throw 'Staged inference model hash does not match the reviewed deployment export.'
 }
 
 # Preserve wheel licenses even when PyInstaller's analysis would not collect
@@ -183,6 +189,12 @@ The installer and executable are unsigned. Windows may display an unknown
 publisher / SmartScreen warning. Verify SHA256SUMS.txt and the project's
 trusted GitHub build before deciding whether to run the downloaded installer.
 
+The inference bundle retains the original five selected fitted models and
+their metadata. Unused research baselines/ablations are omitted for portable
+deployment; their Linux-specific XGBoost memory snapshots are not used by the
+application. No retraining or replacement of selected models was performed.
+The original research artifact remains unchanged in the source repository.
+
 The Start menu shortcut opens the clearly labeled synthetic demo. Keep the
 launcher window open while using the app; close it to stop the local services.
 User records and logs are stored separately from this installation. Updating
@@ -211,7 +223,8 @@ $Manifest = [ordered]@{
     python = (& $BuildPython --version).Trim()
     node = $NodeVersion
     npm = (& $Npm --version).Trim()
-    model_sha256 = $ExpectedModelHash
+    original_model_sha256 = $ExpectedOriginalModelHash
+    deployment_model_sha256 = $ExpectedModelHash
     original_dataset_sha256 = $ExpectedDataHash
     embedded_node_sha256 = (Get-FileHash (Join-Path $Resources 'node/node.exe') -Algorithm SHA256).Hash.ToLowerInvariant()
     signed = $false
@@ -219,7 +232,7 @@ $Manifest = [ordered]@{
     clinical_validation = $false
     training_performed = $false
     runtime_install_required = $false
-    tests = @('windows-smoke-report.json', 'installed-smoke-report.json')
+    tests = @('windows-model-equivalence-report.json', 'windows-smoke-report.json', 'installed-smoke-report.json')
 }
 $Manifest | ConvertTo-Json -Depth 6 | Set-Content (Join-Path $Dist 'build-manifest.json') -Encoding utf8
 Copy-Item (Join-Path $Dist 'build-manifest.json') (Join-Path $Bundle 'build-manifest.json')
@@ -236,6 +249,15 @@ function Test-FrozenRuntime {
         $env:PYTHONPATH = $null
         $env:PYTHONHOME = $null
         Invoke-Checked $Application @('--smoke-test', '--no-browser', '--data-dir', $DataDirectory, '--report', $Report)
+    } catch {
+        # Keep chained native-library/pickle failures visible in the job log;
+        # artifact downloads are not always available to someone debugging CI.
+        $RuntimeLogDirectory = Join-Path $DataDirectory 'logs'
+        if (Test-Path $RuntimeLogDirectory) {
+            Write-Host 'Bundled runtime failure details:'
+            Get-ChildItem $RuntimeLogDirectory -Filter 'error.log' -File -Recurse | ForEach-Object { Get-Content $_.FullName }
+        }
+        throw
     } finally {
         $env:PATH = $PreviousPath
         $env:PYTHONPATH = $PreviousPythonPath

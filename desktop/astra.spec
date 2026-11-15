@@ -21,6 +21,7 @@ for relative in (
     "backend/node_modules/express/package.json",
     "node/node.exe",
     "model/bundle.joblib",
+    "model/inference_manifest.json",
     "fixtures/synthetic_daily_sequence.json",
 ):
     if not (resources / relative).is_file():
@@ -46,12 +47,14 @@ datas = [(str(resources), "resources")]
 binaries = []
 
 # A pickle refers to estimator implementations without ordinary Python imports.
-# Include sklearn's compiled estimators and SHAP/XGBoost's native extensions.
+# Include sklearn's compiled estimators and SHAP's native extensions.
+# The deployment export excludes unused research XGBoost memory snapshots;
+# none of the five selected fitted models uses XGBoost.
 # SHAP 0.54.1 does not require numba or llvmlite.
-for package in ("sklearn", "shap", "xgboost"):
+for package in ("sklearn", "shap"):
     hiddenimports += collect_submodules(package, filter=runtime_module, on_error="warn once")
     datas += collect_data_files(package, excludes=["**/tests/**", "**/benchmarks/**"])
-for package in ("numpy", "scipy", "sklearn", "shap", "xgboost"):
+for package in ("numpy", "scipy", "sklearn", "shap"):
     binaries += collect_dynamic_libs(package)
 
 # Preserve version metadata and the wheel's embedded license files. Built-in and
@@ -59,7 +62,7 @@ for package in ("numpy", "scipy", "sklearn", "shap", "xgboost"):
 for distribution in (
     "numpy", "pandas", "scipy", "scikit-learn", "joblib", "threadpoolctl",
     "fastapi", "starlette", "pydantic", "pydantic_core", "uvicorn", "httpx",
-    "xgboost-cpu", "shap", "slicer", "cloudpickle", "tqdm", "packaging",
+    "shap", "slicer", "cloudpickle", "tqdm", "packaging",
 ):
     datas += copy_metadata(distribution)
 
@@ -72,7 +75,7 @@ a = Analysis(
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
-    excludes=["tkinter", "IPython", "jupyter", "pytest"],
+    excludes=["tkinter", "IPython", "jupyter", "pytest", "xgboost"],
     noarchive=False,
 )
 pyz = PYZ(a.pure)

@@ -16,6 +16,8 @@ on:
       - 'desktop/*.spec'
       - 'desktop/*.iss'
       - 'desktop/requirements-build.txt'
+      - 'desktop/artifacts/**'
+      - 'scripts/*.py'
       - 'frontend/src/**'
       - 'frontend/public/**'
       - 'frontend/tests/**'
@@ -77,6 +79,7 @@ jobs:
             desktop/dist/ASTRA-SHIELD-portable-x64.zip
             desktop/dist/SHA256SUMS.txt
             desktop/dist/build-manifest.json
+            desktop/dist/windows-model-equivalence-report.json
             desktop/dist/windows-smoke-report.json
             desktop/dist/installed-smoke-report.json
           if-no-files-found: error

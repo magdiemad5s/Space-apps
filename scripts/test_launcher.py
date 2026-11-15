@@ -11,7 +11,7 @@ import tempfile
 import time
 import unittest
 
-from launcher_common import LauncherError, node_supported, checked_python
+from launcher_common import LauncherError, node_supported, checked_python, default_model_path, ROOT, AI
 from start import Stack, parser, port_available
 
 
@@ -54,6 +54,10 @@ class LauncherTests(unittest.TestCase):
             self.assertTrue(node_supported(version), version)
         for version in ["22.22.2", "24.14.99", "20.99.99", "23.99.99", "25.0.0", "nonsense"]:
             self.assertFalse(node_supported(version), version)
+
+    def test_windows_uses_portable_inference_export_and_linux_keeps_research_bundle(self):
+        self.assertEqual(default_model_path('nt'), ROOT / 'desktop/artifacts/inference_bundle.joblib')
+        self.assertEqual(default_model_path('posix'), AI / 'artifacts/bundle.joblib')
 
     @unittest.skipIf(os.name == "nt", "POSIX venv interpreters use symlinks")
     def test_python_virtualenv_symlink_is_not_dereferenced(self):

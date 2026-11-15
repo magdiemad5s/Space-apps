@@ -11,6 +11,8 @@ The same Angular/Ionic application runs on Windows and Linux in a browser. The s
 
 Use **`Start-Astra.cmd`** to start without adding example records. The default participant is `DEMO_SIM_001`; a fresh participant needs seven daily calibration records before the eighth record can receive a forecast. Reopening a populated demo does not erase or duplicate its history.
 
+The Windows source launcher selects `desktop/artifacts/inference_bundle.joblib`. This is a deployment export of the same five selected models; unused research comparisons were excluded to avoid an incompatible XGBoost snapshot. Linux's source launcher still uses the complete original research artifact. Do not replace the Windows deployment artifact with that complete research pickle. No retraining is involved.
+
 Equivalent commands from the project root:
 
 ```powershell

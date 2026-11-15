@@ -2,6 +2,8 @@
 
 The bundle packages the **existing Angular dashboard, TypeScript backend, Python 3.12 runtime, and unchanged model**. It opens the dashboard in the default browser and keeps its local services in a console window. It does not introduce a different dashboard design or require Python, Node, npm, a GPU, or an AI API key on the tester's computer.
 
+The deployment artifact contains the **same five selected inference models and required metadata**, with unused research baselines and comparison models omitted. The full research artifact contains an XGBoost comparison snapshot that fails to deserialize on Windows. Its original bytes remain unchanged in `ai/artifacts/bundle.joblib`; the deployment copy has a separate hash in `artifacts/inference_manifest.json`. [Equivalence checks](../integration-reports/DEPLOYMENT_MODEL_EQUIVALENCE.json) compare retained model state, predictions, and SHAP outputs. This export does not train or choose a new model.
+
 The installer is for **Windows x64**. It is unsigned; a downloaded installer may show an unknown-publisher or SmartScreen warning. Confirm that the file came from this project's handoff and matches its published SHA-256 before running it. Follow the tester's organization policy rather than disabling security software.
 
 ## Build status and verification

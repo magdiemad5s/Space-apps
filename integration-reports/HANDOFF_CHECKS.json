@@ -1,7 +1,7 @@
 {
   "checked_at_utc": "2026-11-15T08:04:18.523258+00:00",
   "frontend_api_tests_passed": 25,
-  "launcher_tests_passed": 9,
+  "launcher_tests_passed": 10,
   "browser_integration_checks_passed": 48,
   "launcher_lifecycle_checks_passed": 9,
   "typescript_typecheck_passed": true,
@@ -18,7 +18,7 @@
   "desktop_runtime_linux_integration_checks_passed": 19,
   "desktop_runtime_unit_tests_passed_linux": 13,
   "desktop_runtime_windows_only_test_skipped_linux": 1,
-  "windows_bundle_status": "Build workflow prepared; native results pending",
+  "windows_bundle_status": "Native Windows build pending; unused XGBoost comparison removed from deployment-only artifact, selected models preserved",
   "desktop_production_browser_checks_passed": 15,
   "desktop_runtime_lifecycle_checks_passed": 21
 }

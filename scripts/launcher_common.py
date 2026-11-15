@@ -24,6 +24,15 @@ def default_python() -> Path:
     return ROOT / ".venv" / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
 
 
+def default_model_path(platform: str | None = None) -> Path:
+    # The research bundle includes an unused XGBoost comparison snapshot that
+    # cannot deserialize on Windows. The deployment export retains identical
+    # selected inference models and has an explicit equivalence report.
+    if (platform or os.name) == "nt":
+        return ROOT / "desktop/artifacts/inference_bundle.joblib"
+    return AI / "artifacts/bundle.joblib"
+
+
 def find_executable(name: str) -> str:
     executable = shutil.which(name)
     if not executable:

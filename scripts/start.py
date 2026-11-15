@@ -19,7 +19,7 @@ import urllib.request
 import webbrowser
 
 from launcher_common import (ROOT, AI, BACKEND, FRONTEND, LOCAL, LauncherError,
-                             checked_node, checked_python, check_file, default_python, fail)
+                             checked_node, checked_python, check_file, default_python, default_model_path, fail)
 
 
 @dataclass
@@ -207,7 +207,7 @@ def main(argv: list[str] | None = None) -> int:
         raise LauncherError("Model, backend and frontend must use different ports.")
     node = checked_node()
     python = checked_python(args.python)
-    model_path = AI / "artifacts" / "bundle.joblib"
+    model_path = default_model_path()
     check_file(model_path, "trusted model artifact")
     tsx = BACKEND / "node_modules" / "tsx" / "dist" / "cli.mjs"
     angular = FRONTEND / "node_modules" / "@angular" / "cli" / "bin" / "ng.js"

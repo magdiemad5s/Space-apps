@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "purpose": "Portable inference-only export; no retraining or model changes",
+  "original_model_sha256": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706",
+  "deployment_model_sha256": "d744a32bafad5bd8ec707fa61b218471760b4c7416a3d683ddc97545af88c079",
+  "retained_keys": [
+    "format_version",
+    "models",
+    "task_config",
+    "metadata",
+    "reference_values",
+    "training_feature_ranges",
+    "model_information"
+  ],
+  "removed_research_keys": [
+    "baselines",
+    "ablation_models",
+    "ablation_predictors"
+  ],
+  "retained_key_canonical_joblib_sha1": {
+    "format_version": "1bc1abc7c87377db888627a6a38885ce2b40ddda",
+    "models": "dcb3d8722c7fc1208cc2a08677f61e5edb7424c9",
+    "task_config": "568ccdbaac7c3f99a61a45fb758f01acaff57a31",
+    "metadata": "be9719c23da76f62bc4020b8e71df71969c468b1",
+    "reference_values": "972aa1eec09b3c5c12dd3868c81f18210639cdbb",
+    "training_feature_ranges": "6483e79be6e018161fe88e40e7b11d11ee250207",
+    "model_information": "03eeec6c4a4d965177b314eeb935cc32e8bae471"
+  },
+  "canonical_key_hashes_equal": true,
+  "raw_serialized_key_hashes_equal": false,
+  "raw_hash_difference_explanation": "RandomForest/IsolationForest C tree-node padding bytes at offsets 57..63 are unused and can change on allocation; every named node field, node value, shape, dtype, depth and node count is checked exactly. All remaining estimator state is included in canonical hashes.",
+  "selected_tasks": [
+    "next_day_fatigue_classification",
+    "next_day_fatigue_regression",
+    "next_day_reaction_time_regression",
+    "physiology_anomaly_detection",
+    "journal_stress_classification"
+  ],
+  "inference_reference_sha256": "08852f494c53439f23d5a50cabe200f4c4a42fc07d1c0ae2233699e8ecd3c14d",
+  "xgboost_objects_present": false,
+  "xgboost_import_blocked_load_passed": true,
+  "original_model_unchanged": true,
+  "model_training_performed": false
+}
