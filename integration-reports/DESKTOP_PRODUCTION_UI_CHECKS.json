@@ -1,0 +1,79 @@
+{
+  "passed": true,
+  "checked_at_utc": "2026-11-15T08:00:36.027963+00:00",
+  "scope": "Linux Chromium, compiled production Angular, unfrozen desktop runtime, real backend/model",
+  "clinical_validation": false,
+  "checks": [
+    {
+      "name": "compiled UI loads original local Manrope font",
+      "passed": true
+    },
+    {
+      "name": "production proxy calibration 1",
+      "passed": true
+    },
+    {
+      "name": "production proxy calibration 2",
+      "passed": true
+    },
+    {
+      "name": "production proxy calibration 3",
+      "passed": true
+    },
+    {
+      "name": "production proxy calibration 4",
+      "passed": true
+    },
+    {
+      "name": "production proxy calibration 5",
+      "passed": true
+    },
+    {
+      "name": "production proxy calibration 6",
+      "passed": true
+    },
+    {
+      "name": "production proxy calibration 7",
+      "passed": true
+    },
+    {
+      "name": "production form produces actual day-eight forecast",
+      "passed": true
+    },
+    {
+      "name": "actual model returns three SHAP reasons",
+      "passed": true
+    },
+    {
+      "name": "compiled UI displays actual SHAP values",
+      "passed": true
+    },
+    {
+      "name": "all five production views open",
+      "passed": true
+    },
+    {
+      "name": "production mobile page fits viewport",
+      "passed": true
+    },
+    {
+      "name": "production UI makes no external requests",
+      "passed": true
+    },
+    {
+      "name": "production UI has no uncaught JavaScript errors",
+      "passed": true
+    }
+  ],
+  "browser_errors": [],
+  "external_requests": [],
+  "forecast": {
+    "category": "Moderate",
+    "points": 33.1
+  },
+  "source_sha256": {
+    "desktop/runtime.py": "7cd54f25f1f061e167b4a500a84a5817eba2e4c84930f7ac0fbd71835a4faca2",
+    "scripts/test_desktop_ui.py": "98aaf623ecfcb04e824c677bf2691195cf9d91b77e79f9fd66c31c4fd8a23313",
+    "ai/artifacts/bundle.joblib": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706"
+  }
+}

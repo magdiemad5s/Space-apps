@@ -11,7 +11,30 @@ on:
   push:
     branches: [main]
     paths:
-      - 'desktop/**'
+      - 'desktop/*.py'
+      - 'desktop/*.ps1'
+      - 'desktop/*.spec'
+      - 'desktop/*.iss'
+      - 'desktop/requirements-build.txt'
+      - 'frontend/src/**'
+      - 'frontend/public/**'
+      - 'frontend/tests/**'
+      - 'frontend/package*.json'
+      - 'frontend/angular.json'
+      - 'frontend/tsconfig*.json'
+      - 'ai/astra_shield_ml/api.py'
+      - 'ai/astra_shield_ml/service.py'
+      - 'ai/astra_shield_ml/features.py'
+      - 'ai/astra_shield_ml/estimators.py'
+      - 'ai/astra_shield_ml/__init__.py'
+      - 'ai/requirements.txt'
+      - 'ai/artifacts/bundle.joblib'
+      - 'ai/artifacts/frozen_manifest.json'
+      - 'ai/data/astra_shield_synthetic_ml.csv'
+      - 'ai/integration/backend_review/proposed_backend/*.ts'
+      - 'ai/integration/backend_review/proposed_backend/package*.json'
+      - 'ai/integration/backend_review/proposed_backend/tsconfig.json'
+      - 'ai/integration/backend_review/proposed_backend/examples/synthetic_daily_sequence.json'
       - '.github/workflows/windows-app.yml'
 
 permissions:

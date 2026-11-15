@@ -1,0 +1,135 @@
+{
+  "started_at_utc": "2026-11-15T08:01:10.430133+00:00",
+  "scope": "Linux unfrozen Python launcher with compiled Angular, compiled Node backend and unchanged model artifact",
+  "windows_executed": false,
+  "frozen_executable": false,
+  "data": "Isolated fictional DEMO_SIM_001 records; no model training or ML accuracy evaluation",
+  "data_directory": ".local/desktop-lifecycle/d30478d47ac2/data",
+  "checks": [
+    {
+      "name": "staged model is byte-identical to unchanged source artifact",
+      "passed": true
+    },
+    {
+      "name": "initial seed stores exactly nine fictional observations",
+      "passed": true
+    },
+    {
+      "name": "day-eight and day-nine records use real synthetic model",
+      "passed": true
+    },
+    {
+      "name": "second instance fails visibly before opening shared storage",
+      "passed": true
+    },
+    {
+      "name": "second instance does not alter history bytes",
+      "passed": true
+    },
+    {
+      "name": "second instance leaves no additional backend process",
+      "passed": true
+    },
+    {
+      "name": "original instance remains healthy after rejected second launch",
+      "passed": true
+    },
+    {
+      "name": "Ctrl+C shuts launcher down successfully",
+      "passed": true
+    },
+    {
+      "name": "Ctrl+C releases web, backend and model ports",
+      "passed": true,
+      "detail": {
+        "ports": [
+          43397,
+          48005,
+          55911
+        ]
+      }
+    },
+    {
+      "name": "Ctrl+C leaves no Node child",
+      "passed": true
+    },
+    {
+      "name": "Ctrl+C preserves history bytes",
+      "passed": true
+    },
+    {
+      "name": "restart skips seeding existing participant",
+      "passed": true
+    },
+    {
+      "name": "restart returns the same nine observations",
+      "passed": true
+    },
+    {
+      "name": "restart leaves history byte-identical",
+      "passed": true
+    },
+    {
+      "name": "forced backend exit triggers supervisor failure",
+      "passed": true
+    },
+    {
+      "name": "backend failure releases all three service ports",
+      "passed": true,
+      "detail": {
+        "ports": [
+          60387,
+          51661,
+          35497
+        ]
+      }
+    },
+    {
+      "name": "backend failure leaves no Node child",
+      "passed": true
+    },
+    {
+      "name": "backend failure preserves history bytes",
+      "passed": true
+    },
+    {
+      "name": "supervisor failure is recorded in persistent error log",
+      "passed": true
+    },
+    {
+      "name": "restart after forced failure reacquires lock and restores readiness",
+      "passed": true
+    },
+    {
+      "name": "recovery shutdown is clean and history remains unchanged",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "source_sha256": {
+    "desktop/runtime.py": "7cd54f25f1f061e167b4a500a84a5817eba2e4c84930f7ac0fbd71835a4faca2",
+    "desktop/runtime_tests.py": "04f30e854a3a02b40be3dd991cc5f07fdb3694b2736579b12c0e264cae85c916",
+    "ai/astra_shield_ml/api.py": "3d824829f3cd06a9ad6937b6d05af6720fcff745df6b6c81aee8a945cde7fe53",
+    "ai/astra_shield_ml/service.py": "fddc5843bd0e4fa286b6a42e3512f08e63677443058649dbbee7280a8bb22479",
+    "ai/astra_shield_ml/features.py": "d4e51b1ea46eb776766bd6f39b5882405fbf4f762248b2f94659c19fffb828bf",
+    "ai/astra_shield_ml/estimators.py": "5f4da7ff7762ed29f04947e511e8c929f1c6d0808c73f4ff71497f225a123691",
+    "ai/artifacts/bundle.joblib": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706",
+    ".local/desktop-test/resources/backend/server.js": "ad7ac73be8fc70de118fe47cdcebc615249e58eac434807654ed29c05f4677b3",
+    ".local/desktop-test/resources/backend/featureHistory.js": "90d7295dd0137cbc1b2c3b45c286cf9bf52be98024f0b76b64a0d39a1b7434a6",
+    ".local/desktop-test/resources/backend/modelClient.js": "a84ee3ff1dc2cfc8a8a1f39d2056fe947681336bf3907c76a9c278abc3132fc9",
+    ".local/desktop-test/resources/backend/package.json": "ac39ce3912a071331579e18c351a616f7fe26a3612d7629c2bd55a6d07f5f49e",
+    ".local/desktop-test/resources/frontend/index.html": "f8dbe20ca765a39bc9bfcd3f357b86ba8326b7d3d3e005aacd0186db04b964c6",
+    ".local/desktop-test/resources/fixtures/synthetic_daily_sequence.json": "a25e120295542fd8f2992d3a6ee9eb360ea46e521c6c78607f8e53693935012c",
+    ".local/desktop-test/resources/model/bundle.joblib": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706",
+    "scripts/test_desktop_lifecycle.py": "bf3ef0278fb2f0e8730016a58aa605957b456375b588b45ee23144ca6528609c"
+  },
+  "seeded_history_sha256": "b489e9c49d582d319d8ab48d048d600d2753f601f4f4911d4a3d3864c6a7004e",
+  "completed_at_utc": "2026-11-15T08:01:23.196226+00:00",
+  "harness_provenance": {
+    "executed_harness": ".local/desktop_lifecycle_check.py",
+    "executed_harness_sha256": "06f1f202d2b3dcc0889bb976c5dcc355df61d9b7dbc6c74f02b22c08f8fe2835",
+    "retained_harness": "scripts/test_desktop_lifecycle.py",
+    "retained_harness_sha256": "bf3ef0278fb2f0e8730016a58aa605957b456375b588b45ee23144ca6528609c",
+    "post_execution_changes": "Promoted the same lifecycle checks to a retained script; added CLI path/interpreter options, Linux guard and configurable report path. The 21 executed checks are unchanged. The promoted wrapper was syntax/help checked, not a second lifecycle run."
+  }
+}

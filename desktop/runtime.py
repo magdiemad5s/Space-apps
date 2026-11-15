@@ -328,6 +328,10 @@ class Runtime:
             sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "ai"))
         from astra_shield_ml.api import app as model_app, get_service
         get_service.cache_clear()
+        # Load before starting HTTP so missing frozen dependencies fail once
+        # with their original chained traceback in error.log, not a timeout.
+        print("Loading the bundled model and TreeSHAP...", flush=True)
+        get_service()
         model_socket = listening_socket()
         model_url = f"http://{LOOPBACK}:{model_socket.getsockname()[1]}"
         self.model = ServerThread(model_app, model_socket, "astra-model")

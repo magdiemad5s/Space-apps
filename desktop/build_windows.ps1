@@ -43,6 +43,19 @@ function Assert-FrozenInputs {
     }
 }
 Assert-FrozenInputs
+if (-not $SkipInstaller) {
+    # The smoke installation uses the same AppId as the delivered installer.
+    # Refuse to overwrite an existing user's uninstall registration on a build
+    # workstation. The clean CI runner has no existing ASTRA installation.
+    $UninstallKey = '{2B11E450-13CD-48BD-9836-108C4CBA11AB}_is1'
+    foreach ($Hive in @('HKCU:', 'HKLM:')) {
+        foreach ($RegistryBase in @('Software/Microsoft/Windows/CurrentVersion/Uninstall', 'Software/WOW6432Node/Microsoft/Windows/CurrentVersion/Uninstall')) {
+            if (Test-Path (Join-Path $Hive "$RegistryBase/$UninstallKey")) {
+                throw 'ASTRA-SHIELD is already installed on this build computer. Use the clean Windows CI runner, or -SkipInstaller for a portable-only build, to preserve its installation registration.'
+            }
+        }
+    }
+}
 foreach ($directory in @($Build, $Dist)) {
     if (Test-Path $directory) { Remove-Item -LiteralPath $directory -Recurse -Force }
     New-Item -ItemType Directory -Path $directory -Force | Out-Null
@@ -57,6 +70,16 @@ Invoke-Checked $Python @('-m', 'venv', (Join-Path $Build 'venv'))
 $BuildPython = Join-Path $Build 'venv/Scripts/python.exe'
 Invoke-Checked $BuildPython @('-m', 'pip', 'install', '--disable-pip-version-check', '-r', (Join-Path $Project 'ai/requirements.txt'), '-r', (Join-Path $PSScriptRoot 'requirements-build.txt'))
 Invoke-Checked $BuildPython @((Join-Path $PSScriptRoot 'runtime_tests.py'))
+$ModelPreflight = @'
+import sys
+sys.path.insert(0, sys.argv[1])
+from astra_shield_ml.service import ModelService
+service = ModelService(sys.argv[2])
+assert len(service.models) == 5
+assert service.model_info()['clinical_validation'] is False
+print('Windows model preflight: all five frozen tasks loaded; TreeSHAP initialized.')
+'@
+Invoke-Checked $BuildPython @('-c', $ModelPreflight, (Join-Path $Project 'ai'), $ModelSource)
 
 Push-Location $FrontendSource
 try {
@@ -234,7 +257,8 @@ if (-not $SkipInstaller) {
     if (-not (Test-Path $Inno)) { throw 'Inno Setup 6 is required to build the installer. The Windows GitHub runner includes it.' }
     Invoke-Checked $Inno @("/DBundleDir=$Bundle", "/DOutputDir=$Dist", "/DAppVersion=$AppVersion", (Join-Path $PSScriptRoot 'installer.iss'))
     $Installer = Join-Path $Dist 'ASTRA-SHIELD-Setup-x64.exe'
-    $InstallTest = Join-Path $Build 'installed-application'
+    # Exercise spaces in paths as well as the actual installed executable.
+    $InstallTest = Join-Path $Build 'installed application'
     $InstallLog = Join-Path $Build 'installer-test.log'
     $Installation = Start-Process -FilePath $Installer -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/SP-', ('/DIR="' + $InstallTest + '"'), ('/LOG="' + $InstallLog + '"')) -Wait -PassThru
     if ($Installation.ExitCode -ne 0) { throw "Installer test failed with exit code $($Installation.ExitCode)." }
