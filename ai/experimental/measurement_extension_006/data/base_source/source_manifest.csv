@@ -1,0 +1,5 @@
+source_id,source_type,url_or_path,purpose,provides_measurements,license_or_status
+proposal,user_supplied_project_requirements,ASTRA-SHIELD AI-Powered Predictive Health and Cognitive Performance Monitoring for Astronauts.pdf,Defines four project modalities and requirement to distinguish simulated from real data,False,User-supplied project document; not redistributed here
+nasa_standard_measures,background_only,https://www.nasa.gov/reference/standard-measures/,Conceptual support for consistent measurements and personal time-series; no records copied,False,Linked as scientific background; no source content redistributed
+nasa_archer,background_only,https://www.nasa.gov/reference/archer/,"Conceptual support for activity, sleep and behavioral observations; no records copied",False,Linked as scientific background; no source content redistributed
+custom_simulator,synthetic_generator,generate_dataset.py,Actual source of every value and every label in these CSV files,False,New generated project artifact; no third-party measurement records used

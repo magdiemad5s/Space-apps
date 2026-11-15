@@ -1,0 +1,14 @@
+# Python 3.12; original training run used Python 3.12.14.
+# Numeric generation, grouped-CV training and experimental inference.
+numpy==2.3.5
+pandas==2.2.3
+scikit-learn==1.8.0
+joblib==1.5.3
+xgboost-cpu==3.4.1
+shap==0.54.1
+
+# Training-only EDA and shareable report rendering.
+matplotlib==3.10.8
+Pillow==13.0.0
+reportlab==4.4.9
+# Results PDF uses ReportLab's built-in Helvetica; no separate font install.

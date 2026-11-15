@@ -1,0 +1,22 @@
+{
+  "original_font_restored_locally": true,
+  "computed_body_font_family": "\"Manrope Variable\", Manrope, system-ui, -apple-system, \"Segoe UI\", sans-serif",
+  "external_network_requests": [],
+  "browser_errors": [],
+  "desktop_viewport": [
+    1440,
+    1080
+  ],
+  "mobile_viewport": [
+    375,
+    1000
+  ],
+  "scope": "Actual local dashboard and unchanged model; synthetic demo history",
+  "files_sha256": {
+    "frontend/src/styles.css": "7b405305b1978cd99c7c1f92c3db3caee80d00783b71fc14cfa2efeff740b5bb",
+    "frontend/src/index.html": "f7129eb789b085430cff03aca73098d2d0ab691ff9ed0b5bf28f147f65e6b0aa",
+    "frontend/package-lock.json": "fc18d46d49e1cba426c7cc0203841f9fc41b4ed905f7fc65f61d3da9428aa48e",
+    "integration-reports/dashboard-current.png": "0c937482fd2e28943803796cdde03bc23c2814aaae4fef0159b9b266eab20549",
+    "integration-reports/dashboard-current-mobile.png": "078af01ce668aee24ec9ef21c6a34c8f7c45bb2b215b1d59fd5a5e0e660e515c"
+  }
+}

@@ -1,0 +1,396 @@
+{
+  "experiment": "measurement_extension_006",
+  "stage": "test",
+  "evaluated_at_utc": "2026-11-15T00:27:26.223501+00:00",
+  "scope": "Fresh explicitly simulated cohort; not real questionnaire responses, measured astronaut data or clinical validity",
+  "rows": 1080,
+  "participant_count": 18,
+  "participants": [
+    "EXP006_002",
+    "EXP006_005",
+    "EXP006_006",
+    "EXP006_008",
+    "EXP006_030",
+    "EXP006_032",
+    "EXP006_048",
+    "EXP006_049",
+    "EXP006_066",
+    "EXP006_070",
+    "EXP006_072",
+    "EXP006_079",
+    "EXP006_084",
+    "EXP006_091",
+    "EXP006_097",
+    "EXP006_101",
+    "EXP006_107",
+    "EXP006_119"
+  ],
+  "selected_rf_extension": "rf_28_questionnaires",
+  "primary_control": "rf_26_control",
+  "metrics": {
+    "rf_26_control": {
+      "macro_f1": 0.5528432112388604,
+      "accuracy": 0.6527777777777778,
+      "balanced_accuracy": 0.5564803207969297,
+      "high_precision": 0.45588235294117646,
+      "high_recall": 0.43661971830985913,
+      "classification_report": {
+        "low": {
+          "precision": 0.4366812227074236,
+          "recall": 0.49504950495049505,
+          "f1-score": 0.46403712296983757,
+          "support": 202.0
+        },
+        "moderate": {
+          "precision": 0.7594405594405594,
+          "recall": 0.7377717391304348,
+          "f1-score": 0.7484493452791179,
+          "support": 736.0
+        },
+        "high": {
+          "precision": 0.45588235294117646,
+          "recall": 0.43661971830985913,
+          "f1-score": 0.4460431654676259,
+          "support": 142.0
+        },
+        "accuracy": 0.6527777777777778,
+        "macro avg": {
+          "precision": 0.5506680450297198,
+          "recall": 0.5564803207969297,
+          "f1-score": 0.5528432112388604,
+          "support": 1080.0
+        },
+        "weighted avg": {
+          "precision": 0.659160326715554,
+          "recall": 0.6527777777777778,
+          "f1-score": 0.6554929133905008,
+          "support": 1080.0
+        }
+      },
+      "confusion_matrix_labels": [
+        "low",
+        "moderate",
+        "high"
+      ],
+      "confusion_matrix": [
+        [
+          100,
+          101,
+          1
+        ],
+        [
+          120,
+          543,
+          73
+        ],
+        [
+          9,
+          71,
+          62
+        ]
+      ]
+    },
+    "rf_28_questionnaires": {
+      "macro_f1": 0.5494527903364534,
+      "accuracy": 0.6481481481481481,
+      "balanced_accuracy": 0.5542158280433065,
+      "high_precision": 0.4492753623188406,
+      "high_recall": 0.43661971830985913,
+      "classification_report": {
+        "low": {
+          "precision": 0.4329004329004329,
+          "recall": 0.49504950495049505,
+          "f1-score": 0.4618937644341801,
+          "support": 202.0
+        },
+        "moderate": {
+          "precision": 0.7566807313642757,
+          "recall": 0.7309782608695652,
+          "f1-score": 0.7436074637180373,
+          "support": 736.0
+        },
+        "high": {
+          "precision": 0.4492753623188406,
+          "recall": 0.43661971830985913,
+          "f1-score": 0.44285714285714284,
+          "support": 142.0
+        },
+        "accuracy": 0.6481481481481481,
+        "macro avg": {
+          "precision": 0.546285508861183,
+          "recall": 0.5542158280433065,
+          "f1-score": 0.5494527903364534,
+          "support": 1080.0
+        },
+        "weighted avg": {
+          "precision": 0.6557037103511757,
+          "recall": 0.6481481481481481,
+          "f1-score": 0.6513734703684204,
+          "support": 1080.0
+        }
+      },
+      "confusion_matrix_labels": [
+        "low",
+        "moderate",
+        "high"
+      ],
+      "confusion_matrix": [
+        [
+          100,
+          101,
+          1
+        ],
+        [
+          123,
+          538,
+          75
+        ],
+        [
+          8,
+          72,
+          62
+        ]
+      ]
+    },
+    "xgb_26_control": {
+      "macro_f1": 0.4980568337586074,
+      "accuracy": 0.5296296296296297,
+      "balanced_accuracy": 0.5857093612759928,
+      "high_precision": 0.3236363636363636,
+      "high_recall": 0.6267605633802817,
+      "classification_report": {
+        "low": {
+          "precision": 0.37606837606837606,
+          "recall": 0.6534653465346535,
+          "f1-score": 0.47739602169981915,
+          "support": 202.0
+        },
+        "moderate": {
+          "precision": 0.7731277533039648,
+          "recall": 0.47690217391304346,
+          "f1-score": 0.5899159663865546,
+          "support": 736.0
+        },
+        "high": {
+          "precision": 0.3236363636363636,
+          "recall": 0.6267605633802817,
+          "f1-score": 0.42685851318944845,
+          "support": 142.0
+        },
+        "accuracy": 0.5296296296296297,
+        "macro avg": {
+          "precision": 0.49094416433623483,
+          "recall": 0.5857093612759929,
+          "f1-score": 0.4980568337586074,
+          "support": 1080.0
+        },
+        "weighted avg": {
+          "precision": 0.6397631500313831,
+          "recall": 0.5296296296296297,
+          "f1-score": 0.5474315338118234,
+          "support": 1080.0
+        }
+      },
+      "confusion_matrix_labels": [
+        "low",
+        "moderate",
+        "high"
+      ],
+      "confusion_matrix": [
+        [
+          132,
+          64,
+          6
+        ],
+        [
+          205,
+          351,
+          180
+        ],
+        [
+          14,
+          39,
+          89
+        ]
+      ]
+    },
+    "xgb_33_combined": {
+      "macro_f1": 0.49613255237233167,
+      "accuracy": 0.5324074074074074,
+      "balanced_accuracy": 0.575898180372232,
+      "high_precision": 0.32567049808429116,
+      "high_recall": 0.5985915492957746,
+      "classification_report": {
+        "low": {
+          "precision": 0.36857142857142855,
+          "recall": 0.6386138613861386,
+          "f1-score": 0.4673913043478261,
+          "support": 202.0
+        },
+        "moderate": {
+          "precision": 0.7697228144989339,
+          "recall": 0.4904891304347826,
+          "f1-score": 0.5991701244813278,
+          "support": 736.0
+        },
+        "high": {
+          "precision": 0.32567049808429116,
+          "recall": 0.5985915492957746,
+          "f1-score": 0.4218362282878412,
+          "support": 142.0
+        },
+        "accuracy": 0.5324074074074074,
+        "macro avg": {
+          "precision": 0.48798824705155114,
+          "recall": 0.575898180372232,
+          "f1-score": 0.49613255237233167,
+          "support": 1080.0
+        },
+        "weighted avg": {
+          "precision": 0.6363079914542715,
+          "recall": 0.5324074074074074,
+          "f1-score": 0.551206481030918,
+          "support": 1080.0
+        }
+      },
+      "confusion_matrix_labels": [
+        "low",
+        "moderate",
+        "high"
+      ],
+      "confusion_matrix": [
+        [
+          129,
+          66,
+          7
+        ],
+        [
+          206,
+          361,
+          169
+        ],
+        [
+          15,
+          42,
+          85
+        ]
+      ]
+    },
+    "current_custom_fatigue_persistence": {
+      "macro_f1": 0.5420577991436789,
+      "accuracy": 0.6509259259259259,
+      "balanced_accuracy": 0.5434046198557394,
+      "high_precision": 0.42857142857142855,
+      "high_recall": 0.4225352112676056,
+      "classification_report": {
+        "low": {
+          "precision": 0.4386792452830189,
+          "recall": 0.4603960396039604,
+          "f1-score": 0.4492753623188406,
+          "support": 202.0
+        },
+        "moderate": {
+          "precision": 0.7554945054945055,
+          "recall": 0.7472826086956522,
+          "f1-score": 0.7513661202185792,
+          "support": 736.0
+        },
+        "high": {
+          "precision": 0.42857142857142855,
+          "recall": 0.4225352112676056,
+          "f1-score": 0.425531914893617,
+          "support": 142.0
+        },
+        "accuracy": 0.6509259259259259,
+        "macro avg": {
+          "precision": 0.5409150597829843,
+          "recall": 0.5434046198557394,
+          "f1-score": 0.5420577991436789,
+          "support": 1080.0
+        },
+        "weighted avg": {
+          "precision": 0.6532539874521007,
+          "recall": 0.6509259259259259,
+          "f1-score": 0.6520227959112719,
+          "support": 1080.0
+        }
+      },
+      "confusion_matrix_labels": [
+        "low",
+        "moderate",
+        "high"
+      ],
+      "confusion_matrix": [
+        [
+          93,
+          107,
+          2
+        ],
+        [
+          108,
+          550,
+          78
+        ],
+        [
+          11,
+          71,
+          60
+        ]
+      ]
+    }
+  },
+  "primary_extension_minus_control": {
+    "macro_f1": -0.003390420902406932,
+    "high_recall": 0.0,
+    "high_precision": -0.006606990622335884,
+    "accuracy": -0.00462962962962965,
+    "balanced_accuracy": -0.0022644927536231707
+  },
+  "secondary_xgb33_minus_xgb26": {
+    "macro_f1": -0.0019242813862757058,
+    "high_recall": -0.028169014084507116,
+    "high_precision": 0.002034134447927549,
+    "accuracy": 0.002777777777777768,
+    "balanced_accuracy": -0.009811180903760874
+  },
+  "partition_sha256": "d6ed0c5dddd937d2f62739a5ec78c464677f116483d470ac16b921ed9a924ac7",
+  "selection_frozen_sha256": "e1ad94c067a778ecff5e2a2e6ece09a3f5751a8f1106ec2c0383cf430f14a372",
+  "models_reselected_refitted_or_calibrated": false,
+  "holdout_rows_filtered": 0,
+  "automatic_promotion": false,
+  "official_bundle_unchanged": true,
+  "interpretation": "Additional questionnaire-range scores are designed noisy views of current latent fatigue; gains reflect the simulation assumptions, not measured instrument benefit. Do not compare with the old cohort's 0.5273.",
+  "paired_participant_bootstrap": {
+    "comparison": "rf_28_questionnaires minus rf_26_control",
+    "repetitions": 2000,
+    "seed": 20261115,
+    "participants": 18,
+    "method": "Paired whole-participant percentile bootstrap; repeated sampled participants retain all their rows each time",
+    "macro_f1_difference": -0.003390420902406932,
+    "macro_f1_difference_percentile_95ci": [
+      -0.014090476402400267,
+      0.007566558981502724
+    ],
+    "high_recall_difference": 0.0,
+    "high_recall_difference_percentile_95ci": [
+      -0.019111342479176868,
+      0.02400483870967736
+    ],
+    "high_precision_difference": -0.006606990622335884,
+    "high_precision_difference_percentile_95ci": [
+      -0.03747512754075981,
+      0.023450419863155696
+    ],
+    "fraction_macro_f1_differences_positive": 0.279,
+    "scope": "Uncertainty conditional on this fixed synthetic scenario; not clinical or real-instrument evidence"
+  },
+  "exploratory_reporting_signal": {
+    "macro_f1_gain_at_least_0.01": false,
+    "bootstrap_lower_bound_above_zero": false,
+    "high_recall_loss_no_more_than_0.02": true,
+    "reporting_only_not_promotion": true
+  },
+  "all_reporting_conditions_met": false,
+  "very_high_synthetic_score_warning": "All scores remain conditional on chosen simulator coupling and noise assumptions.",
+  "elapsed_seconds": 10.58869932500238
+}

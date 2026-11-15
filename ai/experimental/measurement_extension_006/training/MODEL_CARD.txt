@@ -1,0 +1,23 @@
+MEASUREMENT EXTENSION 006 — EXPERIMENTAL ONLY
+
+The cohort and all new questionnaire-range/sleep measurements are
+simulated. No real questionnaire responses or astronaut records are
+included. New score fields are additional noisy views of current
+simulator latent states; observed gains can reflect these assumptions.
+They are not evidence of real KSS/Samn–Perelli instrument benefit.
+
+RF26 is the fixed control. Three RF extensions are compared inside
+84 TRAIN people using three participant-disjoint folds. Mean macro
+F1 rounded to six decimals selects the extension; ties prefer fewer
+features, then name. XGB26 versus XGB33 is a separate paired check.
+Every imputer is fitted on fitting observations only. Missing score
+values are not coded as zero. Identifiers, labels, internal latent
+states and future timestamps never enter predictors.
+
+All choices/artifacts are frozen before validation and fresh test.
+Both holdouts are evaluated once; neither triggers refitting or
+reselection. Participant bootstrap intervals are conditional on a
+single fixed synthetic scenario, not population clinical evidence.
+Scores must not be compared directly with the old-cohort 0.5273.
+
+The original model/API remains unchanged regardless of results.

@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "recorded_at_utc": "2026-11-15T01:04:29.745286+00:00",
+  "scope": "Synthetic unit fixtures only; no project observations or models loaded by tests",
+  "unit_tests": 12,
+  "passed": 12,
+  "failed": 0,
+  "command": "python -m unittest -v test_thresholds.py",
+  "test_source_sha256": "c07fe0fecf4cdac02c4e2ccbc4c02d5bab979605c2e2a3d5d573d64266fa96e3",
+  "analysis_source_sha256": "3668823b05d5a61989d9eaffbc958621fd225be0cae375542b767829a4ed6d7e",
+  "tested": [
+    "inclusive High threshold boundary",
+    "estimator class-order baseline",
+    "Low tie fallback",
+    "argmax differs from fixed0.5",
+    "manual confusion and F1 accounting",
+    "undefined precision",
+    "monotonic TP/FP across threshold",
+    "invalid probabilities/classes/shapes"
+  ]
+}

@@ -1,0 +1,145 @@
+check,status,scope,evaluated_items,invalid_items,detail
+main_shape,PASS,main,1,0,"Original cohort: 120 people x60 forecast days, 46 columns."
+raw_shape,PASS,raw,1,0,"120 people x68 days (-6..61), 30 source columns."
+main_missing_cells,PASS,main,7200,0,No missing cells in existing supplied columns; does not assert requested new measurements exist.
+main_finite_numbers,PASS,main,7200,0,Reject NaN/infinity across numeric fields.
+main_duplicate_rows,PASS,main,7200,0,Repeated person IDs and repeated baseline values alone are expected; duplicate records are not.
+main_duplicate_ids,PASS,main,7200,0,Repeated person IDs and repeated baseline values alone are expected; duplicate records are not.
+main_duplicate_person_days,PASS,main,7200,0,Repeated person IDs and repeated baseline values alone are expected; duplicate records are not.
+main_synthetic_provenance,PASS,main,7200,0,No real NASA measurements.
+main_person_schedule,PASS,main,120,0,"Sorted, complete daily sequence for each person."
+main_person_count,PASS,main,1,0,Expected 120 virtual people.
+main_fixed_split,PASS,main,120,0,A person cannot cross partitions.
+main_timestamp_from_day,PASS,main,7200,0,Exact UTC cutoff and calendar mapping; no guess from spreadsheet row number.
+main_record_id_construction,PASS,main,7200,0,Record IDs encode the same participant and day as the row.
+main_range_sleep_duration_hours,PASS,main,7200,0,"Simulator range [3.2,9.8], not a medical normal range."
+main_range_sleep_efficiency_pct,PASS,main,7200,0,"Observed frozen-cohort range [58,99]; engineering assumptions, not clinical limits. Efficiency lower limit is not guaranteed after its cap for arbitrary future simulations."
+main_range_sleep_onset_delay_minutes,PASS,main,7200,0,"Simulator range [1,90], not a medical normal range."
+main_range_awakenings_count,PASS,main,7200,0,"Simulator range [0,10], not a medical normal range."
+main_range_sleep_midpoint_deviation_minutes,PASS,main,7200,0,"Simulator range [-180,180], not a medical normal range."
+main_range_resting_heart_rate_bpm,PASS,main,7200,0,"Simulator range [40,125], not a medical normal range."
+main_range_hrv_rmssd_ms,PASS,main,7200,0,"Simulator range [8,115], not a medical normal range."
+main_range_reaction_time_median_ms,PASS,main,7200,0,"Simulator range [150,800], not a medical normal range."
+main_range_reaction_time_lapses_count,PASS,main,7200,0,"Simulator range [0,60], not a medical normal range."
+main_range_attention_correct_count,PASS,main,7200,0,"Simulator range [0,40], not a medical normal range."
+main_range_attention_accuracy_pct,PASS,main,7200,0,"Simulator range [0,100], not a medical normal range."
+main_range_self_report_stress_score,PASS,main,7200,0,"Simulator range [0,10], not a medical normal range."
+main_range_self_report_fatigue_score,PASS,main,7200,0,"Simulator range [0,10], not a medical normal range."
+main_range_self_report_mood_score,PASS,main,7200,0,"Simulator range [0,10], not a medical normal range."
+main_range_workload_hours,PASS,main,7200,0,"Simulator range [3,15], not a medical normal range."
+main_range_exercise_minutes,PASS,main,7200,0,"Simulator range [0,110], not a medical normal range."
+main_integer_awakenings_count,PASS,main,7200,0,Discrete counts/flags cannot be fractional.
+main_integer_reaction_time_lapses_count,PASS,main,7200,0,Discrete counts/flags cannot be fractional.
+main_integer_reaction_time_trials_count,PASS,main,7200,0,Discrete counts/flags cannot be fractional.
+main_integer_attention_correct_count,PASS,main,7200,0,Discrete counts/flags cannot be fractional.
+main_integer_attention_trials_count,PASS,main,7200,0,Discrete counts/flags cannot be fractional.
+main_integer_target_current_physiology_event_injected,PASS,main,7200,0,Discrete counts/flags cannot be fractional.
+main_rt_trials_60,PASS,main,7200,0,Fixed synthetic-response count; no elapsed-duration validation.
+main_attention_trials_40,PASS,main,7200,0,Separate simulated attention task.
+main_attention_accuracy,PASS,main,7200,0,Correct/trials x100; not reaction-time lapse accuracy.
+main_median_lapse_necessary_constraint,PASS,main,7200,0,"Necessary even-sample median/count consistency at500ms, allowing reported rounding. Replay independently checks exact trial arrays."
+main_sleep_efficiency_cap,PASS,main,7200,0,Synthetic minimum3awake minutes per awakening; not measured WASO.
+main_daily_budget,PASS,main,7200,0,Observed synthetic sleep opportunity+duty+exercise fits24h. Generator does not explicitly clip total daily budget.
+main_binary_event,PASS,main,7200,0,Event annotation binary; not a diagnosis.
+main_nonempty_journal,PASS,main,7200,0,"Generated text, not real-language validation."
+main_unique_journals,PASS,main,7200,0,Global complete-string uniqueness; template fragments still repeat.
+main_valid_journal_labels,PASS,main,7200,0,"Generated language label, separate from observed stress score."
+raw_missing_cells,PASS,raw,8160,0,No missing cells in existing supplied columns; does not assert requested new measurements exist.
+raw_finite_numbers,PASS,raw,8160,0,Reject NaN/infinity across numeric fields.
+raw_duplicate_rows,PASS,raw,8160,0,Repeated person IDs and repeated baseline values alone are expected; duplicate records are not.
+raw_duplicate_ids,PASS,raw,8160,0,Repeated person IDs and repeated baseline values alone are expected; duplicate records are not.
+raw_duplicate_person_days,PASS,raw,8160,0,Repeated person IDs and repeated baseline values alone are expected; duplicate records are not.
+raw_synthetic_provenance,PASS,raw,8160,0,No real NASA measurements.
+raw_person_schedule,PASS,raw,120,0,"Sorted, complete daily sequence for each person."
+raw_person_count,PASS,raw,1,0,Expected 120 virtual people.
+raw_fixed_split,PASS,raw,120,0,A person cannot cross partitions.
+raw_timestamp_from_day,PASS,raw,8160,0,Exact UTC cutoff and calendar mapping; no guess from spreadsheet row number.
+raw_record_id_construction,PASS,raw,8160,0,Record IDs encode the same participant and day as the row.
+raw_range_sleep_duration_hours,PASS,raw,8160,0,"Simulator range [3.2,9.8], not a medical normal range."
+raw_range_sleep_efficiency_pct,PASS,raw,8160,0,"Observed frozen-cohort range [58,99]; engineering assumptions, not clinical limits. Efficiency lower limit is not guaranteed after its cap for arbitrary future simulations."
+raw_range_sleep_onset_delay_minutes,PASS,raw,8160,0,"Simulator range [1,90], not a medical normal range."
+raw_range_awakenings_count,PASS,raw,8160,0,"Simulator range [0,10], not a medical normal range."
+raw_range_sleep_midpoint_deviation_minutes,PASS,raw,8160,0,"Simulator range [-180,180], not a medical normal range."
+raw_range_resting_heart_rate_bpm,PASS,raw,8160,0,"Simulator range [40,125], not a medical normal range."
+raw_range_hrv_rmssd_ms,PASS,raw,8160,0,"Simulator range [8,115], not a medical normal range."
+raw_range_reaction_time_median_ms,PASS,raw,8160,0,"Simulator range [150,800], not a medical normal range."
+raw_range_reaction_time_lapses_count,PASS,raw,8160,0,"Simulator range [0,60], not a medical normal range."
+raw_range_attention_correct_count,PASS,raw,8160,0,"Simulator range [0,40], not a medical normal range."
+raw_range_attention_accuracy_pct,PASS,raw,8160,0,"Simulator range [0,100], not a medical normal range."
+raw_range_self_report_stress_score,PASS,raw,8160,0,"Simulator range [0,10], not a medical normal range."
+raw_range_self_report_fatigue_score,PASS,raw,8160,0,"Simulator range [0,10], not a medical normal range."
+raw_range_self_report_mood_score,PASS,raw,8160,0,"Simulator range [0,10], not a medical normal range."
+raw_range_workload_hours,PASS,raw,8160,0,"Simulator range [3,15], not a medical normal range."
+raw_range_exercise_minutes,PASS,raw,8160,0,"Simulator range [0,110], not a medical normal range."
+raw_integer_awakenings_count,PASS,raw,8160,0,Discrete counts/flags cannot be fractional.
+raw_integer_reaction_time_lapses_count,PASS,raw,8160,0,Discrete counts/flags cannot be fractional.
+raw_integer_reaction_time_trials_count,PASS,raw,8160,0,Discrete counts/flags cannot be fractional.
+raw_integer_attention_correct_count,PASS,raw,8160,0,Discrete counts/flags cannot be fractional.
+raw_integer_attention_trials_count,PASS,raw,8160,0,Discrete counts/flags cannot be fractional.
+raw_integer_target_current_physiology_event_injected,PASS,raw,8160,0,Discrete counts/flags cannot be fractional.
+raw_rt_trials_60,PASS,raw,8160,0,Fixed synthetic-response count; no elapsed-duration validation.
+raw_attention_trials_40,PASS,raw,8160,0,Separate simulated attention task.
+raw_attention_accuracy,PASS,raw,8160,0,Correct/trials x100; not reaction-time lapse accuracy.
+raw_median_lapse_necessary_constraint,PASS,raw,8160,0,"Necessary even-sample median/count consistency at500ms, allowing reported rounding. Replay independently checks exact trial arrays."
+raw_sleep_efficiency_cap,PASS,raw,8160,0,Synthetic minimum3awake minutes per awakening; not measured WASO.
+raw_daily_budget,PASS,raw,8160,0,Observed synthetic sleep opportunity+duty+exercise fits24h. Generator does not explicitly clip total daily budget.
+raw_binary_event,PASS,raw,8160,0,Event annotation binary; not a diagnosis.
+raw_nonempty_journal,PASS,raw,8160,0,"Generated text, not real-language validation."
+raw_unique_journals,PASS,raw,8160,0,Global complete-string uniqueness; template fragments still repeat.
+raw_valid_journal_labels,PASS,raw,8160,0,"Generated language label, separate from observed stress score."
+calibration_has_no_injected_events,PASS,raw_calibration,840,0,No events injected in calibration; does not prove healthy humans.
+raw_record_roles,PASS,raw,8160,0,"840 calibration +7200 prediction +120 future-outcome rows; excluded by table design, not cleaning."
+main_observations_equal_raw,PASS,main,7200,0,Each current observation is copied from its same-day source record.
+future_source_target_next_day_fatigue_score,PASS,main,7200,0,"Exact same-person next-day outcome, including raw day61."
+future_source_target_next_day_reaction_time_median_ms,PASS,main,7200,0,"Exact same-person next-day outcome, including raw day61."
+future_source_target_timestamp_utc,PASS,main,7200,0,"Exact same-person next-day outcome, including raw day61."
+future_source_same_split,PASS,main,7200,0,No future outcome pulled from another partition/person.
+horizon_24h,PASS,main,7200,0,Labels are exactly24h ahead.
+fatigue_class_rule,PASS,main,7200,0,"Bins next-day observed synthetic0–10score, not latent fatigue/KSS/SP."
+final_day_outcome_source,PASS,final120,120,0,Day60 labels have explicit day61 raw source.
+baseline_sleep_duration_hours,PASS,main,7200,0,"Seven earlier days−6..0, fixed per person."
+baseline_constant_sleep_duration_hours,PASS,persons,120,0,"Repeated baseline is intentional, not duplicate-data noise."
+baseline_resting_heart_rate_bpm,PASS,main,7200,0,"Seven earlier days−6..0, fixed per person."
+baseline_constant_resting_heart_rate_bpm,PASS,persons,120,0,"Repeated baseline is intentional, not duplicate-data noise."
+baseline_hrv_rmssd_ms,PASS,main,7200,0,"Seven earlier days−6..0, fixed per person."
+baseline_constant_hrv_rmssd_ms,PASS,persons,120,0,"Repeated baseline is intentional, not duplicate-data noise."
+baseline_reaction_time_median_ms,PASS,main,7200,0,"Seven earlier days−6..0, fixed per person."
+baseline_constant_reaction_time_median_ms,PASS,persons,120,0,"Repeated baseline is intentional, not duplicate-data noise."
+baseline_days_count,PASS,main,7200,0,Seven calibration days.
+sleep_duration_delta_from_baseline_hours,PASS,main,7200,0,Difference from already rounded personal baseline.
+heart_rate_delta_from_baseline_bpm,PASS,main,7200,0,Difference from already rounded personal baseline.
+hrv_delta_from_baseline_ms,PASS,main,7200,0,Difference from already rounded personal baseline.
+reaction_time_change_from_baseline_pct,PASS,main,7200,0,"Relative change, not absolutemilliseconds."
+prior_3day_mean_sleep_hours,PASS,main,7200,0,"Only same-person t−3,t−2,t−1; no current/future day."
+prior_3day_mean_resting_heart_rate_bpm,PASS,main,7200,0,"Only same-person t−3,t−2,t−1; no current/future day."
+prior_3day_mean_reaction_time_ms,PASS,main,7200,0,"Only same-person t−3,t−2,t−1; no current/future day."
+partition_person_counts,PASS,partition,1,0,"70/15/15by person, not random daily rows."
+train_row_count,PASS,partition,1,0,Expected frozen split size.
+train_identical_to_main_subset,PASS,partition,1,0,"Identical column order, row order, values and dtypes to the matching main subset."
+validation_row_count,PASS,partition,1,0,Expected frozen split size.
+validation_identical_to_main_subset,PASS,partition,1,0,"Identical column order, row order, values and dtypes to the matching main subset."
+test_row_count,PASS,partition,1,0,Expected frozen split size.
+test_identical_to_main_subset,PASS,partition,1,0,"Identical column order, row order, values and dtypes to the matching main subset."
+partitions_person_disjoint,PASS,partition,1,0,No person shared across train/validation/test.
+dictionary_coverage,PASS,schema,1,0,Dictionary covers all main and raw columns exactly once.
+next_day_fatigue_classification_feature_allowlist,PASS,schema,1,0,"Exclude outcomes, IDs, partition/provenance and protocol constants; text allowed only when declared."
+next_day_fatigue_classification_label_not_feature,PASS,schema,1,0,The task label cannot also be a predictor.
+next_day_fatigue_regression_feature_allowlist,PASS,schema,1,0,"Exclude outcomes, IDs, partition/provenance and protocol constants; text allowed only when declared."
+next_day_fatigue_regression_label_not_feature,PASS,schema,1,0,The task label cannot also be a predictor.
+next_day_reaction_time_regression_feature_allowlist,PASS,schema,1,0,"Exclude outcomes, IDs, partition/provenance and protocol constants; text allowed only when declared."
+next_day_reaction_time_regression_label_not_feature,PASS,schema,1,0,The task label cannot also be a predictor.
+physiology_anomaly_detection_feature_allowlist,PASS,schema,1,0,"Exclude outcomes, IDs, partition/provenance and protocol constants; text allowed only when declared."
+physiology_anomaly_detection_label_not_feature,PASS,schema,1,0,The task label cannot also be a predictor.
+journal_stress_classification_feature_allowlist,PASS,schema,1,0,"Exclude outcomes, IDs, partition/provenance and protocol constants; text allowed only when declared."
+journal_stress_classification_label_not_feature,PASS,schema,1,0,The task label cannot also be a predictor.
+primary_has_26_predictors,PASS,schema,1,0,15current+4baseline+4delta+3history.
+primary_no_constant_predictors,PASS,schema,26,0,Constant metadata excluded; correlated baseline/delta features are not errors.
+primary_no_duplicate_predictor_vectors,PASS,main,7200,0,Exact vectors only; no unsupported near-duplicate/no-noise claim.
+negative_control_wrong_future_fatigue,PASS,in_memory_copy_only,1,0,Audit must detect deliberate corruption; no source file was changed.
+negative_control_wrong_baseline,PASS,in_memory_copy_only,1,0,Audit must detect deliberate corruption; no source file was changed.
+negative_control_current_day_substituted_for_prior3,PASS,in_memory_copy_only,1,0,Audit must detect deliberate corruption; no source file was changed.
+negative_control_impossible_lapse_count,PASS,in_memory_copy_only,1,0,Audit must detect deliberate corruption; no source file was changed.
+negative_control_wrong_attention_percentage,PASS,in_memory_copy_only,1,0,Audit must detect deliberate corruption; no source file was changed.
+negative_control_nonfinite_measurement,PASS,in_memory_copy_only,1,0,Audit must detect deliberate corruption; no source file was changed.
+negative_control_missing_measurement,PASS,in_memory_copy_only,1,0,Audit must detect deliberate corruption; no source file was changed.
+negative_control_person_changes_split,PASS,in_memory_copy_only,1,0,Audit must detect deliberate corruption; no source file was changed.

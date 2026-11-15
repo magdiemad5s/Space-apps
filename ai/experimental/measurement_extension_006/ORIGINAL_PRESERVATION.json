@@ -1,0 +1,22 @@
+{
+  "scope": "Original cohort and serving model hashes beforeexperiment006; new outputs belong onlytoexperiment006.",
+  "sha256": {
+    "data/raw_observations.csv": "a5ac832cad271b4502a07f8ecc888b0504248047bb05c265d6f09c432d9386dc",
+    "data/data_dictionary.csv": "808f42a18adb82cb6fbb834a72aeb0e009205e5eac313d2762145b840aa4d75a",
+    "data/participant_splits.csv": "96a0579a09abda98906c060cd82377c9b4a44e5aeda8c2d86437b586d39c0f96",
+    "data/astra_shield_synthetic_ml.csv": "dd76fd2658586375a4f9fc44767c18731a5ecee061912ed625a44bd206ed6a95",
+    "data/selected_features.csv": "ca11c47cc9ded0d9b0f06d81f3d9b988a74fefce1e7a1bdd3411a4c1bcfb510e",
+    "data/train.csv": "a9b7aba9497fbcf68b6f5bb771b01dbf82c3b00c93a2a0c6873f705712a235e5",
+    "data/source_generator.py": "e4a914c3fdd01bc6032ad39b2e61967c416408558e5015664286083b80ac01fa",
+    "data/task_config.json": "75f14b846e29ac1025bad7e3db51a1656365878f29925666a5eaf5165788ed60",
+    "data/test.csv": "410e8afa809bfdad126db4c3b64c5e793ba4bce2e5e7e60e7b8e7345868a30af",
+    "data/validation.csv": "3dc18db6bfb9e1a025d37279e73dd51fe52769019d9c856668286006e0d55523",
+    "data/generation_metadata.json": "1ac0fe6ba7b28cf2442e85dbd1f969a437d2525d3fafb13819c572f863734681",
+    "data/README.txt": "f3bda095588277054e954f6cf032c02514b9ef952b7492aaae681e5ad6dc6632",
+    "data/README.md": "0bf2f24132403d0129fb545a52c521243aeac47859ab9e6aae618931aabb8b36",
+    "data/source_manifest.csv": "deba9eebe060cdc0782d7ba3786a9bedf3fc8f892c93e34f344530bccfc58742",
+    "data/source_validation_report.json": "15dc5844161b0c0d8a0b62b32e715b66840a0cdbb518c93796e74c3f402abc1f",
+    "data/split_manifest.json": "fb2e2bee29319e3a9c415e503d87bcb5e41ba860edd429115bbdf6fca2c37204",
+    "artifacts/bundle.joblib": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706"
+  }
+}

@@ -1,0 +1,329 @@
+{
+  "demo_source": {
+    "partition": "train",
+    "record_id": "EXP006_003_D+001",
+    "row_selection": "first complete training row, independent of target/prediction",
+    "source_file": "data/train.csv"
+  },
+  "features": {
+    "sleep_duration_hours": 7.198,
+    "sleep_efficiency_pct": 89.135,
+    "sleep_onset_delay_minutes": 24.931,
+    "awakenings_count": 1.0,
+    "sleep_midpoint_deviation_minutes": -37.679,
+    "resting_heart_rate_bpm": 83.405,
+    "hrv_rmssd_ms": 31.135,
+    "reaction_time_median_ms": 331.098,
+    "reaction_time_lapses_count": 1.0,
+    "attention_accuracy_pct": 92.5,
+    "self_report_stress_score": 2.554,
+    "self_report_fatigue_score": 2.575,
+    "self_report_mood_score": 6.302,
+    "workload_hours": 9.034,
+    "exercise_minutes": 40.302,
+    "baseline_sleep_duration_hours": 7.532143,
+    "baseline_resting_heart_rate_bpm": 64.681286,
+    "baseline_hrv_rmssd_ms": 60.513143,
+    "baseline_reaction_time_median_ms": 315.252,
+    "sleep_duration_delta_from_baseline_hours": -0.334143,
+    "heart_rate_delta_from_baseline_bpm": 18.723714,
+    "hrv_delta_from_baseline_ms": -29.378143,
+    "reaction_time_change_from_baseline_pct": 5.026455,
+    "prior_3day_mean_sleep_hours": 7.668667,
+    "prior_3day_mean_resting_heart_rate_bpm": 63.875,
+    "prior_3day_mean_reaction_time_ms": 310.555667,
+    "kss_like_sleepiness_score": 3,
+    "samn_perelli_like_fatigue_score": 4
+  },
+  "prediction": {
+    "label": "low",
+    "points": 18.47,
+    "points_definition": "Prototype severity index: 0*P(low)+50*P(moderate)+100*P(high); not a medical probability or a validated score.",
+    "reasons": [
+      {
+        "feature": "self_report_fatigue_score",
+        "value": 2.575,
+        "feature_unit": "custom simulated 0..10 score",
+        "shap_value": 0.13980530247915757,
+        "shap_unit": "change in predicted-class model probability",
+        "direction": "supports_prediction",
+        "reason": "self_report_fatigue_score supported the model's predicted low category relative to its SHAP reference."
+      },
+      {
+        "feature": "reaction_time_change_from_baseline_pct",
+        "value": 5.026455,
+        "feature_unit": "signed percent",
+        "shap_value": 0.07689028540208102,
+        "shap_unit": "change in predicted-class model probability",
+        "direction": "supports_prediction",
+        "reason": "reaction_time_change_from_baseline_pct supported the model's predicted low category relative to its SHAP reference."
+      },
+      {
+        "feature": "self_report_stress_score",
+        "value": 2.554,
+        "feature_unit": "custom simulated 0..10 score",
+        "shap_value": 0.03160956091319469,
+        "shap_unit": "change in predicted-class model probability",
+        "direction": "supports_prediction",
+        "reason": "self_report_stress_score supported the model's predicted low category relative to its SHAP reference."
+      }
+    ],
+    "model_class_probabilities": {
+      "high": 0.020372811093141076,
+      "low": 0.6510333607743742,
+      "moderate": 0.3285938281324849
+    },
+    "probability_scope": "Uncalibrated model scores for a synthetic outcome; not medical risk probabilities.",
+    "experimental": true,
+    "clinical_validation": false,
+    "data_origin": "fresh synthetic measurement-extension cohort",
+    "forecast_horizon_days": 1,
+    "forecast_horizon_hours": 24,
+    "selected_model": "rf_28_questionnaires",
+    "target": "target_next_day_fatigue_class",
+    "input_feature_count": 28,
+    "explanation_type": "TreeSHAP, selected-class probability space, tree-path-dependent reference",
+    "shap": {
+      "explained_class": "low",
+      "base_value": 0.3328919120529592,
+      "sum_feature_contributions": 0.3181414487214205,
+      "reconstructed_model_probability": 0.6510333607743797,
+      "all_feature_contributions": [
+        {
+          "feature": "sleep_duration_hours",
+          "value": 7.198,
+          "feature_unit": "hours",
+          "shap_value": 0.010245507310796593,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "sleep_efficiency_pct",
+          "value": 89.135,
+          "feature_unit": "percent",
+          "shap_value": -0.0018165755360951496,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "opposes_prediction"
+        },
+        {
+          "feature": "sleep_onset_delay_minutes",
+          "value": 24.931,
+          "feature_unit": "minutes",
+          "shap_value": 0.00018291287582504232,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "awakenings_count",
+          "value": 1.0,
+          "feature_unit": "count",
+          "shap_value": -0.00022861562575762298,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "opposes_prediction"
+        },
+        {
+          "feature": "sleep_midpoint_deviation_minutes",
+          "value": -37.679,
+          "feature_unit": "signed minutes",
+          "shap_value": 0.015137990611091083,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "resting_heart_rate_bpm",
+          "value": 83.405,
+          "feature_unit": "beats/minute",
+          "shap_value": -0.009109134424207709,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "opposes_prediction"
+        },
+        {
+          "feature": "hrv_rmssd_ms",
+          "value": 31.135,
+          "feature_unit": "milliseconds RMSSD",
+          "shap_value": -0.001564793034010991,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "opposes_prediction"
+        },
+        {
+          "feature": "reaction_time_median_ms",
+          "value": 331.098,
+          "feature_unit": "milliseconds",
+          "shap_value": 0.00858860848098224,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "reaction_time_lapses_count",
+          "value": 1.0,
+          "feature_unit": "count",
+          "shap_value": 0.0011797847617778137,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "attention_accuracy_pct",
+          "value": 92.5,
+          "feature_unit": "percent",
+          "shap_value": 0.002499120085467412,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "self_report_stress_score",
+          "value": 2.554,
+          "feature_unit": "custom simulated 0..10 score",
+          "shap_value": 0.03160956091319469,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction",
+          "reason": "self_report_stress_score supported the model's predicted low category relative to its SHAP reference."
+        },
+        {
+          "feature": "self_report_fatigue_score",
+          "value": 2.575,
+          "feature_unit": "custom simulated 0..10 score",
+          "shap_value": 0.13980530247915757,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction",
+          "reason": "self_report_fatigue_score supported the model's predicted low category relative to its SHAP reference."
+        },
+        {
+          "feature": "self_report_mood_score",
+          "value": 6.302,
+          "feature_unit": "custom simulated 0..10 score",
+          "shap_value": 0.01144279361417409,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "workload_hours",
+          "value": 9.034,
+          "feature_unit": "hours",
+          "shap_value": -0.0005799170648124181,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "opposes_prediction"
+        },
+        {
+          "feature": "exercise_minutes",
+          "value": 40.302,
+          "feature_unit": "minutes",
+          "shap_value": 0.001505298359486918,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "baseline_sleep_duration_hours",
+          "value": 7.532143,
+          "feature_unit": "hours",
+          "shap_value": 0.0020297216096093335,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "baseline_resting_heart_rate_bpm",
+          "value": 64.681286,
+          "feature_unit": "beats/minute",
+          "shap_value": 0.0008375288199324539,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "baseline_hrv_rmssd_ms",
+          "value": 60.513143,
+          "feature_unit": "milliseconds RMSSD",
+          "shap_value": -0.0012795503968388534,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "opposes_prediction"
+        },
+        {
+          "feature": "baseline_reaction_time_median_ms",
+          "value": 315.252,
+          "feature_unit": "milliseconds",
+          "shap_value": 0.000168763954568756,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "sleep_duration_delta_from_baseline_hours",
+          "value": -0.334143,
+          "feature_unit": "signed hours",
+          "shap_value": 0.015309870861796294,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "heart_rate_delta_from_baseline_bpm",
+          "value": 18.723714,
+          "feature_unit": "signed beats/minute",
+          "shap_value": -0.015273798130925007,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "opposes_prediction"
+        },
+        {
+          "feature": "hrv_delta_from_baseline_ms",
+          "value": -29.378143,
+          "feature_unit": "signed milliseconds RMSSD",
+          "shap_value": -0.024236583293997017,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "opposes_prediction"
+        },
+        {
+          "feature": "reaction_time_change_from_baseline_pct",
+          "value": 5.026455,
+          "feature_unit": "signed percent",
+          "shap_value": 0.07689028540208102,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction",
+          "reason": "reaction_time_change_from_baseline_pct supported the model's predicted low category relative to its SHAP reference."
+        },
+        {
+          "feature": "prior_3day_mean_sleep_hours",
+          "value": 7.668667,
+          "feature_unit": "hours",
+          "shap_value": 0.01885907722604591,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "prior_3day_mean_resting_heart_rate_bpm",
+          "value": 63.875,
+          "feature_unit": "beats/minute",
+          "shap_value": 0.004975919680848528,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "prior_3day_mean_reaction_time_ms",
+          "value": 310.555667,
+          "feature_unit": "milliseconds",
+          "shap_value": 0.004109491038443441,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "kss_like_sleepiness_score",
+          "value": 3,
+          "feature_unit": "synthetic KSS-like ordinal integer 1..9",
+          "shap_value": 0.015665605830510566,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction"
+        },
+        {
+          "feature": "samn_perelli_like_fatigue_score",
+          "value": 4,
+          "feature_unit": "synthetic Samn-Perelli-like ordinal integer 1..7",
+          "shap_value": 0.011187272312275455,
+          "shap_unit": "change in predicted-class model probability",
+          "direction": "supports_prediction"
+        }
+      ]
+    },
+    "artifact_sha256": "1da1fb8a368304d43b070b405596a240c9e6e12780f5dd71190d6ea01f6a8f05",
+    "limitations": [
+      "This helper is experimental and is not connected to the live backend or API.",
+      "Both questionnaire-range fields are simulated KSS-like/Samn-Perelli-like measurements, not validated instrument administrations.",
+      "TreeSHAP explains this fitted classifier; its reasons are not causes of fatigue or medical findings.",
+      "No alert engine, clinical thresholds, intervention or mission decision is implemented here."
+    ]
+  }
+}

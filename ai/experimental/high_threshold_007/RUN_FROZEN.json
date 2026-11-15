@@ -1,0 +1,19 @@
+{
+  "frozen_at_utc": "2026-11-15T01:04:05.125370+00:00",
+  "plan_sha256": "5399aa38486c4e6e62be78613486182a97a5791fcd9eaafa346209a7cc26a6cb",
+  "script_sha256": "3668823b05d5a61989d9eaffbc958621fd225be0cae375542b767829a4ed6d7e",
+  "unit_tests_sha256": "c07fe0fecf4cdac02c4e2ccbc4c02d5bab979605c2e2a3d5d573d64266fa96e3",
+  "observations_or_probability_outcomes_inspected_by_runner": false,
+  "protected_inputs_sha256": {
+    "artifacts/bundle.joblib": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706",
+    "artifacts/frozen_manifest.json": "9afdd35b64cc3be52abb26d14d1fb619d3be43609470fc0bdd0d507a06fd0b75",
+    "data/task_config.json": "75f14b846e29ac1025bad7e3db51a1656365878f29925666a5eaf5165788ed60",
+    "data/validation.csv": "3dc18db6bfb9e1a025d37279e73dd51fe52769019d9c856668286006e0d55523",
+    "data/participant_splits.csv": "96a0579a09abda98906c060cd82377c9b4a44e5aeda8c2d86437b586d39c0f96",
+    "reports/validation_metrics.json": "3a5c0f372672e986b76ad458d107e9f5277c3fd29bcef3d5ba6ec15187e9bf49",
+    "experimental/measurement_extension_006/training/validation_predictions.csv": "c6785af7a491fc2f2c5fd9c698ad97e61488f4ca0e427cbb9c30652d4b3a36a5",
+    "experimental/measurement_extension_006/training/VALIDATION_REPORT.json": "9a1550cd7e3a018089b2c025112da09d179856b376ad9ce95ff3c223fc4d6047",
+    "experimental/measurement_extension_006/training/SELECTION_FROZEN.json": "e1ad94c067a778ecff5e2a2e6ece09a3f5751a8f1106ec2c0383cf430f14a372"
+  },
+  "scope": "Frozen before first threshold analysis; no fitted artifact or deployment is produced."
+}

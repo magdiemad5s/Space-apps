@@ -1,0 +1,10 @@
+# Python 3.12. Read trusted original artifacts with the original versions.
+numpy==2.3.5
+pandas==2.2.3
+scikit-learn==1.8.0
+joblib==1.5.3
+xgboost-cpu==3.4.1
+# Plot and report generation, no model fitting.
+matplotlib==3.10.8
+Pillow==13.0.0
+reportlab==4.4.9

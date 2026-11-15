@@ -1,0 +1,7 @@
+{
+  "frozen_at_utc": "2026-11-15T00:26:28.090918+00:00",
+  "selection_frozen_sha256": "e1ad94c067a778ecff5e2a2e6ece09a3f5751a8f1106ec2c0383cf430f14a372",
+  "validation_report_sha256": "9a1550cd7e3a018089b2c025112da09d179856b376ad9ce95ff3c223fc4d6047",
+  "model_reselection_after_validation": false,
+  "fresh_test_expected_sha256": "d6ed0c5dddd937d2f62739a5ec78c464677f116483d470ac16b921ed9a924ac7"
+}

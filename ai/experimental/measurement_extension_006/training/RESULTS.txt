@@ -1,0 +1,37 @@
+MEASUREMENT EXTENSION 006 — EXPERIMENTAL SYNTHETIC RESULTS
+
+A fresh virtual cohort was generated using a frozen scenario and independent
+seeds. No real astronaut measurements or actual KSS/Samn–Perelli responses
+were added. NASA/CSA resources supplied background, not numerical records.
+
+Generation checks and training-only EDA were reviewed before fitting.
+Three participant-disjoint folds within 84 training people selected an RF
+extension. All imputation was fitted inside fitting folds. Selection and
+artifacts were frozen before scoring either 18-person holdout once.
+
+Selected extension: rf_28_questionnaires.
+Training-CV selection: Select only among the three RF extensions using TRAIN-group-CV mean macro F1 rounded to 6 decimals; ties prefer fewer features then candidate name.
+
+PRIMARY MATCHED RF COMPARISON
+validation: RF26 macro F1 0.5317; selected extension 0.5094; change -0.0223.
+validation: High recall 0.3704 -> 0.3259; High precision 0.3731 -> 0.3385.
+fresh synthetic test: RF26 macro F1 0.5528; selected extension 0.5495; change -0.0034.
+fresh synthetic test: High recall 0.4366 -> 0.4366; High precision 0.4559 -> 0.4493.
+Test paired participant-bootstrap 95% F1-change interval: [-0.014090476402400267, 0.007566558981502724].
+Test reporting conditions met: False (exploratory only; never promotion).
+
+SECONDARY MATCHED XGBOOST COMPARISON
+validation: XGB26 0.4707; XGB33 0.4744; change +0.0037.
+fresh synthetic test: XGB26 0.4981; XGB33 0.4961; change -0.0019.
+
+LIMITS
+New questionnaire-range scores are extra noisy views of simulated current
+latent fatigue. Their value is therefore a scenario assumption, not evidence
+that real questionnaires would yield the same model improvement. Derived
+sleep features may re-express existing inputs; new naps do not affect the
+original simulator's fatigue evolution. No generator noise parameter was
+tuned after observing scores. Fresh simulated test subjects do not provide
+human or clinical validation. Do not compare these scores directly with the
+old-cohort historical 0.5273. All model class scores remain uncalibrated.
+The original model, API, dataset and previous experiments remain unchanged.
+Experimental artifacts stay isolated; there is no automatic promotion.

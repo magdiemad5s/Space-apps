@@ -1,0 +1,30 @@
+{
+  "scope": "Post-evaluation computational and artifact verification; no new fitting or holdout rescoring",
+  "checks": {
+    "official_bundle_unchanged": true,
+    "root_experiment_plan_unchanged": true,
+    "training_and_evaluation_script_unchanged_since_preregistration": true,
+    "feature_manifest_unchanged_since_prepare": true,
+    "split_manifest_unchanged_since_prepare": true,
+    "frozen_training_artifacts_unchanged": true,
+    "all_partition_bytes_match_frozen_hashes": true,
+    "selected_extension_unchanged_through_holdouts": true,
+    "validation_and_test_people_disjoint": true,
+    "validation_and_test_rows_unchanged_unfiltered": true,
+    "no_holdout_reselection_or_refitting": true,
+    "test_bootstrap_prespecified_2000_participant_resamples": true,
+    "no_automatic_promotion": true,
+    "cv_predictions.csv_unique_complete_records": true,
+    "validation_predictions.csv_unique_complete_records": true,
+    "test_predictions.csv_unique_complete_records": true
+  },
+  "all_checks_passed": true,
+  "independent_review_required": true,
+  "source_partition_hashes_verified_after_scoring": true,
+  "protected_original_api_or_data_changed": false,
+  "stage_durations_seconds": {
+    "cv_and_full_fits": 23.479002665000735,
+    "validation": 0.6826666970009683,
+    "test_and_bootstrap": 10.58869932500238
+  }
+}

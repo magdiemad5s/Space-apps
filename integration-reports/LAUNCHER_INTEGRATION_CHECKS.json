@@ -1,0 +1,35 @@
+{
+  "platform": "Linux",
+  "windows_executed": false,
+  "checks": {
+    "original_startup_all_services_ready": true,
+    "demo_first_seed_9_records": true,
+    "occupied_port_refused_without_stopping_existing_stack": true,
+    "first_shutdown_freed_all_ports": true,
+    "restart_preserved_history_bytes": true,
+    "restart_skipped_duplicate_demo_seed": true,
+    "forecasts_persisted_after_restart": true,
+    "restart_same_origin_model_health_ready": true,
+    "final_shutdown_freed_all_ports": true
+  },
+  "before_restart_db_sha256": "176af90a4ba40a703aa1c194d7c9491b42714e93efa0c3de4e4a88c9d4a69426",
+  "before_restart_participant_counts": {
+    "DEMO_SIM_001": 9,
+    "DEMO_E2E_b4f5cf11ef": 8,
+    "DEMO_E2E_3547f15b0f": 8
+  },
+  "after_restart_db_sha256": "176af90a4ba40a703aa1c194d7c9491b42714e93efa0c3de4e4a88c9d4a69426",
+  "passed": true,
+  "checked_at_utc": "2026-11-15T07:34:19.439900+00:00",
+  "sha256": {
+    "scripts/launcher_common.py": "95fd6357a9543e504f7a337e59f16267d80b18241c8e6c39862e5587255551d1",
+    "scripts/setup.py": "5e1c11189f970c07cdcc71339046c899e7ff26015f8bb1fea53f538aa6b55b38",
+    "scripts/start.py": "00ea63e84eef4cab84fcedc072e4cc8f954d4a016e628acd1f8d44456b33d45b",
+    "scripts/test_app_integration.py": "925e80011495f027345f28753c0ef511c829caf5bef8ef432e0cd7ff610ebcdf",
+    "scripts/test_launcher.py": "ec8105e6ff5d629f86bebb2b829e4b321e899d0cbb8ce8376d75724c72a428f6",
+    "Start-Astra.cmd": "0b91d2f3c86598bdc2bf7458bf156ea691175cab8ea26e72d50b5de8862b2ac2",
+    "Start-Demo.cmd": "ee2c1154568c373f2b7c35d719632da131ec7b0c47c21711e1b8660a5b434d6b",
+    "Setup-Astra.cmd": "9d21b7c88d81473a50a33672e8d710e3913936c52aa562b3e499efbc7beb4bfa",
+    "start.sh": "dda1c1649132a8f4547e2dba220753c86019c9b832d1ed3aec7302e78139f856"
+  }
+}

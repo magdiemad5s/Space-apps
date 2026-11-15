@@ -1,0 +1,36 @@
+{
+  "status": "completed",
+  "completed_at_utc": "2026-11-15T01:04:09.577310+00:00",
+  "elapsed_seconds": 3.1642352290000417,
+  "plan_sha256": "5399aa38486c4e6e62be78613486182a97a5791fcd9eaafa346209a7cc26a6cb",
+  "script_sha256": "3668823b05d5a61989d9eaffbc958621fd225be0cae375542b767829a4ed6d7e",
+  "fits": 0,
+  "calibration_fits": 0,
+  "test_records_loaded": false,
+  "test_predictions_loaded": false,
+  "all_protected_scientific_inputs_unchanged": true,
+  "baseline_metrics_match_archives": true,
+  "serving_model_or_api_changed": false,
+  "threshold_promoted": false,
+  "source_cohorts_kept_separate": true,
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scikit_learn": "1.8.0"
+  },
+  "output_files_sha256": {
+    "results/primary/PRcurve.csv": "88d5d93eccc75572d4a05b04bcde717e6c78ac14112d80de84bc891cc1147fb9",
+    "results/primary/allthresholdmetrics.csv": "d8c002883737a016daf54c73a6bc025da47283fb1342551a4cedef28d0b68274",
+    "results/primary/confusionmatrices.csv": "759195125264862510b41aaade0488f8344731dd6898e5fb94332a31a82c3ecd",
+    "results/primary/frozenvalidationprobabilities.csv": "bf0cedf85631bf9b6ac4c5a1c68f2d3dce5afdb0719711e19a7342fcb8a6e28f",
+    "results/primary/shortlist.csv": "ca5cac9b307b07fb03cd4d42e62480d5758199c6524c42104876c5d1b71c23f2",
+    "results/primary/summary.json": "68d37f1e8248698b2acae2d79de937e53b9ddb5a1452c915494344f1141cd77a",
+    "results/secondary/PRcurve.csv": "fbf59f94c3f6a4c2939ff65ca2e10430cf888ed38149b04b5d0843a36e73ca03",
+    "results/secondary/allthresholdmetrics.csv": "ac47b81b1c64d3b8789b5e47412164cc8bf032f4c740174b781cf64c1be431df",
+    "results/secondary/confusionmatrices.csv": "193149d80a07179b70167fabccb7d6e8ffc93e16c861c05d6c2fc01ca933ae30",
+    "results/secondary/frozenvalidationprobabilities.csv": "7acdd6159af14348bbe37d5f1a31ff31e38db86f2dbbd6c8353acb888e22fe56",
+    "results/secondary/shortlist.csv": "786d6b23f67ba116f50801db7b773a31a0f167f6d56feb0056013d86b10dc9b8",
+    "results/secondary/summary.json": "76849000189deb93260e5d20ff0ba15d8588f240d6a8446783633fdcc1ccccb8"
+  }
+}

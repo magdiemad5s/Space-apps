@@ -1,0 +1,59 @@
+ASTRA-SHIELD — API AND CAUSAL FEATURE INTEGRITY AUDIT
+
+Result: PASS. No failed assertions or detected feature-mapping discrepancies.
+This checks the current implementation and synthetic data contract; it is not
+clinical validation or a guarantee that the simulator represents human biology.
+
+EXISTING TESTS
+21 Python contract/API tests: passed, 0 failures/errors/skips.
+16 TypeScript feature/history unit tests: passed, 0 failures.
+Strict TypeScript typecheck: passed.
+Python HTTP checks used FastAPI TestClient in-process, not live TCP servers.
+TypeScript checks used exported validators/history functions, not its HTTP routes.
+Historical 29-check live integration evidence was not rerun or changed here.
+
+ALL CURRENT ROWS
+7,200 ML rows across all120virtual participants passed the strict Python input
+schema and reproduced all26inference features:187,200scalar comparisons,
+maximum absolute error0.0.
+
+The TypeScript helper validated8,040canonical raw daily observations, including
+840initial-calibration records and7,200prediction-ready rows. All22numeric inputs
+for every prediction-ready row matched the stored ML table:158,400scalar
+comparisons, maximum absolute error0.0. Fixed seven-day means remained unchanged
+as each participant's history grew; previous-three-day means used earlier data.
+The additional day61future-outcome-only record was excluded from replay.
+
+ADVERSARIAL INPUT CHECKS
+158Python payload cases were rejected by BOTH the strict schema and feature
+builder: missing values, null/string/boolean/non-finite values and bad counts.
+109TypeScript invalid input cases were rejected;4checks explicitly distinguished
+confirmed zero counts from unknown/null counts.
+
+36representative newly requested field names/aliases were rejected by Python
+schema/feature checks, actual in-process HTTP422responses, and the TypeScript
+validator. These are EXPECTED_UNSUPPORTED results, not test failures. They cover
+KSS/SP, onset/wake/time-awake/naps, WASO,24hour sleep, sleep target/deficit,
+caffeine6h, exercise2h, symptoms/medications, PVT false starts and context envelopes, including the exact proposed names
+kss_sleepiness_score, samn_perelli_fatigue_score, nap_start_time_utc,
+nap_end_time_utc, caffeine_mg_last_6h, exercise_minutes_last_2h,
+acute_symptoms_present, medication_use and optional phq2_score/gad2_score.
+The original custom0to10 fatigue field accepts numeric1/7/9; this does not mean
+those values become KSS or Samn-Perelli. No automatic conversion was added.
+
+PRESERVATION AND LIMITATIONS
+Protected source data, model, service/backend source and historical evaluation
+reports retained identical SHA-256 hashes. No fitting, threshold selection,
+promotion or new model-performance evaluation occurred. Test-partition FEATURES
+were read for schema/feature consistency, not outcome scoring or tuning.
+Existing installed dependencies were reused; no clean-OS installation was tested.
+No actual Angular/Ionic frontend source was supplied or tested.
+
+REPRODUCE FROM ai/ WITH THE PROJECT'S PYTHON/NODE DEPENDENCIES AVAILABLE
+  python reports/data_integrity_2026_11_15/api/run_api_integrity.py --project .
+
+The audit writes only its current report/log files in this api/ directory.
+Node24and the backend's existing local dependencies are required. In the managed
+workspace, the FastAPI/Node test runners require approved execution outside the
+command sandbox because the sandbox prevents their normal event-loop/worker use.
+Detailed checks and source hashes: API_CONTRACT_INTEGRITY.json.

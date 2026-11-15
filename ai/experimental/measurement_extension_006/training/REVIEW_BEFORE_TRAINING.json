@@ -1,0 +1,25 @@
+{
+  "generation_review_complete": true,
+  "training_only_eda_complete": true,
+  "reviewed_at_utc": "2026-11-15T00:25:37.414828+00:00",
+  "plan_sha256": "bd45506e12826889e9b45f4fc15cfc925285b32072179e327119374ec5bcfa98",
+  "data_manifest_sha256": "22a8d2922b01fcacfb7338292b5f56799bf2dba3665c3e2f345ac97c465ca422",
+  "eda_report_sha256": "120ed5ef8ef81e5c39c3876d01104ef14768e6d486f7c0ab584d62e50c52d3de",
+  "eda_script_sha256": "c8ed11059e0d7377bc85df835ebc1071b1b2eb8977a050fa7bf4937e259490ff",
+  "plots_sha256": {
+    "extension_correlations.png": "9070975aa141456244f18f4bd50775e960471edbfea3226c8ea93c9bb73ba8c5",
+    "questionnaires_and_target.png": "d323aa366bb06db679cf32e19a24d1752d249c4bae0a06ad6cee7f5406faeab2",
+    "sleep_extension_distributions.png": "701fc1aca17f7b64dcd08bd52edec88e85f04fa59b0cd9252658c26d3208b02a"
+  },
+  "review_notes": [
+    "Visually inspected questionnaires_and_target.png, sleep_extension_distributions.png and extension_correlations.png before estimator fitting.",
+    "Training target is imbalanced: 1111 low, 3290 moderate, 639 high. Retain predeclared balanced models, macro-F1 and per-class recall reporting.",
+    "All ordinal proxy categories are populated, with fewer extreme categories; these are simulated proxies, not validated self-report instruments.",
+    "Sleep plots show a zero-nap mass and two time-awake modes induced by the fixed nap scheduling policy. This is a simulation artifact, not a discovered human pattern.",
+    "WASO has an expected zero mass for zero awakenings; positive values are allocated from pre-existing sleep aggregates.",
+    "Correlation plot shows near-redundancy of main sleep and total-24h sleep, and strong nap/time-awake coupling. Retain preregistered bundles to evaluate incremental value without adaptive feature removal.",
+    "Proxy/current-fatigue association is designed through shared latent fatigue. Any measured improvement is limited to those simulation assumptions.",
+    "Shortened one clipped plot title and corrected spacing only; regenerated the same training-only graphs before this review record.",
+    "27 generation check groups and 15 training EDA checks passed; no rows removed, no noise levels retuned; held-out statistics have not been inspected."
+  ]
+}

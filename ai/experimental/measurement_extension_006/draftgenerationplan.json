@@ -1,0 +1,85 @@
+{
+  "status": "frozen_before_generation_root_approved",
+  "experiment": "measurement_extension_006",
+  "version": "astra_measurement_extension_006_v1",
+  "base_seed": 20261115,
+  "extension_seed": 2026111501,
+  "original_source_sha256": "e4a914c3fdd01bc6032ad39b2e61967c416408558e5015664286083b80ac01fa",
+  "root_experiment_plan_sha256": "2eb2c9fb4a95c378e44b6cc9a2dcea5d84e80edf4ccfbaee7ff1be78b76b94f5",
+  "cohort": {
+    "participants": 120,
+    "identifier_template": "EXP006_{n:03d}",
+    "calibration_days": [-6, 0],
+    "forecast_days": [1, 60],
+    "future_outcome_day": 61,
+    "participant_splits": {"train": 84, "validation": 18, "test": 18},
+    "cutoff_utc": "18:00:00",
+    "day1": "2026-01-01",
+    "base_algorithm": "Exact original numeric generation algorithm, with only seed, version and participant-ID literal changed; original source/data/model are not modified.",
+    "target": "target_next_day_fatigue_class",
+    "target_definition": "Original next-day simulated custom0-10 self-report category: low<4, moderate4<=x<7, high>=7. It is not a KSS/SP label."
+  },
+  "sleep_allocation": {
+    "origin": "hypothetical_allocation_of_simulated_aggregates_not_recovered_measurements",
+    "planned_main_midpoint_hour_utc": 4,
+    "actual_midpoint": "04:00UTC on observation date + saved sleep_midpoint_deviation_minutes",
+    "tst_minutes": "60*sleep_duration_hours",
+    "opportunity_minutes": "tst_minutes/(sleep_efficiency_pct/100)",
+    "sol_minutes": "sleep_onset_delay_minutes",
+    "residual_awake_minutes": "opportunity_minutes-tst_minutes-sol_minutes",
+    "waso_minutes": "0 if awakenings_count==0 else 3*N + 0.5*(residual_awake_minutes-3*N)",
+    "terminal_wake_minutes": "residual_awake_minutes-waso_minutes",
+    "onset": "actual_midpoint-(tst_minutes+waso_minutes)/2",
+    "final_wake": "actual_midpoint+(tst_minutes+waso_minutes)/2",
+    "attempt": "onset-sol_minutes",
+    "out_of_bed": "final_wake+terminal_wake_minutes",
+    "segments": "N+1 equal-duration sleep segments totalingTST separated byN equal wake intervals totalingWASO; no wake intervals ifN==0.",
+    "chronology": "Main opportunity must lie within the 24h window ending at cutoff; negative budgets, impossible chronology or overlapping sleep intervals abort generation. No deletion, seed search or silent repair.",
+    "numerical_tolerance_hours": 0.000001
+  },
+  "nap": {
+    "origin": "additional_synthetic_episode_without_modelled_restorative_effect",
+    "maximum_count_per_day": 1,
+    "attempt_probability": 0.25,
+    "attempt_draw_independent_of_latent_fatigue_stress": true,
+    "proposed_duration_minutes": "Uniform(10,40) drawn each day independently of latent states",
+    "start": "max(14:00UTC on observation date, main_out_of_bed+30minutes)",
+    "latest_end": "cutoff-30minutes",
+    "free_budget_minutes": "60*(24-main_sleep_opportunity_hours-workload_hours-exercise_minutes/60)",
+    "duration": "If Bernoulli attempt and min(proposed_duration,free_budget,available_time_window)>=10minutes, use that minimum; otherwise confirmed synthetic no-nap with count0 and duration0.",
+    "sleep_latency_and_waso": "Not modelled for nap; the allocated interval is entirely asleep.",
+    "base_target_process": "Unchanged. The original fatigue evolution uses main sleep only; naps do not cause recovery in the target-generating process."
+  },
+  "derived_sleep": {
+    "total_sleep_last_24h_hours": "Sum of all nonoverlapping main+nap sleep-segment intersections with[cutoff-24h,cutoff).",
+    "nap_sleep_minutes_last_24h": "Sum nap-segment intersections with the same24h window.",
+    "time_since_last_sleep_hours": "cutoff minus most recent completed sleep-segment end; an allocated nap resets this value.",
+    "sleep_target_hours": 8,
+    "sleep_target_role": "Fixed configured goal metadata, not biological need and not a predictor.",
+    "prior_3day_sleep_shortfall_hours": "sum(max(0,8-total_sleep_last_24h_hours[d])) for same participant daysd=t-3,t-2,t-1; three nonoverlapping windows; not clinically validated sleep debt."
+  },
+  "questionnaire_proxies": {
+    "origin": "synthetic_noisy_ordinal_instrument_range_proxies_not_validated_questionnaire_responses",
+    "kss_like_sleepiness_score": {
+      "latent_z": "0.65*CURRENT_hidden_fatigue + 0.45*max(0,8-total_sleep_last_24h_hours) + 0.15*max(0,time_since_last_sleep_hours-12) + Normal(0,1.4)",
+      "thresholds": [1,2,3,4,5,6,7,8],
+      "ordinal_rule": "1+count(z>=threshold), integer1..9"
+    },
+    "samn_perelli_like_fatigue_score": {
+      "latent_z": "CURRENT_hidden_fatigue + Normal(0,1.25)",
+      "thresholds": [1.5,3,4.5,6,7.5,9],
+      "ordinal_rule": "1+count(z>=threshold), integer1..7"
+    },
+    "draw_order_per_person_day": ["nap Bernoulli uniform", "proposed nap duration uniform", "KSS noise Gaussian", "Samn-Perelli noise Gaussian"],
+    "restrictions": "Use independent extension RNG; no rescaling of observed fatigue, no use of next-day states/labels, no threshold/noise tuning after seeing generated data or results. Hidden states are audit-only and never predictors."
+  },
+  "feature_contract": {
+    "baseline": "Exact original26numeric feature names and order from original task_config.json.",
+    "questionnaire_features": ["kss_like_sleepiness_score", "samn_perelli_like_fatigue_score"],
+    "sleep_features": ["main_sleep_waso_minutes", "time_since_last_sleep_hours", "nap_sleep_minutes_last_24h", "total_sleep_last_24h_hours", "prior_3day_sleep_shortfall_hours"],
+    "bundles": ["baseline", "questionnaires_only", "sleep_only", "combined"],
+    "metadata_not_predictors": "All identifiers/timestamps/provenance/constants/raw latent states/target columns/episode details and nap counts."
+  },
+  "deferred_not_fabricated": ["PVT false-start measurements", "timed PVT/PVT-B validity", "caffeine exposure", "medication context", "acute symptoms", "PHQ-2", "GAD-2", "multiple naps per day"],
+  "interpretation": "Fresh synthetic feature-extension experiment. It is not a NASA dataset, clinical validation, reconstruction of actual missing measurements, or direct score comparison against the old cohort. Sleep allocations are alternate representations of existing aggregates; the new ordinal proxies may improve prediction merely by revealing the simulator's current latent state."
+}

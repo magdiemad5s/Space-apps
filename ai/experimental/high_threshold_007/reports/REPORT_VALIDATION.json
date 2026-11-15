@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-11-15T01:06:59.565605+00:00",
+  "scope": "Presentation of saved validation metrics only; no model loading, fitting or new predictions.",
+  "pdf_pages": 3,
+  "visual_review": "All three pages visually reviewed for legibility and clipping; page1 rechecked after adding promotion/demotion caveat.",
+  "source_sha256": {
+    "PLAN.json": "5399aa38486c4e6e62be78613486182a97a5791fcd9eaafa346209a7cc26a6cb",
+    "results/primary/PRcurve.csv": "88d5d93eccc75572d4a05b04bcde717e6c78ac14112d80de84bc891cc1147fb9",
+    "results/primary/allthresholdmetrics.csv": "d8c002883737a016daf54c73a6bc025da47283fb1342551a4cedef28d0b68274",
+    "results/primary/confusionmatrices.csv": "759195125264862510b41aaade0488f8344731dd6898e5fb94332a31a82c3ecd",
+    "results/primary/shortlist.csv": "ca5cac9b307b07fb03cd4d42e62480d5758199c6524c42104876c5d1b71c23f2",
+    "results/primary/summary.json": "68d37f1e8248698b2acae2d79de937e53b9ddb5a1452c915494344f1141cd77a",
+    "results/secondary/PRcurve.csv": "fbf59f94c3f6a4c2939ff65ca2e10430cf888ed38149b04b5d0843a36e73ca03",
+    "results/secondary/allthresholdmetrics.csv": "ac47b81b1c64d3b8789b5e47412164cc8bf032f4c740174b781cf64c1be431df",
+    "results/secondary/confusionmatrices.csv": "193149d80a07179b70167fabccb7d6e8ffc93e16c861c05d6c2fc01ca933ae30",
+    "results/secondary/shortlist.csv": "786d6b23f67ba116f50801db7b773a31a0f167f6d56feb0056013d86b10dc9b8",
+    "results/secondary/summary.json": "76849000189deb93260e5d20ff0ba15d8588f240d6a8446783633fdcc1ccccb8"
+  },
+  "render_script_sha256": "f6c88ceb4ea14885321ee50bdd432644a6ce675213a4c0ea84d4b09f46b9d43a",
+  "pdf_sha256": "334629722eb1383eb234381a2fdff0efe7694fac314d9054135cb59b5c9cf0db",
+  "checks": {
+    "primary_and_secondary_separate": true,
+    "argmax_not_05_baseline": true,
+    "all_shortlisted_high_metrics_shown": true,
+    "tp_fn_fp_counts_shown": true,
+    "primary_confusion_matrices_in_pdf": true,
+    "both_precision_recall_curves_in_pdf": true,
+    "both_cohorts_full_plots_saved": true,
+    "uncalibrated_synthetic_limits_explicit": true,
+    "reused_validation_postselection_limits_explicit": true,
+    "historical_test_results_context_only": true,
+    "no_test_threshold_results": true,
+    "no_threshold_promoted": true,
+    "undefined_precision_not_claimed_as_measured_one": true,
+    "no_extra_font_requirement": true
+  }
+}

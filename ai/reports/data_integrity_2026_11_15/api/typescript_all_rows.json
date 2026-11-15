@@ -1,0 +1,232 @@
+{
+  "status": "passed",
+  "model_prediction_or_fit": false,
+  "subjects": 120,
+  "canonical_observations_validated": 8040,
+  "warmup_observations": 840,
+  "prediction_ready_feature_rows": 7200,
+  "numeric_history_values_compared": 158400,
+  "maximum_absolute_numeric_error": 0,
+  "unsupported_fields": [
+    {
+      "field": "KSS",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "KSS_score",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "kss_score",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "SP",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "samn_perelli_score",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "kss_sleepiness_score",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "samn_perelli_fatigue_score",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "nap_start_time_utc",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "nap_end_time_utc",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "caffeine_mg_last_6h",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "exercise_minutes_last_2h",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "acute_symptoms_present",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "medication_use",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "phq2_score",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "gad2_score",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "sleep_onset_time_utc",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "wake_time_utc",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "time_awake_hours",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "nap_start_utc",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "nap_end_utc",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "nap_duration_minutes",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "total_sleep_24h_hours",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "total_sleep24_hours",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "waso_minutes",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "wake_after_sleep_onset_minutes",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "sleep_target_hours",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "sleep_deficit_3day_hours",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "caffeine_last_6h_mg",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "caffeine_6h_mg",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "exercise_last_2h_minutes",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "acute_symptoms",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "medication",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "medications",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "reaction_time_false_starts_count",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "pvt_false_starts_count",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    },
+    {
+      "field": "collection_context",
+      "result": "EXPECTED_UNSUPPORTED",
+      "status": 422,
+      "code": "unknown_fields"
+    }
+  ],
+  "invalid_input_cases_rejected": 109,
+  "unknown_is_not_zero_checks": 4,
+  "failures": [],
+  "custom_scale_limitation": "Custom0to10 accepts numeric1/7/9; this is not KSS/SP semantic equivalence. Named KSS/SP fields remain EXPECTED_UNSUPPORTED."
+}

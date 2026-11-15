@@ -1,0 +1,24 @@
+{
+  "all_unchanged": true,
+  "files_checked": 17,
+  "checks": {
+    "data/raw_observations.csv": true,
+    "data/data_dictionary.csv": true,
+    "data/participant_splits.csv": true,
+    "data/astra_shield_synthetic_ml.csv": true,
+    "data/selected_features.csv": true,
+    "data/train.csv": true,
+    "data/source_generator.py": true,
+    "data/task_config.json": true,
+    "data/test.csv": true,
+    "data/validation.csv": true,
+    "data/generation_metadata.json": true,
+    "data/README.txt": true,
+    "data/README.md": true,
+    "data/source_manifest.csv": true,
+    "data/source_validation_report.json": true,
+    "data/split_manifest.json": true,
+    "artifacts/bundle.joblib": true
+  },
+  "scope": "Original data files and serving bundle compared with pre-experiment hashes"
+}

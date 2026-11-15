@@ -1,0 +1,10 @@
+{
+  "scope": "Descriptive training-only review; no corruption diagnosis or cleaning/performance experiment.",
+  "rule": "Any |0.6744897501960817*(x-median)/MAD|>4.5 over4baseline deltas; train-only location and scale.",
+  "training_rows": 5040,
+  "flagged_rows": 254,
+  "injected_events_total": 324,
+  "flagged_with_injected_event": 254,
+  "rows_removed": 0,
+  "interpretation": "Generated random variation and injected events are intentional. Statistical extremeness is not an invalid-record label; new evidence of cleaning benefit requires separate evaluation."
+}

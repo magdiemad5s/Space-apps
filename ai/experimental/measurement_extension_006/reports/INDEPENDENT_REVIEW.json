@@ -1,0 +1,945 @@
+{
+  "experiment": "measurement_extension_006",
+  "reviewed_at_utc": "2026-11-15T00:30:34.085568+00:00",
+  "scope": "Independent read-only source/artifact review plus arithmetic recomputation from saved predictions; no model refit, deserialization, or new inference.",
+  "status": "passed_with_scientific_limitations",
+  "checks_passed": 220,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "check": "generated_file_hash:DATA_CARD.md",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:base_source/astra_shield_synthetic_ml.csv",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:base_source/current_latent_audit.csv",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:base_source/data_dictionary.csv",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:base_source/generation_metadata.json",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:base_source/participant_splits.csv",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:base_source/raw_observations.csv",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:base_source/source_generator.py",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:base_source/source_manifest.csv",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:base_source/task_config.json",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:feature_manifest.json",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:generation_attempts.json",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:generation_plan_sha256.txt",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:generation_quality.json",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:main.csv",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:raw_audit.csv",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:sleep_segments.csv",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:split_manifest.json",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:test.csv",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:train.csv",
+      "passed": true
+    },
+    {
+      "check": "generated_file_hash:validation.csv",
+      "passed": true
+    },
+    {
+      "check": "original_preserved:data/source_generator.py",
+      "passed": true
+    },
+    {
+      "check": "original_preserved:data/astra_shield_synthetic_ml.csv",
+      "passed": true
+    },
+    {
+      "check": "original_preserved:data/raw_observations.csv",
+      "passed": true
+    },
+    {
+      "check": "original_preserved:data/task_config.json",
+      "passed": true
+    },
+    {
+      "check": "original_preserved:data/train.csv",
+      "passed": true
+    },
+    {
+      "check": "original_preserved:data/validation.csv",
+      "passed": true
+    },
+    {
+      "check": "original_preserved:data/test.csv",
+      "passed": true
+    },
+    {
+      "check": "original_preserved:artifacts/bundle.joblib",
+      "passed": true
+    },
+    {
+      "check": "frozen_artifact:candidate_models.joblib",
+      "passed": true
+    },
+    {
+      "check": "frozen_artifact:CV_SELECTION.json",
+      "passed": true
+    },
+    {
+      "check": "frozen_artifact:CV_REPORT.json",
+      "passed": true
+    },
+    {
+      "check": "frozen_artifact:feature_contract.json",
+      "passed": true
+    },
+    {
+      "check": "frozen_artifact:PLAN.json",
+      "passed": true
+    },
+    {
+      "check": "frozen_artifact:preregistration.json",
+      "passed": true
+    },
+    {
+      "check": "frozen_artifact:participant_folds.csv",
+      "passed": true
+    },
+    {
+      "check": "frozen_script_sha256",
+      "passed": true
+    },
+    {
+      "check": "frozen_review_record_sha256",
+      "passed": true
+    },
+    {
+      "check": "pretraining_guard_plan_sha256",
+      "passed": true
+    },
+    {
+      "check": "pretraining_guard_data_manifest_sha256",
+      "passed": true
+    },
+    {
+      "check": "pretraining_guard_eda_report_sha256",
+      "passed": true
+    },
+    {
+      "check": "pretraining_guard_eda_script_sha256",
+      "passed": true
+    },
+    {
+      "check": "reviewed_plot:extension_correlations.png",
+      "passed": true
+    },
+    {
+      "check": "reviewed_plot:questionnaires_and_target.png",
+      "passed": true
+    },
+    {
+      "check": "reviewed_plot:sleep_extension_distributions.png",
+      "passed": true
+    },
+    {
+      "check": "frozen_selection_link",
+      "passed": true
+    },
+    {
+      "check": "validation_report_link",
+      "passed": true
+    },
+    {
+      "check": "root_plan_hash",
+      "passed": true
+    },
+    {
+      "check": "generator_code_hash",
+      "passed": true
+    },
+    {
+      "check": "generation_plan_hash",
+      "passed": true
+    },
+    {
+      "check": "recorded_stage_chronology",
+      "passed": true,
+      "detail": [
+        "2026-11-15T00:25:37.414828+00:00",
+        "2026-11-15T00:26:09.469380+00:00",
+        "2026-11-15T00:26:14.022856+00:00",
+        "2026-11-15T00:26:28.046709+00:00",
+        "2026-11-15T00:26:28.090918+00:00",
+        "2026-11-15T00:27:26.223501+00:00"
+      ]
+    },
+    {
+      "check": "partition_size_and_hash:train",
+      "passed": true
+    },
+    {
+      "check": "unique_records:train",
+      "passed": true
+    },
+    {
+      "check": "partition_size_and_hash:validation",
+      "passed": true
+    },
+    {
+      "check": "unique_records:validation",
+      "passed": true
+    },
+    {
+      "check": "partition_size_and_hash:test",
+      "passed": true
+    },
+    {
+      "check": "unique_records:test",
+      "passed": true
+    },
+    {
+      "check": "participant_isolation:train:validation",
+      "passed": true
+    },
+    {
+      "check": "participant_isolation:train:test",
+      "passed": true
+    },
+    {
+      "check": "participant_isolation:validation:test",
+      "passed": true
+    },
+    {
+      "check": "three_complete_participant_folds",
+      "passed": true
+    },
+    {
+      "check": "oof_row_alignment",
+      "passed": true
+    },
+    {
+      "check": "oof_fold_alignment",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_26_control:macro_f1",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_26_control:accuracy",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_26_control:balanced_accuracy",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_26_control:high_recall",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_26_control:high_precision",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_26_control:confusion_matrix",
+      "passed": true
+    },
+    {
+      "check": "cv_fold_mean:rf_26_control",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_28_questionnaires:macro_f1",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_28_questionnaires:accuracy",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_28_questionnaires:balanced_accuracy",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_28_questionnaires:high_recall",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_28_questionnaires:high_precision",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_28_questionnaires:confusion_matrix",
+      "passed": true
+    },
+    {
+      "check": "cv_fold_mean:rf_28_questionnaires",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_31_sleep:macro_f1",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_31_sleep:accuracy",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_31_sleep:balanced_accuracy",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_31_sleep:high_recall",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_31_sleep:high_precision",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_31_sleep:confusion_matrix",
+      "passed": true
+    },
+    {
+      "check": "cv_fold_mean:rf_31_sleep",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_33_combined:macro_f1",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_33_combined:accuracy",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_33_combined:balanced_accuracy",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_33_combined:high_recall",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_33_combined:high_precision",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:rf_33_combined:confusion_matrix",
+      "passed": true
+    },
+    {
+      "check": "cv_fold_mean:rf_33_combined",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:xgb_26_control:macro_f1",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:xgb_26_control:accuracy",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:xgb_26_control:balanced_accuracy",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:xgb_26_control:high_recall",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:xgb_26_control:high_precision",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:xgb_26_control:confusion_matrix",
+      "passed": true
+    },
+    {
+      "check": "cv_fold_mean:xgb_26_control",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:xgb_33_combined:macro_f1",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:xgb_33_combined:accuracy",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:xgb_33_combined:balanced_accuracy",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:xgb_33_combined:high_recall",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:xgb_33_combined:high_precision",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:xgb_33_combined:confusion_matrix",
+      "passed": true
+    },
+    {
+      "check": "cv_fold_mean:xgb_33_combined",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:current_custom_fatigue_persistence:macro_f1",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:current_custom_fatigue_persistence:accuracy",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:current_custom_fatigue_persistence:balanced_accuracy",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:current_custom_fatigue_persistence:high_recall",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:current_custom_fatigue_persistence:high_precision",
+      "passed": true
+    },
+    {
+      "check": "pooled_cv:current_custom_fatigue_persistence:confusion_matrix",
+      "passed": true
+    },
+    {
+      "check": "cv_fold_mean:current_custom_fatigue_persistence",
+      "passed": true
+    },
+    {
+      "check": "selected_by_preregistered_training_rule",
+      "passed": true
+    },
+    {
+      "check": "holdout_row_alignment:validation",
+      "passed": true
+    },
+    {
+      "check": "holdout_freeze_link:validation",
+      "passed": true
+    },
+    {
+      "check": "validation:rf_26_control:macro_f1",
+      "passed": true
+    },
+    {
+      "check": "validation:rf_26_control:accuracy",
+      "passed": true
+    },
+    {
+      "check": "validation:rf_26_control:balanced_accuracy",
+      "passed": true
+    },
+    {
+      "check": "validation:rf_26_control:high_recall",
+      "passed": true
+    },
+    {
+      "check": "validation:rf_26_control:high_precision",
+      "passed": true
+    },
+    {
+      "check": "validation:rf_26_control:confusion_matrix",
+      "passed": true
+    },
+    {
+      "check": "probability_range_and_sum:validation:rf_26_control",
+      "passed": true
+    },
+    {
+      "check": "probability_argmax_label:validation:rf_26_control",
+      "passed": true
+    },
+    {
+      "check": "validation:rf_28_questionnaires:macro_f1",
+      "passed": true
+    },
+    {
+      "check": "validation:rf_28_questionnaires:accuracy",
+      "passed": true
+    },
+    {
+      "check": "validation:rf_28_questionnaires:balanced_accuracy",
+      "passed": true
+    },
+    {
+      "check": "validation:rf_28_questionnaires:high_recall",
+      "passed": true
+    },
+    {
+      "check": "validation:rf_28_questionnaires:high_precision",
+      "passed": true
+    },
+    {
+      "check": "validation:rf_28_questionnaires:confusion_matrix",
+      "passed": true
+    },
+    {
+      "check": "probability_range_and_sum:validation:rf_28_questionnaires",
+      "passed": true
+    },
+    {
+      "check": "probability_argmax_label:validation:rf_28_questionnaires",
+      "passed": true
+    },
+    {
+      "check": "validation:xgb_26_control:macro_f1",
+      "passed": true
+    },
+    {
+      "check": "validation:xgb_26_control:accuracy",
+      "passed": true
+    },
+    {
+      "check": "validation:xgb_26_control:balanced_accuracy",
+      "passed": true
+    },
+    {
+      "check": "validation:xgb_26_control:high_recall",
+      "passed": true
+    },
+    {
+      "check": "validation:xgb_26_control:high_precision",
+      "passed": true
+    },
+    {
+      "check": "validation:xgb_26_control:confusion_matrix",
+      "passed": true
+    },
+    {
+      "check": "probability_range_and_sum:validation:xgb_26_control",
+      "passed": true
+    },
+    {
+      "check": "probability_argmax_label:validation:xgb_26_control",
+      "passed": true
+    },
+    {
+      "check": "validation:xgb_33_combined:macro_f1",
+      "passed": true
+    },
+    {
+      "check": "validation:xgb_33_combined:accuracy",
+      "passed": true
+    },
+    {
+      "check": "validation:xgb_33_combined:balanced_accuracy",
+      "passed": true
+    },
+    {
+      "check": "validation:xgb_33_combined:high_recall",
+      "passed": true
+    },
+    {
+      "check": "validation:xgb_33_combined:high_precision",
+      "passed": true
+    },
+    {
+      "check": "validation:xgb_33_combined:confusion_matrix",
+      "passed": true
+    },
+    {
+      "check": "probability_range_and_sum:validation:xgb_33_combined",
+      "passed": true
+    },
+    {
+      "check": "probability_argmax_label:validation:xgb_33_combined",
+      "passed": true
+    },
+    {
+      "check": "validation:current_custom_fatigue_persistence:macro_f1",
+      "passed": true
+    },
+    {
+      "check": "validation:current_custom_fatigue_persistence:accuracy",
+      "passed": true
+    },
+    {
+      "check": "validation:current_custom_fatigue_persistence:balanced_accuracy",
+      "passed": true
+    },
+    {
+      "check": "validation:current_custom_fatigue_persistence:high_recall",
+      "passed": true
+    },
+    {
+      "check": "validation:current_custom_fatigue_persistence:high_precision",
+      "passed": true
+    },
+    {
+      "check": "validation:current_custom_fatigue_persistence:confusion_matrix",
+      "passed": true
+    },
+    {
+      "check": "probability_range_and_sum:validation:current_custom_fatigue_persistence",
+      "passed": true
+    },
+    {
+      "check": "probability_argmax_label:validation:current_custom_fatigue_persistence",
+      "passed": true
+    },
+    {
+      "check": "holdout_row_alignment:test",
+      "passed": true
+    },
+    {
+      "check": "holdout_freeze_link:test",
+      "passed": true
+    },
+    {
+      "check": "test:rf_26_control:macro_f1",
+      "passed": true
+    },
+    {
+      "check": "test:rf_26_control:accuracy",
+      "passed": true
+    },
+    {
+      "check": "test:rf_26_control:balanced_accuracy",
+      "passed": true
+    },
+    {
+      "check": "test:rf_26_control:high_recall",
+      "passed": true
+    },
+    {
+      "check": "test:rf_26_control:high_precision",
+      "passed": true
+    },
+    {
+      "check": "test:rf_26_control:confusion_matrix",
+      "passed": true
+    },
+    {
+      "check": "probability_range_and_sum:test:rf_26_control",
+      "passed": true
+    },
+    {
+      "check": "probability_argmax_label:test:rf_26_control",
+      "passed": true
+    },
+    {
+      "check": "test:rf_28_questionnaires:macro_f1",
+      "passed": true
+    },
+    {
+      "check": "test:rf_28_questionnaires:accuracy",
+      "passed": true
+    },
+    {
+      "check": "test:rf_28_questionnaires:balanced_accuracy",
+      "passed": true
+    },
+    {
+      "check": "test:rf_28_questionnaires:high_recall",
+      "passed": true
+    },
+    {
+      "check": "test:rf_28_questionnaires:high_precision",
+      "passed": true
+    },
+    {
+      "check": "test:rf_28_questionnaires:confusion_matrix",
+      "passed": true
+    },
+    {
+      "check": "probability_range_and_sum:test:rf_28_questionnaires",
+      "passed": true
+    },
+    {
+      "check": "probability_argmax_label:test:rf_28_questionnaires",
+      "passed": true
+    },
+    {
+      "check": "test:xgb_26_control:macro_f1",
+      "passed": true
+    },
+    {
+      "check": "test:xgb_26_control:accuracy",
+      "passed": true
+    },
+    {
+      "check": "test:xgb_26_control:balanced_accuracy",
+      "passed": true
+    },
+    {
+      "check": "test:xgb_26_control:high_recall",
+      "passed": true
+    },
+    {
+      "check": "test:xgb_26_control:high_precision",
+      "passed": true
+    },
+    {
+      "check": "test:xgb_26_control:confusion_matrix",
+      "passed": true
+    },
+    {
+      "check": "probability_range_and_sum:test:xgb_26_control",
+      "passed": true
+    },
+    {
+      "check": "probability_argmax_label:test:xgb_26_control",
+      "passed": true
+    },
+    {
+      "check": "test:xgb_33_combined:macro_f1",
+      "passed": true
+    },
+    {
+      "check": "test:xgb_33_combined:accuracy",
+      "passed": true
+    },
+    {
+      "check": "test:xgb_33_combined:balanced_accuracy",
+      "passed": true
+    },
+    {
+      "check": "test:xgb_33_combined:high_recall",
+      "passed": true
+    },
+    {
+      "check": "test:xgb_33_combined:high_precision",
+      "passed": true
+    },
+    {
+      "check": "test:xgb_33_combined:confusion_matrix",
+      "passed": true
+    },
+    {
+      "check": "probability_range_and_sum:test:xgb_33_combined",
+      "passed": true
+    },
+    {
+      "check": "probability_argmax_label:test:xgb_33_combined",
+      "passed": true
+    },
+    {
+      "check": "test:current_custom_fatigue_persistence:macro_f1",
+      "passed": true
+    },
+    {
+      "check": "test:current_custom_fatigue_persistence:accuracy",
+      "passed": true
+    },
+    {
+      "check": "test:current_custom_fatigue_persistence:balanced_accuracy",
+      "passed": true
+    },
+    {
+      "check": "test:current_custom_fatigue_persistence:high_recall",
+      "passed": true
+    },
+    {
+      "check": "test:current_custom_fatigue_persistence:high_precision",
+      "passed": true
+    },
+    {
+      "check": "test:current_custom_fatigue_persistence:confusion_matrix",
+      "passed": true
+    },
+    {
+      "check": "probability_range_and_sum:test:current_custom_fatigue_persistence",
+      "passed": true
+    },
+    {
+      "check": "probability_argmax_label:test:current_custom_fatigue_persistence",
+      "passed": true
+    },
+    {
+      "check": "paired_person_bootstrap:macro_f1",
+      "passed": true
+    },
+    {
+      "check": "paired_person_bootstrap:high_recall",
+      "passed": true
+    },
+    {
+      "check": "paired_person_bootstrap:high_precision",
+      "passed": true
+    },
+    {
+      "check": "paired_bootstrap_positive_fraction",
+      "passed": true
+    },
+    {
+      "check": "train_only_imputation:rf_26_control:0",
+      "passed": true
+    },
+    {
+      "check": "train_only_imputation:rf_26_control:1",
+      "passed": true
+    },
+    {
+      "check": "train_only_imputation:rf_26_control:2",
+      "passed": true
+    },
+    {
+      "check": "train_only_imputation:rf_28_questionnaires:0",
+      "passed": true
+    },
+    {
+      "check": "train_only_imputation:rf_28_questionnaires:1",
+      "passed": true
+    },
+    {
+      "check": "train_only_imputation:rf_28_questionnaires:2",
+      "passed": true
+    },
+    {
+      "check": "train_only_imputation:rf_31_sleep:0",
+      "passed": true
+    },
+    {
+      "check": "train_only_imputation:rf_31_sleep:1",
+      "passed": true
+    },
+    {
+      "check": "train_only_imputation:rf_31_sleep:2",
+      "passed": true
+    },
+    {
+      "check": "train_only_imputation:rf_33_combined:0",
+      "passed": true
+    },
+    {
+      "check": "train_only_imputation:rf_33_combined:1",
+      "passed": true
+    },
+    {
+      "check": "train_only_imputation:rf_33_combined:2",
+      "passed": true
+    },
+    {
+      "check": "train_only_imputation:xgb_26_control:0",
+      "passed": true
+    },
+    {
+      "check": "train_only_imputation:xgb_26_control:1",
+      "passed": true
+    },
+    {
+      "check": "train_only_imputation:xgb_26_control:2",
+      "passed": true
+    },
+    {
+      "check": "train_only_imputation:xgb_33_combined:0",
+      "passed": true
+    },
+    {
+      "check": "train_only_imputation:xgb_33_combined:1",
+      "passed": true
+    },
+    {
+      "check": "train_only_imputation:xgb_33_combined:2",
+      "passed": true
+    },
+    {
+      "check": "full_fit_train_only_imputation",
+      "passed": true
+    }
+  ],
+  "selected_extension": "rf_28_questionnaires",
+  "control": "rf_26_control",
+  "primary_results": {
+    "validation": {
+      "control_macro_f1": 0.5317134273215643,
+      "extension_macro_f1": 0.5093700140366358,
+      "difference": -0.022343413284928504,
+      "control_high_recall": 0.37037037037037035,
+      "extension_high_recall": 0.32592592592592595
+    },
+    "test": {
+      "control_macro_f1": 0.5528432112388604,
+      "extension_macro_f1": 0.5494527903364534,
+      "difference": -0.003390420902406932,
+      "control_high_recall": 0.43661971830985913,
+      "extension_high_recall": 0.43661971830985913
+    }
+  },
+  "test_macro_f1_difference_95ci_independently_reproduced": [
+    -0.014090476402400267,
+    0.007566558981502724
+  ],
+  "decision": "Do not promote the extension. It showed no supported held-out gain in this frozen simulated scenario. Keep the existing serving model and dataset unchanged.",
+  "scientific_limitations": [
+    "All observations and questionnaire-range scores are simulated. KSS-like and Samn-Perelli-like columns are unvalidated ordinal proxies, not collected instrument responses.",
+    "Proxy associations arise from predeclared noisy views of current hidden fatigue. Sleep timing is hypothetical allocation consistent with existing aggregate values, not recovered actual timing.",
+    "The unchanged original target process does not simulate a causal restorative effect of newly allocated naps. This experiment cannot establish whether actual naps, KSS, or Samn-Perelli are useful in human data.",
+    "Bootstrap uncertainty is conditional on the fitted models and a single generator scenario, using 18 test participants. It does not cover population shift or generator misspecification.",
+    "New cohort scores must not be presented as improvement over the historical 0.5273 validation Macro-F1, which used different participants.",
+    "The recorded stage order and code guards support the intended one-shot holdout protocol; this audit cannot prove absence of arbitrary external file inspection.",
+    "Clinical current-state alert rules in the separately uploaded PDF were not implemented or clinically validated by this experiment."
+  ],
+  "source_review_summary": [
+    "Reviewed generator, frozen plans, and training runner before fitting; no substantive leakage or inconsistent target modification found.",
+    "Extension random stream is independent of the base generator. Only approved current/past numeric fields enter models; audit latent states, identifiers, text, source metadata, and targets are excluded.",
+    "Whole-participant splits and folds avoid subject overlap; any future within-person evaluation remains a separate design question.",
+    "Train-only graphical EDA and generation checks were recorded before CV selection; stored hashes still match.",
+    "Original source, raw/main data, partitions, config, and serving bundle match pre-experiment hashes."
+  ],
+  "artifact_hashes": {
+    "PLAN.json": "bd45506e12826889e9b45f4fc15cfc925285b32072179e327119374ec5bcfa98",
+    "preregistration.json": "b1ba2ef2354813b209ec5bdf48a2d24e04d9ce0feded6d479744afb9350d3cba",
+    "SELECTION_FROZEN.json": "e1ad94c067a778ecff5e2a2e6ece09a3f5751a8f1106ec2c0383cf430f14a372",
+    "VALIDATION_REPORT.json": "9a1550cd7e3a018089b2c025112da09d179856b376ad9ce95ff3c223fc4d6047",
+    "TEST_REPORT.json": "35a636f0d872eaf4115b494d53693ffd9d84c9591f165c21df24b7ee51637757",
+    "candidate_models.joblib": "1da1fb8a368304d43b070b405596a240c9e6e12780f5dd71190d6ea01f6a8f05"
+  }
+}

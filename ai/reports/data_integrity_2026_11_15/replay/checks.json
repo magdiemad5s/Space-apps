@@ -1,0 +1,354 @@
+{
+  "status": "passed",
+  "scope": "Deterministic source replay and internal numeric consistency only; no model fitting, selection or evaluation.",
+  "method": "Original generator copied byte-for-byte into a fresh temporary directory, executed once in a fresh Python process. sys.settrace observes existing locals only; no RNG calls or replacement RNG are introduced by the audit.",
+  "provenance": "Recovered session summaries and latent initial states are new audit artifacts from deterministic replay. They were not originally exported measurements and must not be added to model inputs.",
+  "source_sha256": "e4a914c3fdd01bc6032ad39b2e61967c416408558e5015664286083b80ac01fa",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3"
+  },
+  "trace_anchors": {
+    "day_start": 76,
+    "after_initial_efficiency": 85,
+    "before_rt_replacement": 103,
+    "before_record_append": 110
+  },
+  "file_comparisons": {
+    "raw_observations.csv": {
+      "frozen_sha256": "a5ac832cad271b4502a07f8ecc888b0504248047bb05c265d6f09c432d9386dc",
+      "replayed_sha256": "a5ac832cad271b4502a07f8ecc888b0504248047bb05c265d6f09c432d9386dc",
+      "byte_equal": true
+    },
+    "astra_shield_synthetic_ml.csv": {
+      "frozen_sha256": "dd76fd2658586375a4f9fc44767c18731a5ecee061912ed625a44bd206ed6a95",
+      "replayed_sha256": "dd76fd2658586375a4f9fc44767c18731a5ecee061912ed625a44bd206ed6a95",
+      "byte_equal": true
+    },
+    "participant_splits.csv": {
+      "frozen_sha256": "96a0579a09abda98906c060cd82377c9b4a44e5aeda8c2d86437b586d39c0f96",
+      "replayed_sha256": "96a0579a09abda98906c060cd82377c9b4a44e5aeda8c2d86437b586d39c0f96",
+      "byte_equal": true
+    },
+    "data_dictionary.csv": {
+      "frozen_sha256": "808f42a18adb82cb6fbb834a72aeb0e009205e5eac313d2762145b840aa4d75a",
+      "replayed_sha256": "808f42a18adb82cb6fbb834a72aeb0e009205e5eac313d2762145b840aa4d75a",
+      "byte_equal": true
+    },
+    "task_config.json": {
+      "frozen_sha256": "75f14b846e29ac1025bad7e3db51a1656365878f29925666a5eaf5165788ed60",
+      "replayed_sha256": "75f14b846e29ac1025bad7e3db51a1656365878f29925666a5eaf5165788ed60",
+      "byte_equal": true
+    },
+    "generation_metadata.json": {
+      "frozen_sha256": "1ac0fe6ba7b28cf2442e85dbd1f969a437d2525d3fafb13819c572f863734681",
+      "replayed_sha256": "1ac0fe6ba7b28cf2442e85dbd1f969a437d2525d3fafb13819c572f863734681",
+      "byte_equal": true
+    },
+    "source_manifest.csv": {
+      "frozen_sha256": "deba9eebe060cdc0782d7ba3786a9bedf3fc8f892c93e34f344530bccfc58742",
+      "replayed_sha256": "deba9eebe060cdc0782d7ba3786a9bedf3fc8f892c93e34f344530bccfc58742",
+      "byte_equal": true
+    }
+  },
+  "check_groups": 51,
+  "individual_assertions": 318371,
+  "failed_assertions": 0,
+  "checks": {
+    "rt_array_shape_60": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "rt_array_finite_positive": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "rt_median_from_same_trials_clip_then_round3": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "rt_lapses_from_same_unrounded_trials_ge500": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "rt_unmasked_draws_unchanged": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "rt_injected_draws_in_500_1100": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "rt_count_is_masked_plus_natural_lapses": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "rt_log_median_parameter_equation": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "rt_lapse_injection_probability_equation": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "attention_probability_bounds": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "attention_correct_integer_0_40": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "efficiency_cap_formula": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "efficiency_min_with_downward_rounded_cap": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "latent_state_bounds": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "reported_scores_in_bounds_and_round3": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "no_injected_events_during_calibration": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "captured_exactly_8160_unique_sessions": {
+      "checked": 1,
+      "failed": 0,
+      "examples": []
+    },
+    "captured_120_initial_states": {
+      "checked": 1,
+      "failed": 0,
+      "examples": []
+    },
+    "byte_exact_raw_observations.csv": {
+      "checked": 1,
+      "failed": 0,
+      "examples": []
+    },
+    "byte_exact_astra_shield_synthetic_ml.csv": {
+      "checked": 1,
+      "failed": 0,
+      "examples": []
+    },
+    "byte_exact_participant_splits.csv": {
+      "checked": 1,
+      "failed": 0,
+      "examples": []
+    },
+    "byte_exact_data_dictionary.csv": {
+      "checked": 1,
+      "failed": 0,
+      "examples": []
+    },
+    "byte_exact_task_config.json": {
+      "checked": 1,
+      "failed": 0,
+      "examples": []
+    },
+    "byte_exact_generation_metadata.json": {
+      "checked": 1,
+      "failed": 0,
+      "examples": []
+    },
+    "byte_exact_source_manifest.csv": {
+      "checked": 1,
+      "failed": 0,
+      "examples": []
+    },
+    "all_raw_rows_have_trace_summary": {
+      "checked": 1,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_participant_id": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_mission_day": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_split": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_sleep_duration_hours": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_sleep_efficiency_pct": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_sleep_onset_delay_minutes": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_awakenings_count": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_sleep_midpoint_deviation_minutes": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_resting_heart_rate_bpm": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_hrv_rmssd_ms": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_reaction_time_median_ms": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_reaction_time_lapses_count": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_reaction_time_trials_count": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_attention_correct_count": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_attention_trials_count": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_attention_accuracy_pct": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_self_report_stress_score": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_self_report_fatigue_score": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_self_report_mood_score": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_workload_hours": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_exercise_minutes": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_target_current_physiology_event_injected": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "trace_matches_original_target_journal_stress_class": {
+      "checked": 8160,
+      "failed": 0,
+      "examples": []
+    },
+    "initial_hidden_parameter_ranges": {
+      "checked": 120,
+      "failed": 0,
+      "examples": []
+    },
+    "frozen_source_and_seven_files_unchanged": {
+      "checked": 1,
+      "failed": 0,
+      "examples": []
+    }
+  },
+  "diagnostics": {
+    "raw_8160_sessions": {
+      "sessions": 8160,
+      "responses_recovered": 489600,
+      "lapses_ge500_min": 0,
+      "lapses_ge500_max": 14,
+      "responses_ge500_total": 20421,
+      "injected_responses_total": 19588,
+      "natural_unmasked_lapses_ge500_total": 833,
+      "median_clipping_changed_sessions": 0,
+      "counterfactual_355_differs_from_original_count_sessions": 7941,
+      "median_ge355_and_original_500_lapses_fewer_than30_sessions": 1702,
+      "counterfactual_note": "355ms counts are diagnostic only; the original protocol and model remain at >=500ms. No columns or targets were changed."
+    },
+    "main_7200_sessions": {
+      "sessions": 7200,
+      "responses_recovered": 432000,
+      "lapses_ge500_min": 0,
+      "lapses_ge500_max": 14,
+      "responses_ge500_total": 18690,
+      "injected_responses_total": 17874,
+      "natural_unmasked_lapses_ge500_total": 816,
+      "median_clipping_changed_sessions": 0,
+      "counterfactual_355_differs_from_original_count_sessions": 7083,
+      "median_ge355_and_original_500_lapses_fewer_than30_sessions": 1664,
+      "counterfactual_note": "355ms counts are diagnostic only; the original protocol and model remain at >=500ms. No columns or targets were changed."
+    }
+  },
+  "frozen_inputs_unchanged": true,
+  "unverifiable_or_not_established": [
+    "Replay consistency does not establish human physiology, clinical validity, NASA approval, or operational safety; all inputs/labels are synthetic.",
+    "The hidden stochastic states and random response arrays are reproducible from this generator/environment, not recoverable uniquely from the original aggregate CSV alone.",
+    "The generator's custom continuous0-10 fatigue/stress/mood values are not KSS1-9 or Samn-Perelli1-7 responses; neither scale can be validly backfilled or inferred from these values.",
+    "Actual bedtime, sleep-onset/final-wake timestamps, naps, WASO, total sleep in a timed24-hour window and continuous time awake were not measured or explicitly generated. The efficiency cap does not establish their real values.",
+    "The hidden sleep_need is a sampled simulator parameter, not a measured personal sleep requirement; calibration mean sleep is not an equivalent target. Clinical sleep-debt validity is untested.",
+    "The 60-response task has no simulated stimulus intervals, elapsed session duration, anticipatory-response events or PVT false-start measurement. Its values do not validate a real timed PVT/PVT-B protocol.",
+    "Attention count is a stochastic Binomial draw with40 trials, not equal to40 times its probability; its percentage need not equal the probability parameter.",
+    "Counterfactual355ms counts do not change the original500ms lapse definition and cannot support silently applying a PVT-B protocol to the trained model."
+  ]
+}

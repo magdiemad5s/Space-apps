@@ -1,0 +1,47 @@
+﻿excel_column,column_name,meaning_ar,equation_or_derivation,unit,role,guide_section,source_lines
+A,record_id,معرّف سجل الشخص واليوم,f'{participant_id}_D{mission_day:+04d}',not_applicable,metadata,2,111
+B,participant_id,معرّف شخص افتراضي,f'SIM_{n:03d}'; n = 1..120,not_applicable,metadata,2,61-66
+C,observation_timestamp_utc,موعد توفر قياسات اليوم,2026-01-01T18:00:00Z + (mission_day - 1) days,not_applicable,metadata,2,"13,109,112"
+D,mission_day,رقم اليوم؛ ليس رقم صف إكسل,raw: -6..61 inclusive; main: 1..60 inclusive,day,metadata,2,"75,134"
+E,split,تقسيم ثابت حسب الشخص,"rng.permutation(1..120); first 84 train, next 18 validation, last 18 test",not_applicable,metadata,2,61-63
+F,is_synthetic,علم البيانات الاصطناعية,1,not_applicable,metadata,1,113
+G,data_origin,مصدر البيانات,'synthetic',not_applicable,metadata,1,114
+H,generator_version,إصدار المولّد,'astra_synthetic_v1.0',not_applicable,metadata,1,"12,114"
+I,sleep_duration_hours,مدة النوم بالساعات,"R3(sleep_need + N(0, 0.35 if cal else 0.7) - 0.27*max(0,L-7) - 0.11*S - 0.55*abs(C)/180, 3.2, 9.8)",hours,predictor,4,83
+J,sleep_efficiency_pct,كفاءة النوم الاصطناعية,"E0=R3(96-0.85*S-0.05*abs(C)+N(0,2.2),58,99); cap=100*sleep/(sleep+(latency+3*awakenings)/60); min(E0,floor(1000*cap)/1000)",percent,predictor,4,"84,87-90"
+K,sleep_onset_delay_minutes,تأخر بدء النوم بالدقائق,"R3(8 + 2.7*S + 0.06*abs(C) + N(0,5), 1, 90)",minutes,predictor,4,85
+L,awakenings_count,عدد الاستيقاظات,"int(clip(Poisson(0.6 + 0.15*S + 0.007*abs(C)),0,10))",count,predictor,4,86
+M,sleep_midpoint_deviation_minutes,انحراف منتصف النوم بالدقائق,"round(C,3); C=clip(0.65*C_prev+N(0,15 if cal else 38)+12*D,-180,180)",minutes,predictor,3,"82,117"
+N,resting_heart_rate_bpm,نبض الراحة الاصطناعي,"R3(hr_base + 0.75*S + 0.65*F + N(0,2.2) + event*U(13,24),40,125)",beats/minute,predictor,6,97
+O,hrv_rmssd_ms,قيمة RMSSD اصطناعية دون تخطيط قلب خام,"R3(hrv_base*exp(-0.035*S-0.035*F+N(0,0.08))*(U(0.45,0.72) if event else 1),8,115)",milliseconds,predictor,6,98
+P,reaction_time_median_ms,وسيط زمن الاستجابة,"R3(median(rt_trials_after_replacement),150,800); 60 trials; see section 7",milliseconds,predictor,7,99-104
+Q,reaction_time_lapses_count,عدد الاستجابات التي بلغت 500 ms أو أكثر,sum(rt_trials_after_replacement >= 500),count,predictor,7,105
+R,reaction_time_trials_count,عدد محاولات المحاكاة الثابت,60,count,metadata,7,"100,120"
+S,attention_correct_count,الإجابات الصحيحة في مهمة انتباه منفصلة,"int(Binomial(40,p_attention)); p_attention=clip(0.995-0.008*F-0.0025*S+N(0,0.015),0.65,0.995)",count,metadata,7,106-107
+T,attention_trials_count,عدد محاولات مهمة الانتباه,40,count,metadata,7,121
+U,attention_accuracy_pct,نسبة الإجابات الصحيحة,"round(100*attention_correct_count/40,3)",percent,predictor,7,121
+V,self_report_stress_score,محاكاة التقييم الذاتي للضغط,"R3(S + N(0,0.7),0,10)",custom 0..10 score,predictor,5,94
+W,self_report_fatigue_score,محاكاة التقييم الذاتي للتعب,"R3(F + N(0,0.65),0,10)",custom 0..10 score,predictor,5,93
+X,self_report_mood_score,محاكاة المزاج؛ الأعلى أفضل,"R3(8.6 - 0.30*S - 0.23*F + N(0,0.9),0,10)",custom 0..10 score,predictor,5,95
+Y,workload_hours,ساعات العمل,"R3(N(6.6 if cal else 8.2,1.1)+D,3,15)",hours,predictor,3,79
+Z,exercise_minutes,مدة الرياضة بالدقائق,"R3(N(55 if cal else 42,18)-3*D,0,110)",minutes,predictor,3,80
+AA,journal_text,نص يوميات إنجليزي مركّب من قوالب,"Unique template composition from TEMPLATES[split][journal_class], ops, context, fatigue and an integer in [2,24]; up to 1000 uniqueness attempts",text,text_predictor,9,"17-53,125"
+AB,target_current_physiology_event_injected,وسم حدث محقون للمحاكاة,"int((not cal) and U(0,1)<0.065)",binary,target,6,"96,126"
+AC,target_journal_stress_class,وسم فئة لغة اليوميات,"class_of(clip(S+N(0,1),0,10)); not class_of(V)",category,target,9,"108,127"
+AD,baseline_sleep_duration_hours,متوسط نوم أيام المعايرة السبعة,"round(mean(sleep_duration_hours[d] for d in -6..0),6), per participant",hours,predictor,8,131-136
+AE,baseline_resting_heart_rate_bpm,متوسط نبض أيام المعايرة السبعة,"round(mean(resting_heart_rate_bpm[d] for d in -6..0),6), per participant",beats/minute,predictor,8,131-136
+AF,baseline_hrv_rmssd_ms,متوسط RMSSD لأيام المعايرة السبعة,"round(mean(hrv_rmssd_ms[d] for d in -6..0),6), per participant",milliseconds,predictor,8,131-136
+AG,baseline_reaction_time_median_ms,متوسط وسطاء الاستجابة خلال المعايرة,"round(mean(reaction_time_median_ms[d] for d in -6..0),6), per participant",milliseconds,predictor,8,131-136
+AH,sleep_duration_delta_from_baseline_hours,فرق النوم الحالي عن المرجع,"round(sleep_duration_hours-baseline_sleep_duration_hours,6)",hours,predictor,8,137
+AI,heart_rate_delta_from_baseline_bpm,فرق النبض الحالي عن المرجع,"round(resting_heart_rate_bpm-baseline_resting_heart_rate_bpm,6)",beats/minute,predictor,8,138
+AJ,hrv_delta_from_baseline_ms,فرق RMSSD الحالي عن المرجع,"round(hrv_rmssd_ms-baseline_hrv_rmssd_ms,6)",milliseconds,predictor,8,139
+AK,reaction_time_change_from_baseline_pct,تغير وسيط الاستجابة عن المرجع كنسبة,"round(100*(reaction_time_median_ms/baseline_reaction_time_median_ms-1),6)",percent,predictor,8,140
+AL,baseline_days_count,عدد أيام المعايرة,7,not_applicable,metadata,8,141
+AM,prior_3day_mean_sleep_hours,متوسط النوم للأيام الثلاثة السابقة فقط,"raw.groupby('participant_id')['sleep_duration_hours'].transform(lambda s: s.shift(1).rolling(3,min_periods=3).mean()).round(6); select main days",hours,predictor,8,143-145
+AN,prior_3day_mean_resting_heart_rate_bpm,متوسط النبض للأيام الثلاثة السابقة فقط,"raw.groupby('participant_id')['resting_heart_rate_bpm'].transform(lambda s: s.shift(1).rolling(3,min_periods=3).mean()).round(6); select main days",beats/minute,predictor,8,143-145
+AO,prior_3day_mean_reaction_time_ms,متوسط وسطاء الاستجابة للأيام الثلاثة السابقة,"raw.groupby('participant_id')['reaction_time_median_ms'].transform(lambda s: s.shift(1).rolling(3,min_periods=3).mean()).round(6); select main days",milliseconds,predictor,8,143-145
+AP,target_timestamp_utc,تاريخ تحقق الهدف في اليوم التالي,"observation_timestamp_utc[t+1], same participant; exactly +24 hours",not_applicable,metadata,10,147-149
+AQ,target_next_day_fatigue_score,تقييم التعب الاصطناعي في اليوم التالي,"self_report_fatigue_score[t+1], same participant",custom 0..10 score,target,10,147-149
+AR,target_next_day_reaction_time_median_ms,وسيط الاستجابة في اليوم التالي,"reaction_time_median_ms[t+1], same participant",milliseconds,target,10,147-149
+AS,prediction_horizon_hours,أفق التنبؤ بالساعات,24,hours,metadata,10,150
+AT,target_next_day_fatigue_class,تصنيف درجة التعب المبلّغ المحاكاة في اليوم التالي,"class_of(target_next_day_fatigue_score); low if x<4, moderate if 4<=x<7, high if x>=7",category,target,10,"54-55,151"

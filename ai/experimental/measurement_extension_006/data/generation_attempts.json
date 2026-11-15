@@ -1,0 +1,11 @@
+{
+  "attempts": [
+    {
+      "status": "resolved_implementation_error_before_output_publication",
+      "error": "time data \"2025-12-29T14:00:00Z\" doesn't match format \"%Y-%m-%dT%H:%M:%S.%f%z\", at position 12. You might want to try:\n    - passing `format` if your strings have a consistent format;\n    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;\n    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.",
+      "no_automatic_repair": true,
+      "plan_sha256": "b0a3502246829bfdd933c73ae23b7c237469dc4abe7bcf43aeb71aba8f48e507",
+      "correction": "Pandas validators now parse varying fractional-second ISO8601 timestamps with format=ISO8601. Same frozen seeds, formulas and rows; no scientific invariant failed and no output cohort had been published."
+    }
+  ]
+}

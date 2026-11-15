@@ -1,6 +1,6 @@
 # ASTRA-SHIELD AI
 
-**Status: synthetic-data prototype; frontend integration and full application testing remain pending.** The supplied model is already trained. No GPU, external model API, or API key is needed for inference.
+**Status: synthetic-data prototype, now connected to the team's Angular/Ionic frontend.** Use the [repository launcher guide](../docs/RUNNING.md) for the Windows/Linux application; the commands below remain useful for the model service alone. The supplied model is already trained. No GPU, external model API, or API key is needed for inference.
 
 The primary task predicts **the following day's custom simulated fatigue self-report category** (`low`, `moderate`, or `high`). It does not establish medical risk or astronaut readiness. Separate components estimate fatigue score and reaction time, detect current physiological outliers, and classify generated journal text.
 
@@ -16,7 +16,7 @@ python -m pip install -r requirements.txt
 python -m astra_shield_ml.predict examples/example_request.json
 ```
 
-On Windows PowerShell, create the environment with an installed Python 3.12 and activate it with `.\.venv\Scripts\Activate.ps1`. The pinned `xgboost-cpu` wheel was tested on Linux; a platform without that wheel may require `xgboost==3.4.1` and separate platform verification. Keep the dependency versions with the serialized model.
+On Windows, prefer the root `Setup-Astra.cmd` and `Start-Astra.cmd`. The pinned `xgboost-cpu==3.4.1` release provides Windows wheels, but this workspace has only executed the stack on Linux. Keep Python 3.12 and the serialized model's pinned dependencies; do not hide deserialization errors or assume an untested dependency substitution works.
 
 Start the private model service from `ai/` with that environment active:
 
@@ -126,11 +126,11 @@ These are different evaluation setups. **Macro-F1 is not accuracy.** Historical 
 
 The reduced 17-feature model, extra history features, and filtering treatments are documented under [`experimental/`](experimental/README.md). The final fixed-filter comparison retained all 1,080 validation records and scored **0.5178**, below the original **0.5273**. The demo continues to load [`artifacts/bundle.joblib`](artifacts/bundle.joblib); experimental artifacts are separate.
 
-All metrics describe this simulator. Real astronaut performance, clinical validity, and a completed frontend integration have not been established. See [findings and limitations](docs/FINDINGS.md).
+All metrics describe this simulator. Real astronaut performance and clinical validity have not been established. Application integration is checked separately in the [application reports](../integration-reports/); it is not a new evaluation of model accuracy. See [findings and limitations](docs/FINDINGS.md).
 
 ## Verification and reproducibility
 
-Recorded local verification includes 21 Python contract tests, 16 TypeScript feature-history tests, and 29 real HTTP backend-to-model checks. It does not include the team's actual Angular/Ionic application.
+Historical local verification includes 21 Python contract tests, 16 TypeScript feature-history tests, and 29 real HTTP backend-to-model checks. Those archived reports predate the actual frontend. New browser/application checks are recorded separately under [integration-reports](../integration-reports/) and use isolated synthetic history.
 
 The repository layout passed these checks again using the existing pinned environments. See [packaging checks](docs/PACKAGING_CHECKS.json) and [packaged integration checks](docs/PACKAGED_INTEGRATION_CHECKS.json). This verifies the packaged paths and contracts; it is not a clean operating-system installation or a frontend test.
 
@@ -159,6 +159,6 @@ Use the [experimental archive instructions](experimental/README.md) to verify fr
 
 The initial training preceded the standalone formal EDA report. The later EDA follow-up reviewed graphs and froze feature decisions before its new fits; both stages are documented in the [workflow findings](docs/FINDINGS.md#pipeline-and-eda-chronology).
 
-## Finish the application
+## Application handoff
 
-The model and local connector are ready for prototype integration. Remaining work is to merge the backend changes, confirm frontend input and display behavior, test the complete application flow, and rehearse the demo. The [status checklist](docs/STATUS.md) is the handoff for those tasks.
+The team's actual frontend is included under `frontend/` and uses this backend/model contract through the root launchers. Rehearse on the actual Windows presentation laptop, and keep the full clinical engine and real-world validation separate from the working software demo. The [status checklist](docs/STATUS.md) tracks those limits.

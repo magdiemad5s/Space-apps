@@ -15,8 +15,10 @@ Each comparison below uses the same evaluation rows within that experiment. Scor
 | [003: four additional history features](history_003/RESULTS.txt) | Same 4,452 eligible training rows, days 8–60; grouped and forward-time checks | Existing 26-feature RF **0.5100**; 30-feature RF **0.5161** | Gain too small; both forward-time checks worsened |
 | [004: exclude or downweight extreme fitting rows](noise_004/RESULTS.txt) | Same 5,040 held-out training observations across 3 participant folds | Original **0.5163**; exclusion **0.5199**; weighting **0.5165** | Small uncertain gain; prespecified comparison requirement not met |
 | [005: fixed filtering on original validation](filter_validation_005/RESULTS.txt) | Same reused validation: 1,080 rows / 18 participants | Original **0.5273**; filtered **0.5178** | Retain original model |
+| [006: extra simulated measurements](measurement_extension_006/README.md) | Fresh synthetic cohort; grouped training CV, then separate validation and test | Fresh test: RF26 **0.5528**; selected RF28 **0.5495**; change 95% CI **[-0.0141, +0.0076]** | No supported improvement; retain original serving model |
+| [007: High-class decision thresholds](high_threshold_007/README.md) | Reused validation only; original serving RF and experiment 006 control analyzed separately; no retraining | Original validation: argmax **0.5273** Macro-F1 / **37.7%** High recall; threshold 0.43 **0.5322** / **41.3%**, adding 5 true High and 7 false High labels | Discussion candidate only; no policy deployed; larger recall gains incurred many more false alarms |
 
-**0.5273 is validation Macro-F1, not accuracy.** The later 0.5163 is the mean across training-participant cross-validation folds; it does not mean the official model changed. Validation has already supported multiple development decisions, so these follow-ups are not fresh independent confirmation. No experiment in this folder rescored the final test set.
+**0.5273 is validation Macro-F1, not accuracy.** The later 0.5163 is the mean across training-participant cross-validation folds; it does not mean the official model changed. The original validation partition has already supported multiple development decisions, so experiments 001-005 are not fresh independent confirmation. None rescored the original cohort's final test set. Experiment 006 used a newly generated cohort and scored its own fresh test partition once; its scores are not directly comparable with 0.5273.
 
 ## Findings worth keeping
 
@@ -26,6 +28,8 @@ Each comparison below uses the same evaluation rows within that experiment. Scor
 - Experimental filtering omitted those rows **during fitting only**, leaving 4,786 fitting rows. The original targets and historical features stayed intact, and every evaluation row remained. The final direct validation comparison fell from 0.5273 to 0.5178, with High-fatigue recall falling from 37.7% to 34.1%.
 - Generated random variation and arbitrary fatigue cutoffs limit this simulator's predictability. None of these results validates astronaut health monitoring, medical risk, or operational readiness.
 - Initial baseline training preceded the formal standalone EDA report. Experiment 001 followed documented graph review and feature decisions before its fresh fits. That chronology is preserved in the archive.
+- Experiment 006 completed generation checks and training-only visual EDA before fitting. Two simulated questionnaire-range scores improved training CV but worsened validation and slightly worsened fresh test performance. Five sleep additions alone were nearly neutral in training CV. These simulations do not establish the usefulness of actual questionnaire or sensor measurements.
+- Experiment 007 changed only the decision rule applied to frozen validation scores. It did not fit a model or rescore a test cohort. The original classifier uses multiclass argmax, not a fixed 0.5 High threshold. Threshold 0.21 reached 70.3% High recall on original validation, but precision fell to 22.8% and false High labels increased from 96 to 329; threshold selection remains exploratory.
 
 ## Visual reports
 
@@ -33,6 +37,8 @@ Each comparison below uses the same evaluation rows within that experiment. Scor
 - [Fixed filtering versus the original validation result (PDF)](filter_validation_005/visual_report/ASTRA_SHIELD_filtered_validation.pdf)
 - [Regularization comparison (PNG)](improvement_002/cv_comparison.png)
 - [Baseline visual EDA (PDF)](../reports/visual_eda/ASTRA_SHIELD_visual_EDA.pdf)
+- [Fresh measurement-extension experiment (PDF)](measurement_extension_006/reports/ASTRA_SHIELD_Experiment_006.pdf)
+- [High-class threshold trade-offs and PR curves (PDF)](high_threshold_007/reports/ASTRA_SHIELD_High_Threshold_Experiment_007.pdf)
 
 ## What is saved
 
@@ -50,13 +56,27 @@ experimental/
 ├── noise_004/                        # plans, masks, CV/time predictions; no saved final model
 │   ├── review/
 │   └── visual_report/
-└── filter_validation_005/            # fixed-filter candidate, comparisons and checks
-    ├── filtered_candidate.joblib
-    ├── review/
-    └── visual_report/
+├── filter_validation_005/            # fixed-filter candidate, comparisons and checks
+│   ├── filtered_candidate.joblib
+│   ├── review/
+│   └── visual_report/
+├── measurement_extension_006/        # separate fresh synthetic cohort and models
+│   ├── data/main.csv
+│   ├── training/candidate_models.joblib
+│   ├── predict_experimental.py
+│   └── reports/
+└── high_threshold_007/               # frozen-model validation decision rules
+    ├── results/primary/
+    ├── results/secondary/
+    └── reports/
 ```
 
 Only three model artifacts were persisted by the historical experiments. History 003 and noise 004 fitted models for their comparisons but did **not** save a new full-data serving model. No missing model weights have been invented. The filtered candidate is an estimator plus metadata, **not** a replacement for the five-component service bundle.
+
+Experiment 006 has its own new model artifact, source hashes and review records. It is outside the historical five-experiment archive manifest and wrapper; use its [separate reproduction instructions](measurement_extension_006/REPRODUCIBILITY.md).
+
+Experiment 007 has no new fitted model. Its source and validation-only analysis
+also have [separate reproduction instructions](high_threshold_007/REPRODUCIBILITY.md).
 
 Use the original source data for the official model and the anomaly-detection task. The fitting masks in this archive are diagnostic experiment records, not a new universally "cleaned" dataset.
 

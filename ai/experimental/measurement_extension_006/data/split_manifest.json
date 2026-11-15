@@ -1,0 +1,29 @@
+{
+  "generation_seed": 20261115,
+  "extension_seed": 2026111501,
+  "version": "astra_measurement_extension_006_v1",
+  "target": "target_next_day_fatigue_class",
+  "group_column": "participant_id",
+  "split_column": "split",
+  "splits": {
+    "train": {
+      "file": "train.csv",
+      "sha256": "92215efb8ae4aeb2274a5681103a0d49294ee1c5d233ff9e1a45733d600e241e",
+      "rows": 5040,
+      "participants": 84
+    },
+    "validation": {
+      "file": "validation.csv",
+      "sha256": "81a5c6826469915c17ddaf255f38dc335255735f78a9d06f2f88bf8f7a0eff20",
+      "rows": 1080,
+      "participants": 18
+    },
+    "test": {
+      "file": "test.csv",
+      "sha256": "d6ed0c5dddd937d2f62739a5ec78c464677f116483d470ac16b921ed9a924ac7",
+      "rows": 1080,
+      "participants": 18
+    }
+  },
+  "holdout_policy": "Use train for EDA/CV only; stage validation/test according to frozen root experiment plan."
+}

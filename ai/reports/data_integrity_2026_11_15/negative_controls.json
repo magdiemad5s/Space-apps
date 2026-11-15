@@ -1,0 +1,90 @@
+[
+  {
+    "case": "wrong_future_fatigue",
+    "expected_detection": "future_source_target_next_day_fatigue_score",
+    "detected": true,
+    "failures": [
+      "fatigue_class_rule",
+      "future_source_target_next_day_fatigue_score",
+      "train_identical_to_main_subset"
+    ]
+  },
+  {
+    "case": "wrong_baseline",
+    "expected_detection": "baseline_resting_heart_rate_bpm",
+    "detected": true,
+    "failures": [
+      "baseline_constant_resting_heart_rate_bpm",
+      "baseline_resting_heart_rate_bpm",
+      "heart_rate_delta_from_baseline_bpm",
+      "train_identical_to_main_subset"
+    ]
+  },
+  {
+    "case": "current_day_substituted_for_prior3",
+    "expected_detection": "prior_3day_mean_reaction_time_ms",
+    "detected": true,
+    "failures": [
+      "prior_3day_mean_reaction_time_ms",
+      "train_identical_to_main_subset"
+    ]
+  },
+  {
+    "case": "impossible_lapse_count",
+    "expected_detection": "main_range_reaction_time_lapses_count",
+    "detected": true,
+    "failures": [
+      "main_median_lapse_necessary_constraint",
+      "main_observations_equal_raw",
+      "main_range_reaction_time_lapses_count",
+      "train_identical_to_main_subset"
+    ]
+  },
+  {
+    "case": "wrong_attention_percentage",
+    "expected_detection": "main_attention_accuracy",
+    "detected": true,
+    "failures": [
+      "main_attention_accuracy",
+      "main_observations_equal_raw",
+      "train_identical_to_main_subset"
+    ]
+  },
+  {
+    "case": "nonfinite_measurement",
+    "expected_detection": "main_finite_numbers",
+    "detected": true,
+    "failures": [
+      "heart_rate_delta_from_baseline_bpm",
+      "main_finite_numbers",
+      "main_observations_equal_raw",
+      "main_range_resting_heart_rate_bpm",
+      "train_identical_to_main_subset"
+    ]
+  },
+  {
+    "case": "missing_measurement",
+    "expected_detection": "main_missing_cells",
+    "detected": true,
+    "failures": [
+      "main_finite_numbers",
+      "main_missing_cells",
+      "main_observations_equal_raw",
+      "main_range_self_report_fatigue_score",
+      "train_identical_to_main_subset"
+    ]
+  },
+  {
+    "case": "person_changes_split",
+    "expected_detection": "main_fixed_split",
+    "detected": true,
+    "failures": [
+      "future_source_same_split",
+      "main_fixed_split",
+      "main_observations_equal_raw",
+      "partition_person_counts",
+      "test_identical_to_main_subset",
+      "train_identical_to_main_subset"
+    ]
+  }
+]

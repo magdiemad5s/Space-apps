@@ -1,0 +1,8 @@
+﻿url,use_in_experiment,provides_training_measurements,provides_simulator_coefficients
+https://www.nasa.gov/hrp/hazards/,Human-spaceflight context; no numeric records copied,False,False
+https://www.nasa.gov/hrp/risks/,"Risk context for sleep, fatigue and behavioral-performance questions; not a source of equation coefficients",False,False
+https://www.nasa.gov/hrp/ongoing-hrp-research/,Research background; not a training dataset,False,False
+https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp,Partner background; radiation measurements not available and outside this experiment,False,False
+https://www.asc-csa.gc.ca/eng/iss/science/why-do-we-conduct-science-experiments-in-space.asp,Partner background on space-research rationale; no numeric records copied,False,False
+https://www.nasa.gov/reference/standard-measures/,Prior documented context for standardized longitudinal sleep and cognition measurements,False,False
+https://www.nasa.gov/reference/archer/,"Prior documented context for activity, sleep and behavioral well-being",False,False

@@ -1,0 +1,338 @@
+{
+  "run_id": "55188772c6",
+  "started_at_utc": "2026-11-15T07:40:26.198348+00:00",
+  "scope": "Linux Chromium, Angular frontend, real TypeScript backend and unchanged Python model",
+  "data": "Fictional integration fixture; no test partition loaded or training performed",
+  "windows_executed": false,
+  "clinical_14_cases_executed": false,
+  "checks": [
+    {
+      "name": "same-origin proxy reaches real model readiness",
+      "passed": true
+    },
+    {
+      "name": "initial page uses backend rather than automatic fixture fallback",
+      "passed": true
+    },
+    {
+      "name": "fresh participant has empty history and no invented forecast",
+      "passed": true
+    },
+    {
+      "name": "calibration record 1 returns 202 without forecast",
+      "passed": true
+    },
+    {
+      "name": "calibration record 2 returns 202 without forecast",
+      "passed": true
+    },
+    {
+      "name": "calibration record 3 returns 202 without forecast",
+      "passed": true
+    },
+    {
+      "name": "calibration record 4 returns 202 without forecast",
+      "passed": true
+    },
+    {
+      "name": "calibration record 5 returns 202 without forecast",
+      "passed": true
+    },
+    {
+      "name": "calibration record 6 returns 202 without forecast",
+      "passed": true
+    },
+    {
+      "name": "calibration record 7 returns 202 without forecast",
+      "passed": true
+    },
+    {
+      "name": "record 7 UI shows calibration rather than prediction",
+      "passed": true
+    },
+    {
+      "name": "invalid client form does not save an observation",
+      "passed": true
+    },
+    {
+      "name": "record 8 submitted through actual form returns real completed prediction",
+      "passed": true
+    },
+    {
+      "name": "real model produces 3 SHAP reasons",
+      "passed": true
+    },
+    {
+      "name": "forecast category and index match actual backend response",
+      "passed": true,
+      "detail": {
+        "category": "Moderate",
+        "points": 33.1
+      }
+    },
+    {
+      "name": "UI renders the actual SHAP contribution values",
+      "passed": true
+    },
+    {
+      "name": "saved history contains exact journal text and 8 observations",
+      "passed": true
+    },
+    {
+      "name": "duplicate completed observation returns 409",
+      "passed": true
+    },
+    {
+      "name": "invalid numeric observation returns 422 without saving",
+      "passed": true
+    },
+    {
+      "name": "rejections leave stored count unchanged",
+      "passed": true
+    },
+    {
+      "name": "early calibration record has no future cognition baseline classification",
+      "passed": true
+    },
+    {
+      "name": "early selected calibration record does not display later baseline",
+      "passed": true
+    },
+    {
+      "name": "baseline trend is available after calibration",
+      "passed": true
+    },
+    {
+      "name": "guide distinguishes demo guidance from deferred Clinical Alert V2",
+      "passed": true
+    },
+    {
+      "name": "fictional alert preset healthy displays its predefined level and separate placeholder",
+      "passed": true
+    },
+    {
+      "name": "fictional alert preset review displays its predefined level and separate placeholder",
+      "passed": true
+    },
+    {
+      "name": "fictional alert preset high displays its predefined level and separate placeholder",
+      "passed": true
+    },
+    {
+      "name": "fictional alert preset urgent displays its predefined level and separate placeholder",
+      "passed": true
+    },
+    {
+      "name": "fictional alert preset unknown displays its predefined level and separate placeholder",
+      "passed": true
+    },
+    {
+      "name": "switching all five alert presets makes no API or model request",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "alert preview does not modify observations or stored forecast",
+      "passed": true
+    },
+    {
+      "name": "mobile overview at 320px has no document horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "all mobile navigation tabs fit their visible container at 320px",
+      "passed": true,
+      "detail": [
+        {
+          "label": "Overview",
+          "left": 22,
+          "right": 116.765625,
+          "visible": true
+        },
+        {
+          "label": "Check-in",
+          "left": 120.765625,
+          "right": 214.140625,
+          "visible": true
+        },
+        {
+          "label": "Trends",
+          "left": 218.140625,
+          "right": 298,
+          "visible": true
+        },
+        {
+          "label": "Guide",
+          "left": 22,
+          "right": 142.421875,
+          "visible": true
+        },
+        {
+          "label": "Alert demo",
+          "left": 146.421875,
+          "right": 298,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "mobile overview at 375px has no document horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "all mobile navigation tabs fit their visible container at 375px",
+      "passed": true,
+      "detail": [
+        {
+          "label": "Overview",
+          "left": 22,
+          "right": 111.03125,
+          "visible": true
+        },
+        {
+          "label": "Check-in",
+          "left": 115.03125,
+          "right": 202.6875,
+          "visible": true
+        },
+        {
+          "label": "Trends",
+          "left": 206.6875,
+          "right": 280.8125,
+          "visible": true
+        },
+        {
+          "label": "Guide",
+          "left": 284.8125,
+          "right": 353,
+          "visible": true
+        },
+        {
+          "label": "Alert demo",
+          "left": 22,
+          "right": 353,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "name": "mobile check-in has no document horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "secondary actual backend reports model unavailable",
+      "passed": true
+    },
+    {
+      "name": "actual model outage saves record with 503 and no fabricated forecast",
+      "passed": true
+    },
+    {
+      "name": "same backend storage recovers with the actual model connected",
+      "passed": true
+    },
+    {
+      "name": "retry after browser reload produces real prediction",
+      "passed": true
+    },
+    {
+      "name": "retry body preserves exact original timestamp, measurements and journal",
+      "passed": true
+    },
+    {
+      "name": "retry updates existing day without adding a ninth observation",
+      "passed": true
+    },
+    {
+      "name": "simulated transport failure does not silently switch to demo records",
+      "passed": true
+    },
+    {
+      "name": "offline demo requires explicit user choice and is labeled",
+      "passed": true
+    },
+    {
+      "name": "simulated history read failure preserves live participant and forecast",
+      "passed": true
+    },
+    {
+      "name": "simulated history failure never selects fixture mode",
+      "passed": true
+    },
+    {
+      "name": "history refresh recovers after transport fault removed",
+      "passed": true
+    },
+    {
+      "name": "no browser JavaScript page errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "console_page_errors": [],
+  "passed": true,
+  "main_participant_id": "DEMO_E2E_55188772c6",
+  "outage_participant_id": "DEMO_RETRY_55188772c6",
+  "forecast_example": {
+    "label": "Moderate",
+    "points": 33.1,
+    "model_version": "0.1.0"
+  },
+  "browser_version": "156.0.8078.79",
+  "finished_at_utc": "2026-11-15T07:40:34.281241+00:00",
+  "checks_passed": 48,
+  "checks_failed": 0,
+  "sha256": {
+    "ai/integration/backend_review/proposed_backend/examples/synthetic_daily_sequence.json": "a25e120295542fd8f2992d3a6ee9eb360ea46e521c6c78607f8e53693935012c",
+    "ai/artifacts/bundle.joblib": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706",
+    "scripts/test_app_integration.py": "925e80011495f027345f28753c0ef511c829caf5bef8ef432e0cd7ff610ebcdf",
+    "frontend/angular.json": "6bbd7bf3ba1824382a2553aa2945d7e02b8d55853ef3051260977fd911dee9c5",
+    "frontend/proxy.conf.cjs": "e26aad5248279ddeda43d48869f487056661de2f31657b09af1b15640b9ac259",
+    "ai/integration/backend_review/proposed_backend/server.ts": "713be862c9be7e4d1ef4d9270ca3a93fa77383fc41c1f471a68c5b0854793b8b",
+    "ai/integration/backend_review/proposed_backend/featureHistory.ts": "5609665bae97c88630e0fff92e9b25650cccaaf9ca442487ba3da58654719f7b",
+    "ai/integration/backend_review/proposed_backend/modelClient.ts": "379c0bd3504e908265313254603399aa76ca4b7ac1737ed9e4e732f9879f8e2c",
+    "frontend/src/app/app.config.ts": "5bffd9ddcaf75a8d2c1d4053afded1d307d17e22663f3cd5a084fc64534fee53",
+    "frontend/src/app/app.ts": "baa5fc867080b1bdbe59168f75f79f895bc2bcfa7279d9afc4a560d3eeb3d28a",
+    "frontend/src/app/components/astronaut-figure.ts": "a658cf8c63858e5064dc345a6aea25ea06e3d14b2b5b5aec8424945a9d75a19e",
+    "frontend/src/app/components/body-map.ts": "08bff1602deca3f0fb112f4cd13e7bd8304399f47144645c040ad9bd85041363",
+    "frontend/src/app/components/calibration-card.ts": "634149fde721db0ccd9f0c02dca50f9ad83788fcb5d03f9ad8f17bac74c4a5e2",
+    "frontend/src/app/components/check-in-view.ts": "2dd468578c7d82cb6809278b6765aeeaeb0d954f83727b927d847f6946f80034",
+    "frontend/src/app/components/clinical-demo.ts": "3affae1cc8000c5238b5539e96518f2f9acce1fca2fe6c4c6f744173c34960be",
+    "frontend/src/app/components/day-strip.ts": "1eac8790129a2031108b637823c10ef43c33db935e471a67d9d030889b36992a",
+    "frontend/src/app/components/fatigue-card.ts": "c034f10b6a09fb659beef400e2bfc9f712105ad5b52a2da90a1195dffde3481f",
+    "frontend/src/app/components/fatigue-timeline.ts": "d219fc24f2bc2e327e06b2d714b9b5088abe42f2cdb28602d37b28cda667036a",
+    "frontend/src/app/components/guide-view.ts": "ec294f1b7ab11fd8939aa5bcb3c45db5062625f5b6320aae95488be80fc22359",
+    "frontend/src/app/components/insights-panel.ts": "d187391e515582a45745ddcc52a78000f7526555bfdc95651e297b8a66f5b757",
+    "frontend/src/app/components/log-form.ts": "609914b04f2ea93bd11f8d6f831a9c89271046b239e723f11297855806414316",
+    "frontend/src/app/components/metric-group.ts": "55aa3d93328a900e4f85018f87b7672e366224d53c3f6ad6cbbdca9a3d097cdb",
+    "frontend/src/app/components/overview-status.ts": "474c69696aea03ca57ee71cb103a777a606b88a676143814c8faaea40e1775fa",
+    "frontend/src/app/components/progress-gauge.ts": "8dc4b4168bf1ae443d8ad30f59e47273b1908033109cb90bb106fa10f47eb9e6",
+    "frontend/src/app/components/reaction-test.ts": "2d9d698cf0a4b98ce5fb4c962c5d23ba40c06cb9bd7f10fc4d84d34cbbba5d43",
+    "frontend/src/app/components/recommendation-cards.ts": "ac834eb1a6d41da021cba0fe88a0b0efca3f02c1e71e043c119ed66c44b2e02f",
+    "frontend/src/app/components/status-tag.ts": "1281307c3931d128d92301ecd787d6a71e08cff0a52f093aa026d673aea64ed6",
+    "frontend/src/app/components/tile-visuals.ts": "54778609170db3d8677e51aa615975327a5a42e07d581f2dff4e76bd719aa7c9",
+    "frontend/src/app/components/top-nav.ts": "5378e70253ba640aa2341a5a95f43c1c29e1b84d5ac6850ca4cbb4913e62c17c",
+    "frontend/src/app/components/trend-chart.ts": "270e5563c908bffe5f2d3613fbe4643a46e3769e92fcf503ffcdbbcd400233a5",
+    "frontend/src/app/data/demo-data.ts": "b11ed91eae94fda51371999fcf14640b1c57862ccc646aeb7d79be0deafdf46b",
+    "frontend/src/app/data/source.ts": "3b59055fb37ba5c1f2d1a4ae3f98305cf0ceccb72aa76b068ddedc99ee890ef1",
+    "frontend/src/app/lib/guide.ts": "a55f93d4dce74651a10102ea5f3a8c05a7751e8fe9f3350cd311bc2f7e491efb",
+    "frontend/src/app/lib/insights.ts": "5b52aa08c8015fbf644c82d67fdc0c8dfba15f05347c7d382bd65d5a5218a57f",
+    "frontend/src/app/lib/metrics.ts": "cd4d098453456e7794e76cd498b0daa0332303c745cc806d6a8035e42d2f1821",
+    "frontend/src/app/lib/time.ts": "2300bbec2804a476e61be25f2927754a9eda14f1e4c0ea1b0065c64c0abd0dde",
+    "frontend/src/app/types.ts": "3b155083f42faea01bed4f2ae3dd90cda372e393e894b1557977eded96129f91",
+    "frontend/src/main.ts": "2341253f1a947c37dfa27838951cf7e224f7abb32dff45a8d425f042b5eeed13",
+    "frontend/src/styles.css": "7b405305b1978cd99c7c1f92c3db3caee80d00783b71fc14cfa2efeff740b5bb",
+    "ai/astra_shield_ml/__init__.py": "ae1d8019998be97ba916b82ceb56875305739d2f9758ff387fd2c0c9b850c809",
+    "ai/astra_shield_ml/api.py": "3d824829f3cd06a9ad6937b6d05af6720fcff745df6b6c81aee8a945cde7fe53",
+    "ai/astra_shield_ml/eda.py": "28b3938be25234d2f89880770be3b4599f36144d2f1f66deef3fd8ac604438ee",
+    "ai/astra_shield_ml/estimators.py": "5f4da7ff7762ed29f04947e511e8c929f1c6d0808c73f4ff71497f225a123691",
+    "ai/astra_shield_ml/evaluation.py": "e8bf83d6d1213bb388ddf2bae65668c96d68db206a4620274acc601a247d21a6",
+    "ai/astra_shield_ml/features.py": "d4e51b1ea46eb776766bd6f39b5882405fbf4f762248b2f94659c19fffb828bf",
+    "ai/astra_shield_ml/plot_results.py": "9007fb9eb9e9dcfd10ab8bc569aa23b2ed0211c05cfb7f1fab5662c1a5451e87",
+    "ai/astra_shield_ml/predict.py": "fe534589af49300632ad154299ebbfcde5fc19c1363573a81025f702fa8c7bdb",
+    "ai/astra_shield_ml/prepare_data.py": "a2684ab05461b19b6161c67c1688b7ca61f061566b788c3844fc63c706af89ca",
+    "ai/astra_shield_ml/service.py": "fddc5843bd0e4fa286b6a42e3512f08e63677443058649dbbee7280a8bb22479",
+    "ai/astra_shield_ml/training.py": "55673c1b44ef9f502da90814bb3f4c960a4a67b3ab5e0a99abe0adc4674b665e",
+    "ai/astra_shield_ml/visual_eda_report.py": "5354c3a48a1298323b9cdf3d2cd5f19c1a019e4aa35990e265633771ecb6b4cb"
+  }
+}

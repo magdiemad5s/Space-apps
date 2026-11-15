@@ -39,6 +39,22 @@ The generator also contains deliberate random variation and injected physiologic
 
 [`raw_observations.csv`](raw_observations.csv) contains **8,160 synthetic audit rows**: calibration days −6 through 0, forecast-observation days 1 through 60, and an additional future-outcome day 61 for each of 120 people. It supports causal-feature checks and history fixtures. **It is not a predictor table** and includes records that would leak future information if used indiscriminately.
 
+### Why the last forecast row has tomorrow's targets
+
+The main CSV ends at mission day 60, but its last row's targets come from the same participant's **day 61 in the raw file**, marked `future_outcome_only`. Day 61 supplies observed synthetic outcomes for day 60; it is not another labeled forecast row because no day 62 was generated. Spreadsheet row 61 includes the header and is the first participant's mission day 60.
+
+For `SIM_001_D+060`, columns AQ, AR, and AT contain fatigue **6.83**, median reaction time **360.631 ms**, and class **moderate**. Raw record `SIM_001_D+061` (CSV line 69) contains the matching fatigue and reaction-time observations at `2026-03-02T18:00:00Z`, exactly 24 hours later. The class follows the documented demo cutoffs. A provenance check confirmed that all 7,200 forecast rows match their next-day raw observations, including all 120 final-day rows; participant split membership also matches. This was a data-consistency check, not a new model evaluation.
+
+Future outcomes may be used as supervised-training labels in the training partition. They must never become same-day predictors. Keep day 61 in the audit file; do not append it to the model table with invented day-62 targets.
+
+### What the 60 reaction-time trials mean
+
+Each synthetic session draws **60 response times** and derives its median and number of responses **≥500 ms** from that same array. The count of 60 is a fixed simulation assumption, not a learned feature. Lapse counts are comparable within this dataset because every session uses the same denominator.
+
+The original dictionary and generator descriptions call this a "five-minute PVT-like" task. **The generator does not simulate stimulus intervals, feedback, or elapsed session duration**, so five minutes is only the original intended description, not an implemented timing guarantee. The precise current description is a **60-response PVT-like simulation with a ≥500 ms lapse threshold**, not a validated PVT or PVT-B test. Individual trial arrays are not retained in the CSV exports.
+
+A real timed test can produce different trial counts. Its raw lapse count is not automatically interchangeable with a count out of 60, even if both use 500 ms. Agree on the actual frontend protocol before using those measurements with the model; a change to trial count, lapse threshold, or feature definition requires a corresponding data/API review and model evaluation. This clarification does not change the frozen data or model.
+
 [`source_generator.py`](source_generator.py) preserves the generator for provenance. It writes CSVs beside itself when executed. Copy it into a new directory for a generation study; do not overwrite frozen inputs or attempt to improve scores by changing the simulator's noise or labels.
 
 Source consistency does not establish clinical validity. The self-report scales, class cutoffs, physiology events, and cognitive task are simulator definitions. A fresh independent cohort and appropriate real measurements are needed for new generalization claims.

@@ -1,0 +1,52 @@
+{
+  "review_date": "2026-11-15",
+  "user_timezone": "Asia/Amman",
+  "resources": [
+    {
+      "url": "https://www.nasa.gov/hrp/hazards/",
+      "http_status": 200,
+      "relevant_excerpt_examples": [
+        "Isolation & Confinement",
+        "isolation and confinement",
+        "Isolation and Confinement",
+        "Behavioral responses occur among groups of people far from Earth who are isolated and confined in a small space over a long period of time.",
+        "Isolation and Confinement",
+        "Behavioral responses occur among groups of people isolated and confined in a small space over a long period of time.  Crews must be carefully chosen, trained, and supported to ensure they can work effectively as a team for months or years in space."
+      ],
+      "measurement_records_used": false,
+      "role": "Background only; excerpts are not coefficient estimates or training observations."
+    },
+    {
+      "url": "https://www.nasa.gov/hrp/risks/",
+      "http_status": 200,
+      "relevant_excerpt_examples": [
+        "Isolation & Confinement",
+        "Risks Involving Behavioral Performance",
+        "Working in a spacesuit is challenging. In addition to cognitive fatigue and injury, crew members must also manage risks in the spacewalk environment, including decompression sickness, and low oxygen and high carbon dioxide levels. Research focuses on characterizing human performance in spacesuits and balancing pressure and oxygen levels.",
+        "Risks Involving Behavioral Performance and Human Factors",
+        "Risk of Behavioral Changes and Psychiatric Disorders",
+        "Isolation, radiation, distance from Earth, and other intense space stressors may all take a toll on the mental health of the crew. Ongoing research seeks to better understand and quantify these psychological risks.",
+        "Read About Behavioral and Psychiatric Risks",
+        "Selecting a crew that works well together is essential for mission success and safety. Researchers are studying how to help teams in prolonged isolation and confinement function efficiently and quickly recover after setbacks occur. They’re also mapping the myriad risks from miscommunications and related team tensions.",
+        "Risk of Inadequate Sleep and Irregular Schedules",
+        "Space crews experience multiple hazards simultaneously. Stressors include chronic sleep loss, constant work demands, and irregularities in their internal biological clocks. Understanding how to reduce the effects of these stressors on crew health and safety is an ongoing area of research.",
+        "Read About Inadequate Sleep and Irregular Schedule Risks"
+      ],
+      "measurement_records_used": false,
+      "role": "Background only; excerpts are not coefficient estimates or training observations."
+    },
+    {
+      "url": "https://www.nasa.gov/hrp/ongoing-hrp-research/",
+      "http_status": 200,
+      "relevant_excerpt_examples": [
+        "Human Factors and Behavioral Performance",
+        "A study on Artemis II monitored astronauts' well-being, activity, and sleep patterns to learn more about human health and performance in deep space.",
+        "Surveying whether growing fresh vegetables in space can ease astronauts’ sense of isolation and confinement",
+        "Human Factors and Behavioral Performance",
+        "HRP has identified five hazards of human spaceflight: space radiation, isolation and confinement, distance from Earth, gravity (or lack thereof), and hostile or closed environments."
+      ],
+      "measurement_records_used": false,
+      "role": "Background only; excerpts are not coefficient estimates or training observations."
+    }
+  ]
+}

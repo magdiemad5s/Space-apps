@@ -1,0 +1,13 @@
+{
+  "scope": "Original generator run in an isolated temporary directory; source data and model unchanged. No fitting or evaluation.",
+  "original_source_matches_attachment": true,
+  "outputs_match_byte_for_byte": {
+    "astra_shield_synthetic_ml.csv": true,
+    "raw_observations.csv": true,
+    "participant_splits.csv": true,
+    "data_dictionary.csv": true,
+    "task_config.json": true,
+    "generation_metadata.json": true,
+    "source_manifest.csv": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "main_rows": 7200,
+  "main_columns": 46,
+  "raw_rows": 8160,
+  "fatigue_classes": {
+    "moderate": 4842,
+    "low": 1528,
+    "high": 830
+  },
+  "split_rows": {
+    "train": 5040,
+    "test": 1080,
+    "validation": 1080
+  }
+}

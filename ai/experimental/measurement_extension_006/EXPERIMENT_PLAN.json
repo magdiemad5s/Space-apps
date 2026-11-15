@@ -1,0 +1,95 @@
+{
+  "experiment": "measurement_extension_006",
+  "protocol_version": "1.0",
+  "planned_date": "2026-11-15",
+  "user_timezone": "Asia/Amman",
+  "status_at_creation": "Prespecified before fresh data generation and before fitting",
+  "purpose": "Test whether seven explicitly simulated questionnaire-range and sleep-history features change next-day custom-fatigue classification under a controlled fresh synthetic scenario.",
+  "not_a_claim": [
+    "No measured astronaut data or actual questionnaire responses are available.",
+    "No NASA-validated equations, clinical accuracy, real-instrument improvement or operational fitness is established.",
+    "No assumption or noise parameter may be tuned to obtain a higher model score.",
+    "New-cohort scores cannot be compared directly with the original model's historical 0.5273 validation Macro-F1."
+  ],
+  "preserve": [
+    "ai/data and original source generator",
+    "ai/artifacts/bundle.joblib",
+    "Existing Python/TypeScript APIs and current 26-feature contract",
+    "Experiments 001 through 005 and all historical evaluation records"
+  ],
+  "compute": {
+    "location": "Current managed /workspace execution environment, not the user's laptop",
+    "cpu_cores_observed": 5,
+    "available_ram_approx_gib": 16,
+    "training_threads_per_estimator": 2,
+    "gpu_required": false
+  },
+  "cohort": {
+    "people": 120,
+    "main_days_per_person": 60,
+    "calibration_days": [-6, 0],
+    "future_outcome_day": 61,
+    "base_generator_seed": 20261115,
+    "independent_extension_seed": 2026111501,
+    "id_prefix": "EXP006_",
+    "version": "astra_measurement_extension_006_v1",
+    "split_people": {"train": 84, "validation": 18, "test": 18},
+    "target": "target_next_day_fatigue_class",
+    "target_rule": "Next-day custom synthetic self_report_fatigue_score: low<4; moderate>=4 and<7; high>=7. Original state-evolution process retained.",
+    "no_row_filtering": true,
+    "invalid_generation_policy": "Abort and document the inconsistency before any training; never delete rows or silently adjust original labels."
+  },
+  "extensions": {
+    "questionnaires": ["kss_like_sleepiness_score", "samn_perelli_like_fatigue_score"],
+    "sleep_features": ["main_sleep_waso_minutes", "time_since_last_sleep_hours", "nap_sleep_minutes_last_24h", "total_sleep_last_24h_hours", "prior_3day_sleep_shortfall_hours"],
+    "questionnaire_definition": {
+      "notation": "F is CURRENT unrounded simulated latent fatigue; N(mean,sd) denotes a fresh independent normal draw. Latent states are simulation machinery only, never model predictors.",
+      "kss_like_latent": "0.65*F +0.45*max(0,8-total_sleep_last_24h_hours) +0.15*max(0,time_since_last_sleep_hours-12) +N(0,1.4)",
+      "kss_like_thresholds": [1, 2, 3, 4, 5, 6, 7, 8],
+      "kss_like_output": "Ordinal 1..9 by threshold bin; not a validated KSS response simulation or a rescaled observed fatigue score.",
+      "sp_like_latent": "F+N(0,1.25)",
+      "sp_like_thresholds": [1.5, 3, 4.5, 6, 7.5, 9],
+      "sp_like_output": "Ordinal 1..7 by threshold bin; not a validated Samn-Perelli response simulation."
+    },
+    "sleep_definition": {
+      "main_sleep": "Allocate hypothetical sleep/wake episodes consistent with the base simulator's TST, efficiency, onset delay, awakening count and signed midpoint deviation. Check all interval and arithmetic invariants.",
+      "planned_midpoint": "04:00 UTC; actual onset/final-awakening midpoint shifted by saved circadian-deviation minutes.",
+      "waso": "Allocate synthetic awake residual into WASO and terminal waking. Zero WASO if zero awakenings; otherwise at least3minutes per awakening. This is an allocation assumption, not recovery of measured WASO.",
+      "nap": "At most1 optional nap per day. Independent Bernoulli0.25; proposed duration Uniform(10,40)minutes, bounded by unused daily budget and a nonoverlapping pre-cutoff window. Zero if infeasible. No nap latency or within-nap awakenings modeled.",
+      "total_sleep": "Sleep-interval intersection with the 24hours before assessment, including the simulated nap without double counting.",
+      "time_awake": "Hours since the end of the most recent sleep episode, including naps.",
+      "goal": "Explicit configured8hour target; metadata rather than hidden biological sleep need.",
+      "prior_shortfall": "Sum max(0,8-total_sleep) over the three preceding nonoverlapping daily windows only.",
+      "limitation": "Original fatigue evolution remains based on original main-sleep inputs. New naps have no modeled restorative effect. Derived timing features often re-express information already in the baseline."
+    }
+  },
+  "deferred": [
+    "Actual KSS or Samn-Perelli administration and validated language versions",
+    "Actual timed PVT/PVT-B or false-start measurement; existing60-response >=500ms simulation remains",
+    "Caffeine, acute symptoms, medication and recent-exercise causal effects without new data or a separately justified model",
+    "Actual attention-task implementation and sensor/ECG validation",
+    "PHQ-2/GAD-2 optional screening"
+  ],
+  "development": {
+    "sequence": ["freeze generator and experiment plans", "generate and validate fresh cohort", "training-only EDA and independent review", "fit grouped training CV", "freeze selected extension and fitted artifacts", "score validation once without reselection", "score fresh test once"],
+    "primary_control": "Original-recipe RF with26features, fitted on the fresh training cohort",
+    "rf_extensions": ["26+2questionnaire-range features", "26+5sleep features", "26+all7features"],
+    "secondary_pair": "XGBoost26 versus XGBoost26+all7; not used to change the primary control",
+    "reference": "Current custom-fatigue persistence baseline",
+    "selection": "3fixed participant-disjoint folds inside84training people. Select RF extension using mean Macro-F1, rounded6decimals; ties prefer fewer features then candidate name. No hyperparameter search.",
+    "preprocessing": "Any learned imputation is fitted inside each fitting fold. IDs, targets, timestamps, raw internal states and future outcomes are excluded from predictors.",
+    "holdouts": "Validation and test keep every assigned participant and row. Choices are frozen before either outcome set is scored; no follow-up tuning on holdout results.",
+    "metrics": ["Macro-F1", "accuracy", "balanced accuracy", "per-class precision and recall", "confusion matrix", "paired participant-bootstrap95percentCI with2000resamples"],
+    "exploratory_signal_rule": "Primary selected-extension test gain >=0.01Macro-F1, positive lower bootstrap bound and High-class recall loss <=0.02; report rather than use as deployment approval.",
+    "promotion": "Never automatic. Existing serving model remains selected regardless of synthetic experiment scores."
+  },
+  "challenge_resources": [
+    {"url": "https://www.nasa.gov/hrp/hazards/", "use": "Human-spaceflight context; no numeric records copied"},
+    {"url": "https://www.nasa.gov/hrp/risks/", "use": "Risk context for sleep, fatigue and behavioral-performance questions; not a source of equation coefficients"},
+    {"url": "https://www.nasa.gov/hrp/ongoing-hrp-research/", "use": "Research background; not a training dataset"},
+    {"url": "https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp", "use": "Partner background; radiation measurements not available and outside this experiment"},
+    {"url": "https://www.asc-csa.gc.ca/eng/iss/science/why-do-we-conduct-science-experiments-in-space.asp", "use": "Partner background on space-research rationale; no numeric records copied"},
+    {"url": "https://www.nasa.gov/reference/standard-measures/", "use": "Prior documented context for standardized longitudinal sleep and cognition measurements"},
+    {"url": "https://www.nasa.gov/reference/archer/", "use": "Prior documented context for activity, sleep and behavioral well-being"}
+  ]
+}

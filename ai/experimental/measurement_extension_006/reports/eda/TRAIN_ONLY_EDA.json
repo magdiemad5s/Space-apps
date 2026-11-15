@@ -1,0 +1,66 @@
+{
+  "status": "passed",
+  "scope": "TRAIN-only visual EDA before fitting; validation/test CSVs not read",
+  "observation_files_read": [
+    "data/train.csv"
+  ],
+  "train_sha256": "92215efb8ae4aeb2274a5681103a0d49294ee1c5d233ff9e1a45733d600e241e",
+  "plan_sha256": "2eb2c9fb4a95c378e44b6cc9a2dcea5d84e80edf4ccfbaee7ff1be78b76b94f5",
+  "rows": 5040,
+  "people": 84,
+  "features_baseline": 26,
+  "features_extended": 33,
+  "checks": {
+    "5040_rows_84_people": true,
+    "training_only": true,
+    "explicitly_synthetic": true,
+    "all_33_features_present": true,
+    "unique_records": true,
+    "unique_person_day": true,
+    "no_missing_features": true,
+    "finite_features": true,
+    "kss_like_integer_1to9": true,
+    "sp_like_integer_1to7": true,
+    "sleep_extras_nonnegative": true,
+    "total_sleep_at_most24": true,
+    "nap_at_most40min": true,
+    "shortfall_at_most24h_over3days": true,
+    "no_identifiers_latents_or_targets_in_features": true
+  },
+  "class_counts": {
+    "low": 1111,
+    "moderate": 3290,
+    "high": 639
+  },
+  "questionnaire_level_counts": {
+    "kss_like_sleepiness_score": {
+      "1": 277,
+      "2": 456,
+      "3": 814,
+      "4": 1126,
+      "5": 1019,
+      "6": 710,
+      "7": 394,
+      "8": 157,
+      "9": 87
+    },
+    "samn_perelli_like_fatigue_score": {
+      "1": 107,
+      "2": 499,
+      "3": 1226,
+      "4": 1543,
+      "5": 1075,
+      "6": 464,
+      "7": 126
+    }
+  },
+  "zero_variance_features": [],
+  "decisions": [
+    "Keep prespecified 26/28/31/33feature comparisons; do not select features from held-out data.",
+    "Questionnaire proxies share current hidden fatigue with the target process; any benefit can reflect assumed extra latent-state information.",
+    "Sleep timing/WASO mainly re-express existing aggregates, and randomized naps have no causal restoration effect in the base target generator.",
+    "Retain full cohort and original prespecified noise; no extreme-row removal or favorable-noise search."
+  ],
+  "models_fitted": false,
+  "clinical_validation": false
+}

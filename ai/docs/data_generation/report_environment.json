@@ -1,0 +1,16 @@
+{
+  "python": "3.12 recommended",
+  "report_packages": {
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "playwright": "1.62.0"
+  },
+  "pdf_browser": "Chromium at /usr/bin/chromium (override --chromium)",
+  "font": "Noto Naskh Arabic",
+  "command": "python build_guide.py --pdf",
+  "data_reproduction_packages": {
+    "numpy": "2.3.5",
+    "pandas": "2.2.3"
+  },
+  "note": "No model fitting or dataset generation is performed by this report builder."
+}

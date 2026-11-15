@@ -1,0 +1,160 @@
+{
+  "status": "passed",
+  "checks_passed": 27,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "check": "main_rows_7200",
+      "passed": true,
+      "detail": "No rows removed or invented during extension"
+    },
+    {
+      "check": "raw_rows_8160",
+      "passed": true,
+      "detail": "Includes7calibration and1future-outcome day per person"
+    },
+    {
+      "check": "base_columns_unchanged",
+      "passed": true,
+      "detail": "Every fresh original field and target unchanged by extension"
+    },
+    {
+      "check": "unique_person_day",
+      "passed": true,
+      "detail": "Unique source keys"
+    },
+    {
+      "check": "chronological_complete_schedule",
+      "passed": true,
+      "detail": "Complete sorted68day source schedule"
+    },
+    {
+      "check": "fresh_identifier_namespace",
+      "passed": true,
+      "detail": "No identity reuse with originalSIMcohort"
+    },
+    {
+      "check": "fresh_version",
+      "passed": true,
+      "detail": "Explicit experiment provenance"
+    },
+    {
+      "check": "all_model_inputs_present_finite",
+      "passed": true,
+      "detail": "All33predictors finite; optional metadata nulls intentional"
+    },
+    {
+      "check": "kss_proxy_integer_1_9",
+      "passed": true,
+      "detail": "Instrument-range proxy, not clinical validity"
+    },
+    {
+      "check": "sp_proxy_integer_1_7",
+      "passed": true,
+      "detail": "Instrument-range proxy, not clinical validity"
+    },
+    {
+      "check": "waso_matches_awakening_count",
+      "passed": true,
+      "detail": "AllocatedWASO; minimum3minutes/awakening is simulator convention"
+    },
+    {
+      "check": "nap_count_0_or_1",
+      "passed": true,
+      "detail": "Multiple naps deferred"
+    },
+    {
+      "check": "no_nap_has_zero_minutes",
+      "passed": true,
+      "detail": "Explicit synthetic absence, not unmeasured values"
+    },
+    {
+      "check": "nap_missing_timestamps_match_none",
+      "passed": true,
+      "detail": "Null timestamps intentional only for simulatedno-nap"
+    },
+    {
+      "check": "nap_durations_10_40",
+      "passed": true,
+      "detail": "Frozen duration policy"
+    },
+    {
+      "check": "goal_constant_metadata",
+      "passed": true,
+      "detail": "Goal is not hidden sleep_need or a trained feature"
+    },
+    {
+      "check": "budget_with_nap",
+      "passed": true,
+      "detail": "No allocation exceeds24h"
+    },
+    {
+      "check": "prior3_independent_day_key_verification",
+      "passed": true,
+      "detail": "Previous3nonoverlapping windows only"
+    },
+    {
+      "check": "target_fatigue_unchanged_future_source",
+      "passed": true,
+      "detail": "Next-day original custom self-report, includingday61"
+    },
+    {
+      "check": "target_response_unchanged_future_source",
+      "passed": true,
+      "detail": "Next-day original response median"
+    },
+    {
+      "check": "original_lapse_protocol",
+      "passed": true,
+      "detail": "Original60-response/500ms convention remains"
+    },
+    {
+      "check": "sleep_event_totals",
+      "passed": true,
+      "detail": "Event records independently sum to totals"
+    },
+    {
+      "check": "events_inside_causal_window",
+      "passed": true,
+      "detail": "No future event enters current summary"
+    },
+    {
+      "check": "event_lengths_match_timestamps",
+      "passed": true,
+      "detail": "Recorded duration agrees with interval"
+    },
+    {
+      "check": "metadata_not_model_features",
+      "passed": true,
+      "detail": "Allowlist excludes latent/source/clockmetadata"
+    },
+    {
+      "check": "participant_split_counts",
+      "passed": true,
+      "detail": "Original participant-disjoint split proportions"
+    },
+    {
+      "check": "no_person_crosses_split",
+      "passed": true,
+      "detail": "No person leakage"
+    }
+  ],
+  "main_rows": 7200,
+  "main_columns": 69,
+  "raw_rows": 8160,
+  "raw_columns": 58,
+  "sleep_segments": 22077,
+  "rows_deleted": 0,
+  "values_imputed": 0,
+  "scope": "All-cohort computational/causal invariants only; no held-out outcome statistics or model performance inspected.",
+  "original_data_and_model_unchanged": true,
+  "clinical_validation": false,
+  "base_seed": 20261115,
+  "extension_seed": 2026111501,
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3"
+  },
+  "generated_at_utc": "2026-11-15T00:19:46.492429+00:00"
+}

@@ -1,0 +1,43 @@
+{
+  "scope": "Data provenance and deterministic derivations only; no training or predictive evaluation. Reading held-out records here did not select or change a model.",
+  "checks": {
+    "main_shape_7200_by_46": true,
+    "raw_shape_8160_rows": true,
+    "unique_person_day_keys": true,
+    "no_missing_values_main_or_raw": true,
+    "all_7200_targets_have_next_day_source": true,
+    "exact_match_target_next_day_fatigue_score": true,
+    "exact_match_target_next_day_reaction_time_median_ms": true,
+    "exact_match_target_timestamp_utc": true,
+    "targets_same_split": true,
+    "horizon_24_hours": true,
+    "class_cutoffs_match": true,
+    "all_120_final_outcomes_present": true,
+    "raw_trials_constant_60": true,
+    "raw_lapse_counts_integral_in_range": true,
+    "raw_attention_formula": true,
+    "baseline_sleep_duration_hours": true,
+    "baseline_resting_heart_rate_bpm": true,
+    "baseline_hrv_rmssd_ms": true,
+    "baseline_reaction_time_median_ms": true,
+    "prior_3day_mean_sleep_hours": true,
+    "prior_3day_mean_resting_heart_rate_bpm": true,
+    "prior_3day_mean_reaction_time_ms": true,
+    "sleep_duration_delta_from_baseline_hours": true,
+    "heart_rate_delta_from_baseline_bpm": true,
+    "hrv_delta_from_baseline_ms": true,
+    "reaction_delta_pct": true,
+    "26_numeric_predictors_without_targets_or_ids": true
+  },
+  "sha256": {
+    "source_generator.py": "e4a914c3fdd01bc6032ad39b2e61967c416408558e5015664286083b80ac01fa",
+    "astra_shield_synthetic_ml.csv": "dd76fd2658586375a4f9fc44767c18731a5ecee061912ed625a44bd206ed6a95",
+    "raw_observations.csv": "a5ac832cad271b4502a07f8ecc888b0504248047bb05c265d6f09c432d9386dc",
+    "task_config.json": "75f14b846e29ac1025bad7e3db51a1656365878f29925666a5eaf5165788ed60",
+    "data_dictionary.csv": "808f42a18adb82cb6fbb834a72aeb0e009205e5eac313d2762145b840aa4d75a"
+  },
+  "limitations": [
+    "Latent states, per-trial arrays and random draws are absent from the exported CSVs; stochastic equations are verified against generator source, not inverted from the CSV.",
+    "Consistency does not establish scientific or clinical validity."
+  ]
+}

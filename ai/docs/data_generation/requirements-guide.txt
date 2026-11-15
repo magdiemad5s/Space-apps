@@ -1,0 +1,5 @@
+# Build HTML/CSV and run deterministic data checks:
+numpy==2.3.5
+pandas==2.2.3
+# PDF rendering also requires Chromium and an Arabic system font.
+playwright==1.62.0

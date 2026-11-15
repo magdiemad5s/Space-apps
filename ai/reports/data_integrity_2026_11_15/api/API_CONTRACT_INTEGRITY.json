@@ -1,0 +1,552 @@
+{
+  "checked_at_utc": "2026-11-14T23:51:56.011986+00:00",
+  "status": "passed",
+  "scope": "Original synthetic dataset serving/schema/causal-feature consistency and existing API/unit tests",
+  "model_fitted": false,
+  "model_promoted": false,
+  "new_model_performance_evaluation": false,
+  "all_row_replay_uses_test_partition_features_for_integrity_only": true,
+  "all_row_model_predictions_computed": false,
+  "frontend_application_tested": false,
+  "limitations": [
+    "Consistency checks do not establish clinical validity or identify all sensor/biological errors.",
+    "No actual Angular/Ionic application source was supplied or tested.",
+    "Specific new-field checks are identified as schema-validator or in-process FastAPI route checks, not live TCP tests.",
+    "Historical live29check reports were not rerun or changed in this audit.",
+    "Existing installed Python/Node dependencies are reused; this is not a clean operating-system installation."
+  ],
+  "failures": [],
+  "existing_python_tests": {
+    "run": 21,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "http_scope": "FastAPI TestClient in-process routes, not external TCP"
+  },
+  "existing_typescript_tests": {
+    "run": 16,
+    "failures": 0,
+    "scope": "feature-history validation and saved Python reference parity; no HTTP server"
+  },
+  "typescript_strict_typecheck": "passed",
+  "python_all_rows": {
+    "strict_schema_rows": 7200,
+    "feature_rows": 7200,
+    "numeric_features_per_row": 26,
+    "scalar_feature_values_compared": 187200,
+    "maximum_absolute_error": 0.0,
+    "schema_failures": [],
+    "split_counts": {
+      "train": 5040,
+      "test": 1080,
+      "validation": 1080
+    }
+  },
+  "python_invalid_input_cases_rejected_by_both_schema_and_feature_builder": 158,
+  "new_measurement_fields": [
+    {
+      "field": "KSS",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "KSS_score",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "kss_score",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "SP",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "samn_perelli_score",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "kss_sleepiness_score",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "samn_perelli_fatigue_score",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "nap_start_time_utc",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "nap_end_time_utc",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "caffeine_mg_last_6h",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "exercise_minutes_last_2h",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "acute_symptoms_present",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "medication_use",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "phq2_score",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "gad2_score",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "sleep_onset_time_utc",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "wake_time_utc",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "time_awake_hours",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "nap_start_utc",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "nap_end_utc",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "nap_duration_minutes",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "total_sleep_24h_hours",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "total_sleep24_hours",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "waso_minutes",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "wake_after_sleep_onset_minutes",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "sleep_target_hours",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "sleep_deficit_3day_hours",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "caffeine_last_6h_mg",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "caffeine_6h_mg",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "exercise_last_2h_minutes",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "acute_symptoms",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "medication",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "medications",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "reaction_time_false_starts_count",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "pvt_false_starts_count",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    },
+    {
+      "field": "collection_context",
+      "classification": "EXPECTED_UNSUPPORTED",
+      "python_schema_rejected": true,
+      "feature_builder_rejected": true,
+      "fastapi_in_process_http_status": 422
+    }
+  ],
+  "custom_scale_semantic_limit": "Values1,7,9 are valid numbers on the existing custom0to10 field; they must not be relabeled as KSS/SP. Named KSS/SP fields were rejected as unsupported.",
+  "typescript_all_rows": {
+    "status": "passed",
+    "model_prediction_or_fit": false,
+    "subjects": 120,
+    "canonical_observations_validated": 8040,
+    "warmup_observations": 840,
+    "prediction_ready_feature_rows": 7200,
+    "numeric_history_values_compared": 158400,
+    "maximum_absolute_numeric_error": 0,
+    "unsupported_fields": [
+      {
+        "field": "KSS",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "KSS_score",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "kss_score",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "SP",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "samn_perelli_score",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "kss_sleepiness_score",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "samn_perelli_fatigue_score",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "nap_start_time_utc",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "nap_end_time_utc",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "caffeine_mg_last_6h",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "exercise_minutes_last_2h",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "acute_symptoms_present",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "medication_use",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "phq2_score",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "gad2_score",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "sleep_onset_time_utc",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "wake_time_utc",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "time_awake_hours",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "nap_start_utc",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "nap_end_utc",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "nap_duration_minutes",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "total_sleep_24h_hours",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "total_sleep24_hours",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "waso_minutes",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "wake_after_sleep_onset_minutes",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "sleep_target_hours",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "sleep_deficit_3day_hours",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "caffeine_last_6h_mg",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "caffeine_6h_mg",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "exercise_last_2h_minutes",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "acute_symptoms",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "medication",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "medications",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "reaction_time_false_starts_count",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "pvt_false_starts_count",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      },
+      {
+        "field": "collection_context",
+        "result": "EXPECTED_UNSUPPORTED",
+        "status": 422,
+        "code": "unknown_fields"
+      }
+    ],
+    "invalid_input_cases_rejected": 109,
+    "unknown_is_not_zero_checks": 4,
+    "failures": [],
+    "custom_scale_limitation": "Custom0to10 accepts numeric1/7/9; this is not KSS/SP semantic equivalence. Named KSS/SP fields remain EXPECTED_UNSUPPORTED."
+  },
+  "protected_hashes_unchanged": true,
+  "protected_hashes": {
+    "artifacts/bundle.joblib": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706",
+    "data/astra_shield_synthetic_ml.csv": "dd76fd2658586375a4f9fc44767c18731a5ecee061912ed625a44bd206ed6a95",
+    "data/raw_observations.csv": "a5ac832cad271b4502a07f8ecc888b0504248047bb05c265d6f09c432d9386dc",
+    "data/train.csv": "a9b7aba9497fbcf68b6f5bb771b01dbf82c3b00c93a2a0c6873f705712a235e5",
+    "data/validation.csv": "3dc18db6bfb9e1a025d37279e73dd51fe52769019d9c856668286006e0d55523",
+    "data/test.csv": "410e8afa809bfdad126db4c3b64c5e793ba4bce2e5e7e60e7b8e7345868a30af",
+    "astra_shield_ml/api.py": "3d824829f3cd06a9ad6937b6d05af6720fcff745df6b6c81aee8a945cde7fe53",
+    "astra_shield_ml/features.py": "d4e51b1ea46eb776766bd6f39b5882405fbf4f762248b2f94659c19fffb828bf",
+    "astra_shield_ml/service.py": "fddc5843bd0e4fa286b6a42e3512f08e63677443058649dbbee7280a8bb22479",
+    "integration/backend_review/proposed_backend/server.ts": "713be862c9be7e4d1ef4d9270ca3a93fa77383fc41c1f471a68c5b0854793b8b",
+    "integration/backend_review/proposed_backend/modelClient.ts": "379c0bd3504e908265313254603399aa76ca4b7ac1737ed9e4e732f9879f8e2c",
+    "integration/backend_review/proposed_backend/featureHistory.ts": "5609665bae97c88630e0fff92e9b25650cccaaf9ca442487ba3da58654719f7b",
+    "reports/test_metrics.json": "16e0be4a66c9d9e97312835474b212bc1eab443471c6243137b321a641723a55",
+    "reports/test_predictions.csv": "ab4670c90fbd158632fda98e920f485c57dc7cd3eddb7407367185f0bbd5c09c",
+    "integration/backend_review/LIVE_INTEGRATION_VERIFICATION.json": "703fdf0c87b189d288db4cb114560c8ec43735d376ef4d1bed38e1e388a75931"
+  },
+  "completed_at_utc": "2026-11-14T23:52:10.887924+00:00"
+}

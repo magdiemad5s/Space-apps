@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-11-15T00:41:04.953063+00:00",
+  "change": "CLI now prints results by default and only saves to a new output directory; archived reports are never overwritten. Prediction/model code unchanged.",
+  "inference_checks_passed": 34,
+  "archived_report_hashes_unchanged": true,
+  "existing_output_directory_rejected": true,
+  "scientific_results_unchanged": true
+}

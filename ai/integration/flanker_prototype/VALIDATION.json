@@ -1,0 +1,62 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-11-15T00:40:09.755251+00:00",
+  "module": "flanker.ts",
+  "scope": "Standalone TypeScript collection/scoring logic only; synthetic event fixtures",
+  "node_version": "v24.22.1",
+  "existing_tools": {
+    "typescript": "5.9.3",
+    "tsx": "4.23.15"
+  },
+  "new_dependencies_installed": false,
+  "module_strict_typecheck": "passed",
+  "runtime_tests": {
+    "run": 13,
+    "passed": 13,
+    "failed": 0,
+    "skipped": 0
+  },
+  "protocol": {
+    "id": "astra-flanker-40-demo",
+    "version": "0.1.0",
+    "practice_trials": 4,
+    "scored_trials": 40,
+    "main_cells": {
+      "congruent_left": 10,
+      "congruent_right": 10,
+      "incongruent_left": 10,
+      "incongruent_right": 10
+    },
+    "deadline_ms": 3000,
+    "accepted_rt_rule": "0 <= RT < 3000 ms; >=3000timeout",
+    "incomplete_invalid_summary": "null"
+  },
+  "tested_properties": [
+    "balanced seeded Fisher-Yates plan",
+    "invalid RNG rejected",
+    "five actual arrow glyphs and center-defined response",
+    "practice excluded from denominator40",
+    "wrong/timeout separate andbothincorrect",
+    "0/2999/3000/3500ms boundaries",
+    "early timeout rejected",
+    "missing/duplicate/reordered/extra records rejected",
+    "nonfinite/negative/future/overlapping timing rejected",
+    "inconsistent deadline/stimulus/correctness injection rejected",
+    "visibility loss/blur/interrupted/invalid no summary",
+    "allwrong accuracy0 has nullcorrectRT",
+    "wrongprotocol/session andmissingresponse rejected"
+  ],
+  "source_sha256": {
+    "flanker.ts": "f8df9d09a8dc4b6bcba599c06b270bf54e2589fa27ddb6771e507b9280a16cf4",
+    "flanker.test.ts": "af8ed14c5031c36fc450787aadc1cd5d7305977583c41809ea5e8196931c8768",
+    "README.md": "888849243fb86386d26588454995b1040d367ba45d6489f74f27e0d9daee938d",
+    "tsconfig.json": "115a085dbc6aa03ccae4ab3b85fa18255f692e8cf889ff02c04788e7be3acaf4"
+  },
+  "actual_angular_ionic_ui_implemented": false,
+  "actual_browser_rendering_timing_verified": false,
+  "backend_api_integrated": false,
+  "existing_model_modified": false,
+  "clinical_validation": false,
+  "existing_model_attention_transfer_validated": false,
+  "independent_review": "INDEPENDENT_REVIEW.json"
+}

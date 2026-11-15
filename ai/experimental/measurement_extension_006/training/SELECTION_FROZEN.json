@@ -1,0 +1,23 @@
+{
+  "frozen_at_utc": "2026-11-15T00:26:14.022856+00:00",
+  "selected_rf_extension": "rf_28_questionnaires",
+  "primary_control": "rf_26_control",
+  "training_artifact_sha256": {
+    "candidate_models.joblib": "1da1fb8a368304d43b070b405596a240c9e6e12780f5dd71190d6ea01f6a8f05",
+    "CV_SELECTION.json": "7c02e740ad40c0e44b10365b3530c8be048c010836fc106177a1d88939e7d4ce",
+    "CV_REPORT.json": "ddb16bdd945d3d99feee7fb276060ac4e30c80fdef8c09221fd59fd44dfc8663",
+    "feature_contract.json": "4d3a446d667b1b102b3b35dcff0fd03b7073987178720bbb5dfad041020605a5",
+    "PLAN.json": "bd45506e12826889e9b45f4fc15cfc925285b32072179e327119374ec5bcfa98",
+    "preregistration.json": "b1ba2ef2354813b209ec5bdf48a2d24e04d9ce0feded6d479744afb9350d3cba",
+    "participant_folds.csv": "73a6863fb5b9a4ecd86d5dcd019a6a745dd166eb0cdab07b1c6fb036ef3b263e"
+  },
+  "script_sha256": "7c1d686d052e604d2e8e80c9282940199d4b6402044a068a290ad1349a053cad",
+  "review_record_sha256": "bbb2f627358958e6c8c023e555351a8ffd80353c98e648c02a0eb538c31115ca",
+  "expected_partition_hashes": {
+    "train": "92215efb8ae4aeb2274a5681103a0d49294ee1c5d233ff9e1a45733d600e241e",
+    "validation": "81a5c6826469915c17ddaf255f38dc335255735f78a9d06f2f88bf8f7a0eff20",
+    "test": "d6ed0c5dddd937d2f62739a5ec78c464677f116483d470ac16b921ed9a924ac7"
+  },
+  "validation_or_test_opened": false,
+  "no_reselection_after_freeze": true
+}

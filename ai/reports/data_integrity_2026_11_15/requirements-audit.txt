@@ -1,0 +1,5 @@
+# Existing model/API/unit checks and static plotting:
+-r ../../requirements.txt
+-r ../../requirements-report.txt
+# Arabic PDF rendering additionally requires system Chromium and an Arabic font.
+playwright==1.62.0

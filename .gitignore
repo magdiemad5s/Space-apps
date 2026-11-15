@@ -22,3 +22,7 @@ history_db*.json
 *.zip
 _reruns/
 .scratch/
+
+# Local application launcher state and Angular cache
+.local/
+.angular/

@@ -1,6 +1,6 @@
 # Frontend integration contract
 
-**The Angular/Ionic frontend calls the TypeScript application API.** The backend prepares the personal baseline and historical summaries, then calls the private Python model. The team's actual frontend was not included in this snapshot or verified by the local integration checks.
+**The Angular/Ionic frontend calls the TypeScript application API.** The backend prepares the personal baseline and historical summaries, then calls the private Python model. The team's actual frontend is now included under [frontend/](../../frontend/README.md), using the same-origin `/api/v1` proxy. New browser checks are recorded in [integration-reports](../../integration-reports/); older AI integration reports predate that frontend.
 
 ## Daily submission
 
@@ -32,6 +32,20 @@ Send `POST /api/v1/assess` with:
 Use the [measurement CSV](../integration/backend_review/proposed_backend/FRONTEND_MEASUREMENTS.csv) for recording windows and input bounds, and the [day-eight example](../integration/backend_review/proposed_backend/examples/assess_request_day8.json) for the JSON shape. Bounds validate the prototype's inputs; they are not clinical thresholds.
 
 The earlier payload's sleep-quality score is not sleep efficiency. Generic HRV is not necessarily RMSSD. The old `PVT_speed_seconds` field cannot be converted into this model's reaction-time measurement merely by multiplying it by 1,000. Measurement protocols and units must agree.
+
+The current model's reaction-time inputs come from a **60-response synthetic session**, with lapses counted at **≥500 ms** and the median calculated from the same responses. The simulator does not implement elapsed test time; the earlier five-minute description is not a timing guarantee. It is not a validated PVT/PVT-B implementation. The API accepts a lapse count from 0 to 60 but does not accept or verify the underlying trial count. A valid payload therefore does not establish that the frontend measured the same task. Confirm the actual collection protocol before connecting a real timed test; variable trial counts or a 355 ms threshold require an explicit contract/data review and model evaluation. See the [simulation clarification](../data/README.md#what-the-60-reaction-time-trials-mean).
+
+The separate [Flanker prototype module](../integration/flanker_prototype/README.md)
+provides a balanced 40-trial attention task plan and strict session scoring, with
+four practice trials excluded. It is a frontend collection building block;
+actual Angular/Ionic rendering, device timing checks and backend storage are not
+implemented here. Its correct/40 accuracy matches the existing column's numeric
+shape, but the original synthetic attention data did not come from Flanker.
+Real-task model compatibility therefore remains unvalidated. Store its versioned
+raw records separately, keep all Flanker response-time fields separate from the
+model's reaction-time/PVT fields, and do not post its full result object to the
+current strict `/assess` endpoint. Counts and protocol metadata are not accepted
+by that existing payload contract.
 
 Submit actual numbers, not numeric strings. Do not send targets, baseline means, calculated deltas, legacy aliases, or extra fields. The backend calculates the historical inputs itself.
 

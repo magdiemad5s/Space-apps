@@ -1,0 +1,3 @@
+feature_1,feature_2,pearson_r,action
+sleep_duration_hours,sleep_duration_delta_from_baseline_hours,0.9196374194054515,Document related/derived inputs; do not automatically remove features.
+baseline_resting_heart_rate_bpm,prior_3day_mean_resting_heart_rate_bpm,0.8927482761537174,Document related/derived inputs; do not automatically remove features.

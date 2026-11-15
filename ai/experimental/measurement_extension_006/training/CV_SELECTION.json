@@ -1,0 +1,15 @@
+{
+  "selected_at_utc": "2026-11-15T00:26:09.469380+00:00",
+  "selected_rf_extension": "rf_28_questionnaires",
+  "primary_control": "rf_26_control",
+  "selection_source": "Three fixed participant folds within TRAIN only",
+  "selection_rule": "Select only among the three RF extensions using TRAIN-group-CV mean macro F1 rounded to 6 decimals; ties prefer fewer features then candidate name",
+  "selected_feature_count": 28,
+  "validation_or_test_opened": false,
+  "secondary_xgb_pair": [
+    "xgb_26_control",
+    "xgb_33_combined"
+  ],
+  "best_extension_mean_cv_macro_f1": 0.5373590018293125,
+  "control_mean_cv_macro_f1": 0.5252399900488216
+}

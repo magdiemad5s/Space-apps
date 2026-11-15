@@ -1,0 +1,42 @@
+{
+  "snapshot_date": "2026-11-15",
+  "user_timezone": "Asia/Amman",
+  "scope": "All-cohort integrity and source checks only. Held-out data were not used for fitting, feature selection, cleaning choices or new predictive-performance estimates. Descriptive plots/outlier review use train records only.",
+  "main_rows": 7200,
+  "main_columns": 46,
+  "raw_rows": 8160,
+  "participants": 120,
+  "checks_total": 144,
+  "checks_passed": 144,
+  "checks_failed": 0,
+  "missing_cells_existing_main_columns": 0,
+  "exact_duplicate_rows": 0,
+  "minimum_remaining_daily_hours": 0.3263340047515739,
+  "minimum_sleep_consistency_margin_minutes": 1.0510735926061443e-06,
+  "reaction_median_range_ms": [
+    238.732,
+    436.331
+  ],
+  "lapse_range": [
+    0,
+    14
+  ],
+  "requested_measurements_total": 21,
+  "requested_fields_absent": 19,
+  "cleaning_rows_removed": 0,
+  "imputed_cells": 0,
+  "clinical_validation": false,
+  "new_model_training": false,
+  "data_and_model_unchanged": true,
+  "negative_controls_all_detected": true,
+  "noise_review": {
+    "scope": "Descriptive training-only review; no corruption diagnosis or cleaning/performance experiment.",
+    "rule": "Any |0.6744897501960817*(x-median)/MAD|>4.5 over4baseline deltas; train-only location and scale.",
+    "training_rows": 5040,
+    "flagged_rows": 254,
+    "injected_events_total": 324,
+    "flagged_with_injected_event": 254,
+    "rows_removed": 0,
+    "interpretation": "Generated random variation and injected events are intentional. Statistical extremeness is not an invalid-record label; new evidence of cleaning benefit requires separate evaluation."
+  }
+}
