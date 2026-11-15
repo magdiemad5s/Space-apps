@@ -2,6 +2,8 @@
 
 Every measurement, journal, and target in this folder comes from the original **ASTRA-SHIELD longitudinal simulator**. These are not measured NASA astronaut records. The separate uploaded V2/V3 dataset and real research datasets were not merged into this cohort.
 
+**AI/SI disclosure:** OpenAI ChatGPT/Codex assisted with the simulator code, journal templates, analysis, and documentation. The seeded Python program generated the numeric values and target labels. [Project provenance metadata](../../PROVENANCE.json) supplies the accompanying code/data assistance disclosure; retain it when sharing the CSVs. Existing simulation metadata and frozen hashes are preserved. Synthetic consistency and automated tests do not establish biological or clinical validity.
+
 ## Files to use
 
 | File | Purpose |

@@ -2,7 +2,9 @@
 
 Angular 22 · Ionic 9 · TypeScript · SVG charts. Based on **Karam Eyad's [crew-health-console](https://github.com/Karam-Eyad/crew-health-console)**, supplied by the team as a ZIP and integrated into ASTRA-SHIELD. The application remains a web app on Windows and Linux.
 
-**Start with the [repository README](../README.md)** for the one-click Windows launchers, or [Linux instructions](../docs/RUNNING.md#linux). The original teammate README is preserved as [a historical snapshot](docs/UPSTREAM_README_SNAPSHOT.md); its automatic-demo fallback, quick-test transfer, and lenient model-loader instructions have been superseded.
+**Start with the [repository README](../README.md)** for the Windows **0.1.0 prototype installer** and source launchers, or [Linux instructions](../docs/RUNNING.md#linux). The portable and installed Windows executables passed [native Windows checks](../integration-reports/windows-build-4/verification.json); they open this same frontend in a browser. The original teammate README is preserved as [a historical snapshot](docs/UPSTREAM_README_SNAPSHOT.md); its automatic-demo fallback, quick-test transfer, and lenient model-loader instructions have been superseded.
+
+This NASA Space Apps 2026 submission is a hackathon prototype. Its model-training and example records are synthetic, not NASA astronaut measurements. It is not a medical diagnosis or a validated astronaut-health system. See the [project submission disclosure](../docs/SUBMISSION_DISCLOSURE.md) and [machine-readable provenance](../PROVENANCE.json) for project-wide sources, AI assistance, and limitations.
 
 ## What the teammate provided
 
@@ -84,13 +86,36 @@ proxy.conf.cjs           Local same-origin API proxy
 
 `scripts/serve-model.py` is a compatibility entry point to the ordinary Python service. The original global XGBoost exception suppression was removed. Use Python 3.12 and `ai/requirements.txt`; a model-load error must remain an error.
 
-## Sources and credits
+## Use of SI (AI tools)
+
+**The team designed and developed Crew Health Console**, including its interface direction, measurement workflow and integration requirements. Karam Eyad supplied the frontend implementation; Magdi coordinated the subsequent integration and verification. SI tools supported that team-led work by accelerating implementation, analysis, debugging, documentation and testing.
+
+The provided **NASA Space Apps Challenge 2026 Project Submission Guide** (November 13, 2026) uses the term **Super Intelligence (SI)** for tools including machine learning, chatbots, image generation and large language models. The disclosures below identify the specific assistance used within the team's development process.
+
+| Scope | Tool and disclosed use |
+|---|---|
+| Original frontend supplied by Karam Eyad as a ZIP | Its [original disclosure](docs/UPSTREAM_README_SNAPSHOT.md#use-of-si-ai-tools) states that **Claude (Anthropic)** assisted with dashboard code, SVG illustrations (astronaut, silhouette and watch), and Guide text from the team's idea and requirements, with team review. |
+| Integration and later project work | Magdi used **OpenAI ChatGPT/Codex** for frontend/backend integration, the synthetic-data generator and model workflow, error fixes, testing, Windows packaging, and documentation. The resulting synthetic records remain simulated data; AI assistance does not establish medical validity. |
+
+The original frontend credit is retained alongside the later integration disclosure. The [project-wide disclosure](../docs/SUBMISSION_DISCLOSURE.md) and [provenance metadata](../PROVENANCE.json) document AI-assisted code and data; the [frontend archive record](../integration-reports/FRONTEND_PROVENANCE.json) records the supplied source separately.
+
+Completed verification includes **80 UI checks, 48 end-to-end integration checks and 25 frontend regression tests**. Native Windows tests also exercised the packaged and installed app's real predictions, SHAP explanations and shutdown. See the [test evidence](../integration-reports/README.md). Further teammate testing is part of ongoing prototype development; these completed software checks do not establish clinical validation.
+
+### Illustration labels and submission exports
+
+The Body map currently renders **“SI-generated illustration”** below the astronaut figure in [`body-map.ts`](src/app/components/body-map.ts). The app footer in [`app.ts`](src/app/app.ts) also acknowledges SI-assisted code and illustrations, and [`src/index.html`](src/index.html) contains a `si-disclosure` metadata tag. These are the existing disclosures; the SVG artwork itself does not contain that Body map caption, and this README does not establish that every illustration, screenshot or exported asset has a visible watermark.
+
+The submission guide requires a **visible watermark on SI-generated images and videos**. Any standalone illustration, screenshot, slide or video containing this SI-generated artwork must retain or add a clearly visible SI-generation watermark in the exported image or video; a README statement or metadata alone does not satisfy that visual requirement. Review the actual exports before submitting. The guide also prohibits SI-generated content from using, containing or modifying **NASA branding or design elements, including NASA logos, flags and mission identifiers**. This documentation update does not change the UI or its assets.
+
+## NASA resources, other sources and credits
 
 - Frontend origin: Karam Eyad / `crew-health-console`; [archive provenance](../integration-reports/FRONTEND_PROVENANCE.json).
 - Model/backend: the ASTRA-SHIELD team, [Space-apps](https://github.com/magdiemad5s/Space-apps).
-- NASA [5 Hazards](https://www.nasa.gov/hrp/hazards/), [Human Spaceflight Risks](https://www.nasa.gov/hrp/risks/), and [Reaction Self Test background](https://spinoff.nasa.gov/Spinoff2013/hm_1.html).
+- NASA [5 Hazards of Human Spaceflight](https://www.nasa.gov/hrp/hazards/) and [Human Spaceflight Risks](https://www.nasa.gov/hrp/risks/): background for the Guide and Body map's sleep, behavioral-health and cardiovascular context.
+- NASA [Reaction Self Test background](https://spinoff.nasa.gov/Spinoff2013/hm_1.html): motivation for the reaction-time demonstration; it does not validate our count-limited task as the NASA/ISS test.
 - Published background: [ISS sleep/neurobehavioral research](https://pmc.ncbi.nlm.nih.gov/articles/PMC8919197/), [Barger et al.](https://pmc.ncbi.nlm.nih.gov/articles/PMC4188436/), [adult sleep-duration consensus](https://pmc.ncbi.nlm.nih.gov/articles/PMC4434546/), and [brief PVT research](https://pmc.ncbi.nlm.nih.gov/articles/PMC3197786/).
+- American Heart Association [tachycardia background](https://www.heart.org/en/health-topics/arrhythmia/about-arrhythmia/tachycardia--fast-heart-rate), cited by the Guide.
 
-These sources support the project background, not our exact demo task, thresholds, or medical validity. Original frontend disclosures state that code, SVG illustrations and Guide text were produced with SI assistance (Claude/Anthropic) and reviewed by the team; those credits and illustration disclosures are retained. Library licenses remain with Angular, Ionic, RxJS, TypeScript, and their dependencies. Manrope is by the Manrope Project Authors, distributed under the [SIL Open Font License](public/licenses/manrope-OFL.txt).
+These NASA resources are used as public reference material, not as training datasets. The sources support the project background, not our exact demo task, thresholds, or medical validity. Their use does not imply NASA endorsement. Library licenses remain with Angular, Ionic, RxJS, TypeScript, and their dependencies. Manrope is by the Manrope Project Authors, distributed under the [SIL Open Font License](public/licenses/manrope-OFL.txt).
 
-All model-training data is synthetic. The full dataset contains 7,200 forecast rows; the original fatigue training partition contains **5,040**, not all 7,200. This local prototype has no authenticated multi-user deployment. See [integration decisions and limits](../docs/INTEGRATION_HANDOFF.md).
+All model-training data is synthetic. The full dataset contains 7,200 forecast rows from 120 virtual participants; the original fatigue training partition contains **5,040**, not all 7,200. Neither these records nor the offline-demo examples are NASA astronaut measurements. This local prototype has no authenticated multi-user deployment. See [integration decisions and limits](../docs/INTEGRATION_HANDOFF.md).

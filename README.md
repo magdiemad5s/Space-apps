@@ -12,6 +12,20 @@ The Windows package uses an inference-only export of the five selected models. I
 
 The teammate's dashboard design and Manrope typography are retained. Manrope is bundled locally for offline use. The added Alert demo tab, explicit connection controls, and mobile tab wrapping are documented integration changes.
 
+## AI/SI use, data origin, and credits
+
+**ASTRA-SHIELD is a team-designed and team-developed project.** The team supplied the project brief, health-monitoring goals, measurement requirements, frontend design, backend work, and clinical-alert proposals, and directed the integration and development decisions. SI tools helped accelerate implementation, analysis, debugging, documentation, and testing within that work.
+
+**OpenAI ChatGPT/Codex** assisted with Python simulation code and journal templates, the ML workflow and experiments, backend/frontend integration, error fixes, test automation, Windows packaging, and documentation. Numeric observations and labels were computed by the seeded Python simulator; they are not measured astronaut records or values supplied by NASA. The deployed predictions come from the team's selected trained ML models.
+
+The frontend supplied by **Karam Eyad** separately acknowledges **Claude (Anthropic)** assistance with its code, SVG artwork (astronaut, silhouette, and watch), and Guide text. That attribution is retained in the [frontend README](frontend/README.md) and [original disclosure](frontend/docs/UPSTREAM_README_SNAPSHOT.md#use-of-si-ai-tools).
+
+The integrated app has completed **80 UI checks, 48 end-to-end integration checks, and native Windows tests of both the portable and installed executable**, including real predictions, SHAP output, and shutdown. The [verification reports](integration-reports/README.md) record the tested scope; testing and teammate feedback continue as the prototype develops. These software checks are separate from future clinical validation.
+
+The [machine-readable provenance record](PROVENANCE.json) identifies AI-assisted code/data, artwork provenance, NASA reference roles, and remaining review items. Keep it with redistributed source or data and retain dependency licenses. AI-generated artwork needs a visible SI watermark in submission media; this README alone does not satisfy that requirement.
+
+**For submission:** use the [guide review and suggested disclosure text](docs/SUBMISSION_DISCLOSURE.md). The uploaded guide requires a separate public demo of **up to seven slides or a video of 30 seconds or less**, plus an English submission and English linked materials (non-English video speech requires English subtitles). The Windows installer is the final software artifact, not a substitute for that submission demo. The final media, permissions, team registration and actual “Submit for Judging” action still need team review.
+
 ## Start on Windows
 
 Download the **[Windows x64 installer (.exe)](https://github.com/magdiemad5s/Space-apps/releases/download/v0.1.0-prototype/ASTRA-SHIELD-Setup-x64.exe)** from the **[0.1.0 prototype release](https://github.com/magdiemad5s/Space-apps/releases/tag/v0.1.0-prototype)**. It includes Python, Node, and the five selected models and opens this same dashboard in your browser. The installer is unsigned.
@@ -120,4 +134,17 @@ The handoff includes frontend contract tests, launcher tests, and actual browser
 
 Use the [friend's test checklist](docs/FRIEND_TEST_CHECKLIST.md) on the actual Windows laptop. Public deployment, authentication, multi-user storage, validated measurement protocols, the full clinical engine, and real human-data validation remain separate work. Nothing is published or deployed simply by running these launchers.
 
-NASA background resources: [5 Hazards of Human Spaceflight](https://www.nasa.gov/hrp/hazards/), [Risks of Human Spaceflight](https://www.nasa.gov/hrp/risks/), and [Ongoing HRP Research](https://www.nasa.gov/hrp/ongoing-hrp-research/). These support the problem framing; they do not validate our synthetic data, model, or proposed alert cutoffs.
+## NASA resources used
+
+The submission guide permits **NASA data or a NASA resource**; it does not require us to describe simulated records as NASA data. Our use is reference-based:
+
+| NASA resource | Use in this project |
+|---|---|
+| [5 Hazards of Human Spaceflight](https://www.nasa.gov/hrp/hazards/) | Human-spaceflight context for sleep, behavioral health and the dashboard's explanatory Guide. |
+| [Risks of Human Spaceflight](https://www.nasa.gov/hrp/risks/) | Risk framing and references in the Guide and astronaut Body map. |
+| [Ongoing HRP Research](https://www.nasa.gov/hrp/ongoing-hrp-research/) | General human-research background supplied with the challenge; no measurements imported. |
+| [Standard Measures](https://www.nasa.gov/reference/standard-measures/) | Conceptual motivation for consistent, repeated personal observations, recorded in the [simulator source manifest](ai/data/source_manifest.csv). |
+| [ARCHER](https://www.nasa.gov/reference/archer/) | Activity, sleep and behavioral-monitoring context recorded in that same source manifest. |
+| [NASA Spinoff: Reaction Self Test](https://spinoff.nasa.gov/Spinoff2013/hm_1.html) | Motivation for the reaction-time demonstration; our 60-response task is not a validated implementation of the NASA/ISS test. |
+
+These resources do not supply our numerical records, simulation coefficients, labels, medical cutoffs or validation. The challenge's CSA radiation and ISS science links were supplied as background resources; no CSA measurement dataset or radiation-monitoring model is used here. See [references and dependency credits](docs/SUBMISSION_DISCLOSURE.md#references-and-software-credits) for the other publications, libraries and tools. No NASA endorsement or affiliation is claimed.

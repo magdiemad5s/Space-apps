@@ -2,7 +2,7 @@
 
 ## Goal
 
-Connect the existing 26-feature synthetic-data model to the team's actual Angular/Ionic interface, make it practical to run on a Windows presentation laptop, document Linux startup, and keep the same frontend usable as a web application. The user selected a one-click Windows launcher after dependency setup; a self-contained executable was not requested for this delivery.
+Connect the existing 26-feature synthetic-data model to the team's actual Angular/Ionic interface, make it practical to run on a Windows presentation laptop, document Linux startup, and keep the same frontend usable as a web application. The delivery includes source launchers and a [self-contained Windows installer](../desktop/README.md) with bundled Python, Node and the selected models.
 
 The model is not retrained, replaced, or threshold-tuned during this integration. The full Clinical Alert V2 engine is deferred. Its appearance is illustrated with five predefined scenarios, separate from real inference.
 
@@ -38,9 +38,9 @@ The supplied observation fixtures and existing training data are synthetic. A li
 
 ## Platform and web scope
 
-- Windows: `Setup-Astra.cmd` once, then `Start-Demo.cmd` or `Start-Astra.cmd`. Native Windows execution must be checked on the team's laptop.
+- Windows: use the [0.1.0 prototype installer](https://github.com/magdiemad5s/Space-apps/releases/tag/v0.1.0-prototype), or run `Setup-Astra.cmd` once and then `Start-Demo.cmd` or `Start-Astra.cmd` from source. The portable and installed executables passed native Windows checks; interactive rehearsal on the team's laptop remains part of the handoff.
 - Linux: `python3.12 scripts/setup.py`, then `./start.sh --seed-demo`.
 - Web: `frontend` can be built to static files. A host must route `/api/v1` to the backend; no frontend rewrite or desktop-only fork is required.
-- Public/multi-user hosting and a standalone installer are not completed by this local launcher.
+- Public/multi-user hosting remains separate work. The Windows installer opens the same dashboard locally in the browser; it does not publish a web deployment.
 
-See [RUNNING.md](RUNNING.md) and [WEB_DEPLOYMENT.md](WEB_DEPLOYMENT.md).
+See [RUNNING.md](RUNNING.md), [WEB_DEPLOYMENT.md](WEB_DEPLOYMENT.md) and the [submission disclosure](SUBMISSION_DISCLOSURE.md) for team/tool credits and final presentation requirements.
