@@ -43,7 +43,7 @@ Public demonstrations, repository files, and screenshots must use synthetic reco
 
 ## Platform and web scope
 
-- Windows: the [0.1.0 prototype installer](https://github.com/magdiemad5s/Space-apps/releases/tag/v0.1.0-prototype) passed native Windows checks. Version **0.1.1** with these latest UI and storage changes is being built and needs its own matching verification evidence. From source, run `Setup-Astra.cmd` once and then `Start-Demo.cmd` or `Start-Astra.cmd`. Interactive rehearsal on the team's laptop remains part of the handoff.
+- Windows: the [0.1.1 prototype installer](https://github.com/magdiemad5s/Space-apps/releases/tag/v0.1.1-prototype) passed native Windows checks, including portable and installed inference. From source, run `Setup-Astra.cmd` once and then `Start-Demo.cmd` or `Start-Astra.cmd`. Interactive rehearsal on the team's laptop remains part of the handoff.
 - Presentation storage: `Start-Demo.cmd` uses `.local/demo/history_db_v2.json`; the 0.1.1 installer Demo shortcut and post-install launch use `%LOCALAPPDATA%\ASTRA-SHIELD\demo`. Normal startup retains its existing default store.
 - Linux: `python3.12 scripts/setup.py`, then `./start.sh --seed-demo --db-file .local/demo/history_db_v2.json`.
 - Web: `frontend` can be built to static files. A host must route `/api/v1` to the backend; no frontend rewrite or desktop-only fork is required.

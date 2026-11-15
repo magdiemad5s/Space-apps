@@ -11,12 +11,12 @@ These checks use fictional integration observations and the existing model. They
 | Bundled runtime on Linux (unfrozen) | 19 passed including real forecast, SHAP, and shutdown | [DESKTOP_RUNTIME_LINUX_CHECKS.json](DESKTOP_RUNTIME_LINUX_CHECKS.json) |
 | Production static dashboard through bundled runtime | 15 passed, real form → model → SHAP | [DESKTOP_PRODUCTION_UI_CHECKS.json](DESKTOP_PRODUCTION_UI_CHECKS.json) |
 | Bundled runtime lifecycle on Linux | 21 passed; duplicate launch, persistence, crash cleanup | [DESKTOP_LIFECYCLE_CHECKS.json](DESKTOP_LIFECYCLE_CHECKS.json) |
-| Desktop runtime regressions | 13 passed on Linux; one Windows-only test deferred to CI | `desktop/runtime_tests.py` |
+| Desktop runtime regressions | 13 passed on Linux; one Windows-only case omitted here and exercised in CI | `desktop/runtime_tests.py` |
 | Frontend strict typecheck and production build | Passed | `npm run typecheck`, `npm run build` |
 | Launcher helper/process tests | 10 passed | `scripts/test_launcher.py` |
 | Actual startup, duplicate-start protection, shutdown and restart persistence | Passed | [LAUNCHER_INTEGRATION_CHECKS.json](LAUNCHER_INTEGRATION_CHECKS.json) |
 | Original model and main dataset | Unchanged SHA-256 | [preserved-model-data.json](preserved-model-data.json) |
-| Native Windows portable and installed executables | **19 checks passed each** on a Windows runner | [Windows build evidence](windows-build-4/verification.json) |
+| Native Windows portable and installed executables | **19 checks passed each** on a Windows runner | [Windows build evidence](windows-build-5/verification.json) |
 | Inference-only deployment export | 130 original/deployment comparisons; six Windows reference cases passed | [Equivalence report](DEPLOYMENT_MODEL_EQUIVALENCE.json) |
 | Interactive Windows laptop rehearsal | Still required | [Tester checklist](../docs/FRIEND_TEST_CHECKLIST.md) |
 | Clinical Alert V2's 14 medical scenarios | **Not run** | Five preset UI examples are not a clinical engine |

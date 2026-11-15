@@ -1,5 +1,5 @@
 {
-  "checked_at_utc": "2026-11-15T13:40:02.665979+00:00",
+  "checked_at_utc": "2026-11-15T13:49:34.577869+00:00",
   "frontend_api_tests_passed": 30,
   "launcher_tests_passed": 10,
   "browser_integration_checks_passed": 48,
@@ -18,7 +18,7 @@
   "desktop_runtime_linux_integration_checks_passed": 19,
   "desktop_runtime_unit_tests_passed_linux": 13,
   "desktop_runtime_windows_only_test_skipped_linux": 1,
-  "windows_bundle_status": "0.1.0 historical native tests passed; 0.1.1 build pending. See desktop/README.md.",
+  "windows_bundle_status": "Version 0.1.1 native installer and portable executable passed; see windows-build-5 reports",
   "desktop_production_browser_checks_passed": 15,
   "desktop_runtime_lifecycle_checks_passed": 21,
   "windows_portable_smoke_checks_passed": 19,
@@ -26,8 +26,8 @@
   "deployment_model_equivalence_cases_passed": 130,
   "windows_model_equivalence_cases_passed": 6,
   "interactive_windows_gui_rehearsal_completed": false,
-  "windows_build_commit": "26b14a678b67173e85a6621bb242b9e41f4f0014",
-  "windows_installer_sha256": "47a80a9879950b8bc0547d6cf34829697068b7f86b394ae89a94b291296e93c0",
+  "windows_build_commit": "e1a8dc1350d1e6aeeb6c2b8d995b45ceec1b5f2d",
+  "windows_installer_sha256": "a0bdc7f68ad205dfee192384de9afed38018e53ba0f3267f883d2ffe23091310",
   "windows_deployment_model_sha256": "d744a32bafad5bd8ec707fa61b218471760b4c7416a3d683ddc97545af88c079",
   "submission_safety_checks_passed": 28
 }

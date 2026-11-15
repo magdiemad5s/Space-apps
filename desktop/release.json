@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
   "repository": "magdiemad5s/Space-apps",
-  "tag": "v0.1.0-prototype",
-  "title": "ASTRA-SHIELD Windows prototype 0.1.0",
-  "source_commit": "26b14a678b67173e85a6621bb242b9e41f4f0014",
-  "run_id": 43693862661,
-  "artifact_id": 14153936535,
-  "artifact_name": "ASTRA-SHIELD-Windows-x64-4",
-  "artifact_digest": "sha256:8bf4248fa7adc18ec909a9b515935a3228bf0073a5a6239bd0631ad1b24be9e8",
+  "tag": "v0.1.1-prototype",
+  "title": "ASTRA-SHIELD Windows prototype 0.1.1",
+  "source_commit": "e1a8dc1350d1e6aeeb6c2b8d995b45ceec1b5f2d",
+  "run_id": 43720287539,
+  "artifact_id": 14164695802,
+  "artifact_name": "ASTRA-SHIELD-Windows-x64-5",
+  "artifact_digest": "sha256:1560f5bd743c8d6ee7df5055551d799d06cf50c306174e5c5e57613afbe72125",
   "original_model_sha256": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706",
   "deployment_model_sha256": "d744a32bafad5bd8ec707fa61b218471760b4c7416a3d683ddc97545af88c079",
   "original_dataset_sha256": "dd76fd2658586375a4f9fc44767c18731a5ecee061912ed625a44bd206ed6a95",
   "binary_sha256": {
-    "ASTRA-SHIELD-Setup-x64.exe": "47a80a9879950b8bc0547d6cf34829697068b7f86b394ae89a94b291296e93c0",
-    "ASTRA-SHIELD-portable-x64.zip": "2fff2666bccbe16a655d003bc4974cdd95688dfaafd233a1a1544b9a36d03622"
+    "ASTRA-SHIELD-portable-x64.zip": "ab3c6a57ac67a905c9e66df23546f285965d8438bd7d496ec97fd889d11a5b3a",
+    "ASTRA-SHIELD-Setup-x64.exe": "a0bdc7f68ad205dfee192384de9afed38018e53ba0f3267f883d2ffe23091310"
   }
 }

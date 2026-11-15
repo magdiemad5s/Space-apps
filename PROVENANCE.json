@@ -191,8 +191,9 @@
     "rights_note": "Retain applicable third-party licenses and credits. This disclosure does not grant or change project/contributor licensing rights."
   },
   "release_scope": {
-    "release_tag": "v0.1.0-prototype",
-    "executable_source_commit": "26b14a678b67173e85a6621bb242b9e41f4f0014",
-    "note": "This record is published with the repository/source handoff after that executable build. It is not newly embedded inside or a rebuild of the existing installer."
+    "release_tag": "v0.1.1-prototype",
+    "executable_source_commit": "e1a8dc1350d1e6aeeb6c2b8d995b45ceec1b5f2d",
+    "verification_path": "integration-reports/windows-build-5/verification.json",
+    "note": "Repository provenance accompanies the tested 0.1.1 release. Documentation updates after its source commit do not change the executable or the frozen models/data."
   }
 }

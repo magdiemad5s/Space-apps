@@ -8,9 +8,9 @@ The installer is for **Windows x64**. It is unsigned; a downloaded installer may
 
 ## Build status and verification
 
-**Version 0.1.1 is being built; its Windows verification is pending.** The instructions below describe the current 0.1.1 source, including blank daily inputs and separate demo storage. Do not assume a 0.1.0 download contains these changes.
+**Version 0.1.1 passed native Windows checks in [build 5](https://github.com/magdiemad5s/Space-apps/actions/runs/43720287539)**, from commit `e1a8dc1350d1e6aeeb6c2b8d995b45ceec1b5f2d`. Download the [installer and matching evidence](https://github.com/magdiemad5s/Space-apps/releases/tag/v0.1.1-prototype). This version includes the submission UI fixes and separate demo storage.
 
-**Version 0.1.0 passed native Windows checks in [build 4](https://github.com/magdiemad5s/Space-apps/actions/runs/43693862661)**, from commit `26b14a678b67173e85a6621bb242b9e41f4f0014`. Its [installer and matching evidence](https://github.com/magdiemad5s/Space-apps/releases/tag/v0.1.0-prototype) remain the historical verified release. Both the portable and installed 0.1.0 executables passed 19 checks, including actual prediction, TreeSHAP, and shutdown. Six original reference responses matched on Windows. Installation/uninstallation and an installation path containing spaces were exercised. These results do not certify the new 0.1.1 executable.
+Both the portable and installed executables passed **19 checks each**, including actual prediction, TreeSHAP and shutdown. Six original reference responses matched on Windows. Installation/uninstallation and an installation path containing spaces were exercised. The build also passed 30 frontend and 16 backend tests. See [verification metadata](../integration-reports/windows-build-5/verification.json). The earlier 0.1.0 release remains available as historical evidence; use 0.1.1 for these fixes.
 
 The release contains:
 

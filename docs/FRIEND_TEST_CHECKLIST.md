@@ -2,7 +2,7 @@
 
 Use **fictional measurements only**. This checks whether the packaged app works on your computer; it does not establish medical accuracy. Record the installer SHA-256/build version, Windows version, browser/version, and any failed step. Keep screenshots and the exact error text for failures.
 
-This checklist describes the **0.1.1 handoff**. Its build and Windows verification are pending; the earlier 0.1.0 results do not establish that these newer UI behaviors are present or tested.
+This checklist describes the **0.1.1 handoff**. The matching installer passed [native Windows checks](../integration-reports/windows-build-5/verification.json). This checklist adds interactive rehearsal on your own laptop.
 
 ## Installation and first launch
 
