@@ -1,6 +1,6 @@
 # ASTRA-SHIELD · Crew Health Console
 
-**NASA Space Apps 2026 · local application prototype · Windows launcher and Linux/web paths**
+**NASA Space Apps 2026 · local application prototype · Windows bundle and Linux/web paths**
 
 The team's Angular/Ionic dashboard is connected to the TypeScript application backend and the existing Python model service. Record 15 daily measurements, build a personal calibration history, inspect trends, and receive a **next-day fatigue forecast with three SHAP reasons**.
 
@@ -12,13 +12,17 @@ The teammate's dashboard design and Manrope typography are retained. Manrope is 
 
 ## Start on Windows
 
+For the self-contained Windows x64 installer, see **[Windows bundle instructions](desktop/README.md)** and the **[tester checklist](docs/FRIEND_TEST_CHECKLIST.md)**. The bundle includes Python, Node, and the unchanged model; it opens this same dashboard in your browser. Only a successful Windows build with matching smoke-test reports should be handed out as a tested executable.
+
+The source launcher remains available for development:
+
 Install **Python 3.12** and **Node.js 24 LTS (24.15+)**, extract the whole project, then:
 
 1. Double-click **[Setup-Astra.cmd](Setup-Astra.cmd)** once to install dependencies.
 2. Double-click **[Start-Demo.cmd](Start-Demo.cmd)** to run the presentation with clearly synthetic history, or **[Start-Astra.cmd](Start-Astra.cmd)** to run without adding example records.
 3. The dashboard opens at **<http://127.0.0.1:4200>**. Keep the terminal open; **Ctrl+C** stops the stack.
 
-This is a one-click launcher **after setup**, not a bundled `.exe` installer. The code remains a web application. Native Windows execution still needs a rehearsal on the team's actual Windows laptop; local integration checks in this workspace run on Linux.
+These `.cmd` files are source launchers that require setup. The optional installer is built separately under `desktop/`. The dashboard remains a web application in both cases. Rehearse the installer on the team's actual Windows laptop before presenting.
 
 ## Run on Linux
 
@@ -79,6 +83,7 @@ A separate, explicitly selected offline demo can display fixture examples withou
 Setup-Astra.cmd / Start-Astra.cmd / Start-Demo.cmd
 start.sh
 scripts/                 Setup, supervised startup, integration checks
+desktop/                 Bundled runtime, Windows installer/build, smoke tests
 frontend/                Teammate's Angular/Ionic app plus integration fixes
 ai/
   astra_shield_ml/        Model contract, inference and analysis code
@@ -109,6 +114,6 @@ The selected **26-feature Random Forest** has original validation **Macro-F1 0.5
 
 The handoff includes frontend contract tests, launcher tests, and actual browser/backend/model integration checks. Results and their exact scope are recorded under [integration-reports](integration-reports/). They exercise fictional fixtures and application behavior; they do not validate medical decisions or improve the reported model accuracy.
 
-Rehearse on the actual Windows laptop. Public deployment, authentication, multi-user storage, validated measurement protocols, the full clinical engine, and real human-data validation remain separate work. Nothing is published or deployed simply by running these launchers.
+Use the [friend's test checklist](docs/FRIEND_TEST_CHECKLIST.md) on the actual Windows laptop. Public deployment, authentication, multi-user storage, validated measurement protocols, the full clinical engine, and real human-data validation remain separate work. Nothing is published or deployed simply by running these launchers.
 
 NASA background resources: [5 Hazards of Human Spaceflight](https://www.nasa.gov/hrp/hazards/), [Risks of Human Spaceflight](https://www.nasa.gov/hrp/risks/), and [Ongoing HRP Research](https://www.nasa.gov/hrp/ongoing-hrp-research/). These support the problem framing; they do not validate our synthetic data, model, or proposed alert cutoffs.

@@ -64,6 +64,7 @@ const fmt = new Intl.DateTimeFormat('en-GB', {
         </em>
       </li>
     </ul>
+    @if (settingsError()) { <p class="saved-note bad" role="alert">{{ settingsError() }}</p> }
 
     @if (canRetry()) {
       <div class="retry-box">
@@ -77,6 +78,7 @@ export class CalibrationCard {
   readonly snapshot = input.required<Snapshot>();
   readonly canRetry = input(false);
   readonly busy = input(false);
+  readonly settingsError = input<string | null>(null);
   readonly retry = output<void>();
   /** Let the user enter another backend address */
   readonly changeServer = output<void>();

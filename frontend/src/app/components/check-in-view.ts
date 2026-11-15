@@ -14,6 +14,7 @@ import { LogForm, type FormMessage, type RecordSubmit } from './log-form';
       [snapshot]="snapshot()"
       [canRetry]="canRetry()"
       [busy]="busy()"
+      [settingsError]="settingsError()"
       (retry)="retry.emit()"
       (changeServer)="changeServer.emit()"
     ></article>
@@ -35,6 +36,7 @@ export class CheckInView {
   readonly busy = input(false);
   readonly canRetry = input(false);
   readonly message = input<FormMessage | null>(null);
+  readonly settingsError = input<string | null>(null);
   readonly submitRecord = output<RecordSubmit>();
   readonly retry = output<void>();
   readonly changeServer = output<void>();

@@ -144,6 +144,7 @@ import { ProgressGauge } from './components/progress-gauge';
                         [busy]="busy() || loading() || !!connectionError()"
                         [canRetry]="canRetry()"
                         [message]="message()"
+                        [settingsError]="settingsError()"
                         (submitRecord)="save($event)"
                         (retry)="retry()"
                         (changeServer)="configureServer()"
@@ -198,6 +199,7 @@ import { ProgressGauge } from './components/progress-gauge';
             <h1>Backend connection unavailable</h1>
             <p>{{ connectionError() }}</p>
             <p>Start the three services, then retry. Demo mode is a separate, explicitly simulated preview.</p>
+            @if (settingsError()) { <p role="alert">{{ settingsError() }}</p> }
             <div class="connection-controls">
               <button type="button" class="btn btn-primary" [disabled]="loading()" (click)="load()">Retry connection</button>
               <button type="button" class="btn" (click)="configureServer()">Change backend address</button>
@@ -222,6 +224,7 @@ export class App {
   protected readonly busy = signal(false);
   protected readonly loading = signal(false);
   protected readonly connectionError = signal<string | null>(null);
+  protected readonly settingsError = signal<string | null>(null);
   protected readonly message = signal<FormMessage | null>(null);
   private readonly retryBody = signal<AssessBody | null>(null);
 
@@ -293,12 +296,19 @@ export class App {
   /** Lets the user point the app at another backend (for example the computer's address on the phone's Wi-Fi). */
   protected configureServer(): void {
     if (this.busy() || this.loading()) return;
+    let previous = '/api/v1';
+    try { previous = apiBase(); } catch { /* Allow correction of an invalid pre-existing browser setting. */ }
     const next = window.prompt(
       'Backend address, for example http://192.168.1.10:3000/api/v1\nLeave empty to use the default.',
-      apiBase(),
+      previous,
     );
     if (next === null) return;
-    setApiBase(next);
+    try { setApiBase(next); }
+    catch (error) {
+      this.settingsError.set(error instanceof Error ? error.message : 'Invalid backend address. The previous setting was kept.');
+      return;
+    }
+    this.settingsError.set(null);
     setDemoMode(false);
     location.reload();
   }

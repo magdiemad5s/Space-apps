@@ -1,8 +1,8 @@
 # Running ASTRA-SHIELD
 
-The same Angular/Ionic application runs on Windows and Linux in a browser. The launcher starts three local processes; it is not a standalone installer or a native Windows executable. No GPU, cloud AI subscription, model API key, or retraining is needed.
+The same Angular/Ionic application runs on Windows and Linux in a browser. The source launcher below starts three local processes and requires Python/Node setup. The separate **[Windows bundle](../desktop/README.md)** packages those dependencies into an installer and opens the same dashboard. No GPU, cloud AI subscription, model API key, or retraining is needed.
 
-## Windows: the presentation path
+## Windows: running from source
 
 1. Install **Python 3.12** from <https://www.python.org/downloads/> with the Python launcher, and **Node.js 24 LTS, version 24.15 or later**, from <https://nodejs.org/>. Include npm. Keep this entire project together in a writable folder, not inside the ZIP.
 2. Double-click **`Setup-Astra.cmd`** once. It creates the root `.venv`, installs `ai/requirements.txt`, and runs `npm ci` in both Node projects. Internet access is needed for dependency installation. No training runs.

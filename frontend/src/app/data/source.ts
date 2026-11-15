@@ -9,6 +9,7 @@ import type {
   Snapshot,
 } from '../types';
 import { MEASUREMENT_KEYS } from '../types';
+import { MEASURES } from '../lib/metrics';
 import { DEMO_ASTRONAUT_ID, DEMO_BASELINE, DEMO_DAY8_ASSESSMENT, DEMO_RECORDS } from './demo-data';
 
 /*
@@ -38,17 +39,34 @@ function stored(key: string): string | null {
   }
 }
 
+/** Accept only the same-origin API path or an explicit HTTP(S) API endpoint. */
+export function normalizeApiBase(value: string): string {
+  const input = value.trim().replace(/\/+$/, '');
+  if (input === '' || input === DEFAULT_API_BASE) return DEFAULT_API_BASE;
+  const error = 'Use /api/v1 or an http:// or https:// backend address ending in /api/v1, without credentials, a query or a fragment.';
+  if (!/^https?:\/\//i.test(input) || /[\s\\?#]/.test(input)) throw new DataSourceError(error);
+  let url: URL;
+  try { url = new URL(input); } catch { throw new DataSourceError(error); }
+  if (!['http:', 'https:'].includes(url.protocol) || !url.hostname || url.username || url.password || url.search || url.hash) {
+    throw new DataSourceError(error);
+  }
+  const pathname = url.pathname.replace(/\/+$/, '') || DEFAULT_API_BASE;
+  if (!pathname.endsWith(DEFAULT_API_BASE)) throw new DataSourceError(error);
+  return `${url.origin}${pathname}`;
+}
+
 export function apiBase(): string {
-  return (stored('apiBase') || DEFAULT_API_BASE).replace(/\/+$/, '');
+  return normalizeApiBase(stored('apiBase') || DEFAULT_API_BASE);
 }
 
 /** Saves a new backend address (empty = back to the default) for the next load. */
 export function setApiBase(value: string): void {
+  const normalized = normalizeApiBase(value); // Validate before changing the previous working setting.
   try {
-    if (value.trim()) localStorage.setItem('apiBase', value.trim().replace(/\/+$/, ''));
+    if (normalized !== DEFAULT_API_BASE) localStorage.setItem('apiBase', normalized);
     else localStorage.removeItem('apiBase');
   } catch {
-    /* storage unavailable: the default stays */
+    throw new DataSourceError('Browser storage is unavailable; the backend setting was not changed.');
   }
 }
 
@@ -305,12 +323,51 @@ export function retryBodyFor(id: string, record: DayRecord): AssessBody {
 
 /** Saves a record locally only in explicitly selected demo mode. No prediction is invented. */
 function saveLocally(snapshot: Snapshot, body: AssessBody): SubmitResult {
+  const reject = (error: string, message: string, httpStatus = 422): SubmitResult => ({ kind: 'rejected', httpStatus, error, message });
+  const allowed = new Set<string>([...MEASUREMENT_KEYS, 'astronaut_id', 'observation_timestamp_utc', 'journal_text']);
+  if (!body || typeof body !== 'object' || Array.isArray(body)) return reject('invalid_observation', 'Observation must be an object.');
+  if (Object.keys(body).some(key => !allowed.has(key))) return reject('unknown_fields', 'Only canonical current measurements are accepted.');
+  if (body.astronaut_id !== snapshot.astronautId) return reject('history_person_mismatch', 'This record belongs to a different astronaut.', 409);
+  for (const key of MEASUREMENT_KEYS) {
+    const value = body[key], measure = MEASURES[key];
+    if (typeof value !== 'number' || !Number.isFinite(value) || value < measure.min || value > measure.max) {
+      return reject('invalid_measurement', `${measure.label} must be a finite number between ${measure.min} and ${measure.max}.`);
+    }
+    if (measure.integer && !Number.isInteger(value)) return reject('invalid_count', `${measure.label} must be a whole number.`);
+  }
+  const opportunity = body.sleep_duration_hours / (body.sleep_efficiency_pct / 100);
+  const awakeMinutes = 60 * (opportunity - body.sleep_duration_hours);
+  if (body.sleep_onset_delay_minutes > awakeMinutes + 0.1) {
+    return reject('inconsistent_sleep', 'Sleep onset delay exceeds awake time implied by sleep duration and efficiency.');
+  }
+  if (opportunity + body.workload_hours + body.exercise_minutes / 60 > 24.01) {
+    return reject('inconsistent_daily_budget', 'Non-overlapping sleep opportunity, duty and exercise exceed the 24-hour recording window.');
+  }
+  if (body.journal_text !== undefined && body.journal_text !== null &&
+      (typeof body.journal_text !== 'string' || [...body.journal_text].length > 5000)) {
+    return reject('invalid_journal', 'Journal text must be text of at most 5000 characters or null.');
+  }
+  const timestamp = body.observation_timestamp_utc;
+  const match = typeof timestamp === 'string' && /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.\d{1,3})?(Z|[+-]\d{2}:\d{2})$/.exec(timestamp);
+  if (!match || !Number.isFinite(Date.parse(timestamp))) return reject('invalid_timestamp', 'Use a valid ISO timestamp with an explicit timezone.');
+  const calendar = new Date(0);
+  calendar.setUTCFullYear(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+  calendar.setUTCHours(Number(match[4]), Number(match[5]), Number(match[6]), 0);
+  if (Number(match[1]) < 1 || calendar.getUTCFullYear() !== Number(match[1]) ||
+      calendar.getUTCMonth() !== Number(match[2]) - 1 || calendar.getUTCDate() !== Number(match[3]) ||
+      Number(match[4]) > 23 || Number(match[5]) > 59 || Number(match[6]) > 59) {
+    return reject('invalid_timestamp', 'Timestamp contains an invalid calendar date or time.');
+  }
+  if (snapshot.records.length && Date.parse(timestamp) !== Date.parse(nextCutoff(snapshot.records))) {
+    return reject('invalid_daily_cutoff', 'Each daily record must be exactly 24 hours after the previous record; duplicates and gaps are not saved.', 409);
+  }
   const record: DayRecord = {
     index: snapshot.records.length + 1,
     timestamp: body.observation_timestamp_utc,
     measurements: pickMeasurements(body),
     status: snapshot.records.length < snapshot.calibrationRequired ? 'collecting_baseline' : 'model_unavailable',
     forecast: null,
+    ...(Object.hasOwn(body, 'journal_text') ? { journalText: body.journal_text } : {}),
   };
   return {
     kind: 'saved',

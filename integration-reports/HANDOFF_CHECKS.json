@@ -1,6 +1,6 @@
 {
-  "checked_at_utc": "2026-11-15T07:41:43.750777+00:00",
-  "frontend_api_tests_passed": 19,
+  "checked_at_utc": "2026-11-15T07:56:18.353591+00:00",
+  "frontend_api_tests_passed": 25,
   "launcher_tests_passed": 9,
   "browser_integration_checks_passed": 48,
   "launcher_lifecycle_checks_passed": 9,
@@ -10,8 +10,13 @@
   "local_document_links_resolve": true,
   "windows_native_execution_tested": false,
   "clinical_v2_14_cases_executed": false,
-  "services_stopped_after_verification": true,
+  "services_stopped_after_verification": false,
   "publication_status_scope": "This report records local checks; subsequent publication is recorded by Git history.",
   "original_font_restored_locally": true,
-  "font_loaded_without_external_requests": true
+  "font_loaded_without_external_requests": true,
+  "expanded_browser_ui_checks_passed": 80,
+  "desktop_runtime_linux_integration_checks_passed": 19,
+  "desktop_runtime_unit_tests_passed_linux": 13,
+  "desktop_runtime_windows_only_test_skipped_linux": 1,
+  "windows_bundle_status": "Build workflow prepared; native results pending"
 }

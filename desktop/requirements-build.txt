@@ -1,0 +1,4 @@
+# Windows packaging tools only. Model runtime dependencies stay in ai/requirements.txt.
+# Verified releases; keep hooks in step with PyInstaller's minimum requirement.
+pyinstaller==6.22.3
+pyinstaller-hooks-contrib==2026.10

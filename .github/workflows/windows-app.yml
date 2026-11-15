@@ -1,0 +1,73 @@
+name: Windows application bundle
+
+on:
+  workflow_dispatch:
+    inputs:
+      app_version:
+        description: "Installer version (three numeric components)"
+        default: "0.1.0"
+        required: true
+        type: string
+  push:
+    branches: [main]
+    paths:
+      - 'desktop/**'
+      - '.github/workflows/windows-app.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-bundle-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Build and exercise the actual Windows executable
+    runs-on: windows-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
+          architecture: x64
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.22.1'
+          architecture: x64
+      - name: Use the frontend's declared npm version
+        run: npm install --global npm@12.0.2
+      - name: Build, run bundled forecast and test installed executable
+        shell: pwsh
+        env:
+          ASTRA_APP_VERSION: ${{ inputs.app_version || '0.1.0' }}
+        run: ./desktop/build_windows.ps1 -AppVersion $env:ASTRA_APP_VERSION
+      - name: Upload tested installer, portable folder, reports and checksums
+        uses: actions/upload-artifact@v4
+        with:
+          name: ASTRA-SHIELD-Windows-x64-${{ github.run_number }}
+          path: |
+            desktop/dist/ASTRA-SHIELD-Setup-x64.exe
+            desktop/dist/ASTRA-SHIELD-portable-x64.zip
+            desktop/dist/SHA256SUMS.txt
+            desktop/dist/build-manifest.json
+            desktop/dist/windows-smoke-report.json
+            desktop/dist/installed-smoke-report.json
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
+      - name: Preserve build and smoke diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ASTRA-SHIELD-Windows-diagnostics-${{ github.run_number }}
+          path: |
+            desktop/build/pyinstaller/astra/warn-astra.txt
+            desktop/build/windows-smoke/**/*.log
+            desktop/build/installed-smoke/**/*.log
+            desktop/build/*install*.log
+            desktop/dist/*report.json
+            desktop/dist/build-manifest.json
+          if-no-files-found: ignore
+          retention-days: 14

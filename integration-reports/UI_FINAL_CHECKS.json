@@ -1,0 +1,511 @@
+{
+  "started_at_utc": "2026-11-15T07:55:02.899606+00:00",
+  "run_id": "692bbed21f",
+  "scope": "Expanded Linux Chromium UI audit with real local backend/model and fictional records",
+  "data": "Synthetic integration fixture only; no training or held-out model evaluation",
+  "reaction_timing": "Virtual clock and synthetic key events; not hardware timing validation",
+  "screenshots_note": "Viewport captures; Ionic scroll content is not represented by the browser full-page height",
+  "windows_executed": false,
+  "clinical_14_cases_executed": false,
+  "full_accessibility_audit": false,
+  "checks": [
+    {
+      "name": "original Manrope font loads locally",
+      "passed": true
+    },
+    {
+      "name": "all five primary navigation views are present",
+      "passed": true
+    },
+    {
+      "name": "latest seeded record selected",
+      "passed": true
+    },
+    {
+      "name": "history supports previous, direct selection, and endpoint guards",
+      "passed": true
+    },
+    {
+      "name": "body map Sleep & alertness opens matching Guide section",
+      "passed": true
+    },
+    {
+      "name": "body map Mood & stress opens matching Guide section",
+      "passed": true
+    },
+    {
+      "name": "body map Heart opens matching Guide section",
+      "passed": true
+    },
+    {
+      "name": "body map Next-day fatigue opens matching Guide section",
+      "passed": true
+    },
+    {
+      "name": "Guide contains forecast plus all 15 measurement explanations",
+      "passed": true
+    },
+    {
+      "name": "Guide external links use noreferrer",
+      "passed": true
+    },
+    {
+      "name": "Trends offers forecast and all 15 measurement series",
+      "passed": true
+    },
+    {
+      "name": "trend series renders finite coordinates: forecast",
+      "passed": true
+    },
+    {
+      "name": "trend series renders finite coordinates: sleep_duration_hours",
+      "passed": true
+    },
+    {
+      "name": "trend series renders finite coordinates: sleep_efficiency_pct",
+      "passed": true
+    },
+    {
+      "name": "trend series renders finite coordinates: sleep_onset_delay_minutes",
+      "passed": true
+    },
+    {
+      "name": "trend series renders finite coordinates: awakenings_count",
+      "passed": true
+    },
+    {
+      "name": "trend series renders finite coordinates: sleep_midpoint_deviation_minutes",
+      "passed": true
+    },
+    {
+      "name": "trend series renders finite coordinates: resting_heart_rate_bpm",
+      "passed": true
+    },
+    {
+      "name": "trend series renders finite coordinates: hrv_rmssd_ms",
+      "passed": true
+    },
+    {
+      "name": "trend series renders finite coordinates: reaction_time_median_ms",
+      "passed": true
+    },
+    {
+      "name": "trend series renders finite coordinates: reaction_time_lapses_count",
+      "passed": true
+    },
+    {
+      "name": "trend series renders finite coordinates: attention_accuracy_pct",
+      "passed": true
+    },
+    {
+      "name": "trend series renders finite coordinates: self_report_stress_score",
+      "passed": true
+    },
+    {
+      "name": "trend series renders finite coordinates: self_report_fatigue_score",
+      "passed": true
+    },
+    {
+      "name": "trend series renders finite coordinates: self_report_mood_score",
+      "passed": true
+    },
+    {
+      "name": "trend series renders finite coordinates: workload_hours",
+      "passed": true
+    },
+    {
+      "name": "trend series renders finite coordinates: exercise_minutes",
+      "passed": true
+    },
+    {
+      "name": "trend pointer tooltip and baseline render",
+      "passed": true
+    },
+    {
+      "name": "recommendation toggles support pointer and keyboard and reset per record",
+      "passed": true
+    },
+    {
+      "name": "action panel collapse and summary reopen",
+      "passed": true
+    },
+    {
+      "name": "Check-in exposes 15 numeric fields with associated labels",
+      "passed": true
+    },
+    {
+      "name": "each of 15 missing fields is rejected before network submission",
+      "passed": true
+    },
+    {
+      "name": "representative integer and range violations are blocked in UI",
+      "passed": true
+    },
+    {
+      "name": "impossible sleep latency rejected by backend and surfaced as not saved",
+      "passed": true
+    },
+    {
+      "name": "over 24-hour daily budget rejected by backend and surfaced as not saved",
+      "passed": true
+    },
+    {
+      "name": "quick reaction demo counts early taps but cannot populate model fields",
+      "passed": true
+    },
+    {
+      "name": "full synthetic median reflects scripted responses",
+      "passed": true,
+      "detail": 220.0
+    },
+    {
+      "name": "full 60-response synthetic session applies median and lapse count only once",
+      "passed": true
+    },
+    {
+      "name": "reaction session invalidates on focus loss",
+      "passed": true
+    },
+    {
+      "name": "navigating away cancels task and return starts fresh",
+      "passed": true
+    },
+    {
+      "name": "all five illustrative alert states cause no API traffic",
+      "passed": true
+    },
+    {
+      "name": "Overview fits 320px viewport",
+      "passed": true,
+      "detail": {
+        "width": 320,
+        "doc": 320,
+        "bad": []
+      }
+    },
+    {
+      "name": "Check-in fits 320px viewport",
+      "passed": true,
+      "detail": {
+        "width": 320,
+        "doc": 320,
+        "bad": []
+      }
+    },
+    {
+      "name": "Trends fits 320px viewport",
+      "passed": true,
+      "detail": {
+        "width": 320,
+        "doc": 320,
+        "bad": []
+      }
+    },
+    {
+      "name": "Guide fits 320px viewport",
+      "passed": true,
+      "detail": {
+        "width": 320,
+        "doc": 320,
+        "bad": []
+      }
+    },
+    {
+      "name": "Alert demo fits 320px viewport",
+      "passed": true,
+      "detail": {
+        "width": 320,
+        "doc": 320,
+        "bad": []
+      }
+    },
+    {
+      "name": "all primary tabs remain visible at 320px",
+      "passed": true
+    },
+    {
+      "name": "Overview fits 375px viewport",
+      "passed": true,
+      "detail": {
+        "width": 375,
+        "doc": 375,
+        "bad": []
+      }
+    },
+    {
+      "name": "Check-in fits 375px viewport",
+      "passed": true,
+      "detail": {
+        "width": 375,
+        "doc": 375,
+        "bad": []
+      }
+    },
+    {
+      "name": "Trends fits 375px viewport",
+      "passed": true,
+      "detail": {
+        "width": 375,
+        "doc": 375,
+        "bad": []
+      }
+    },
+    {
+      "name": "Guide fits 375px viewport",
+      "passed": true,
+      "detail": {
+        "width": 375,
+        "doc": 375,
+        "bad": []
+      }
+    },
+    {
+      "name": "Alert demo fits 375px viewport",
+      "passed": true,
+      "detail": {
+        "width": 375,
+        "doc": 375,
+        "bad": []
+      }
+    },
+    {
+      "name": "all primary tabs remain visible at 375px",
+      "passed": true
+    },
+    {
+      "name": "Overview fits 768px viewport",
+      "passed": true,
+      "detail": {
+        "width": 768,
+        "doc": 768,
+        "bad": []
+      }
+    },
+    {
+      "name": "Check-in fits 768px viewport",
+      "passed": true,
+      "detail": {
+        "width": 768,
+        "doc": 768,
+        "bad": []
+      }
+    },
+    {
+      "name": "Trends fits 768px viewport",
+      "passed": true,
+      "detail": {
+        "width": 768,
+        "doc": 768,
+        "bad": []
+      }
+    },
+    {
+      "name": "Guide fits 768px viewport",
+      "passed": true,
+      "detail": {
+        "width": 768,
+        "doc": 768,
+        "bad": []
+      }
+    },
+    {
+      "name": "Alert demo fits 768px viewport",
+      "passed": true,
+      "detail": {
+        "width": 768,
+        "doc": 768,
+        "bad": []
+      }
+    },
+    {
+      "name": "all primary tabs remain visible at 768px",
+      "passed": true
+    },
+    {
+      "name": "Overview fits 1440px viewport",
+      "passed": true,
+      "detail": {
+        "width": 1440,
+        "doc": 1440,
+        "bad": []
+      }
+    },
+    {
+      "name": "Check-in fits 1440px viewport",
+      "passed": true,
+      "detail": {
+        "width": 1440,
+        "doc": 1440,
+        "bad": []
+      }
+    },
+    {
+      "name": "Trends fits 1440px viewport",
+      "passed": true,
+      "detail": {
+        "width": 1440,
+        "doc": 1440,
+        "bad": []
+      }
+    },
+    {
+      "name": "Guide fits 1440px viewport",
+      "passed": true,
+      "detail": {
+        "width": 1440,
+        "doc": 1440,
+        "bad": []
+      }
+    },
+    {
+      "name": "Alert demo fits 1440px viewport",
+      "passed": true,
+      "detail": {
+        "width": 1440,
+        "doc": 1440,
+        "bad": []
+      }
+    },
+    {
+      "name": "all primary tabs remain visible at 1440px",
+      "passed": true
+    },
+    {
+      "name": "keyboard activates primary view and advances focus",
+      "passed": true
+    },
+    {
+      "name": "offline demo rejects impossible daily budget without network or append",
+      "passed": true
+    },
+    {
+      "name": "offline demo rejects impossible sleep latency",
+      "passed": true
+    },
+    {
+      "name": "explicit offline save is labeled session-only and makes no API call",
+      "passed": true
+    },
+    {
+      "name": "new offline observation has no fabricated forecast",
+      "passed": true
+    },
+    {
+      "name": "reload resets unsaved demo session to eight fictional example records",
+      "passed": true
+    },
+    {
+      "name": "return from demo restores unchanged backend history",
+      "passed": true
+    },
+    {
+      "name": "canceling backend settings leaves valid connection intact",
+      "passed": true
+    },
+    {
+      "name": "malformed backend address rejected without losing valid connection: not a valid URL",
+      "passed": true
+    },
+    {
+      "name": "malformed backend address rejected without losing valid connection: javascript",
+      "passed": true
+    },
+    {
+      "name": "malformed backend address rejected without losing valid connection: https",
+      "passed": true
+    },
+    {
+      "name": "malformed backend address rejected without losing valid connection: //example.test/api/v1",
+      "passed": true
+    },
+    {
+      "name": "empty backend setting restores working same-origin default",
+      "passed": true
+    },
+    {
+      "name": "no uncaught browser JavaScript errors",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "UI validation did not modify backend fixture",
+      "passed": true
+    }
+  ],
+  "findings": [
+    {
+      "name": "Accessibility audit scope",
+      "severity": "observation",
+      "detail": "Primary navigation, reaction task and recommendation controls are keyboard-operable, and all numeric inputs have labels. Screen-reader behavior, contrast ratios and full WCAG conformance were not audited. Trend pointer tooltips do not have keyboard equivalents."
+    }
+  ],
+  "console_page_errors": [],
+  "screenshots": [
+    {
+      "path": "integration-reports/ui-final-overview-320.png",
+      "sha256": "7970eff89c515ee71cda370120f3e1b7eb793750f43e5af8370e7ca969f3b872"
+    },
+    {
+      "path": "integration-reports/ui-final-forecast-320.png",
+      "sha256": "f6222fc16b8b1745038303d0e7a4e0fa5f7f168b32db633baeb8a54ff1533a9e"
+    },
+    {
+      "path": "integration-reports/ui-final-overview-375.png",
+      "sha256": "ea0b0f24f7a8beced346c90f039c1781b93d8075fa19ee3da2924e78602b6da5"
+    },
+    {
+      "path": "integration-reports/ui-final-forecast-375.png",
+      "sha256": "9e89d8ab7e996561c8ad780c86afc21d747cd7aed1392807ccd163196a310ed3"
+    },
+    {
+      "path": "integration-reports/ui-final-overview-768.png",
+      "sha256": "cbf6ad47f5a7b4fb374a1a00c7b6c662c51422344a9484e65fcbd6ae972ca471"
+    },
+    {
+      "path": "integration-reports/ui-final-forecast-768.png",
+      "sha256": "ab8f97cca76ee1c7af30ebe7181a230b4bc5dc8cb8034634c5ba4adb47bfa111"
+    },
+    {
+      "path": "integration-reports/ui-final-overview-1440.png",
+      "sha256": "de4e5debff34a1708dddad61164edb7581ee5168d920a262aca1835f01f921b5"
+    }
+  ],
+  "passed": true,
+  "completed_at_utc": "2026-11-15T07:55:19.064054+00:00",
+  "passed_check_count": 80,
+  "failed_check_count": 0,
+  "source_sha256": {
+    "frontend/src/app/app.config.ts": "5bffd9ddcaf75a8d2c1d4053afded1d307d17e22663f3cd5a084fc64534fee53",
+    "frontend/src/app/app.ts": "5f61fd2c93e867bdf8dc3cfc727fb428743d6f7a9fcf5b5dc280dff65e4f835f",
+    "frontend/src/app/components/astronaut-figure.ts": "a658cf8c63858e5064dc345a6aea25ea06e3d14b2b5b5aec8424945a9d75a19e",
+    "frontend/src/app/components/body-map.ts": "08bff1602deca3f0fb112f4cd13e7bd8304399f47144645c040ad9bd85041363",
+    "frontend/src/app/components/calibration-card.ts": "838547b9d20604578199724b285eff05bb1f647490227bcd5ef450846cbba6c6",
+    "frontend/src/app/components/check-in-view.ts": "b4f68cf7955f92a79f63f2f564c3460d05ca78ae3faafd317a3d2968bbccce86",
+    "frontend/src/app/components/clinical-demo.ts": "3affae1cc8000c5238b5539e96518f2f9acce1fca2fe6c4c6f744173c34960be",
+    "frontend/src/app/components/day-strip.ts": "1eac8790129a2031108b637823c10ef43c33db935e471a67d9d030889b36992a",
+    "frontend/src/app/components/fatigue-card.ts": "c034f10b6a09fb659beef400e2bfc9f712105ad5b52a2da90a1195dffde3481f",
+    "frontend/src/app/components/fatigue-timeline.ts": "d219fc24f2bc2e327e06b2d714b9b5088abe42f2cdb28602d37b28cda667036a",
+    "frontend/src/app/components/guide-view.ts": "ec294f1b7ab11fd8939aa5bcb3c45db5062625f5b6320aae95488be80fc22359",
+    "frontend/src/app/components/insights-panel.ts": "d187391e515582a45745ddcc52a78000f7526555bfdc95651e297b8a66f5b757",
+    "frontend/src/app/components/log-form.ts": "609914b04f2ea93bd11f8d6f831a9c89271046b239e723f11297855806414316",
+    "frontend/src/app/components/metric-group.ts": "55aa3d93328a900e4f85018f87b7672e366224d53c3f6ad6cbbdca9a3d097cdb",
+    "frontend/src/app/components/overview-status.ts": "474c69696aea03ca57ee71cb103a777a606b88a676143814c8faaea40e1775fa",
+    "frontend/src/app/components/progress-gauge.ts": "8dc4b4168bf1ae443d8ad30f59e47273b1908033109cb90bb106fa10f47eb9e6",
+    "frontend/src/app/components/reaction-test.ts": "2d9d698cf0a4b98ce5fb4c962c5d23ba40c06cb9bd7f10fc4d84d34cbbba5d43",
+    "frontend/src/app/components/recommendation-cards.ts": "ac834eb1a6d41da021cba0fe88a0b0efca3f02c1e71e043c119ed66c44b2e02f",
+    "frontend/src/app/components/status-tag.ts": "1281307c3931d128d92301ecd787d6a71e08cff0a52f093aa026d673aea64ed6",
+    "frontend/src/app/components/tile-visuals.ts": "54778609170db3d8677e51aa615975327a5a42e07d581f2dff4e76bd719aa7c9",
+    "frontend/src/app/components/top-nav.ts": "5378e70253ba640aa2341a5a95f43c1c29e1b84d5ac6850ca4cbb4913e62c17c",
+    "frontend/src/app/components/trend-chart.ts": "270e5563c908bffe5f2d3613fbe4643a46e3769e92fcf503ffcdbbcd400233a5",
+    "frontend/src/app/data/demo-data.ts": "b11ed91eae94fda51371999fcf14640b1c57862ccc646aeb7d79be0deafdf46b",
+    "frontend/src/app/data/source.ts": "491e57a7beccb744a1a15bf4ff1dedbb7910b9ff1be630566d485fa838830763",
+    "frontend/src/app/lib/guide.ts": "a55f93d4dce74651a10102ea5f3a8c05a7751e8fe9f3350cd311bc2f7e491efb",
+    "frontend/src/app/lib/insights.ts": "5b52aa08c8015fbf644c82d67fdc0c8dfba15f05347c7d382bd65d5a5218a57f",
+    "frontend/src/app/lib/metrics.ts": "cd4d098453456e7794e76cd498b0daa0332303c745cc806d6a8035e42d2f1821",
+    "frontend/src/app/lib/time.ts": "2300bbec2804a476e61be25f2927754a9eda14f1e4c0ea1b0065c64c0abd0dde",
+    "frontend/src/app/types.ts": "3b155083f42faea01bed4f2ae3dd90cda372e393e894b1557977eded96129f91",
+    "frontend/src/main.ts": "2341253f1a947c37dfa27838951cf7e224f7abb32dff45a8d425f042b5eeed13",
+    "frontend/src/styles.css": "7b405305b1978cd99c7c1f92c3db3caee80d00783b71fc14cfa2efeff740b5bb",
+    "scripts/test_ui_final.py": "f0963022c2b43b8a53ed0cb50da42554b218c1cd0fa3018b34835cbdc4f44e2f"
+  }
+}

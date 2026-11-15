@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import { beforeEach, after, test } from 'node:test';
 import { readFileSync } from 'node:fs';
-import { apiBase, buildBody, getSnapshot, nextCutoff, retryBodyFor, setApiBase, setDemoMode, submitRecord } from '../src/app/data/source.ts';
+import { apiBase, buildBody, getSnapshot, nextCutoff, normalizeApiBase, retryBodyFor, setApiBase, setDemoMode, submitRecord } from '../src/app/data/source.ts';
+import { validateCurrentObservation, FeatureHistoryError } from '../../ai/integration/backend_review/proposed_backend/featureHistory.ts';
 import { MEASUREMENT_KEYS, type Measurements, type Snapshot } from '../src/app/types.ts';
 
 const examples = new URL('../../ai/integration/backend_review/proposed_backend/examples/', import.meta.url);
@@ -208,4 +209,85 @@ test('a stale empty history response cannot erase an acknowledged save', async (
   if (result.kind !== 'saved') return;
   assert.equal(result.snapshot.records.length, 1);
   assert.match(result.refreshWarning!, /save was confirmed/);
+});
+
+test('backend settings accept explicit HTTP(S) API URLs and the same-origin route', () => {
+  assert.equal(normalizeApiBase(' /api/v1/ '), '/api/v1');
+  assert.equal(normalizeApiBase('https://crew.example.test'), 'https://crew.example.test/api/v1');
+  assert.equal(normalizeApiBase('HTTP://localhost:3000/api/v1///'), 'http://localhost:3000/api/v1');
+  assert.equal(normalizeApiBase('https://crew.example.test/team/api/v1'), 'https://crew.example.test/team/api/v1');
+});
+
+test('invalid backend settings do not replace the previous working URL', () => {
+  const previous = 'http://localhost:3000/api/v1';
+  setApiBase(previous);
+  for (const invalid of ['not a valid URL', 'javascript:alert(1)', '//evil.example/api/v1', 'file:///api/v1',
+    'https://name:password@example.test/api/v1', 'https://example.test/api/v1?token=secret',
+    'https://example.test/api/v1#fragment', 'https://example.test/other', 'https://example.test\\api\\v1']) {
+    assert.throws(() => setApiBase(invalid), /http:\/\/ or https:\/\//, invalid);
+    assert.equal(apiBase(), previous);
+  }
+});
+
+test('an invalid setting left in browser storage is rejected before any network request', async () => {
+  memory.set('apiBase', 'not a valid URL');
+  let requests = 0;
+  globalThis.fetch = async () => { requests++; return response(health); };
+  await assert.rejects(getSnapshot(), /backend address/);
+  assert.equal(requests, 0);
+});
+
+test('offline demo rejects invalid measurements and cross-field combinations like the backend', async () => {
+  setDemoMode(true);
+  globalThis.fetch = async () => { throw new Error('Demo must not make network requests'); };
+  const snapshot = await getSnapshot();
+  const valid = buildBody(snapshot, measurement);
+  const invalidChanges: Record<string, unknown>[] = [
+    { sleep_duration_hours: 8, sleep_efficiency_pct: 90, workload_hours: 20 },
+    { sleep_duration_hours: 8, sleep_efficiency_pct: 100, sleep_onset_delay_minutes: 5 },
+    { awakenings_count: -1 }, { reaction_time_lapses_count: 10.5 }, { self_report_stress_score: null },
+    { sleep_duration_hours: 0 }, { exercise_minutes: Number.NaN }, { target_next_day_fatigue: 'high' },
+  ];
+  for (const change of invalidChanges) {
+    const body = { ...valid, ...change };
+    let backendError: FeatureHistoryError | undefined;
+    try { validateCurrentObservation(body); } catch (error) { backendError = error as FeatureHistoryError; }
+    assert.ok(backendError, 'The same body must fail authoritative backend validation.');
+    const result = await submitRecord(snapshot, body);
+    assert.equal(result.kind, 'rejected');
+    if (result.kind !== 'rejected') continue;
+    assert.equal(result.error, backendError.code);
+    assert.equal(result.httpStatus, 422);
+    assert.equal(snapshot.records.length, 8);
+  }
+});
+
+test('offline demo rejects duplicate/gapped cutoffs and invalid calendar dates', async () => {
+  setDemoMode(true);
+  const snapshot = await getSnapshot();
+  const body = buildBody(snapshot, measurement);
+  for (const timestamp of [snapshot.records.at(-1)!.timestamp, '2026-01-05T18:00:00Z']) {
+    const result = await submitRecord(snapshot, { ...body, observation_timestamp_utc: timestamp });
+    assert.equal(result.kind, 'rejected');
+    if (result.kind === 'rejected') assert.equal(result.httpStatus, 409);
+  }
+  const result = await submitRecord(snapshot, { ...body, observation_timestamp_utc: '2026-02-30T18:00:00Z' });
+  assert.equal(result.kind, 'rejected');
+  if (result.kind === 'rejected') assert.equal(result.error, 'invalid_timestamp');
+  assert.equal(snapshot.records.length, 8);
+});
+
+test('valid offline demo records remain session-only, with no fabricated forecast', async () => {
+  setDemoMode(true);
+  globalThis.fetch = async () => { throw new Error('Demo must not make network requests'); };
+  const snapshot = await getSnapshot();
+  const result = await submitRecord(snapshot, buildBody(snapshot, measurement, 'Session-only example'));
+  assert.equal(result.kind, 'saved');
+  if (result.kind !== 'saved') return;
+  assert.equal(result.httpStatus, 0);
+  assert.equal(result.snapshot.source, 'demo');
+  assert.equal(result.snapshot.records.length, 9);
+  assert.equal(result.snapshot.records[8].forecast, null);
+  assert.equal(result.snapshot.records[8].journalText, 'Session-only example');
+  assert.equal(snapshot.records.length, 8);
 });

@@ -1,0 +1,90 @@
+{
+  "passed": true,
+  "platform": "linux",
+  "frozen": false,
+  "scope": "Packaging and local inference integration; not model accuracy or clinical validation",
+  "model_artifact_sha256": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706",
+  "forecast": {
+    "label": "moderate",
+    "points": 33.1,
+    "shap_method": "TreeSHAP"
+  },
+  "checks": [
+    {
+      "name": "compiled Angular index served",
+      "passed": true
+    },
+    {
+      "name": "SPA route serves index",
+      "passed": true
+    },
+    {
+      "name": "missing asset is 404",
+      "passed": true
+    },
+    {
+      "name": "unknown API is not frontend HTML",
+      "passed": true
+    },
+    {
+      "name": "day 1 calibration preserves 202 and null forecast",
+      "passed": true
+    },
+    {
+      "name": "day 2 calibration preserves 202 and null forecast",
+      "passed": true
+    },
+    {
+      "name": "day 3 calibration preserves 202 and null forecast",
+      "passed": true
+    },
+    {
+      "name": "day 4 calibration preserves 202 and null forecast",
+      "passed": true
+    },
+    {
+      "name": "day 5 calibration preserves 202 and null forecast",
+      "passed": true
+    },
+    {
+      "name": "day 6 calibration preserves 202 and null forecast",
+      "passed": true
+    },
+    {
+      "name": "day 7 calibration preserves 202 and null forecast",
+      "passed": true
+    },
+    {
+      "name": "day 8 actual model forecast",
+      "passed": true
+    },
+    {
+      "name": "actual TreeSHAP three reasons",
+      "passed": true
+    },
+    {
+      "name": "TreeSHAP reconstructs predicted class probability",
+      "passed": true
+    },
+    {
+      "name": "synthetic scope retained",
+      "passed": true
+    },
+    {
+      "name": "duplicate status preserved",
+      "passed": true
+    },
+    {
+      "name": "validation status preserved",
+      "passed": true
+    },
+    {
+      "name": "eight observations persisted with no duplicates",
+      "passed": true
+    },
+    {
+      "name": "local services stopped cleanly",
+      "passed": true
+    }
+  ]
+}
