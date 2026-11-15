@@ -1,9 +1,9 @@
 {
-  "created_at_utc": "2026-11-15T07:56:35.887695+00:00",
+  "created_at_utc": "2026-11-15T07:58:17.951902+00:00",
   "scope": "Integrated source, optional Windows packaging, unchanged model, synthetic data, documentation and research reports; excludes dependencies, runtime history, generated installers, caches and Git metadata",
   "files_sha256": {
     ".gitattributes": "6f33574b578883df414e9bc10c5a39d019d62886e634d130b711529e77045617",
-    ".github/workflows/windows-app.yml": "3e1f00fde5f18471483ac993a5d08da0c1d281e0f7698a904885df2b307fe84a",
+    ".github/workflows/windows-app.yml": "513d740e9577cf3bb471897f52d5ce95e65c79aca0684f16292aede083087eb2",
     ".gitignore": "d6f9fdd33a8f9689a95cfe03c4b1d27189e80c0c79b9696c86c8a53cc8387fb2",
     "README.md": "3b08f032a55364a8591c89b986bddede50cb46f8ed14bd493bef5684491e5644",
     "Setup-Astra.cmd": "9d21b7c88d81473a50a33672e8d710e3913936c52aa562b3e499efbc7beb4bfa",
@@ -397,7 +397,7 @@
     "deploy/nginx.local.example.conf": "746440603bbe814c2cc9037ed417c5e6bd88302b5627835e9170a6c412723d71",
     "desktop/README.md": "d151cf96716c33a2003b5d85f944545c6f41f14ca1ee9ecb31ef5808819432cc",
     "desktop/astra.spec": "01069bca514bc1ff0dcdcbc575682e09cee749aa845ab0b53d5114cda30415f0",
-    "desktop/build_windows.ps1": "fe4aecacd8dab0a82e09c8d7f8bf77e5e4ebd2ecfafb56b9e645fcc890705f00",
+    "desktop/build_windows.ps1": "6ef2342df468bb2bfd9038a2f838693678969ff57cc76b82ebc2dd7043d194a7",
     "desktop/installer.iss": "074f0c74e53b6b8541095f4df5ed2c3c10995075cd0569ba8bac7014ca7e18be",
     "desktop/requirements-build.txt": "cc69d12bfa35ffd5d952738d54997e175d440daeb32018cc66e853f3ac8e9ed7",
     "desktop/runtime.py": "7cd54f25f1f061e167b4a500a84a5817eba2e4c84930f7ac0fbd71835a4faca2",

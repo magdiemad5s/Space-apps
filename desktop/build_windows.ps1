@@ -131,6 +131,14 @@ root.mkdir(parents=True, exist_ok=True)
 (root / 'inventory.json').write_text(json.dumps(inventory, indent=2), encoding='utf-8')
 '@
 Invoke-Checked $BuildPython @('-c', $LicenseCollector, (Join-Path $Resources 'licenses/python'))
+$PythonBase = (& $BuildPython -c 'import sys; print(sys.base_prefix)').Trim()
+$PythonLicense = Join-Path $PythonBase 'LICENSE.txt'
+if (Test-Path $PythonLicense) {
+    Copy-Item $PythonLicense (Join-Path $Resources 'licenses/python-runtime-LICENSE.txt')
+} else {
+    $PythonVersion = (& $BuildPython -c 'import platform; print(platform.python_version())').Trim()
+    Invoke-WebRequest "https://raw.githubusercontent.com/python/cpython/v$PythonVersion/LICENSE" -OutFile (Join-Path $Resources 'licenses/python-runtime-LICENSE.txt')
+}
 
 Push-Location $Project
 try {
