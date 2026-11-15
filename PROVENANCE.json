@@ -11,15 +11,28 @@
   ],
   "team_authorship": {
     "statement": "The team designed and developed the project, supplying the brief, health-monitoring goals, measurement workflow, frontend design and implementation, backend work and clinical-alert proposals, and directing development decisions. SI tools accelerated implementation, analysis, debugging, documentation and testing within that process.",
-    "frontend_contributor": "Karam Eyad, who supplied crew-health-console through the team",
-    "integration_coordinator": "Magdi",
-    "attribution_scope": "These known roles do not replace the full team's contributor roster. SI tools are credited as tools, not human team members.",
-    "review_scope": "Team requirements and feedback guided the work. Completed automated checks are recorded below; this record does not assert that every line has been manually reviewed or that clinical validation is complete."
+    "frontend_contributor": "Karam Alhams (Karam-Eyad on GitHub), who supplied crew-health-console through the team",
+    "integration_coordinator": "Majdi Abu Ahour",
+    "attribution_scope": "All six listed members contributed to the project. Specific roles are recorded only where supplied in the development history; SI tools are credited as tools.",
+    "review_scope": "Team requirements and feedback guided the work. Completed automated checks are recorded below; this record does not assert that every line has been manually reviewed or that clinical validation is complete.",
+    "team_members": [
+      "Mahfuoz Asa'ad Kamal Izhiman",
+      "Majdi Abu Ahour",
+      "Yazan Ehmaid",
+      "Karam Alhams",
+      "Omar Hemadneh",
+      "Taleen Abualhasan"
+    ],
+    "team_owner": "Mahfuoz Asa'ad Kamal Izhiman",
+    "roster_source": "Team Space Apps roster screenshot supplied by the user"
   },
   "si_assistance": [
     {
       "provider": "OpenAI",
-      "tools": ["ChatGPT", "Codex"],
+      "tools": [
+        "ChatGPT",
+        "Codex"
+      ],
       "exact_model_versions": null,
       "evidence": "Project development session and committed implementation/test/report artifacts",
       "scopes": [
@@ -34,7 +47,9 @@
     },
     {
       "provider": "Anthropic",
-      "tools": ["Claude"],
+      "tools": [
+        "Claude"
+      ],
       "exact_model_versions": null,
       "evidence_path": "frontend/docs/UPSTREAM_README_SNAPSHOT.md",
       "scopes": [
@@ -86,12 +101,30 @@
     "evidence_path": "integration-reports/FRONTEND_PROVENANCE.json"
   },
   "nasa_resource_roles": [
-    {"url": "https://www.nasa.gov/hrp/hazards/", "use": "Human-spaceflight and explanatory Guide context"},
-    {"url": "https://www.nasa.gov/hrp/risks/", "use": "Guide and Body map risk context"},
-    {"url": "https://www.nasa.gov/hrp/ongoing-hrp-research/", "use": "General challenge background"},
-    {"url": "https://www.nasa.gov/reference/standard-measures/", "use": "Conceptual basis for repeated personal observations, cited in simulator source manifest"},
-    {"url": "https://www.nasa.gov/reference/archer/", "use": "Activity, sleep and behavioral-monitoring context, cited in simulator source manifest"},
-    {"url": "https://spinoff.nasa.gov/Spinoff2013/hm_1.html", "use": "Reaction-time demonstration motivation; our custom task is not a validated NASA/ISS protocol"}
+    {
+      "url": "https://www.nasa.gov/hrp/hazards/",
+      "use": "Human-spaceflight and explanatory Guide context"
+    },
+    {
+      "url": "https://www.nasa.gov/hrp/risks/",
+      "use": "Guide and Body map risk context"
+    },
+    {
+      "url": "https://www.nasa.gov/hrp/ongoing-hrp-research/",
+      "use": "General challenge background"
+    },
+    {
+      "url": "https://www.nasa.gov/reference/standard-measures/",
+      "use": "Conceptual basis for repeated personal observations, cited in simulator source manifest"
+    },
+    {
+      "url": "https://www.nasa.gov/reference/archer/",
+      "use": "Activity, sleep and behavioral-monitoring context, cited in simulator source manifest"
+    },
+    {
+      "url": "https://spinoff.nasa.gov/Spinoff2013/hm_1.html",
+      "use": "Reaction-time demonstration motivation; our custom task is not a validated NASA/ISS protocol"
+    }
   ],
   "nasa_resource_limits": "References informed project context, not measured training records, simulation coefficients, labels, clinical cutoffs or model validation. No NASA endorsement is claimed.",
   "media_disclosures": {
@@ -112,9 +145,9 @@
   },
   "completed_software_verification": {
     "report_index_path": "integration-reports/README.md",
-    "ui_checks_passed": 80,
+    "ui_checks_passed": 81,
     "end_to_end_integration_checks_passed": 48,
-    "frontend_regression_tests_passed": 25,
+    "frontend_regression_tests_passed": 30,
     "backend_tests_passed": 16,
     "windows_portable_executable_checks_passed": 19,
     "windows_installed_executable_checks_passed": 19,
@@ -123,7 +156,9 @@
     "scope": "Recorded UI/API/model behavior, input and error handling, persistence, numerical model portability, native Windows executable inference and shutdown; testing continues during team development.",
     "clinical_validation_established": false,
     "clinical_alert_v2_status": "Full engine deferred; five preset UI demos do not execute its 14 medical acceptance scenarios.",
-    "remaining_interactive_test": "Teammate rehearsal on the actual Windows presentation laptop"
+    "remaining_interactive_test": "Teammate rehearsal on the actual Windows presentation laptop",
+    "submission_safety_checks_passed": 28,
+    "submission_safety_report_path": "integration-reports/SUBMISSION_SAFETY_CHECKS.json"
   },
   "submission_guide_review": {
     "uploaded_filename": "NASA Space Apps Challenge.pdf",
@@ -132,7 +167,12 @@
     "pdf_pages": 16,
     "pdf_sha256": "f03194b5e3e926b374ee749fff8f0cfbe087eb92bb9b53c9e90b9e59cd87a5f3",
     "review_path": "docs/SUBMISSION_DISCLOSURE.md",
-    "guide_requirement_pages": {"si_and_nasa_resources": 9, "credits_and_permissions": 10, "demo_and_english": 11, "final_submission": 13},
+    "guide_requirement_pages": {
+      "si_and_nasa_resources": 9,
+      "credits_and_permissions": 10,
+      "demo_and_english": 11,
+      "final_submission": 13
+    },
     "pending_team_checks": [
       "Public English demo of at most seven slides or video of at most 30 seconds; English subtitles for non-English speech",
       "Final media watermark, branding, permission and under-18-likeness review",

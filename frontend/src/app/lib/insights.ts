@@ -9,8 +9,8 @@ export function buildRecommendations(record: DayRecord | undefined, baseline: Pe
   if (!record) return [];
   const m = record.measurements;
   const level = (key: MeasurementKey): Level | null => evaluate(key, m[key], baseline);
-  const recs: Recommendation[] = [];
-  const add = (r: Recommendation) => recs.push(r);
+  const recs: (Recommendation & { priority: Level })[] = [];
+  const add = (r: Recommendation & { priority: Level }) => recs.push(r);
 
   const sleep = level('sleep_duration_hours');
   const heart = level('resting_heart_rate_bpm');
@@ -22,8 +22,8 @@ export function buildRecommendations(record: DayRecord | undefined, baseline: Pe
     add({
       id: 'surgeon',
       priority: 'critical',
-      action: 'Contact the flight surgeon',
-      reason: 'A resting heart rate over 100 bpm needs a medical review. Rest 10 minutes and measure again first.',
+      action: 'Seek review of the resting heart-rate reading',
+      reason: 'The reading is in a prototype review band. Follow mission medical procedures; concerning symptoms require prompt review without waiting for another recording.',
     });
   }
   if (record.forecast && CATEGORY_LEVEL[record.forecast.category] === 'critical') {
@@ -38,23 +38,23 @@ export function buildRecommendations(record: DayRecord | undefined, baseline: Pe
     add({
       id: 'postpone',
       priority: 'critical',
-      action: 'Postpone safety-critical tasks',
-      reason: 'At this level of reported fatigue, slow reactions and lapses raise the risk of errors.',
+      action: 'Seek review before an upcoming safety-critical task',
+      reason: 'Reported fatigue is high under this prototype display rule. Discuss current symptoms and task demands with the responsible crew or medical support.',
     });
   }
   if (sleep === 'critical') {
     add({
       id: 'rest',
       priority: 'critical',
-      action: 'Take a protected 8-hour sleep period',
-      reason: 'Recovering the sleep deficit is the fastest way to lower fatigue.',
+      action: 'Review sleep opportunity and duty demands',
+      reason: 'Reported sleep is short under this prototype display rule. Review recent sleep history and follow the approved work/rest plan.',
     });
   } else if (sleep === 'warning') {
     add({
       id: 'sleep-more',
       priority: 'warning',
-      action: 'Add 60 minutes of sleep tonight',
-      reason: 'Adults need 7 or more hours; short sleep is a main driver of fatigue.',
+      action: 'Review recent sleep and the planned rest period',
+      reason: 'Sleep duration alone does not establish current alertness. Consider symptoms, sleep history and upcoming duties under mission procedures.',
     });
   }
   const efficiency = level('sleep_efficiency_pct');
@@ -62,16 +62,16 @@ export function buildRecommendations(record: DayRecord | undefined, baseline: Pe
     add({
       id: 'light',
       priority: 'warning',
-      action: 'Dim cabin lighting 2 hours before sleep',
-      reason: 'Bright evening light delays the body clock and breaks up sleep.',
+      action: 'Review the sleep environment and recording quality',
+      reason: 'Low reported efficiency can have several explanations. Discuss sleep conditions and follow the approved sleep and lighting plan.',
     });
   }
   if (heart === 'warning' || level('hrv_rmssd_ms') === 'warning' || level('hrv_rmssd_ms') === 'critical') {
     add({
       id: 'recheck',
       priority: 'warning',
-      action: 'Rest 10 minutes, then repeat the quiet heart recording',
-      reason: 'Stress, exercise and fluid shifts can change heart rate and HRV for a short time.',
+      action: 'Check recording conditions and follow the remeasurement protocol',
+      reason: 'Recent exercise, posture and recording quality can affect heart rate and HRV. Follow mission procedures; symptoms should not wait for a repeat reading.',
     });
   }
   const reaction = level('reaction_time_median_ms');
@@ -79,36 +79,40 @@ export function buildRecommendations(record: DayRecord | undefined, baseline: Pe
     add({
       id: 'retest',
       priority: 'warning',
-      action: 'Repeat the reaction test after your next rest period',
-      reason: 'A second test shows whether the slowdown is temporary.',
+      action: 'Review reaction-task conditions and upcoming duties',
+      reason: 'A slower result can reflect several factors, including device timing. Follow the task protocol for any repeat; this browser demonstration does not establish readiness.',
     });
   }
   if ((stress && stress !== 'ok') || (mood && mood !== 'ok')) {
     add({
       id: 'connect',
       priority: 'warning',
-      action: 'Do 10 minutes of paced breathing and talk with a crewmate',
-      reason: 'Isolation and confinement raise stress and lower mood; staying connected helps.',
+      action: 'Consider a private check-in with an appropriate support person',
+      reason: 'Reported stress or mood has entered a prototype review band. Discuss context and support needs; these ratings do not diagnose a condition.',
     });
   }
 
   recs.sort((a, b) => compareLevels(a.priority, b.priority));
-  const local = recs.slice(0, 4);
+  const local: Recommendation[] = recs.slice(0, 4);
 
-  if (local.length === 0 && !record.forecast) {
+  if (!record.forecast) {
     local.push({
-      id: 'keep',
-      priority: 'ok',
-      action: 'Keep your current routine',
-      reason: 'The measurements that have a level are within range. Complete the next daily record on time.',
+      id: 'forecast-unavailable',
+      priority: 'none',
+      action: 'No forecast-based recommendation available.',
+      reason: record.status === 'collecting_baseline'
+        ? 'This record is part of calibration and has no forecast. Any measurement guidance shown separately uses prototype display rules.'
+        : 'No usable prediction is available for this record. Any measurement concerns remain relevant; missing output is not a normal assessment.',
     });
   }
 
   const advisory: Recommendation[] = (record.forecast?.advisoryActions ?? []).map((text, i) => ({
     id: `advisory-${i}`,
-    priority: 'ok',
+    priority: 'none',
     action: text,
-    reason: 'Advisory line from the model service. This prototype makes no autonomous medical or mission decisions.',
+    reason: record.forecast?.origin === 'simulated_example'
+      ? 'Example advisory. Saved fictional presentation content; no model request was made.'
+      : 'Advisory returned with this record’s model-generated forecast. This prototype makes no autonomous medical or mission decisions.',
   }));
 
   return [...local, ...advisory].slice(0, 6);

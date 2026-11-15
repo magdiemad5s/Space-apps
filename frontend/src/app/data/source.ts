@@ -104,6 +104,7 @@ interface BackendReason {
 
 interface BackendAssessment {
   status: RecordStatus;
+  inference_source?: string;
   observation_timestamp_utc?: string;
   fatigue_points: number | null;
   fatigue_risk_level: FatigueCategory | null;
@@ -149,6 +150,9 @@ function pickMeasurements(source: Measurements): Measurements {
 
 function toForecast(a: BackendAssessment): Forecast | null {
   if (a.status !== 'completed') return null;
+  if (a.inference_source !== 'synthetic_model' || !a.model_result || typeof a.model_result !== 'object') {
+    throw new DataSourceError('Completed assessment has no verified model-service provenance.');
+  }
   if (typeof a.fatigue_points !== 'number' || !Number.isFinite(a.fatigue_points) ||
       a.fatigue_points < 0 || a.fatigue_points > 100 ||
       !['Low', 'Moderate', 'High'].includes(a.fatigue_risk_level ?? '')) {
@@ -164,6 +168,7 @@ function toForecast(a: BackendAssessment): Forecast | null {
     direction: r.direction,
   }));
   return {
+    origin: 'model_service',
     points: a.fatigue_points,
     category: a.fatigue_risk_level as FatigueCategory,
     score: a.fatigue_score,
@@ -222,6 +227,7 @@ function demoSnapshot(backend: Snapshot['backend']): Snapshot {
       status: isDay8 ? 'completed' : 'collecting_baseline',
       forecast: isDay8
         ? {
+            origin: 'simulated_example',
             points: day8.fatigue_points,
             category: day8.fatigue_risk_level as FatigueCategory,
             score: day8.fatigue_score,

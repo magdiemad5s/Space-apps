@@ -1149,6 +1149,9 @@ button:focus-visible {
 .rec[data-level="critical"] {
   --rec-tone: #ff6b7f;
 }
+.rec[data-level="none"] {
+  --rec-tone: #a8a8a8;
+}
 
 .rec-glow {
   position: absolute;

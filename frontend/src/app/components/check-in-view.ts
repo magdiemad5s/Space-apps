@@ -22,6 +22,7 @@ import { LogForm, type FormMessage, type RecordSubmit } from './log-form';
     <article
       appLogForm
       [previous]="previous()"
+      [allowExample]="snapshot().source === 'demo'"
       [reaction]="reaction()"
       [busy]="busy()"
       [message]="message()"

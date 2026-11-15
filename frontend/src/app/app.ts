@@ -60,6 +60,10 @@ import { ProgressGauge } from './components/progress-gauge';
                 <div class="figure-col">
                   <div class="intro">
                     <h1>Crew Health</h1>
+                    @if (view() === 'clinicaldemo') {
+                      <p>Fictional alert scenarios</p>
+                      <p class="env">Scenario preview only; no participant record shown.</p>
+                    } @else {
                     <p>Astronaut {{ snap.astronautId }}</p>
                     <p class="env">
                       <svg viewBox="0 0 16 16" aria-hidden="true">
@@ -77,8 +81,9 @@ import { ProgressGauge } from './components/progress-gauge';
                     @if (connectionError()) {
                       <p class="connection-error" role="alert">{{ connectionError() }}</p>
                     }
+                    }
                   </div>
-                  <div appBodyMap [record]="record()" [baseline]="selectedBaseline()" (guide)="openGuide($event)"></div>
+                  <div appBodyMap [record]="record()" [baseline]="selectedBaseline()" [scenarioPreview]="view() === 'clinicaldemo'" (guide)="openGuide($event)"></div>
                 </div>
 
                 <div class="main-col">
@@ -161,6 +166,7 @@ import { ProgressGauge } from './components/progress-gauge';
               </div>
             </section>
 
+            @if (view() !== 'clinicaldemo') {
             <section id="action-panel" class="dark" [class.collapsed]="!panelOpen()">
               <button
                 class="seam"
@@ -193,6 +199,7 @@ import { ProgressGauge } from './components/progress-gauge';
                 the Guide.
               </p>
             </section>
+            }
           </div>
         } @else if (connectionError()) {
           <section class="card connection-failure" role="alert">

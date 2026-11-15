@@ -17,6 +17,9 @@ The teammate provided Angular 22/Ionic 9 screens, the astronaut illustration/bod
 - Import the app under `frontend/`, keeping its design and components.
 - Route browser calls through same-origin `/api/v1`; local Angular proxy uses `BACKEND_URL`, and a web deployment can use an ordinary reverse proxy.
 - Make offline examples an explicit choice. Backend/history failures remain visible instead of silently replacing records with simulated history.
+- Start daily measurement fields blank. A simulated fill button exists only in explicit offline demo mode; ordinary Check-in does not copy yesterday's measurements.
+- Require an external attention-accuracy value. **Not measured** clears that field and blocks saving/forecasting; incomplete records are not stored as drafts.
+- Label simulated example forecasts separately from model-generated forecasts, and use neutral guidance when a record has no forecast.
 - Preserve acknowledged saves if refreshing history fails; withhold malformed forecasts instead of inventing zero values or declaring successful inference.
 - Preserve exact observation timestamps, measurements, and journal text for retry after a model outage, including after a page reload.
 - Correct mapping of nullable results, SHAP's neutral direction, and object-shaped training-range warnings.
@@ -24,9 +27,9 @@ The teammate provided Angular 22/Ionic 9 screens, the astronaut illustration/bod
 - Prevent the quick 10-response reaction demo from filling model inputs intended for 60 responses; interrupted/hidden/blurred runs require a retake.
 - State that the reaction task is count-limited, not a timed five-minute PVT or a validated NASA protocol. Attention remains manual input.
 - Label existing measurement colors and recommendations as illustrative dashboard guidance. They differ from V2 and lack its full clinical input/quality/state requirements.
-- Add an independent Alert demo tab with five fictional states; no new medical measurements enter the existing model.
+- Add an independent Alert demo tab with five fictional states and hide unrelated selected-record context there; no new medical measurements enter the existing model.
 - Bundle the original Manrope typeface locally to preserve the teammate's typography without external font fetching; replace the model wrapper's blanket XGBoost exception suppression with the ordinary trusted model service.
-- Add Windows/Linux setup, supervised startup, explicit synthetic seeding, logs, port checks and storage paths.
+- Add Windows/Linux setup, supervised startup, explicit synthetic seeding, logs, port checks and storage paths. The 0.1.1 presentation launch paths select a separate demo store rather than the normal history file.
 
 ## What to tell the team
 
@@ -36,10 +39,13 @@ The visible measurement guidance inherited from the frontend has its own prototy
 
 The supplied observation fixtures and existing training data are synthetic. A live connection and real model calculation describe the software execution, not real astronaut observations. Real-data use still needs valid comparable measurements, a suitable protocol, and independent evaluation.
 
+Public demonstrations, repository files, and screenshots must use synthetic records. Do not upload real human health observations or journals. The new demo directory does not automatically migrate or delete records from an older installation.
+
 ## Platform and web scope
 
-- Windows: use the [0.1.0 prototype installer](https://github.com/magdiemad5s/Space-apps/releases/tag/v0.1.0-prototype), or run `Setup-Astra.cmd` once and then `Start-Demo.cmd` or `Start-Astra.cmd` from source. The portable and installed executables passed native Windows checks; interactive rehearsal on the team's laptop remains part of the handoff.
-- Linux: `python3.12 scripts/setup.py`, then `./start.sh --seed-demo`.
+- Windows: the [0.1.0 prototype installer](https://github.com/magdiemad5s/Space-apps/releases/tag/v0.1.0-prototype) passed native Windows checks. Version **0.1.1** with these latest UI and storage changes is being built and needs its own matching verification evidence. From source, run `Setup-Astra.cmd` once and then `Start-Demo.cmd` or `Start-Astra.cmd`. Interactive rehearsal on the team's laptop remains part of the handoff.
+- Presentation storage: `Start-Demo.cmd` uses `.local/demo/history_db_v2.json`; the 0.1.1 installer Demo shortcut and post-install launch use `%LOCALAPPDATA%\ASTRA-SHIELD\demo`. Normal startup retains its existing default store.
+- Linux: `python3.12 scripts/setup.py`, then `./start.sh --seed-demo --db-file .local/demo/history_db_v2.json`.
 - Web: `frontend` can be built to static files. A host must route `/api/v1` to the backend; no frontend rewrite or desktop-only fork is required.
 - Public/multi-user hosting remains separate work. The Windows installer opens the same dashboard locally in the browser; it does not publish a web deployment.
 

@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "checked_at_utc": "2026-11-15T08:00:36.027963+00:00",
+  "checked_at_utc": "2026-11-15T13:35:50.321734+00:00",
   "scope": "Linux Chromium, compiled production Angular, unfrozen desktop runtime, real backend/model",
   "clinical_validation": false,
   "checks": [
@@ -72,7 +72,7 @@
     "points": 33.1
   },
   "source_sha256": {
-    "desktop/runtime.py": "7cd54f25f1f061e167b4a500a84a5817eba2e4c84930f7ac0fbd71835a4faca2",
+    "desktop/runtime.py": "0d1161d96ce648e32f1386301d347f383620c7f15a8929d3031f66280f0c6bd0",
     "scripts/test_desktop_ui.py": "98aaf623ecfcb04e824c677bf2691195cf9d91b77e79f9fd66c31c4fd8a23313",
     "ai/artifacts/bundle.joblib": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706"
   }

@@ -40,6 +40,8 @@ export interface Reason {
 
 /** Next-day forecast. Only present for a completed record. */
 export interface Forecast {
+  /** Provenance of this forecast, independent of whether the backend is currently online. */
+  origin: 'model_service' | 'simulated_example';
   /** Prototype severity index, 0 to 100. Not a medical percentage. */
   points: number;
   category: FatigueCategory;
@@ -69,7 +71,7 @@ export interface DayRecord {
 
 export interface Recommendation {
   id: string;
-  priority: Level;
+  priority: Level | 'none';
   action: string;
   reason: string;
 }

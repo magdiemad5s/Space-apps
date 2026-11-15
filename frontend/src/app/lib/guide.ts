@@ -160,7 +160,7 @@ export const GUIDE: Record<MeasurementKey, MeasureGuide> = {
     sources: ['pvtb', 'astraRepo'],
   },
   attention_accuracy_pct: {
-    measure: 'Percent of correct answers in the separate attention task.',
+    measure: 'Externally measured percent correct in an attention task, entered manually. This app does not administer a complete attention test. If not measured, leave it blank; the current model requires a supplied value before a record can be saved and used for a forecast.',
     why: 'Accuracy can fall when you are tired even if your speed holds.',
     basis: NO_LEVEL,
     sources: ['astraRepo'],

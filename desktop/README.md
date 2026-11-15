@@ -8,7 +8,9 @@ The installer is for **Windows x64**. It is unsigned; a downloaded installer may
 
 ## Build status and verification
 
-**Version 0.1.0 passed native Windows checks in [build 4](https://github.com/magdiemad5s/Space-apps/actions/runs/43693862661)**, from commit `26b14a678b67173e85a6621bb242b9e41f4f0014`. Download the [installer and matching evidence](https://github.com/magdiemad5s/Space-apps/releases/tag/v0.1.0-prototype). Both the portable and installed executables passed 19 checks, including actual prediction, TreeSHAP, and shutdown. Six original reference responses matched on Windows. Installation/uninstallation and an installation path containing spaces were exercised.
+**Version 0.1.1 is being built; its Windows verification is pending.** The instructions below describe the current 0.1.1 source, including blank daily inputs and separate demo storage. Do not assume a 0.1.0 download contains these changes.
+
+**Version 0.1.0 passed native Windows checks in [build 4](https://github.com/magdiemad5s/Space-apps/actions/runs/43693862661)**, from commit `26b14a678b67173e85a6621bb242b9e41f4f0014`. Its [installer and matching evidence](https://github.com/magdiemad5s/Space-apps/releases/tag/v0.1.0-prototype) remain the historical verified release. Both the portable and installed 0.1.0 executables passed 19 checks, including actual prediction, TreeSHAP, and shutdown. Six original reference responses matched on Windows. Installation/uninstallation and an installation path containing spaces were exercised. These results do not certify the new 0.1.1 executable.
 
 The release contains:
 
@@ -27,9 +29,15 @@ Checksums were verified after downloading the CI artifact. Automated checks cove
 4. Wait until the console prints **ASTRA-SHIELD is ready**. The browser opens the printed local URL, normally `http://127.0.0.1:4173`. If that port is occupied, the launcher chooses a free port.
 5. Keep the console open while using the dashboard. **Ctrl+C in that console stops the app.** Closing only the browser tab does not stop the local services.
 
-The Demo shortcut uses `--seed-demo`: it adds nine fictional observations for `DEMO_SIM_001` only if that participant has no history. Records 1–7 are calibration; records 8–9 receive forecasts from the shipped model. Relaunching preserves existing history and does not add another nine records.
+The 0.1.1 Demo shortcut and post-install launch use `--seed-demo --data-dir "%LOCALAPPDATA%\ASTRA-SHIELD\demo"`. They add nine fictional observations for `DEMO_SIM_001` only if that participant has no history in this separate demo store. Records 1–7 are calibration; records 8–9 receive forecasts from the shipped model. Relaunching preserves existing demo history and does not add another nine records. Normal startup retains its original default store; earlier records are not migrated or deleted automatically.
 
-The portable ZIP needs to be extracted completely. Keep `ASTRA-SHIELD.exe` beside its `_internal` folder and the other supplied files. Copying only the inner executable is insufficient. From the extracted folder, `.\ASTRA-SHIELD\ASTRA-SHIELD.exe --seed-demo` starts its presentation data; omit `--seed-demo` to start without adding examples. The installer itself is the single downloadable `.exe` that installs all of those files.
+The portable ZIP needs to be extracted completely. Keep `ASTRA-SHIELD.exe` beside its `_internal` folder and the other supplied files. Copying only the inner executable is insufficient. From the extracted folder, start its presentation with a separate store:
+
+```powershell
+.\ASTRA-SHIELD\ASTRA-SHIELD.exe --seed-demo --data-dir "$env:LOCALAPPDATA\ASTRA-SHIELD\demo"
+```
+
+The installer itself is the single downloadable `.exe` that installs all of those files.
 
 To run the installed executable without adding demonstration observations:
 
@@ -44,8 +52,10 @@ Installation and ordinary inference require no network downloads once the comple
 | Item | Default Windows location |
 |---|---|
 | Application files | `%LOCALAPPDATA%\Programs\ASTRA-SHIELD` |
-| Saved observations | `%LOCALAPPDATA%\ASTRA-SHIELD\history_db_v2.json` |
-| Run diagnostics | `%LOCALAPPDATA%\ASTRA-SHIELD\logs\<UTC timestamp>-<PID>\` |
+| Normal saved observations | `%LOCALAPPDATA%\ASTRA-SHIELD\history_db_v2.json` |
+| Demo shortcut observations | `%LOCALAPPDATA%\ASTRA-SHIELD\demo\history_db_v2.json` |
+| Normal run diagnostics | `%LOCALAPPDATA%\ASTRA-SHIELD\logs\<UTC timestamp>-<PID>\` |
+| Demo shortcut diagnostics | `%LOCALAPPDATA%\ASTRA-SHIELD\demo\logs\<UTC timestamp>-<PID>\` |
 
 Each run records `runtime.json` and `backend.log`; startup/runtime failures can add `error.log`. The console prints the exact paths. Uninstalling the application preserves the separate history/log directory. Back it up before any intentional deletion. Use fictional data during handoff testing, and review logs/screenshots before sharing them.
 
@@ -71,7 +81,7 @@ If the browser does not open, copy the printed URL. If startup fails, retain the
 The [workflow](../.github/workflows/windows-app.yml) supplies the pinned Python/Node toolchain. A manual build requires Windows x64, Python 3.12, Node 24, PowerShell, and Inno Setup 6:
 
 ```powershell
-pwsh -File desktop/build_windows.ps1 -AppVersion 0.1.0
+pwsh -File desktop/build_windows.ps1 -AppVersion 0.1.1
 ```
 
 The script builds the production Angular assets, compiles the backend, bundles Python with PyInstaller, and produces a per-user Inno Setup installer. See the workflow and `requirements-build.txt` for the build dependencies. Build output goes under `desktop/dist/`; temporary resources go under `desktop/build/`. The workflow uploads `ASTRA-SHIELD-Windows-x64-<run_number>`, with a separate diagnostics artifact. These are generated files, not replacements for the model or source data. No training step is included.
@@ -82,4 +92,6 @@ The web frontend remains independent of this optional Windows wrapper. Linux/sou
 
 ## Scope to preserve in the demonstration
 
-The model was trained on synthetic data and forecasts next-day fatigue. SHAP gives model contributions, not medical causes. The five **Alert demo** presets are fictional UI examples; they do not run the full Clinical Alert V2 engine or its 14 medical acceptance cases. Attention accuracy is entered manually; a complete Flanker test is not present in the app. The quick reaction-time demo cannot fill the full model measurement fields.
+Daily Check-in fields start blank. **Fill example values (simulated)** exists only in explicit offline demo mode; it does not supply ordinary backend inputs. Attention accuracy must come from an external measurement. **Not measured** clears it and blocks saving/forecasting until a valid value is supplied; incomplete drafts are not stored. A complete Flanker test is not present in the app, and the quick reaction-time demo cannot fill the full model measurement fields.
+
+The model was trained on synthetic data and forecasts next-day fatigue. SHAP gives model contributions, not medical causes. Cards distinguish simulated examples from model-generated forecasts; missing forecasts receive neutral guidance. The five **Alert demo** presets are fictional UI examples and hide unrelated participant context. They do not run the full Clinical Alert V2 engine or its 14 medical acceptance cases. Use synthetic records in public demonstrations; do not publish real human health observations, journals, or runtime history.

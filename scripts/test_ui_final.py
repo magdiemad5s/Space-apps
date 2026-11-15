@@ -152,6 +152,10 @@ def main():
             expect(page.locator("input[type='number']")).to_have_count(15)
             check("Check-in exposes 15 numeric fields with associated labels", page.locator("input[type='number']").count() == 15 and
                   page.locator("input[type='number']").evaluate_all("xs => xs.every(x=>x.labels.length>0)"))
+            check("new Check-in does not carry forward previous measurements", page.locator("input[type='number']").evaluate_all("xs => xs.every(x => x.value === '')"))
+            # Populate the other fields first so each missing-field check proves
+            # that the specific absent measurement blocks submission on its own.
+            fill(page, RECORDS[0])
             before = len([r for r in requests if r["method"] == "POST"])
             for key in FIELDS:
                 field = page.locator("#f-" + key)

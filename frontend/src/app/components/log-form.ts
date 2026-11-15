@@ -46,11 +46,13 @@ function fieldError(key: MeasurementKey, text: string): string | null {
   template: `
     <header>
       <h3>Today's record</h3>
-      <button type="button" class="link-btn" (click)="fillExample()">Fill example values (simulated)</button>
+      @if (allowExample()) {
+        <button type="button" class="link-btn" [disabled]="busy()" (click)="fillExample()">Fill example values (simulated)</button>
+      }
     </header>
     <p class="lead">
-      One record per day, all 15 measurements, taken before the daily cutoff. The fields start with your previous
-      record so you only change what is different today.
+      Enter fresh measurements for this daily record before the cutoff. All 15 measurements are required;
+      previous values are not copied into today's fields. Leave an unmeasured value blank until it is available.
     </p>
 
     <form class="log-form" (submit)="submit($event)" novalidate>
@@ -78,6 +80,14 @@ function fieldError(key: MeasurementKey, text: string): string | null {
                 <small [class.error]="showErrors() && !!error(key)">
                   {{ showErrors() && error(key) ? error(key) : measures[key].hint }}
                 </small>
+                @if (key === 'attention_accuracy_pct') {
+                  <button type="button" class="link-btn" [disabled]="busy()" (click)="markAttentionNotMeasured()">Not measured</button>
+                  @if (attentionNotMeasured()) {
+                    <small class="attention-missing" role="status">
+                      Attention was not measured. This record cannot be saved or sent for a forecast until an externally measured value is supplied.
+                    </small>
+                  }
+                }
               </div>
             }
           </div>
@@ -118,8 +128,10 @@ function fieldError(key: MeasurementKey, text: string): string | null {
   `,
 })
 export class LogForm {
-  /** Values of the previous record, used to prefill the form. Null for the very first record. */
+  /** Previous-record identity is a reset signal only; its measurements are never copied. */
   readonly previous = input<Measurements | null>(null);
+  /** Example values are permitted only in the explicitly selected offline demo. */
+  readonly allowExample = input(false);
   /** Result of the reaction test; `at` changes with every new result */
   readonly reaction = input<(ReactionResult & { at: number }) | null>(null);
   readonly busy = input(false);
@@ -133,6 +145,7 @@ export class LogForm {
   protected readonly values = signal<Values>(emptyValues());
   protected readonly journal = signal('');
   protected readonly showErrors = signal(false);
+  protected readonly attentionNotMeasured = signal(false);
 
   protected readonly invalidCount = computed(
     () => MEASUREMENT_KEYS.filter((k) => fieldError(k, this.values()[k]) !== null).length,
@@ -140,11 +153,13 @@ export class LogForm {
 
   constructor() {
     effect(() => {
-      const prev = this.previous();
+      this.previous();
+      this.allowExample();
       untracked(() => {
-        this.values.set(prev ? toStrings(prev) : emptyValues());
+        this.values.set(emptyValues());
         this.journal.set('');
         this.showErrors.set(false);
+        this.attentionNotMeasured.set(false);
       });
     });
     effect(() => {
@@ -170,11 +185,19 @@ export class LogForm {
 
   protected setValue(key: MeasurementKey, text: string): void {
     this.values.update((v) => ({ ...v, [key]: text }));
+    if (key === 'attention_accuracy_pct' && text.trim() !== '') this.attentionNotMeasured.set(false);
+  }
+
+  protected markAttentionNotMeasured(): void {
+    this.values.update((v) => ({ ...v, attention_accuracy_pct: '' }));
+    this.attentionNotMeasured.set(true);
   }
 
   protected fillExample(): void {
+    if (!this.allowExample() || this.busy()) return;
     this.values.set(toStrings(DEMO_RECORDS[0].measurements as Measurements));
     this.showErrors.set(false);
+    this.attentionNotMeasured.set(false);
   }
 
   protected submit(e: Event): void {

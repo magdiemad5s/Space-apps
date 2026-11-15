@@ -1,6 +1,6 @@
 {
-  "started_at_utc": "2026-11-15T07:55:02.899606+00:00",
-  "run_id": "692bbed21f",
+  "started_at_utc": "2026-11-15T13:35:06.963531+00:00",
+  "run_id": "8443d4c414",
   "scope": "Expanded Linux Chromium UI audit with real local backend/model and fictional records",
   "data": "Synthetic integration fixture only; no training or held-out model evaluation",
   "reaction_timing": "Virtual clock and synthetic key events; not hardware timing validation",
@@ -131,6 +131,10 @@
     },
     {
       "name": "Check-in exposes 15 numeric fields with associated labels",
+      "passed": true
+    },
+    {
+      "name": "new Check-in does not carry forward previous measurements",
       "passed": true
     },
     {
@@ -443,69 +447,69 @@
   "screenshots": [
     {
       "path": "integration-reports/ui-final-overview-320.png",
-      "sha256": "7970eff89c515ee71cda370120f3e1b7eb793750f43e5af8370e7ca969f3b872"
+      "sha256": "bbfc59291969da3ab71549fb9b270fcd51261bffa0cb5ced4becfeedbe0904b3"
     },
     {
       "path": "integration-reports/ui-final-forecast-320.png",
-      "sha256": "f6222fc16b8b1745038303d0e7a4e0fa5f7f168b32db633baeb8a54ff1533a9e"
+      "sha256": "0cce7287bdbc76ff3441f31c1d4aea6c39d2ccf8b8560bb5c877dc47ecf334e8"
     },
     {
       "path": "integration-reports/ui-final-overview-375.png",
-      "sha256": "ea0b0f24f7a8beced346c90f039c1781b93d8075fa19ee3da2924e78602b6da5"
+      "sha256": "7326e4690e047535d1160aaebdac0774359e03646a50507105c4dc1fc6a7a390"
     },
     {
       "path": "integration-reports/ui-final-forecast-375.png",
-      "sha256": "9e89d8ab7e996561c8ad780c86afc21d747cd7aed1392807ccd163196a310ed3"
+      "sha256": "83710cd9d19d9ff428c2ee635955f282ba7ff5adbfdbfe10c02c1f3965195bd0"
     },
     {
       "path": "integration-reports/ui-final-overview-768.png",
-      "sha256": "cbf6ad47f5a7b4fb374a1a00c7b6c662c51422344a9484e65fcbd6ae972ca471"
+      "sha256": "03ef1172c466a5b8d2557cd25341926589da962450f99c27db62bd40daf00a85"
     },
     {
       "path": "integration-reports/ui-final-forecast-768.png",
-      "sha256": "ab8f97cca76ee1c7af30ebe7181a230b4bc5dc8cb8034634c5ba4adb47bfa111"
+      "sha256": "fc62a64b79a5df401b2a58cc1991fe88fe1dcb7cb64b4ee5f78597cea59a4711"
     },
     {
       "path": "integration-reports/ui-final-overview-1440.png",
-      "sha256": "de4e5debff34a1708dddad61164edb7581ee5168d920a262aca1835f01f921b5"
+      "sha256": "80ed7ac5d992bbf4ac6ff9fd404f301af276e68d4377a73da0bd611de50cfb0b"
     }
   ],
   "passed": true,
-  "completed_at_utc": "2026-11-15T07:55:19.064054+00:00",
-  "passed_check_count": 80,
+  "completed_at_utc": "2026-11-15T13:35:21.639924+00:00",
+  "passed_check_count": 81,
   "failed_check_count": 0,
   "source_sha256": {
     "frontend/src/app/app.config.ts": "5bffd9ddcaf75a8d2c1d4053afded1d307d17e22663f3cd5a084fc64534fee53",
-    "frontend/src/app/app.ts": "5f61fd2c93e867bdf8dc3cfc727fb428743d6f7a9fcf5b5dc280dff65e4f835f",
+    "frontend/src/app/app.ts": "65ab5190479c6283b3eaf8dbfe2c24f3d42c360e13b1d753ec91171beebe6990",
     "frontend/src/app/components/astronaut-figure.ts": "a658cf8c63858e5064dc345a6aea25ea06e3d14b2b5b5aec8424945a9d75a19e",
-    "frontend/src/app/components/body-map.ts": "08bff1602deca3f0fb112f4cd13e7bd8304399f47144645c040ad9bd85041363",
+    "frontend/src/app/components/body-map.ts": "b1334ca810aa9a55782aea01d2b27bf1470dab45c941417c1fe10c7d9cf6121d",
     "frontend/src/app/components/calibration-card.ts": "838547b9d20604578199724b285eff05bb1f647490227bcd5ef450846cbba6c6",
-    "frontend/src/app/components/check-in-view.ts": "b4f68cf7955f92a79f63f2f564c3460d05ca78ae3faafd317a3d2968bbccce86",
-    "frontend/src/app/components/clinical-demo.ts": "3affae1cc8000c5238b5539e96518f2f9acce1fca2fe6c4c6f744173c34960be",
+    "frontend/src/app/components/check-in-view.ts": "89f289f26faa98e447360ddad8730d47965206331fdfe089f048fbcfb55dfc10",
+    "frontend/src/app/components/clinical-demo.ts": "4c9d2296e923fe508621d34f007f1c4e9e922c953f7cabef789f6ab8d96517e5",
     "frontend/src/app/components/day-strip.ts": "1eac8790129a2031108b637823c10ef43c33db935e471a67d9d030889b36992a",
-    "frontend/src/app/components/fatigue-card.ts": "c034f10b6a09fb659beef400e2bfc9f712105ad5b52a2da90a1195dffde3481f",
+    "frontend/src/app/components/fatigue-card.ts": "f5dbb53aaf7b583d9806f278894c9002fdf3828f8ab53cbe819a6299e49edbc3",
     "frontend/src/app/components/fatigue-timeline.ts": "d219fc24f2bc2e327e06b2d714b9b5088abe42f2cdb28602d37b28cda667036a",
     "frontend/src/app/components/guide-view.ts": "ec294f1b7ab11fd8939aa5bcb3c45db5062625f5b6320aae95488be80fc22359",
-    "frontend/src/app/components/insights-panel.ts": "d187391e515582a45745ddcc52a78000f7526555bfdc95651e297b8a66f5b757",
-    "frontend/src/app/components/log-form.ts": "609914b04f2ea93bd11f8d6f831a9c89271046b239e723f11297855806414316",
+    "frontend/src/app/components/insights-panel.ts": "f9afd476806bf6cf43c379e5e5affe39c3b7addd2c6ac664350b26131b9b394a",
+    "frontend/src/app/components/log-form.ts": "e734fb5b29bd953dcd1d4df16b886a33a5061fbcda5db5aa440ea2466eafd8f0",
     "frontend/src/app/components/metric-group.ts": "55aa3d93328a900e4f85018f87b7672e366224d53c3f6ad6cbbdca9a3d097cdb",
     "frontend/src/app/components/overview-status.ts": "474c69696aea03ca57ee71cb103a777a606b88a676143814c8faaea40e1775fa",
-    "frontend/src/app/components/progress-gauge.ts": "8dc4b4168bf1ae443d8ad30f59e47273b1908033109cb90bb106fa10f47eb9e6",
-    "frontend/src/app/components/reaction-test.ts": "2d9d698cf0a4b98ce5fb4c962c5d23ba40c06cb9bd7f10fc4d84d34cbbba5d43",
+    "frontend/src/app/components/progress-gauge.ts": "cf8cffc7937b2f1998d99de4d8d3a6bd5b20f06fe9398e394a6a7b62aead5402",
+    "frontend/src/app/components/reaction-test.ts": "8fa2a415f06f6978f3b52288cf1eac168dad4c14eb0711a02ef4d4fc8608fccc",
     "frontend/src/app/components/recommendation-cards.ts": "ac834eb1a6d41da021cba0fe88a0b0efca3f02c1e71e043c119ed66c44b2e02f",
     "frontend/src/app/components/status-tag.ts": "1281307c3931d128d92301ecd787d6a71e08cff0a52f093aa026d673aea64ed6",
     "frontend/src/app/components/tile-visuals.ts": "54778609170db3d8677e51aa615975327a5a42e07d581f2dff4e76bd719aa7c9",
     "frontend/src/app/components/top-nav.ts": "5378e70253ba640aa2341a5a95f43c1c29e1b84d5ac6850ca4cbb4913e62c17c",
     "frontend/src/app/components/trend-chart.ts": "270e5563c908bffe5f2d3613fbe4643a46e3769e92fcf503ffcdbbcd400233a5",
     "frontend/src/app/data/demo-data.ts": "b11ed91eae94fda51371999fcf14640b1c57862ccc646aeb7d79be0deafdf46b",
-    "frontend/src/app/data/source.ts": "491e57a7beccb744a1a15bf4ff1dedbb7910b9ff1be630566d485fa838830763",
-    "frontend/src/app/lib/guide.ts": "a55f93d4dce74651a10102ea5f3a8c05a7751e8fe9f3350cd311bc2f7e491efb",
-    "frontend/src/app/lib/insights.ts": "5b52aa08c8015fbf644c82d67fdc0c8dfba15f05347c7d382bd65d5a5218a57f",
-    "frontend/src/app/lib/metrics.ts": "cd4d098453456e7794e76cd498b0daa0332303c745cc806d6a8035e42d2f1821",
+    "frontend/src/app/data/source.ts": "b0bc0b5cf4114bc7c9b176fbaa4978b968792c3bc532cc321e30922a6260c1bf",
+    "frontend/src/app/lib/guide.ts": "25c4cd8bd20da586b6a9a216d58e6db85e4f17399fc12ca6552fd559bc5befe8",
+    "frontend/src/app/lib/insights.ts": "ce8162ab23d5c54df81e0b8bf63e883bfa3eb4d05ff0aaa28a516f8be45ab0fb",
+    "frontend/src/app/lib/metrics.ts": "20ec19fe9206fc248a556cf509bd863d8a262c567bfeb2469b7ebd403345ea6a",
     "frontend/src/app/lib/time.ts": "2300bbec2804a476e61be25f2927754a9eda14f1e4c0ea1b0065c64c0abd0dde",
-    "frontend/src/app/types.ts": "3b155083f42faea01bed4f2ae3dd90cda372e393e894b1557977eded96129f91",
+    "frontend/src/app/types.ts": "d17fa05423b10f6a2bc90ce54908a9a15cb55fe079ef31abd951043075ef18cc",
     "frontend/src/main.ts": "2341253f1a947c37dfa27838951cf7e224f7abb32dff45a8d425f042b5eeed13",
-    "frontend/src/styles.css": "7b405305b1978cd99c7c1f92c3db3caee80d00783b71fc14cfa2efeff740b5bb",
-    "scripts/test_ui_final.py": "f0963022c2b43b8a53ed0cb50da42554b218c1cd0fa3018b34835cbdc4f44e2f"
+    "frontend/src/styles.css": "556609e2cc901f8263bd5f14934afc497b0f46fe0ae09f08d2e1ab6297671e87",
+    "scripts/test_ui_final.py": "9318de82225b76d083992ad9e08fd3cc13a6a1353bd9dc8eb1725231e99a67d7"
   }
 }

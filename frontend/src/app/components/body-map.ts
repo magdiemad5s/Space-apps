@@ -74,6 +74,7 @@ const ZONES: Zone[] = [
   template: `
     <div class="figure-stage">
       <app-astronaut-figure />
+      @if (!scenarioPreview()) {
       @for (z of zones; track z.id) {
         <button
           class="hotspot"
@@ -88,9 +89,11 @@ const ZONES: Zone[] = [
           <i></i>
         </button>
       }
+      }
     </div>
     <p class="si-mark">SI-generated illustration</p>
 
+    @if (!scenarioPreview()) {
     <aside class="zone-card" [attr.data-level]="zoneLevel(active()) ?? 'none'" [style.--zone-y]="active().y + '%'">
       <p class="zone-label">{{ active().label }}</p>
       <ul>
@@ -111,9 +114,12 @@ const ZONES: Zone[] = [
         How to read this →
       </button>
     </aside>
+    }
   `,
 })
 export class BodyMap {
+  /** Alert scenarios have their own fictional inputs, independent of the selected record. */
+  readonly scenarioPreview = input(false);
   readonly record = input<DayRecord | null>(null);
   readonly baseline = input<PersonalBaseline | null>(null);
   /** Opens the Guide view at a measurement or the forecast */

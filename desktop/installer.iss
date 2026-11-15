@@ -7,7 +7,7 @@
   #error OutputDir must identify the installer output folder.
 #endif
 #ifndef AppVersion
-  #define AppVersion "0.1.0"
+  #define AppVersion "0.1.1"
 #endif
 
 [Setup]
@@ -40,8 +40,8 @@ Name: "desktopicon"; Description: "Create a desktop shortcut"; Flags: unchecked
 Source: "{#BundleDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
-Name: "{group}\ASTRA-SHIELD Demo"; Filename: "{app}\ASTRA-SHIELD.exe"; Parameters: "--seed-demo"; WorkingDir: "{app}"
-Name: "{autodesktop}\ASTRA-SHIELD Demo"; Filename: "{app}\ASTRA-SHIELD.exe"; Parameters: "--seed-demo"; WorkingDir: "{app}"; Tasks: desktopicon
+Name: "{group}\ASTRA-SHIELD Demo"; Filename: "{app}\ASTRA-SHIELD.exe"; Parameters: "--seed-demo --data-dir ""{localappdata}\ASTRA-SHIELD\demo"""; WorkingDir: "{app}"
+Name: "{autodesktop}\ASTRA-SHIELD Demo"; Filename: "{app}\ASTRA-SHIELD.exe"; Parameters: "--seed-demo --data-dir ""{localappdata}\ASTRA-SHIELD\demo"""; WorkingDir: "{app}"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\ASTRA-SHIELD.exe"; Parameters: "--seed-demo"; Description: "Open ASTRA-SHIELD in your browser"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\ASTRA-SHIELD.exe"; Parameters: "--seed-demo --data-dir ""{localappdata}\ASTRA-SHIELD\demo"""; Description: "Open ASTRA-SHIELD in your browser"; Flags: nowait postinstall skipifsilent

@@ -1,10 +1,12 @@
 # Crew Health Console · integrated frontend
 
-Angular 22 · Ionic 9 · TypeScript · SVG charts. Based on **Karam Eyad's [crew-health-console](https://github.com/Karam-Eyad/crew-health-console)**, supplied by the team as a ZIP and integrated into ASTRA-SHIELD. The application remains a web app on Windows and Linux.
+Angular 22 · Ionic 9 · TypeScript · SVG charts. Based on **Karam Alhams's [crew-health-console](https://github.com/Karam-Eyad/crew-health-console)**, supplied by the team as a ZIP and integrated into ASTRA-SHIELD. The application remains a web app on Windows and Linux.
 
 **Start with the [repository README](../README.md)** for the Windows **0.1.0 prototype installer** and source launchers, or [Linux instructions](../docs/RUNNING.md#linux). The portable and installed Windows executables passed [native Windows checks](../integration-reports/windows-build-4/verification.json); they open this same frontend in a browser. The original teammate README is preserved as [a historical snapshot](docs/UPSTREAM_README_SNAPSHOT.md); its automatic-demo fallback, quick-test transfer, and lenient model-loader instructions have been superseded.
 
 This NASA Space Apps 2026 submission is a hackathon prototype. Its model-training and example records are synthetic, not NASA astronaut measurements. It is not a medical diagnosis or a validated astronaut-health system. See the [project submission disclosure](../docs/SUBMISSION_DISCLOSURE.md) and [machine-readable provenance](../PROVENANCE.json) for project-wide sources, AI assistance, and limitations.
+
+The full [team roster](../README.md#team) credits all six project contributors.
 
 ## What the teammate provided
 
@@ -17,7 +19,7 @@ This NASA Space Apps 2026 submission is a hackathon prototype. Its model-trainin
 | Guide | Measurement definitions, prototype color rules, escalation context, and cited background sources |
 | Bottom panel | Model SHAP explanations, illustrative measurement guidance, and example suggestions |
 
-Integration adds an **Alert demo** tab: five prewritten fictional examples showing current alert levels 0/1/2/3/UNKNOWN beside a separate example forecast. It makes no clinical inference or model request and does not execute the 14 Clinical Alert V2 acceptance cases.
+Integration adds an **Alert demo** tab: five prewritten fictional examples showing current alert levels 0/1/2/3/UNKNOWN beside a separate example forecast. It makes no clinical inference or model request and does not execute the 14 Clinical Alert V2 acceptance cases. This tab hides the unrelated record body-map details and forecast/recommendation panel, so its example Low forecast cannot be confused with the selected record.
 
 ## Develop in a browser
 
@@ -53,6 +55,8 @@ It accepts current observations, not target labels or client-computed baselines.
 | Failed read or history refresh | Visible error; real/acknowledged observations never silently replaced by demo history |
 | Malformed forecast after an acknowledged save | Saved observation retained, forecast withheld, refresh warning |
 
+Forecast cards identify “Simulated example forecast” versus “Model-generated forecast” and show the full target time in UTC. Fixture advice is labeled “Example advisory.” Missing forecasts have a neutral “No forecast-based recommendation available.” message; current measurement concerns remain visible.
+
 Retries preserve the exact timestamp, fields and journal, including after reload. `fatigue_points` is a prototype index, not a medical risk percentage. Classifier scores are uncalibrated; the separate regression score can disagree with the predicted category. SHAP explains the predicted model class, not causes of disease or fatigue.
 
 ## Reaction and attention scope
@@ -62,7 +66,7 @@ Retries preserve the exact timestamp, fields and journal, including after reload
 - Losing focus or hiding the page invalidates an active run and requires a retake. Browser/device latency and transfer to synthetic training data are not clinically validated.
 - Attention accuracy remains a **manual field**. The separate [Flanker scoring prototype](../ai/integration/flanker_prototype/README.md) is not a complete interactive task in this app.
 
-The form prefills earlier values for editing. Confirm each measurement; copied values are not newly collected observations. The next-cutoff mechanism is useful for advancing historical demo sequences but is not a measurement timestamp audit.
+The form starts blank for each new record. All 15 current measurements remain required. “Not measured” clears attention and blocks saving/inference until a value is supplied; it never inserts zero or copies an old result. Example autofill is available only in the explicitly selected offline demo. The next-cutoff mechanism is useful for advancing historical demo sequences but is not a measurement timestamp audit.
 
 ## Guidance is not Clinical Alert V2
 
@@ -88,18 +92,18 @@ proxy.conf.cjs           Local same-origin API proxy
 
 ## Use of SI (AI tools)
 
-**The team designed and developed Crew Health Console**, including its interface direction, measurement workflow and integration requirements. Karam Eyad supplied the frontend implementation; Magdi coordinated the subsequent integration and verification. SI tools supported that team-led work by accelerating implementation, analysis, debugging, documentation and testing.
+**The team designed and developed Crew Health Console**, including its interface direction, measurement workflow and integration requirements. Karam Alhams supplied the frontend implementation; Majdi Abu Ahour coordinated the subsequent integration and verification. SI tools supported that team-led work by accelerating implementation, analysis, debugging, documentation and testing.
 
 The provided **NASA Space Apps Challenge 2026 Project Submission Guide** (November 13, 2026) uses the term **Super Intelligence (SI)** for tools including machine learning, chatbots, image generation and large language models. The disclosures below identify the specific assistance used within the team's development process.
 
 | Scope | Tool and disclosed use |
 |---|---|
-| Original frontend supplied by Karam Eyad as a ZIP | Its [original disclosure](docs/UPSTREAM_README_SNAPSHOT.md#use-of-si-ai-tools) states that **Claude (Anthropic)** assisted with dashboard code, SVG illustrations (astronaut, silhouette and watch), and Guide text from the team's idea and requirements, with team review. |
-| Integration and later project work | Magdi used **OpenAI ChatGPT/Codex** for frontend/backend integration, the synthetic-data generator and model workflow, error fixes, testing, Windows packaging, and documentation. The resulting synthetic records remain simulated data; AI assistance does not establish medical validity. |
+| Original frontend supplied by Karam Alhams as a ZIP | Its [original disclosure](docs/UPSTREAM_README_SNAPSHOT.md#use-of-si-ai-tools) states that **Claude (Anthropic)** assisted with dashboard code, SVG illustrations (astronaut, silhouette and watch), and Guide text from the team's idea and requirements, with team review. |
+| Integration and later project work | Majdi Abu Ahour used **OpenAI ChatGPT/Codex** for frontend/backend integration, the synthetic-data generator and model workflow, error fixes, testing, Windows packaging, and documentation. The resulting synthetic records remain simulated data; AI assistance does not establish medical validity. |
 
 The original frontend credit is retained alongside the later integration disclosure. The [project-wide disclosure](../docs/SUBMISSION_DISCLOSURE.md) and [provenance metadata](../PROVENANCE.json) document AI-assisted code and data; the [frontend archive record](../integration-reports/FRONTEND_PROVENANCE.json) records the supplied source separately.
 
-Completed verification includes **80 UI checks, 48 end-to-end integration checks and 25 frontend regression tests**. Native Windows tests also exercised the packaged and installed app's real predictions, SHAP explanations and shutdown. See the [test evidence](../integration-reports/README.md). Further teammate testing is part of ongoing prototype development; these completed software checks do not establish clinical validation.
+Completed verification includes **81 UI checks, 48 end-to-end integration checks and 30 frontend regression tests**. Native Windows tests also exercised the packaged and installed app's real predictions, SHAP explanations and shutdown. See the [test evidence](../integration-reports/README.md). Further teammate testing is part of ongoing prototype development; these completed software checks do not establish clinical validation.
 
 ### Illustration labels and submission exports
 
@@ -109,7 +113,7 @@ The submission guide requires a **visible watermark on SI-generated images and v
 
 ## NASA resources, other sources and credits
 
-- Frontend origin: Karam Eyad / `crew-health-console`; [archive provenance](../integration-reports/FRONTEND_PROVENANCE.json).
+- Frontend origin: Karam Alhams / `crew-health-console`; [archive provenance](../integration-reports/FRONTEND_PROVENANCE.json).
 - Model/backend: the ASTRA-SHIELD team, [Space-apps](https://github.com/magdiemad5s/Space-apps).
 - NASA [5 Hazards of Human Spaceflight](https://www.nasa.gov/hrp/hazards/) and [Human Spaceflight Risks](https://www.nasa.gov/hrp/risks/): background for the Guide and Body map's sleep, behavioral-health and cardiovascular context.
 - NASA [Reaction Self Test background](https://spinoff.nasa.gov/Spinoff2013/hm_1.html): motivation for the reaction-time demonstration; it does not validate our count-limited task as the NASA/ISS test.

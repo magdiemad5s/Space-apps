@@ -1,6 +1,6 @@
 @echo off
 setlocal
 echo ASTRA-SHIELD SYNTHETIC DEMO
-echo Loads example history only when DEMO_SIM_001 is empty. Existing records are preserved.
-call "%~dp0Start-Astra.cmd" --seed-demo %*
+echo Uses separate synthetic demonstration history in .local\demo. Existing records are preserved.
+call "%~dp0Start-Astra.cmd" --seed-demo --db-file "%~dp0.local\demo\history_db_v2.json" %*
 exit /b %errorlevel%

@@ -163,7 +163,7 @@ export const MEASURES: Record<MeasurementKey, Measure> = {
   },
   attention_accuracy_pct: {
     key: 'attention_accuracy_pct',
-    label: 'Attention accuracy',
+    label: 'Externally measured attention-task accuracy',
     unit: '%',
     decimals: 0,
     min: 0,
@@ -172,7 +172,7 @@ export const MEASURES: Record<MeasurementKey, Measure> = {
     step: 0.1,
     group: 'cognition',
     domain: [60, 100],
-    hint: 'Percent correct in the separate attention task.',
+    hint: 'Enter percent correct from an external attention task. This app does not administer a complete attention test.',
   },
   self_report_stress_score: {
     key: 'self_report_stress_score',

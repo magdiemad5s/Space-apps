@@ -58,7 +58,7 @@ interface Row {
         </ul>
       }
 
-      <h3 class="dark-sub">{{ record()?.forecast ? 'Why this forecast' : 'Forecast status' }}</h3>
+      <h3 class="dark-sub">{{ record()?.forecast ? (record()?.forecast?.origin === 'simulated_example' ? 'Why this forecast · simulated example' : 'Why this forecast · model-generated') : 'Forecast status' }}</h3>
       <ul>
         @for (a of reasons(); track a.id) {
           <li [attr.data-level]="a.level">
@@ -76,7 +76,8 @@ interface Row {
 
       @if (record()?.forecast) {
         <p class="dark-foot">
-          These are SHAP attributions for the model's output. They are not medical causes or instructions.
+          {{ record()?.forecast?.origin === 'simulated_example' ? 'These are saved example SHAP attributions; no model request was made.' : 'These are SHAP attributions for this record’s model-generated output.' }}
+          They are not medical causes or instructions.
         </p>
       }
     }
@@ -122,7 +123,7 @@ export class InsightsPanel {
               id: 'calibration',
               level: 'none',
               title: `Calibration record ${r.index} of ${this.required()}`,
-              message: `No forecast is made during calibration. It starts with record ${this.required() + 1}, using your fixed baseline and the last 3 days.`,
+              message: `No forecast is made during calibration. Eligible records can receive a forecast from record ${this.required() + 1} when the model service is available, using your fixed baseline and the last 3 days.`,
               side: '',
             }
           : {

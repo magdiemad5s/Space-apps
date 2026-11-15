@@ -19,7 +19,7 @@ const ARC = 'M46.26 153.74 A76 76 0 1 1 153.74 153.74';
       <text x="100" y="126" text-anchor="middle" class="gauge-sub">{{ count() === 1 ? 'record' : 'records' }}</text>
     </svg>
     <h2>{{ done() ? 'Baseline ready' : 'Calibration' }}</h2>
-    <p>{{ done() ? 'Forecasts run on every new record' : shown() + ' of ' + required() + ' records for the baseline' }}</p>
+    <p>{{ done() ? 'Eligible records can receive a forecast when the model service is available.' : shown() + ' of ' + required() + ' records for the baseline' }}</p>
   `,
 })
 export class ProgressGauge {

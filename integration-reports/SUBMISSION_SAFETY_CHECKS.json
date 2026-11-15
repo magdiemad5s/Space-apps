@@ -1,0 +1,191 @@
+{
+  "run_id": "9bbd11fd51",
+  "started_at_utc": "2026-11-15T13:34:43.646607+00:00",
+  "scope": "Linux Chromium, real TypeScript backend and unchanged Python model; focused submission UI regressions",
+  "data": "Fictional synthetic integration observations; no training or held-out partition evaluation",
+  "storage": {
+    "main_database": "/workspace/Space-apps/.local/submission-safety-011/history_db_v2.json",
+    "participant": "DEMO_SAFETY_9bbd11fd51",
+    "outage_database": "TemporaryDirectory, removed after verification"
+  },
+  "reaction_timing": "Playwright virtual clock and scripted responses; not human/device timing validation",
+  "windows_executed": false,
+  "clinical_14_cases_executed": false,
+  "checks": [
+    {
+      "name": "selected main test database contains only explicit demo identities",
+      "passed": true,
+      "detail": {
+        "existing_demo_participant_count": 5
+      }
+    },
+    {
+      "name": "main backend reaches the actual unchanged model",
+      "passed": true
+    },
+    {
+      "name": "real API writes seven synthetic calibration records to the selected isolated database",
+      "passed": true
+    },
+    {
+      "name": "new Check-in starts with all 15 measurements blank despite existing history",
+      "passed": true
+    },
+    {
+      "name": "backend Check-in does not offer simulated example filling",
+      "passed": true
+    },
+    {
+      "name": "reopening Check-in starts fresh instead of restoring stale measurements",
+      "passed": true
+    },
+    {
+      "name": "Not measured attention is explicit and blocks submission without substituting a score",
+      "passed": true
+    },
+    {
+      "name": "full 60-response synthetic task transfers its actual scripted median and lapse count",
+      "passed": true,
+      "detail": {
+        "median_ms": 220.0,
+        "lapses": 1
+      }
+    },
+    {
+      "name": "transferred reaction results reach a real completed model request",
+      "passed": true
+    },
+    {
+      "name": "actual model response contains three SHAP explanations",
+      "passed": true
+    },
+    {
+      "name": "successful save clears daily numeric fields for the next record",
+      "passed": true
+    },
+    {
+      "name": "retrieved record preserves exact task values and journal, with the same cutoff instant",
+      "passed": true
+    },
+    {
+      "name": "displayed model forecast category and index match the actual response",
+      "passed": true
+    },
+    {
+      "name": "displayed SHAP contributions match this actual model request",
+      "passed": true
+    },
+    {
+      "name": "model forecast target includes a full year and UTC",
+      "passed": true
+    },
+    {
+      "name": "actual prediction is not relabeled as a live result when read from stored history",
+      "passed": true
+    },
+    {
+      "name": "Alert demo hides unrelated record body-map readings, forecast and recommendations",
+      "passed": true
+    },
+    {
+      "name": "five fictional alert scenarios remain independent and make no API request",
+      "passed": true
+    },
+    {
+      "name": "sleepiness example has procedure-based reassessment without a fixed 1\u20132 hour rule",
+      "passed": true
+    },
+    {
+      "name": "urgent fictional example retains immediate medical contact and no wait for a model",
+      "passed": true
+    },
+    {
+      "name": "offline forecast and advisory label their fictional example provenance",
+      "passed": true
+    },
+    {
+      "name": "index card explicitly distinguishes its index from clinical risk probability",
+      "passed": true
+    },
+    {
+      "name": "explicit offline demo Check-in also starts blank",
+      "passed": true
+    },
+    {
+      "name": "example filling is an explicit action confined to offline demo",
+      "passed": true
+    },
+    {
+      "name": "real secondary backend reports model unavailable",
+      "passed": true
+    },
+    {
+      "name": "unavailable model has a neutral no-recommendation message without reassurance",
+      "passed": true
+    },
+    {
+      "name": "unavailable result does not invent a forecast index",
+      "passed": true
+    },
+    {
+      "name": "no uncaught browser JavaScript errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "console_page_errors": [],
+  "passed": true,
+  "browser_version": "156.0.8078.79",
+  "model_request_observation": {
+    "participant": "DEMO_SAFETY_9bbd11fd51",
+    "observation_timestamp_utc": "2026-01-01T18:00:00Z",
+    "target_timestamp_utc": "2026-01-02T18:00:00Z",
+    "reaction_time_median_ms": 220.0,
+    "reaction_time_lapses_count": 1,
+    "category": "Low",
+    "points": 29.5,
+    "note": "Integration output only, not accuracy or clinical risk"
+  },
+  "completed_at_utc": "2026-11-15T13:34:49.439030+00:00",
+  "passed_check_count": 28,
+  "failed_check_count": 0,
+  "source_sha256": {
+    "scripts/test_submission_safety.py": "ab35f031ae70d6de6f180ea0a6c4b6d7ee66c4597a4303257b4c7f4f3d9a0fa0",
+    "scripts/test_app_integration.py": "925e80011495f027345f28753c0ef511c829caf5bef8ef432e0cd7ff610ebcdf",
+    "ai/integration/backend_review/proposed_backend/examples/synthetic_daily_sequence.json": "a25e120295542fd8f2992d3a6ee9eb360ea46e521c6c78607f8e53693935012c",
+    "ai/artifacts/bundle.joblib": "7731618ad68c0302338bcb4e869820601f8a43f735c8f7480fe19a121c500706",
+    "ai/integration/backend_review/proposed_backend/server.ts": "713be862c9be7e4d1ef4d9270ca3a93fa77383fc41c1f471a68c5b0854793b8b",
+    "ai/integration/backend_review/proposed_backend/featureHistory.ts": "5609665bae97c88630e0fff92e9b25650cccaaf9ca442487ba3da58654719f7b",
+    "frontend/src/app/app.config.ts": "5bffd9ddcaf75a8d2c1d4053afded1d307d17e22663f3cd5a084fc64534fee53",
+    "frontend/src/app/app.ts": "65ab5190479c6283b3eaf8dbfe2c24f3d42c360e13b1d753ec91171beebe6990",
+    "frontend/src/app/components/astronaut-figure.ts": "a658cf8c63858e5064dc345a6aea25ea06e3d14b2b5b5aec8424945a9d75a19e",
+    "frontend/src/app/components/body-map.ts": "b1334ca810aa9a55782aea01d2b27bf1470dab45c941417c1fe10c7d9cf6121d",
+    "frontend/src/app/components/calibration-card.ts": "838547b9d20604578199724b285eff05bb1f647490227bcd5ef450846cbba6c6",
+    "frontend/src/app/components/check-in-view.ts": "89f289f26faa98e447360ddad8730d47965206331fdfe089f048fbcfb55dfc10",
+    "frontend/src/app/components/clinical-demo.ts": "4c9d2296e923fe508621d34f007f1c4e9e922c953f7cabef789f6ab8d96517e5",
+    "frontend/src/app/components/day-strip.ts": "1eac8790129a2031108b637823c10ef43c33db935e471a67d9d030889b36992a",
+    "frontend/src/app/components/fatigue-card.ts": "f5dbb53aaf7b583d9806f278894c9002fdf3828f8ab53cbe819a6299e49edbc3",
+    "frontend/src/app/components/fatigue-timeline.ts": "d219fc24f2bc2e327e06b2d714b9b5088abe42f2cdb28602d37b28cda667036a",
+    "frontend/src/app/components/guide-view.ts": "ec294f1b7ab11fd8939aa5bcb3c45db5062625f5b6320aae95488be80fc22359",
+    "frontend/src/app/components/insights-panel.ts": "f9afd476806bf6cf43c379e5e5affe39c3b7addd2c6ac664350b26131b9b394a",
+    "frontend/src/app/components/log-form.ts": "e734fb5b29bd953dcd1d4df16b886a33a5061fbcda5db5aa440ea2466eafd8f0",
+    "frontend/src/app/components/metric-group.ts": "55aa3d93328a900e4f85018f87b7672e366224d53c3f6ad6cbbdca9a3d097cdb",
+    "frontend/src/app/components/overview-status.ts": "474c69696aea03ca57ee71cb103a777a606b88a676143814c8faaea40e1775fa",
+    "frontend/src/app/components/progress-gauge.ts": "cf8cffc7937b2f1998d99de4d8d3a6bd5b20f06fe9398e394a6a7b62aead5402",
+    "frontend/src/app/components/reaction-test.ts": "8fa2a415f06f6978f3b52288cf1eac168dad4c14eb0711a02ef4d4fc8608fccc",
+    "frontend/src/app/components/recommendation-cards.ts": "ac834eb1a6d41da021cba0fe88a0b0efca3f02c1e71e043c119ed66c44b2e02f",
+    "frontend/src/app/components/status-tag.ts": "1281307c3931d128d92301ecd787d6a71e08cff0a52f093aa026d673aea64ed6",
+    "frontend/src/app/components/tile-visuals.ts": "54778609170db3d8677e51aa615975327a5a42e07d581f2dff4e76bd719aa7c9",
+    "frontend/src/app/components/top-nav.ts": "5378e70253ba640aa2341a5a95f43c1c29e1b84d5ac6850ca4cbb4913e62c17c",
+    "frontend/src/app/components/trend-chart.ts": "270e5563c908bffe5f2d3613fbe4643a46e3769e92fcf503ffcdbbcd400233a5",
+    "frontend/src/app/data/demo-data.ts": "b11ed91eae94fda51371999fcf14640b1c57862ccc646aeb7d79be0deafdf46b",
+    "frontend/src/app/data/source.ts": "b0bc0b5cf4114bc7c9b176fbaa4978b968792c3bc532cc321e30922a6260c1bf",
+    "frontend/src/app/lib/guide.ts": "25c4cd8bd20da586b6a9a216d58e6db85e4f17399fc12ca6552fd559bc5befe8",
+    "frontend/src/app/lib/insights.ts": "ce8162ab23d5c54df81e0b8bf63e883bfa3eb4d05ff0aaa28a516f8be45ab0fb",
+    "frontend/src/app/lib/metrics.ts": "20ec19fe9206fc248a556cf509bd863d8a262c567bfeb2469b7ebd403345ea6a",
+    "frontend/src/app/lib/time.ts": "2300bbec2804a476e61be25f2927754a9eda14f1e4c0ea1b0065c64c0abd0dde",
+    "frontend/src/app/types.ts": "d17fa05423b10f6a2bc90ce54908a9a15cb55fe079ef31abd951043075ef18cc",
+    "frontend/src/main.ts": "2341253f1a947c37dfa27838951cf7e224f7abb32dff45a8d425f042b5eeed13",
+    "frontend/src/styles.css": "556609e2cc901f8263bd5f14934afc497b0f46fe0ae09f08d2e1ab6297671e87"
+  }
+}

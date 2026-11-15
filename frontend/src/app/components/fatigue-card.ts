@@ -2,7 +2,9 @@ import { Component, computed, input, output } from '@angular/core';
 import type { DayRecord, Level } from '../types';
 import { CATEGORY_LEVEL } from '../lib/metrics';
 
-const fmt = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short', timeZone: 'UTC' });
+const fmt = new Intl.DateTimeFormat('en-GB', {
+  day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'UTC',
+});
 
 interface Prob {
   key: 'low' | 'moderate' | 'high';
@@ -29,6 +31,7 @@ interface Prob {
 
     @switch (state()) {
       @case ('forecast') {
+        <p class="mini-label fc-origin">{{ forecastOrigin() }}</p>
         <div class="fc-body">
           <section class="fc-main">
             <p class="fc-category">{{ category() }}</p>
@@ -36,12 +39,12 @@ interface Prob {
               <strong>{{ points() }}</strong>
               <span>/ 100 index</span>
             </p>
-            <p class="fc-note">Prototype severity index, not a medical percentage.</p>
+            <p class="fc-note">Prototype Fatigue Index, not a medical percentage or clinical risk probability.</p>
           </section>
 
           <section class="fc-probs">
             @if (probs().length > 0) {
-              <p class="mini-label">Model probabilities</p>
+              <p class="mini-label">Uncalibrated model class outputs</p>
               <div class="prob-bar" role="img" [attr.aria-label]="probsLabel()">
                 @for (p of probs(); track p.key) {
                   <span [attr.data-level]="p.level" [style.flex]="p.value + ' 1 0'"></span>
@@ -54,6 +57,7 @@ interface Prob {
                   </li>
                 }
               </ul>
+              <p class="fc-foot">Rounded percentages may not total 100%.</p>
             }
             <ul class="fc-rows">
               <li>
@@ -84,7 +88,10 @@ interface Prob {
             <p class="fc-trend-cap">{{ sparkCaption() }}</p>
           </section>
         </div>
-        <p class="fc-foot">From a model trained on synthetic data; the probabilities are not calibrated. Limits are in the Guide.</p>
+        <p class="fc-foot">
+          {{ forecast()?.origin === 'simulated_example' ? 'Saved fictional example; no model request is made in this mode.' : 'Model-generated result for this record; not a new inference on every view.' }}
+          Model training used synthetic data. Limits are in the Guide.
+        </p>
       }
 
       @case ('calibrating') {
@@ -97,7 +104,7 @@ interface Prob {
           </ol>
           <p class="fc-note">
             Record {{ record()?.index }} of {{ required() }}. The first {{ required() }} daily records build your fixed
-            personal baseline. Forecasts start with record {{ required() + 1 }}.
+            personal baseline. Eligible records can receive a forecast from record {{ required() + 1 }} when the service is available.
           </p>
         </div>
       }
@@ -135,7 +142,9 @@ export class FatigueCard {
     return r.status === 'collecting_baseline' ? 'calibrating' : 'unavailable';
   });
 
-  private readonly forecast = computed(() => this.record()?.forecast ?? null);
+  protected readonly forecast = computed(() => this.record()?.forecast ?? null);
+  protected readonly forecastOrigin = computed(() => this.forecast()?.origin === 'simulated_example'
+    ? 'Simulated example forecast' : 'Model-generated forecast');
   protected readonly level = computed<Level | null>(() => {
     const f = this.forecast();
     return f ? CATEGORY_LEVEL[f.category] : null;
@@ -149,7 +158,8 @@ export class FatigueCard {
   });
   protected readonly dateText = computed(() => {
     const f = this.forecast();
-    if (f?.targetTimestamp) return `for ${fmt.format(new Date(f.targetTimestamp))}`;
+    if (f?.targetTimestamp && Number.isFinite(Date.parse(f.targetTimestamp))) return `for ${fmt.format(new Date(f.targetTimestamp))} UTC`;
+    if (f) return 'Target date unavailable';
     const r = this.record();
     return r ? `record ${r.index}` : '';
   });

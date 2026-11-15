@@ -6,7 +6,7 @@ The same Angular/Ionic application runs on Windows and Linux in a browser. The s
 
 1. Install **Python 3.12** from <https://www.python.org/downloads/> with the Python launcher, and **Node.js 24 LTS, version 24.15 or later**, from <https://nodejs.org/>. Include npm. Keep this entire project together in a writable folder, not inside the ZIP.
 2. Double-click **`Setup-Astra.cmd`** once. It creates the root `.venv`, installs `ai/requirements.txt`, and runs `npm ci` in both Node projects. Internet access is needed for dependency installation. No training runs.
-3. Double-click **`Start-Demo.cmd`** for the synthetic presentation. It starts the model, backend, and dashboard, waits for their health checks, loads nine fictional daily records if the demo participant is empty, and opens <http://127.0.0.1:4200>.
+3. Double-click **`Start-Demo.cmd`** for the synthetic presentation. It uses separate history at `.local/demo/history_db_v2.json`, starts the model, backend, and dashboard, waits for their health checks, loads nine fictional daily records if the demo participant is empty, and opens <http://127.0.0.1:4200>.
 4. Keep the terminal open. **Press Ctrl+C in that terminal to stop the services.** Saved history remains on disk.
 
 Use **`Start-Astra.cmd`** to start without adding example records. The default participant is `DEMO_SIM_001`; a fresh participant needs seven daily calibration records before the eighth record can receive a forecast. Reopening a populated demo does not erase or duplicate its history.
@@ -26,7 +26,7 @@ To check prerequisites without starting servers:
 .\Start-Astra.cmd --check
 ```
 
-The bundled installer and its installed executable passed native Windows tests, including actual prediction and shutdown. Source-launcher helper tests also ran on Windows; the full source development stack was exercised on Linux. **Rehearse the chosen startup path, prediction, and Ctrl+C shutdown on the actual Windows laptop before presenting.** For these source launch scripts, Ctrl+C is the supported shutdown procedure.
+The **0.1.0** bundled installer and its installed executable passed native Windows tests, including actual prediction and shutdown. The **0.1.1** build containing the latest UI and separate-demo-storage changes is pending its own Windows verification; do not transfer the earlier result to the new executable. Source-launcher helper tests also ran on Windows; the full source development stack was exercised on Linux. **Rehearse the chosen startup path, prediction, and Ctrl+C shutdown on the actual Windows laptop before presenting.** For these source launch scripts, Ctrl+C is the supported shutdown procedure.
 
 ## Linux
 
@@ -36,19 +36,19 @@ From the repository root:
 
 ```bash
 python3.12 scripts/setup.py
-./start.sh --seed-demo
+./start.sh --seed-demo --db-file .local/demo/history_db_v2.json
 ```
 
 If extracting the ZIP loses the executable bit:
 
 ```bash
-bash start.sh --seed-demo
+bash start.sh --seed-demo --db-file .local/demo/history_db_v2.json
 ```
 
 For an already prepared Python 3.12 environment:
 
 ```bash
-python3.12 scripts/start.py --python /absolute/path/to/venv/bin/python --seed-demo
+python3.12 scripts/start.py --python /absolute/path/to/venv/bin/python --seed-demo --db-file .local/demo/history_db_v2.json
 ```
 
 The dependency setup uses locked npm packages and pinned Python versions. Node 22.22.3+ is also supported; the uploaded Angular toolchain accepts Node `^22.22.3 || ^24.15.0 || >=26.0.0`. Python 3.14 is not the documented runtime for this serialized model.
@@ -67,7 +67,8 @@ The launcher checks actual model readiness, not merely an open port. It refuses 
 
 ## Storage, ports, and diagnostics
 
-- History: `.local/history_db_v2.json` by default. This is the prototype's local, single-process JSON store.
+- Normal history: `.local/history_db_v2.json` by default. This is the prototype's local, single-process JSON store.
+- Presentation history: `Start-Demo.cmd` uses `.local/demo/history_db_v2.json`; the Linux presentation commands above explicitly select the same separate path. Neither command erases or migrates earlier history.
 - Logs: `.local/logs/<UTC timestamp>-<process id>/model.log`, `backend.log`, `frontend.log`, and optionally `demo-seed.log`.
 - Environment: `.venv/`; Node dependencies are installed in each project's `node_modules/`.
 - `.local`, environments, logs, and dependencies are excluded from Git and the source handoff.
@@ -82,15 +83,17 @@ Use the configured `.venv` interpreter on Windows, or pass `--python` when using
 
 ## Presentation walkthrough
 
-1. Run `Start-Demo.cmd` or `./start.sh --seed-demo`.
+1. Run `Start-Demo.cmd` or `./start.sh --seed-demo --db-file .local/demo/history_db_v2.json`.
 2. Confirm **Records from the backend**. The participant's `DEMO_` name and fixture documentation identify the fictional observations; live computation does not turn them into real astronaut data.
 3. Inspect records 1–7: calibration, no forecast. Inspect records 8–9: actual model category, index, target time, and SHAP reasons.
-4. Open Check-in and inspect the next daily cutoff. This demonstration advances a fixed daily sequence; do not misrepresent an automatically assigned future cutoff or copied values as measurements just taken.
-5. Submit valid example measurements. Invalid sleep/time-budget combinations are rejected without saving.
+4. Open Check-in: the daily measurement fields start **blank**. Existing records are not copied into a new day's form. Inspect the next daily cutoff; this demonstration advances a fixed daily sequence, so do not present an automatically assigned future cutoff as the time of a measurement just taken.
+5. Enter valid fictional values for the presentation, including an externally measured attention-accuracy value. **Not measured** clears attention accuracy and prevents saving or requesting a forecast until a valid value is supplied; there is no incomplete-draft storage. Invalid sleep/time-budget combinations are rejected without saving.
 6. Open Trends and Guide. A reaction-time quick demo is demonstration-only; it cannot populate the 60-response model fields.
-7. The separate **Alert demo** uses predefined fictional current-alert states. It does not assess the selected participant or run the Clinical Alert V2 engine.
+7. The separate **Alert demo** uses predefined fictional current-alert states and hides the unrelated participant record context. It does not assess the selected participant or run the Clinical Alert V2 engine.
 
-Prefilled values are copies for editing, not sensor measurements. Attention accuracy is entered manually; no complete attention-test UI is included. Our separate Flanker scoring prototype remains under `ai/integration/flanker_prototype`.
+Only explicit **offline demo mode** offers **Fill example values (simulated)**. Those values are fictional and stay in the browser session. Forecast cards distinguish **Simulated example forecast** from **Model-generated forecast**; records without a forecast receive neutral guidance instead of a reassuring low-risk result. Attention accuracy is entered from an external test; no complete attention-test UI is included. Our separate Flanker scoring prototype remains under `ai/integration/flanker_prototype`.
+
+Use synthetic records for public demonstrations and screenshots. Do not publish real human health records, journals, or runtime history files.
 
 ## Troubleshooting
 
@@ -101,6 +104,7 @@ Prefilled values are copies for editing, not sensor measurements. Attention accu
 | Port already in use | Stop your own old launcher with Ctrl+C, or choose three different ports. The script deliberately refuses to kill another process. |
 | Backend/history unavailable | The UI shows an error and a retry choice. It does not silently replace actual history with demo fixtures. |
 | Explicit offline demo selected | Return to the backend using the UI control. Offline examples are separate and are not saved to the backend. |
+| Blank Check-in fields or attention marked Not measured | Enter the current measurements, including valid external attention accuracy. The app does not invent missing values, save an incomplete draft, or request a forecast from them. |
 | Old browser settings use the wrong server | Use Change backend address and leave it empty for the same-origin default, or remove `apiBase` from local storage and reload. |
 | Model outage saved a record | Restore service and retry the **latest identical observation**. Reload preserves its journal for the retry. Do not add another day first. |
 | Duplicate, gap, or out-of-order record | The backend requires exact consecutive 24-hour cutoffs. Check the existing history; use a new demo participant rather than deleting history casually. |

@@ -3,7 +3,8 @@ import { beforeEach, after, test } from 'node:test';
 import { readFileSync } from 'node:fs';
 import { apiBase, buildBody, getSnapshot, nextCutoff, normalizeApiBase, retryBodyFor, setApiBase, setDemoMode, submitRecord } from '../src/app/data/source.ts';
 import { validateCurrentObservation, FeatureHistoryError } from '../../ai/integration/backend_review/proposed_backend/featureHistory.ts';
-import { MEASUREMENT_KEYS, type Measurements, type Snapshot } from '../src/app/types.ts';
+import { MEASUREMENT_KEYS, type DayRecord, type Measurements, type Snapshot } from '../src/app/types.ts';
+import { buildRecommendations } from '../src/app/lib/insights.ts';
 
 const examples = new URL('../../ai/integration/backend_review/proposed_backend/examples/', import.meta.url);
 const sequence = JSON.parse(readFileSync(new URL('synthetic_daily_sequence.json', examples), 'utf8'));
@@ -48,6 +49,7 @@ test('actual completed response maps next-day class, points, probability and SHA
   reads(history());
   const actual = await getSnapshot();
   assert.equal(actual.source, 'backend');
+  assert.equal(actual.records[0].forecast?.origin, 'model_service');
   assert.equal(actual.records[0].forecast?.points, completed.fatigue_points);
   assert.equal(actual.records[0].forecast?.category, completed.fatigue_risk_level);
   assert.deepEqual(actual.records[0].forecast?.probabilities, completed.model_result.next_day_forecasts.fatigue.model_class_probabilities);
@@ -71,6 +73,64 @@ test('explicit demo selection makes no backend or model requests', async () => {
   const snapshot = await getSnapshot();
   assert.equal(snapshot.source, 'demo');
   assert.equal(snapshot.records.length, 8);
+  assert.equal(snapshot.records[7].forecast?.origin, 'simulated_example');
+});
+
+test('an online backend without recorded model provenance cannot establish a model-generated forecast', async () => {
+  for (const patch of [{ inference_source: undefined }, { inference_source: 'demo' }, { model_result: null }]) {
+    reads(history([sequence[7]], [{ ...completed, ...patch }]));
+    await assert.rejects(getSnapshot(), /no verified model-service provenance/);
+  }
+});
+
+test('a stored model forecast retains its origin when the model service is currently unavailable', async () => {
+  globalThis.fetch = (async (url: string) => response(url.endsWith('/health')
+    ? { status: 'online', ai_service: { model_ready: false } } : history())) as typeof fetch;
+  const snapshot = await getSnapshot();
+  assert.equal(snapshot.backend.modelReady, false);
+  assert.equal(snapshot.records[0].forecast?.origin, 'model_service');
+  const advisory = buildRecommendations(snapshot.records[0], snapshot.baseline).filter(r => r.id.startsWith('advisory-'));
+  assert.ok(advisory.length > 0);
+  assert.ok(advisory.every(r => r.reason.startsWith('Advisory returned with this record’s model-generated forecast.')));
+  assert.ok(advisory.every(r => !/\blive\b/i.test(r.reason)));
+});
+
+test('fixture advisory labels remain examples and never claim a model request', async () => {
+  setDemoMode(true);
+  globalThis.fetch = async () => { throw new Error('Offline fixture must not request a model'); };
+  const snapshot = await getSnapshot();
+  const advisory = buildRecommendations(snapshot.records[7], snapshot.baseline).filter(r => r.id.startsWith('advisory-'));
+  assert.ok(advisory.length > 0);
+  assert.ok(advisory.every(r => r.reason.startsWith('Example advisory.')));
+  assert.ok(advisory.every(r => !r.reason.includes('from the model service')));
+});
+
+const nominalMeasurements: Measurements = {
+  ...measurement, sleep_duration_hours: 8, sleep_efficiency_pct: 95, resting_heart_rate_bpm: 65,
+  self_report_fatigue_score: 2, self_report_stress_score: 2, self_report_mood_score: 8,
+};
+
+test('unavailable and calibration records never get reassuring forecast advice', () => {
+  for (const status of ['model_unavailable', 'collecting_baseline'] as const) {
+    const record: DayRecord = { index: 1, timestamp: sequence[0].observation_timestamp_utc,
+      measurements: nominalMeasurements, status, forecast: null };
+    const advice = buildRecommendations(record, null);
+    assert.deepEqual(advice.map(r => r.action), ['No forecast-based recommendation available.']);
+    assert.equal(advice[0].priority, 'none');
+    assert.ok(!advice.some(r => /Keep your current routine/.test(r.action)));
+  }
+});
+
+test('missing forecast does not suppress measurement concerns or require waiting before review', () => {
+  const record: DayRecord = { index: 8, timestamp: sequence[7].observation_timestamp_utc,
+    measurements: { ...nominalMeasurements, resting_heart_rate_bpm: 120, self_report_fatigue_score: 9 },
+    status: 'model_unavailable', forecast: null };
+  const advice = buildRecommendations(record, null);
+  assert.ok(advice.some(r => r.id === 'surgeon' && r.priority === 'critical'));
+  assert.ok(advice.some(r => r.id === 'postpone' && r.priority === 'critical'));
+  assert.ok(advice.some(r => r.id === 'forecast-unavailable' && r.priority === 'none'));
+  assert.ok(advice.every(r => !/rest 10 minutes|8-hour|add 60 minutes/i.test(r.action + ' ' + r.reason)));
+  assert.match(advice.find(r => r.id === 'surgeon')!.reason, /without waiting/);
 });
 
 test('null score and missing optional physiology remain unavailable, never zero or normal', async () => {

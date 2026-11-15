@@ -15,7 +15,7 @@ const SCENARIOS: Scenario[] = [
   { id: 'review', name: 'Sleepiness needs review', level: '1', title: 'Review',
     coverage: 'Complete example core inputs', kss: '7 / 9', fatigue: '2 / 7', sleep: '8 hours', symptoms: 'No acute symptoms',
     reason: 'KSS 7/9 indicates current sleepiness that needs review.',
-    action: 'Review sleep opportunity, workload and upcoming tasks. Repeat at the next planned check or within 1–2 hours if symptomatic.', rule: 'S2' },
+    action: 'Follow mission procedures for reassessment. Seek review before an upcoming safety-critical task if sleepiness is a concern.', rule: 'S2' },
   { id: 'high', name: 'Very sleepy now; low forecast tomorrow', level: '2', title: 'High concern',
     coverage: 'Complete example core inputs', kss: '9 / 9', fatigue: '3 / 7', sleep: '8 hours', symptoms: 'No acute symptoms',
     reason: 'KSS 9/9 indicates severe current sleepiness. A low next-day forecast does not cancel a current concern.',

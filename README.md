@@ -12,15 +12,28 @@ The Windows package uses an inference-only export of the five selected models. I
 
 The teammate's dashboard design and Manrope typography are retained. Manrope is bundled locally for offline use. The added Alert demo tab, explicit connection controls, and mobile tab wrapping are documented integration changes.
 
+## Team
+
+ASTRA-SHIELD was designed and developed by the **Supermoon** team:
+
+- **Mahfuoz Asa'ad Kamal Izhiman** — Team owner
+- **Majdi Abu Ahour**
+- **Yazan Ehmaid**
+- **Karam Alhams**
+- **Omar Hemadneh**
+- **Taleen Abualhasan**
+
+Names follow the team's Space Apps roster. The team contributed to the project's design, development and review; the tool-use disclosures below describe assistance within that work.
+
 ## AI/SI use, data origin, and credits
 
 **ASTRA-SHIELD is a team-designed and team-developed project.** The team supplied the project brief, health-monitoring goals, measurement requirements, frontend design, backend work, and clinical-alert proposals, and directed the integration and development decisions. SI tools helped accelerate implementation, analysis, debugging, documentation, and testing within that work.
 
 **OpenAI ChatGPT/Codex** assisted with Python simulation code and journal templates, the ML workflow and experiments, backend/frontend integration, error fixes, test automation, Windows packaging, and documentation. Numeric observations and labels were computed by the seeded Python simulator; they are not measured astronaut records or values supplied by NASA. The deployed predictions come from the team's selected trained ML models.
 
-The frontend supplied by **Karam Eyad** separately acknowledges **Claude (Anthropic)** assistance with its code, SVG artwork (astronaut, silhouette, and watch), and Guide text. That attribution is retained in the [frontend README](frontend/README.md) and [original disclosure](frontend/docs/UPSTREAM_README_SNAPSHOT.md#use-of-si-ai-tools).
+The frontend supplied by **Karam Alhams** (`Karam-Eyad` on GitHub) separately acknowledges **Claude (Anthropic)** assistance with its code, SVG artwork (astronaut, silhouette, and watch), and Guide text. That attribution is retained in the [frontend README](frontend/README.md) and [original disclosure](frontend/docs/UPSTREAM_README_SNAPSHOT.md#use-of-si-ai-tools).
 
-The integrated app has completed **80 UI checks, 48 end-to-end integration checks, and native Windows tests of both the portable and installed executable**, including real predictions, SHAP output, and shutdown. The [verification reports](integration-reports/README.md) record the tested scope; testing and teammate feedback continue as the prototype develops. These software checks are separate from future clinical validation.
+The integrated app has completed **81 UI checks, 48 end-to-end integration checks, and native Windows tests of both the portable and installed executable**, including real predictions, SHAP output, and shutdown. The [verification reports](integration-reports/README.md) record the tested scope; testing and teammate feedback continue as the prototype develops. These software checks are separate from future clinical validation.
 
 The [machine-readable provenance record](PROVENANCE.json) identifies AI-assisted code/data, artwork provenance, NASA reference roles, and remaining review items. Keep it with redistributed source or data and retain dependency licenses. AI-generated artwork needs a visible SI watermark in submission media; this README alone does not satisfy that requirement.
 
@@ -57,7 +70,7 @@ Use `bash start.sh --seed-demo` if a ZIP extraction removed executable permissio
 
 ## What the teammate built and what is connected
 
-The frontend came from **Karam Eyad's [crew-health-console](https://github.com/Karam-Eyad/crew-health-console)**, supplied as a ZIP. Its dashboard, astronaut body map, daily form, trends, guide, and reaction-time prototype are retained. [Provenance and integration decisions](docs/INTEGRATION_HANDOFF.md) distinguish that work from the integration changes.
+The frontend came from **Karam Alhams's [crew-health-console](https://github.com/Karam-Eyad/crew-health-console)**, supplied as a ZIP. Its dashboard, astronaut body map, daily form, trends, guide, and reaction-time prototype are retained. [Provenance and integration decisions](docs/INTEGRATION_HANDOFF.md) distinguish that work from the integration changes.
 
 | Area | Current scope |
 |---|---|
@@ -91,7 +104,7 @@ The frontend defaults to `/api/v1`. A development proxy connects it locally; a f
 
 ## Demonstrate without waiting a week
 
-`Start-Demo.cmd` or `./start.sh --seed-demo` loads nine **historical synthetic** observations for `DEMO_SIM_001`: seven calibration days and two model requests. The displayed predictions are computed by the actual unchanged model. Existing participant history is preserved, never silently reset.
+`Start-Demo.cmd` or `./start.sh --seed-demo --db-file .local/demo/history_db_v2.json` loads nine **historical synthetic** observations for `DEMO_SIM_001`: seven calibration days and two model requests. The displayed predictions are computed by the actual unchanged model. Presentation launchers use separate demo storage. Existing participant history is preserved, never silently reset.
 
 A separate, explicitly selected offline demo can display fixture examples without a backend. It is labeled as simulated, makes no new model predictions, and keeps additions only in the browser session. Connection failures do not silently switch real backend history to those fixtures.
 

@@ -77,7 +77,8 @@ function median(values: number[]): number {
       </p>
     }
     <p class="test-note">
-      PVT-inspired browser demonstration: median response time and responses of {{ lapseMs }} ms or more.
+      <strong>{{ mode() === 'full' ? 'Custom 60-response PVT-inspired reaction-time test' : 'Custom 10-response practice demo' }}</strong>:
+      median response time and responses of {{ lapseMs }} ms or more.
       This is a fixed-count task, not a timed five-minute or standard PVT protocol. Keep this tab visible and the
       window focused. Matching 60 responses does not establish clinical validity or model accuracy on human data.
     </p>
